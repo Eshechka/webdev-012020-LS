@@ -27,3 +27,6 @@ $ npm run имя_скрипта
 ```sh
 $ yarn имя_скрипта
 ```
+
+Godorazhi Lidia
+webdev-012020-LS
