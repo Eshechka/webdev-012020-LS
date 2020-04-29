@@ -46,3 +46,10 @@ mixin main-title(desc, profession, name)
     .main-title__profession= profession
     .main-title__name
       h1= name
+
+mixin svg-triangles()
+  .triangles
+    svg.triangles__svg(width="900px", height="120px", version="1.1", xmlns="http://www.w3.org/2000/svg", xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" viewBox="0 0 900 120")
+      polygon(fill="#fff" points="0,0 0,120 900,120")
+    svg.triangles__svg(width="900px", height="120px", version="1.1", xmlns="http://www.w3.org/2000/svg", xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" viewBox="0 0 900 120")
+      polygon(fill="#fff" points="0,120 900,120 900,0")
