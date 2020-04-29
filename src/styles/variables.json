@@ -1,6 +1,11 @@
 {
-  "text-color": "#414c63",
+  "white-color": "#ffffff",
+  "base-color": "#414c63",
+  "color-light": "rgba(#464d62, 0.4)",
+  "base-color-hover": "#691ef4",  
+
   "links-color": "#4b6fd7",
+
   "bp-desktop-hd": "1800px",
   "bp-desktop": "1200px",
   "bp-tablets": "768px",

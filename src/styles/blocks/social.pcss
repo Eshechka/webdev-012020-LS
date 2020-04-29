@@ -1,0 +1,35 @@
+.social {
+
+	&__list {
+
+		display: flex;
+	}
+
+	&__item {
+
+		width: 25px;
+		height: 25px;
+
+		&:not(:first-child) {
+			margin-left: 40px;
+		}
+	}
+
+	&__link {				
+
+		font-size: 0;
+
+		@each $social in 'insta','vk','github' {
+
+
+			&_#{`$social`} .social__svg {
+
+				fill: $base-color;
+
+				  &:hover {
+				    fill: $base-color-hover;
+				  }
+				}
+		}
+	}
+}

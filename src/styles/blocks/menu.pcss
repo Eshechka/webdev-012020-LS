@@ -1,0 +1,48 @@
+.menu {
+	padding: 0;
+
+	&__list {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	&__item{
+
+	}
+
+	&__link {
+		padding: 0 30px;
+		white-space: nowrap;
+		padding-bottom: 50px;
+		border-bottom: 3px solid transparent;
+		color: $base-color;
+
+		font-weight: 500;
+		position: relative;
+
+		&:before {
+			display: block;
+			content: attr(data-title);
+			position: absolute;
+			top: 0;
+			left: 0;
+			color: transparent;
+			font-weight: 700;
+			padding: 0 30px;
+			padding-bottom: 50px;
+		}
+
+		&:hover {
+			color: transparent;	
+
+			border-color: $base-color-hover;
+
+			&::before {
+				color: $base-color-hover;
+							
+			}
+		}
+
+	}
+
+}

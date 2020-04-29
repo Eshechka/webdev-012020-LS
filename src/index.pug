@@ -1,15 +1,76 @@
 include ./mixins.pug
 
 <!DOCTYPE html>
-html(lang="en")
+html(lang="ru")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
-    title Portfolio | main page
+    title Личный сайт разработчика
   body
     .wrapper
       .maincontent
-        +image('content/user.jpg', 'user-pic')
-        +icon('link', 'link-class')
-        .icon-bg
+        .wrapper-sections
+          section.fullscreen-section.greeting
+            .container
+              .container__block.container__block_absolute
+                header.header
+                  .header__logo
+                    +logotype("ЛГ")
+
+                  .header__menu
+                    -
+                      const menuItems = [
+                        {href: "./change-me", text: "Главная", modifier: "active"}, 
+                        {href: "./change-me", text: "Обо мне"}, 
+                        {href: "./change-me", text: "Навыки"}, 
+                        {href: "./change-me", text: "Работы"}, 
+                        {href: "./change-me", text: "Отзывы"}, 
+                        {href: "./change-me", text: "Связаться"}
+                      ]
+
+                    +menu(menuItems)
+
+
+                  .header__social
+                    -
+                      const socialItems = [
+                        {url: 'https://www.instagram.com', text: 'insta', modifier: 'insta'}, 
+                        {url: 'https://www.vk.com', text: 'vk', modifier: 'vk'}, 
+                        {url: 'https://www.github.com', text: 'github', modifier: 'github'}
+                      ]
+
+                    +socials(socialItems)
+
+              +main-title('Личный сайт','веб-разработчика','Лидия Годоражи')
+
+
+          section.fullscreen-section.about-me
+            .container
+
+              .person
+                .person__info
+                  .personal-info
+                    table
+                      tbody
+                        tr 
+                          td Проживаю:
+                          td Москва
+                        tr 
+                          td Возраст:
+                          td 36 лет
+                        tr 
+                          td Родился:
+                          td 21 сентября 1983
+
+                .person__desc
+                  .personal-description
+                    p Привет, меня зовут
+                    span Лидия
+                    p Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
+                    p Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+
+
+        //-+image('content/user.jpg', 'user-pic')
+        //-+icon('link', 'link-class')
+        //-.icon-bg

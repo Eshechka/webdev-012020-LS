@@ -1,7 +1,48 @@
 mixin icon(name, className)
-  - var icon = require(`images/icons/${name}.svg`);
-  svg(class=className viewBox=icon.viewBox preserveAspectRatio="none")
+  - let icon = require(`images/icons/${name}.svg`);
+  svg(class=className viewBox=icon.viewBox preserveAspectRatio='none')
     use(xlink:href=icon.url)
+
 
 mixin image(path, className)
   img(src=require(`images/${path}`) class=className)
+
+
+mixin socials(items)
+  div.social
+    ul.social__list
+      each item in items
+        li.social__item
+          -
+            let classesLink = ['social__link']
+              if (item.modifier)
+                - classesLink.push(classesLink + '_' + item.modifier)
+             
+          a(class=classesLink href=item.url)= item.text
+            +icon(item.modifier, 'social__svg')
+
+
+mixin menu(items)
+  menu.menu
+    ul.menu__list
+      each item in items
+        li.menu__item
+          -
+            let classesLink = ['menu__link']
+              if (item.modifier)
+                - classesLink.push(classesLink + '_' + item.modifier)
+     
+          a(class=classesLink href=item.url data-title=item.text)= item.text
+
+
+mixin logotype(text)
+  .logotype
+    span.logotype__text= text
+
+
+mixin main-title(desc, profession, name)
+  .main-title
+    .main-title__desc= desc
+    .main-title__profession= profession
+    .main-title__name
+      h1= name
