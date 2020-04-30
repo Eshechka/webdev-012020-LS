@@ -44,31 +44,42 @@ html(lang="ru")
 
               +main-title('Личный сайт','веб-разработчика','Лидия Годоражи')
 
+              div.scroll
+                div.scroll__block скролл
+                
+
 
           section.fullscreen-section.about-me
             .container
 
               .person
                 .person__info
-                  .personal-info
-                    table
-                      tbody
-                        tr 
-                          td Проживаю:
-                          td Москва
-                        tr 
-                          td Возраст:
-                          td 36 лет
-                        tr 
-                          td Родился:
-                          td 21 сентября 1983
+                  .person__avatar
+                    .avatar
+                      +image('content/user.jpg', 'avatar__picture')
+
+                  .person__data
+                  - 
+                    const personData = [
+                      ['Проживаю:', 'Москва'],
+                      ['Возраст:', '36 лет'],
+                      ['Родилась:', '21 сентября 1983'],
+                    ]
+                  table.person__data-table
+                    tbody.person__data-table-body
+                      each row in personData
+                        tr
+                          td #{row[0]}
+                          td= row[1]
+                      
+
 
                 .person__desc
-                  .personal-description
-                    p Привет, меня зовут
-                    span Лидия
-                    p Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
-                    p Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+                  .person__text.person__text_bottom25 Привет, меня зовут
+                  .person__name 
+                    h2 Лидия Годоражи
+                  .person__text.person__text_bottom75 Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
+                  .person__text.person__text_italic Этот сайт я сделала в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
 
         +svg-triangles("outside")
 
@@ -76,16 +87,37 @@ html(lang="ru")
 
           section.fullscreen-section.whatican
             .container
+              .whatican__block
+                h3.whatican__title Чем я могу быть полезен вам
+                div.whatican__text 
+                  h3 Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+                  .skills
+                    h4.skills__title Frontend
+                    ul.skills__list
+                      li.skills__item HTML5
+                      li.skills__item CSS3
+                      li.skills__item Javascript
+                      li.skills__item JQuery и Vue.js
+
+                    h4.skills__title Workflow
+                    ul.skills__list
+                      li.skills__item Git
+                      li.skills__item Terminal
+                      li.skills__item Gulp
+                      li.skills__item Webpack
+                
 
           section.fullscreen-section.myworks
             .container
+              h3.myworks__title Мои работы
 
         +svg-triangles("inside")
 
         .wrapper-sections.wrapper-sections_group3
           section.fullscreen-section.reviews
             .container
-
+              h3.reviews__title Что обо мне говорят
+ 
           section.fullscreen-section.contacts
             .container
 
@@ -96,4 +128,3 @@ html(lang="ru")
 
         //-+image('content/user.jpg', 'user-pic')
         //-+icon('link', 'link-class')
-        //-.icon-bg
