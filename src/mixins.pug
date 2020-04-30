@@ -47,9 +47,17 @@ mixin main-title(desc, profession, name)
     .main-title__name
       h1= name
 
-mixin svg-triangles()
-  .triangles
+mixin svg-triangles(type)
+
+  - let classes = ["triangles"]
+  - let pointsLeft = "0,0 0,120 900,120"
+  - let pointsRight = "0,120 900,120 900,0"
+
+    if (type==="inside")
+      - classes.push("triangles_inside");
+   
+  div(class=classes)
     svg.triangles__svg(width="900px", height="120px", version="1.1", xmlns="http://www.w3.org/2000/svg", xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" viewBox="0 0 900 120")
-      polygon(fill="#fff" points="0,0 0,120 900,120")
+      polygon(fill="#fff" points=pointsLeft)
     svg.triangles__svg(width="900px", height="120px", version="1.1", xmlns="http://www.w3.org/2000/svg", xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" viewBox="0 0 900 120")
-      polygon(fill="#fff" points="0,120 900,120 900,0")
+      polygon(fill="#fff" points=pointsRight)
