@@ -47,6 +47,17 @@ mixin main-title(desc, profession, name)
     .main-title__name
       h1= name
 
+
+mixin table(data)
+  table.table
+    tbody.table__body
+      each row in data
+        tr.table__row
+          each cell,key in row
+            -let classes = ['table__cell']
+            - classes.push('table__cell_'+ key)                      
+            td(class=classes)= cell
+
 mixin svg-triangles(type)
 
   - let classes = ["triangles"]
@@ -57,7 +68,7 @@ mixin svg-triangles(type)
       - classes.push("triangles_inside");
    
   div(class=classes)
-    svg.triangles__svg(width="900px", height="120px", version="1.1", xmlns="http://www.w3.org/2000/svg", xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" viewBox="0 0 900 120")
+    svg.triangles__svg(preserveAspectRatio="none" viewBox="0 0 900 120")
       polygon(fill="#fff" points=pointsLeft)
-    svg.triangles__svg(width="900px", height="120px", version="1.1", xmlns="http://www.w3.org/2000/svg", xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" viewBox="0 0 900 120")
+    svg.triangles__svg(preserveAspectRatio="none" viewBox="0 0 900 120")
       polygon(fill="#fff" points=pointsRight)

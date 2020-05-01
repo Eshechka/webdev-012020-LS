@@ -2,6 +2,7 @@
   "white-color": "#ffffff",
   "base-color": "#414c63",
   "color-light": "rgba(#464d62, 0.4)",
+  "color-middle": "#464d62",
   "color-dark": "#252830",
   "base-color-hover": "#691ef4",  
 

@@ -9,13 +9,13 @@
 		width: 370px;
 	}
 
-	// это оставить или в аватаре???
 	&__avatar {		
 		display: flex;
-		width: 211px;
-		height: 211px;
+		width: 200px;
+		height: 200px;
 		border-radius: 50%;
 		overflow: hidden;
+		margin-bottom: 55px;
 	}
 	
 	&__desc {
@@ -24,12 +24,13 @@
 
 	&__name {
 		
-		margin-bottom: 24px;
+		margin-bottom: 15px;
 
 		& h2 {
 			color: $base-color;
 			font-weight: 800;
 			font-size: 36px;
+			line-height: 48px;
 		}
 		
 	}
@@ -37,9 +38,10 @@
 	&__text {		
 		color: $color-light;		
 		font-weight: 600;
+		line-height: 30px;
 
 
-		@each $margin in 25, 75 {
+		@each $margin in 18, 91 {
 
 			&_bottom#{$margin} {
 				margin-bottom: #{$margin}px;
@@ -50,6 +52,10 @@
 			font-style: italic;
 		}
 
+	}
+		
+	&__table {
+		
 	}
 
 }

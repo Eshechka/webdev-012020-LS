@@ -13,7 +13,7 @@ html(lang="ru")
         .wrapper-sections.wrapper-sections_group1
           section.fullscreen-section.greeting
             .container
-              .container__block.container__block_absolute
+              .greeting__block.greeting__block_top
                 header.header
                   .header__logo
                     +logotype("ЛГ")
@@ -44,8 +44,9 @@ html(lang="ru")
 
               +main-title('Личный сайт','веб-разработчика','Лидия Годоражи')
 
-              div.scroll
-                div.scroll__block скролл
+              .greeting__block.greeting__block_bottom
+                div.scroll
+                  div.scroll__block скролл
                 
 
 
@@ -59,26 +60,23 @@ html(lang="ru")
                       +image('content/user.jpg', 'avatar__picture')
 
                   .person__data
+                  
                   - 
                     const personData = [
-                      ['Проживаю:', 'Москва'],
-                      ['Возраст:', '36 лет'],
-                      ['Родилась:', '21 сентября 1983'],
+                      {key: 'Проживаю:', value: 'Москва'},
+                      {key: 'Возраст:', value: '36 лет'},
+                      {key: 'Родилась:', value: '21 сентября 1983'},
                     ]
-                  table.person__data-table
-                    tbody.person__data-table-body
-                      each row in personData
-                        tr
-                          td #{row[0]}
-                          td= row[1]
+
+                  .person__table
+                    +table(personData)
                       
 
-
                 .person__desc
-                  .person__text.person__text_bottom25 Привет, меня зовут
+                  .person__text.person__text_bottom18 Привет, меня зовут
                   .person__name 
                     h2 Лидия Годоражи
-                  .person__text.person__text_bottom75 Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
+                  .person__text.person__text_bottom91 Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
                   .person__text.person__text_italic Этот сайт я сделала в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
 
         +svg-triangles("outside")
@@ -94,7 +92,16 @@ html(lang="ru")
                   .skills
                     h4.skills__title Frontend
                     ul.skills__list
-                      li.skills__item HTML5
+                      li.skills__item
+                        .progress
+                          svg.progress__svg(preserveAspectRatio="none" viewBox="0 0 150 150")
+                            linearGradient#gradient
+                              stop(offset="0%" stop-color="#9300e8")
+                              stop(offset="100%" stop-color="#4a00ed")
+                            circle(cx=75 cy=75 r=65 fill="none" stroke="#e9e9e9" stroke-width="10")
+                            circle(cx=75 cy=75 r=65 fill="none" stroke="url(#gradient)" stroke-width="20" stroke-dasharray="270 360")
+                          div.progress__text HTML5
+
                       li.skills__item CSS3
                       li.skills__item Javascript
                       li.skills__item JQuery и Vue.js
