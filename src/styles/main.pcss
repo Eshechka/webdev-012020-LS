@@ -5,29 +5,6 @@
 @import './blocks/*.pcss';
 
 
-.triangles {
-
-	display: flex;
-	width: 100%;
-	margin-top: -120px;
-
-	&_inside {
-		margin-top: 0;
-		margin-bottom: -120px;
-		
-		& .triangles__svg {
-			transform: rotate(180deg);
-		}
-	}
-
-	&__svg {
-		width: 50%;
-		height: 120px;
-		display: inline-flex;
-	}
-  }
-
-
 .wrapper-sections {
 
 	background: #fff;
@@ -72,6 +49,66 @@
 
 .about-me {
 	padding: 170px 0;
+
+	&__container {
+		display: flex;
+		justify-content: center;
+	}
+
+	&__block {
+		
+		&_left {
+			display: flex;
+			flex-direction: column;
+			width: 21%;
+		}
+
+		&_right {
+			width: 34%;
+		}
+
+	}
+
+	&__avatar {
+		display: flex;
+		width: 200px;
+		height: 200px;
+		border-radius: 50%;
+		overflow: hidden;
+		margin-bottom: 55px;
+	}
+
+	&__name {
+		
+		margin-bottom: 15px;
+
+		& h2 {
+			color: $base-color;
+			font-weight: 800;
+			font-size: 36px;
+			line-height: 48px;
+		}
+		
+	}
+
+	&__text {		
+		color: $color-light;		
+		font-weight: 600;
+		line-height: 30px;
+
+
+		@each $margin in 18, 91 {
+
+			&_bottom#{$margin} {
+				margin-bottom: #{$margin}px;
+				}
+		}
+
+		&_italic {
+			font-style: italic;
+		}
+
+	}
 }
 
 .whatican {
@@ -99,7 +136,7 @@
 
 	
 	&__title {
-		font-weight: 900;
+		font-weight: bold;
 		font-size: 30px;
 		line-height: 36px;
 		margin-bottom: 42px;
@@ -110,6 +147,45 @@
 		line-height: 30px;
 		margin-bottom: 82px;
 	}
+}
+
+.myworks {
+
+	padding: 170px 0;
+
+	&__title {
+		color: $base-color;
+		font-size: 36px;
+		line-height: 48px;
+		font-weight: bold;
+		}
+	
+}
+
+.reviews {
+
+	padding: 170px 0;
+
+	&__title {
+		color: $base-color;
+		font-size: 36px;
+		line-height: 48px;
+		font-weight: bold;
+		}
+	
+}
+
+.contacts {
+
+	padding: 170px 0;
+
+	&__title {
+		color: $base-color;
+		font-size: 36px;
+		line-height: 48px;
+		font-weight: bold;
+		}
+	
 }
 
 .header {

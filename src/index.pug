@@ -20,7 +20,7 @@ html(lang="ru")
 
                   .header__menu
                     -
-                      const menuItems = [
+                      const itemsMenu = [
                         {href: "./change-me", text: "Главная", modifier: "active"}, 
                         {href: "./change-me", text: "Обо мне"}, 
                         {href: "./change-me", text: "Навыки"}, 
@@ -29,55 +29,53 @@ html(lang="ru")
                         {href: "./change-me", text: "Связаться"}
                       ]
 
-                    +menu(menuItems)
+                    +menu(itemsMenu)
 
 
                   .header__social
                     -
-                      const socialItems = [
+                      const itemsSocial = [
                         {url: 'https://www.instagram.com', text: 'insta', modifier: 'insta'}, 
                         {url: 'https://www.vk.com', text: 'vk', modifier: 'vk'}, 
                         {url: 'https://www.github.com', text: 'github', modifier: 'github'}
                       ]
 
-                    +socials(socialItems)
+                    +socials(itemsSocial)
 
               +main-title('Личный сайт','веб-разработчика','Лидия Годоражи')
 
               .greeting__block.greeting__block_bottom
                 div.scroll
-                  div.scroll__block скролл
+                  div.scroll__block Скролл
                 
-
 
           section.fullscreen-section.about-me
             .container
 
-              .person
-                .person__info
-                  .person__avatar
+              .about-me__container
+ 
+                .about-me__block.about-me__block_left
+                  .about-me__avatar
                     .avatar
                       +image('content/user.jpg', 'avatar__picture')
 
-                  .person__data
-                  
                   - 
-                    const personData = [
+                    const itemsAboutMe = [
                       {key: 'Проживаю:', value: 'Москва'},
                       {key: 'Возраст:', value: '36 лет'},
                       {key: 'Родилась:', value: '21 сентября 1983'},
                     ]
 
-                  .person__table
-                    +table(personData)
-                      
+                  .about-me__table
+                    +table(itemsAboutMe)
 
-                .person__desc
-                  .person__text.person__text_bottom18 Привет, меня зовут
-                  .person__name 
+
+                .about-me__block.about-me__block_right
+                  .about-me__text.about-me__text_bottom18 Привет, меня зовут
+                  .about-me__name 
                     h2 Лидия Годоражи
-                  .person__text.person__text_bottom91 Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
-                  .person__text.person__text_italic Этот сайт я сделала в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+                  .about-me__text.about-me__text_bottom91 Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
+                  .about-me__text.about-me__text_italic Этот сайт я сделала в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
 
         +svg-triangles("outside")
 
@@ -126,19 +124,47 @@ html(lang="ru")
           section.fullscreen-section.myworks
             .container
               h3.myworks__title Мои работы
+              .myworks__container
+                .myworks__block
+                  .slider
+                    .slider__slides
+                      .slider__slide
+                        +image('content/sliderpicture.png', 'slider__picture')
+                    
+                    .slider__decs
+                      .slider__tags
+                        ul.slider__list
+                          li.slider__item HTML
+                          li.slider__item CSS
+                          li.slider__item JavaScript
+
+                      .slider__title Сайт школы образования
+                      .slider__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
+                      .slider__wrap-link
+                        a.slider__link Посмотреть сайт
+
+
+
+
+
+
 
         +svg-triangles("inside")
 
         .wrapper-sections.wrapper-sections_group3
           section.fullscreen-section.reviews
             .container
+            
               h3.reviews__title Что обо мне говорят
  
           section.fullscreen-section.contacts
             .container
+              h3.reviews__title Связаться со мной
+
 
         footer.footer
           .container
+
             
 
 
