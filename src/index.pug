@@ -85,33 +85,42 @@ html(lang="ru")
 
           section.fullscreen-section.whatican
             .container
-              .whatican__block
-                h3.whatican__title Чем я могу быть полезен вам
-                div.whatican__text 
-                  h3 Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
-                  .skills
-                    h4.skills__title Frontend
-                    ul.skills__list
-                      li.skills__item
-                        .progress
-                          svg.progress__svg(preserveAspectRatio="none" viewBox="0 0 150 150")
-                            linearGradient#gradient
-                              stop(offset="0%" stop-color="#9300e8")
-                              stop(offset="100%" stop-color="#4a00ed")
-                            circle(cx=75 cy=75 r=65 fill="none" stroke="#e9e9e9" stroke-width="10")
-                            circle(cx=75 cy=75 r=65 fill="none" stroke="url(#gradient)" stroke-width="20" stroke-dasharray="270 360")
-                          div.progress__text HTML5
+              .whatican__container
+                div.whatican__block.whatican__block_left
+              
+                div.whatican__block.whatican__block_right
+                
+                  h3.whatican__title Чем я могу быть полезен вам
+                  div.whatican__text 
+                    p Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
 
-                      li.skills__item CSS3
-                      li.skills__item Javascript
-                      li.skills__item JQuery и Vue.js
+                  .skills
+                    h4.skills__title Front-end
+                    ul.skills__list
+                    - 
+                      const itemsSkillsFront = [
+                        {skill: 'HTML5', degree: 270},
+                        {skill: 'CSS3', degree: 250},
+                        {skill: 'Javascript', degree: 40},
+                        {skill: 'JQuery и Vue.js', degree: 10},
+                      ]
+                    each item in itemsSkillsFront
+                      li.skills__item                   
+                          +progress(item.skill, item.degree)
+
 
                     h4.skills__title Workflow
                     ul.skills__list
-                      li.skills__item Git
-                      li.skills__item Terminal
-                      li.skills__item Gulp
-                      li.skills__item Webpack
+                    - 
+                      const itemsSkillsWork = [
+                        {skill: 'Git', degree: 180},
+                        {skill: 'Terminal', degree: 190},
+                        {skill: 'Gulp', degree: 20},
+                        {skill: 'Webpack', degree: 100},
+                      ]
+                    each item in itemsSkillsWork
+                      li.skills__item                   
+                          +progress(item.skill, item.degree)
                 
 
           section.fullscreen-section.myworks
