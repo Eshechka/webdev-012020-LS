@@ -5,6 +5,35 @@
 @import './blocks/*.pcss';
 
 
+.header {
+
+
+	// &__container {
+
+	// 	margin: 0 auto;
+	// 	max-width: 1480px;
+	// 	width: 95%;
+
+	// 	display: flex;
+	// 	justify-content: center;
+	// 	align-items: center;
+	// 	min-height: 105px;
+
+	// 	@include phones {
+	// 		width: 85%;
+	// 	}
+	// }
+
+	&__menu {
+		padding: 0 30px;
+
+	}
+}
+
+section {
+	min-height: 100vh;
+}
+
 .wrapper-sections {
 
 	background: #fff;
@@ -29,20 +58,25 @@
 
 	position: relative;
 
-  &__block {
+  &__absolute-block {
+
+	  position: absolute;
+	  right: 0;
+	  left: 0;
+
+	&_center {
+		top: 50%;
+		transform: translateY(-50%);
+		max-height: 50%;
+		overflow: hidden;
+	}
 
 	&_top {
-		position: absolute;
 		top: 0;
-		right: 0;
-		left: 0;
 	}
 
 	&_bottom {
-		position: absolute;
 		bottom: 0;
-		right: 0;
-		left: 0;
 	}
   }
 }
@@ -186,20 +220,6 @@
 		font-weight: bold;
 		}
 	
-}
-
-.header {
-
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	min-height: 105px;
-
-
-	&__menu {
-		padding: 0 30px;
-
-	}
 }
 
 .footer {

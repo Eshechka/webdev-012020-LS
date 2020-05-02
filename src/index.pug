@@ -12,9 +12,9 @@ html(lang="ru")
       .maincontent
         .wrapper-sections.wrapper-sections_group1
           section.fullscreen-section.greeting
-            .container
-              .greeting__block.greeting__block_top
-                header.header
+            .greeting__absolute-block.greeting__absolute-block_top
+              header.header
+                div.container.container_header
                   .header__logo
                     +logotype("ЛГ")
 
@@ -31,7 +31,6 @@ html(lang="ru")
 
                     +menu(itemsMenu)
 
-
                   .header__social
                     -
                       const itemsSocial = [
@@ -41,15 +40,17 @@ html(lang="ru")
                       ]
 
                     +socials(itemsSocial)
+              
+            .container
+              .greeting__absolute-block.greeting__absolute-block_center
+                +main-title('Личный сайт','веб-разработчика','Лидия Годоражи')
 
-              +main-title('Личный сайт','веб-разработчика','Лидия Годоражи')
-
-              .greeting__block.greeting__block_bottom
+              .greeting__absolute-block.greeting__absolute-block_bottom
                 div.scroll
                   div.scroll__block Скролл
                 
 
-          section.fullscreen-section.about-me
+          section.about-me
             .container
 
               .about-me__container
@@ -77,11 +78,13 @@ html(lang="ru")
                   .about-me__text.about-me__text_bottom91 Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
                   .about-me__text.about-me__text_italic Этот сайт я сделала в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
 
+
         +svg-triangles("outside")
+
 
         .wrapper-sections.wrapper-sections_group2
 
-          section.fullscreen-section.whatican
+          section.whatican
             .container
               .whatican__container
                 div.whatican__block.whatican__block_left
@@ -115,13 +118,20 @@ html(lang="ru")
                         {skill: 'Terminal', degree: 190},
                         {skill: 'Gulp', degree: 20},
                         {skill: 'Webpack', degree: 100},
+                        {skill: 'Git', degree: 180},
+                        {skill: 'Terminal', degree: 190},
+                        {skill: 'Gulp', degree: 20},
+                        {skill: 'Webpack', degree: 100},
+                        {skill: 'Git', degree: 180},
+                        {skill: 'Terminal', degree: 190},
+                        {skill: 'Gulp', degree: 20},
                       ]
                     each item in itemsSkillsWork
                       li.skills__item                   
                           +progress(item.skill, item.degree)
                 
 
-          section.fullscreen-section.myworks
+          section.myworks
             .container
               h3.myworks__title Мои работы
               .myworks__container
@@ -144,20 +154,16 @@ html(lang="ru")
                         a.slider__link Посмотреть сайт
 
 
-
-
-
-
-
         +svg-triangles("inside")
 
+
         .wrapper-sections.wrapper-sections_group3
-          section.fullscreen-section.reviews
+          section.reviews
             .container
             
               h3.reviews__title Что обо мне говорят
  
-          section.fullscreen-section.contacts
+          section.contacts
             .container
               h3.reviews__title Связаться со мной
 

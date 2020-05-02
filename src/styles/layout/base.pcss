@@ -26,10 +26,7 @@ body {
   position: relative;
 }
 
-.container {
-
-  height: 100%;
-
+.container {  
   margin: 0 auto;
   max-width: 1480px;
   width: 95%;
@@ -37,6 +34,13 @@ body {
 
   @include phones {
     width: 85%;
+  }
+
+  &_header {
+    display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 105px;
   }
 }
 
