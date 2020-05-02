@@ -138,15 +138,26 @@ html(lang="ru")
                 .myworks__block
                   .slider
                     .slider__slides
-                      .slider__slide
+                      .slider__preview
                         +image('content/sliderpicture.png', 'slider__picture')
+                      .slider__miniatures
+                        ul.slider__mini-list
+                          li.slider__mini-item
+                            +image('content/sliderpicture.png', 'slider__mini-picture')
+                          li.slider__mini-item
+                            +image('content/sliderpicture2.png', 'slider__mini-picture')
+                          li.slider__mini-item.slider__mini-item.slider__mini-item_active
+                            +image('content/sliderpicture3.png', 'slider__mini-picture')
+                      .slider__arrows
+                        button.slider__arrow-prev.slider__arrow-prev_disable
+                        button.slider__arrow-next
                     
                     .slider__decs
                       .slider__tags
-                        ul.slider__list
-                          li.slider__item HTML
-                          li.slider__item CSS
-                          li.slider__item JavaScript
+                        ul.slider__tags-list
+                          li.slider__tags-item HTML
+                          li.slider__tags-item CSS
+                          li.slider__tags-item JavaScript
 
                       .slider__title Сайт школы образования
                       .slider__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!

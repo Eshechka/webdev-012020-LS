@@ -6,7 +6,8 @@
   "color-dark": "#252830",
   "base-color-hover": "#691ef4",  
 
-  "links-color": "#4b6fd7",
+  "links-color": "#4b6fd7",  
+  "links-color-darktheme": "#9a7029",
 
   "bp-desktop-hd": "1800px",
   "bp-desktop": "1200px",
