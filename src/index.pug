@@ -183,8 +183,26 @@ html(lang="ru")
 
         footer.footer
           .container
+            .footer__container
+              .footer__left-block
+                .footer__copyright © 2019
 
-            
+                .footer__main-title
+                  .footer__name Владимир Астахов
+                  .footer__profession Личный сайт веб-разработчика
+
+              .footer__right-block
+                .footer__menu
+                  +menu(itemsMenu, 'dark_theme')
+                .footer__info
+                  .footer__info-block
+                    .footer__text Этот сайт я сделал в рамках обучения в Школе онлайн образования Loftschool
+                    .footer__socials
+                      +socials(itemsSocial, 'dark_theme')
+
+                  .footer__info-block
+                    .footer__quote Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
+
 
 
         //-+image('content/user.jpg', 'user-pic')

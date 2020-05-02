@@ -8,8 +8,11 @@ mixin image(path, className)
   img(src=require(`images/${path}`) class=className)
 
 
-mixin socials(items)
-  div.social
+mixin socials(items, theme)
+  - let classes = ['social'] 
+    if theme 
+      - classes.push(`social_${theme}`)
+  div(class=classes)
     ul.social__list
       each item in items
         li.social__item
@@ -22,8 +25,11 @@ mixin socials(items)
             +icon(item.modifier, 'social__svg')
 
 
-mixin menu(items)
-  nav.menu
+mixin menu(items, theme)
+  - let classes = ['menu'] 
+    if theme 
+      - classes.push(`menu_${theme}`)
+  nav(class=classes)
     ul.menu__list
       each item in items
         li.menu__item

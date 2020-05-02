@@ -7,39 +7,58 @@
 	}
 
 	&__link {
+
+		display: block;
+		padding: 0 30px 50px;
+
 		text-decoration: none;
-		padding: 0 30px;
 		white-space: nowrap;
-		padding-bottom: 50px;
 		border-bottom: 3px solid transparent;
 		color: $base-color;
-
 		font-weight: 500;
 		position: relative;
 
 		&:before {
-			display: block;
 			content: attr(data-title);
+			display: block;
 			position: absolute;
 			top: 0;
 			left: 0;
 			color: transparent;
 			font-weight: 700;
-			padding: 0 30px;
-			padding-bottom: 50px;
+			padding: 0 30px 50px;
 		}
 
 		&:hover {
-			color: transparent;	
 
+			color: transparent;	
 			border-color: $base-color-hover;
 
 			&::before {
-				color: $base-color-hover;
-							
+				color: $base-color-hover;							
 			}
 		}
 
+	}	
+	
+
+	&_dark_theme {
+
+		& .menu__link {
+
+			color: $white-color;;
+
+			&:hover {
+
+				color: transparent;	
+				border-color: $links-color-darktheme;
+	
+				&::before {
+					color: $links-color-darktheme;							
+				}
+			}
+		}
 	}
+	
 
 }

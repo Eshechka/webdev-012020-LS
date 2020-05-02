@@ -1,7 +1,6 @@
 .social {
 
 	&__list {
-
 		display: flex;
 	}
 
@@ -30,5 +29,23 @@
 				  }
 				}
 		}
+	}
+
+	&_dark_theme {
+		& .social__link {				
+	
+			@each $social in insta, vk, github {
+	
+				&_#{$social} .social__svg {
+	
+					fill: $white-color;
+	
+					  &:hover {
+						fill: $links-color-darktheme;
+					  }
+					}
+			}
+		}
+
 	}
 }
