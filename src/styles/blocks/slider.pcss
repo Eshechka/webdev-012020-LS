@@ -70,55 +70,49 @@
         right: 0;
     }
 
-    &__arrow-next {
+    &__arrow-prev, &__arrow-next {  
+
         width: $arrow-button-size;
         height: $arrow-button-size;
         position: relative;
         background-color: $color-dark;
-        padding: 0;
-
-        &_disable {
-            
-            &::after {
-                background: svg-load('scroll.svg', fill=red);
-            }
-        }
-
-        &::after {
-            content: '';
-            position: absolute;
-            top: calc($arrow-button-size / 2 - 8px / 2 + $mini-item-outline-width);
-            left: calc($arrow-button-size / 2 - 10px / 2);
-            height: 8px;
-            width: 10px;
-            background: svg-load('arrow-down.svg', fill=#{$white-color});
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: contain;
-        }
-
+        padding: 0;        
+        
         
         &:hover {
             background-color: $base-color-hover;
         }
+        
         &:focus, &:active, &:hover {
             outline: none;
         }
+
+        &_disable {
+
+            &:hover {
+                background-color: $color-dark;
+            }
+            
+            & .slider__arrow-icon {
+                fill: $base-color;
+            }
+        }
     }
 
-    &__arrow-prev {        
-        &::after {
-            transform: rotate(90deg);
-        }
-    }
-    &__arrow-next {        
-        &::after {
-            transform: rotate(-90deg);
-        }
+    &__arrow-next .slider__arrow-icon {
+        transform: rotate(-90deg);        
     }
    
-
-
+    &__arrow-icon {
+        content: '';
+        position: absolute;
+        top: calc($arrow-button-size / 2 - 8px / 2 + $mini-item-outline-width);
+        left: calc($arrow-button-size / 2 - 10px / 2);
+        height: 8px;
+        width: 10px;
+        fill: $white-color;
+        transform: rotate(90deg);
+    }
 
 
     &__decs {
