@@ -7,23 +7,6 @@
 
 .header {
 
-
-	// &__container {
-
-	// 	margin: 0 auto;
-	// 	max-width: 1480px;
-	// 	width: 95%;
-
-	// 	display: flex;
-	// 	justify-content: center;
-	// 	align-items: center;
-	// 	min-height: 105px;
-
-	// 	@include phones {
-	// 		width: 85%;
-	// 	}
-	// }
-
 	&__menu {
 		padding: 0 30px;
 
@@ -94,11 +77,15 @@ section {
 		&_left {
 			display: flex;
 			flex-direction: column;
-			width: 21%;
+			align-items: center;
+			width: 30%;
+			margin-right: 64px;
 		}
-
+		
 		&_right {
-			width: 34%;
+			// width: 34%;
+			padding-left: 60px;
+			max-width: 50%;
 		}
 
 	}
@@ -140,6 +127,17 @@ section {
 
 		&_italic {
 			font-style: italic;
+			position: relative;
+
+			&::after {
+				content: '*';
+				position: absolute;
+				top: 0;
+				left: -60px;
+				color: rgba(#db0200, 0.1);
+				font-size: 48px;
+				line-height: 1;
+			}
 		}
 
 	}

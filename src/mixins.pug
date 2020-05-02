@@ -32,7 +32,7 @@ mixin menu(items)
               if (item.modifier)
                 - classesLink.push(classesLink + '_' + item.modifier)
      
-          a(class=classesLink href=item.url data-title=item.text)= item.text
+          a(class=classesLink href=item.href data-title=item.text)= item.text
 
 
 mixin logotype(text)

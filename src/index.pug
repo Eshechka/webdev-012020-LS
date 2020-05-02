@@ -16,7 +16,7 @@ html(lang="ru")
               header.header
                 div.container.container_header
                   .header__logo
-                    +logotype("ЛГ")
+                    +logotype("ВА")
 
                   .header__menu
                     -
@@ -43,7 +43,7 @@ html(lang="ru")
               
             .container
               .greeting__absolute-block.greeting__absolute-block_center
-                +main-title('Личный сайт','веб-разработчика','Лидия Годоражи')
+                +main-title('Личный сайт','веб-разработчика','Владимир Астаханов')
 
               .greeting__absolute-block.greeting__absolute-block_bottom
                 div.scroll
@@ -62,9 +62,9 @@ html(lang="ru")
 
                   - 
                     const itemsAboutMe = [
-                      {key: 'Проживаю:', value: 'Москва'},
-                      {key: 'Возраст:', value: '36 лет'},
-                      {key: 'Родилась:', value: '21 сентября 1983'},
+                      {key: 'Проживаю:', value: 'Новосибирск'},
+                      {key: 'Возраст:', value: '29 лет'},
+                      {key: 'Родилась:', value: '1 января 1991'},
                     ]
 
                   .about-me__table
@@ -74,9 +74,9 @@ html(lang="ru")
                 .about-me__block.about-me__block_right
                   .about-me__text.about-me__text_bottom18 Привет, меня зовут
                   .about-me__name 
-                    h2 Лидия Годоражи
+                    h2 Владимир Астаханов
                   .about-me__text.about-me__text_bottom91 Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
-                  .about-me__text.about-me__text_italic Этот сайт я сделала в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+                  .about-me__text.about-me__text_italic Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
 
 
         +svg-triangles("outside")
@@ -151,7 +151,7 @@ html(lang="ru")
                       .slider__title Сайт школы образования
                       .slider__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
                       .slider__wrap-link
-                        a.slider__link Посмотреть сайт
+                        a.slider__link(href='./changeme') Посмотреть сайт
 
 
         +svg-triangles("inside")
