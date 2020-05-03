@@ -6,21 +6,18 @@
 
 .maincontent {
 	position: relative;
-
+	
 	&__absoluteblock {
 		position: absolute;
 		right: 0;
 		left: 0;
 		top: 0;
+		z-index: 5;
 	}
 
 }
 
 .header {
-	// position: absolute;
-	// right: 0;
-	// left: 0;
-	// top: 0;
 
 	&__container {
 		display: flex;
@@ -283,6 +280,7 @@ section {
 		display: inline-flex;
 		width: 40%; //или basis?
 		min-width: 370px;
+		margin-right: 100px;
 	}	
 
 	&__copyright {
@@ -290,7 +288,7 @@ section {
 		line-height: 30px;
 		font-weight: 600;
 		margin-right: 60px;
-		white-space: nowrap; //может, вместо этого неразрывный пробел?
+		white-space: nowrap; 
 	}
 
 	&__right-block {
@@ -300,11 +298,27 @@ section {
 
 	&__info {
 		display: flex;
-		justify-content: space-between;
 	}
 	
 	&__info-block {
-		flex-basis: 430px;
+		flex-basis: 320px;
+		margin-right: 180px;
+	}
+	
+	&__text {
+		font-size: 16px;
+		line-height: 30px;
+		margin-bottom: 12px;
+	}
+
+	&__quote-block {
+		flex-basis: 440px;
+	}
+
+	&__quote {
+		font-size: 16px;
+		line-height: 30px;
+		margin-bottom: 17px;
 	}
 
 	&__author {
