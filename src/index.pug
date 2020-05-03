@@ -26,11 +26,6 @@ html(lang="ru")
                       {href: "./change-me", text: "Работы"}, 
                       {href: "./change-me", text: "Отзывы"}, 
                       {href: "./change-me", text: "Связаться"},
-                      
-                      {href: "./change-me", text: "Обо мне"}, 
-                      {href: "./change-me", text: "Навыки"}, 
-                      {href: "./change-me", text: "Работы"}, 
-                      {href: "./change-me", text: "Отзывы"}, 
                     ]
 
                   +menu(itemsMenu)
@@ -125,13 +120,6 @@ html(lang="ru")
                         {skill: 'Terminal', degree: 190},
                         {skill: 'Gulp', degree: 20},
                         {skill: 'Webpack', degree: 100},
-                        {skill: 'Git', degree: 180},
-                        {skill: 'Terminal', degree: 190},
-                        {skill: 'Gulp', degree: 20},
-                        {skill: 'Webpack', degree: 100},
-                        {skill: 'Git', degree: 180},
-                        {skill: 'Terminal', degree: 190},
-                        {skill: 'Gulp', degree: 20},
                       ]
                     each item in itemsSkillsWork
                       li.skills__item                   
@@ -156,10 +144,7 @@ html(lang="ru")
                           li.slider__mini-item.slider__mini-item.slider__mini-item_active
                             +image('content/sliderpicture3.png', 'slider__mini-picture')
                       .slider__arrows
-                        button.slider__arrow-prev.slider__arrow-prev_disable
-                          +icon('arrow-down', 'slider__arrow-icon')
-                        button.slider__arrow-next
-                          +icon('arrow-down', 'slider__arrow-icon')
+                        +arrows('arrow-down', '', true)
                     
                     .slider__decs
                       .slider__tags
@@ -183,7 +168,7 @@ html(lang="ru")
               .reviews__topgroup
                 h3.reviews__title Что обо мне говорят
                 .reviews__navigation
-                  +arrows('arrow-down', 'white_circles')
+                  +arrows('arrow-down', 'white_circles', false)
 
               .reviews__container
                 +review('Ковальчук Дмитрий', 'Основатель Loftschool', 'content/review_authot1.png', 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!')

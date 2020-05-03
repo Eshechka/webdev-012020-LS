@@ -1,19 +1,18 @@
-$classname: .arrows;
+$arrows: .arrows;
 
 $button-size: 50px;
-$top-offset: 0px;//это было mini-item-outline-width
+$top-offset: 3px;
 
 $icon-width: 10px;
 $icon-height: 8px;
 
 
-#{$classname} {
-    // position: absolute; это потом надо учеcть в слайдере работ и сделать отдельный компонент, куда положить кнопки
+#{$arrows} {
 
     &__prev, &__next {  
 
-        width: $button-size;
         height: $button-size;
+        width: calc($button-size - $top-offset);
         position: relative;
         padding: 0; 
 
@@ -36,7 +35,7 @@ $icon-height: 8px;
                 background-color: $color-dark;
             }
             
-            & .arrow__icon {
+            & #{$arrows}__icon {
                 //тема слайдера
                 fill: $base-color;
             }
@@ -45,17 +44,17 @@ $icon-height: 8px;
 
     &__prev {
         //тема слайдера
-        transform: rotate(90deg);  //это было раньше в иконке      
+        transform: rotate(90deg);   
     }
     &__next {
         //тема слайдера
-        transform: rotate(-90deg);  //это было раньше в иконке      
+        transform: rotate(-90deg);   
     }
 
     &__icon {
         content: '';
         position: absolute;
-        top: calc(50% + $top-offset);
+        top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
         
@@ -65,47 +64,49 @@ $icon-height: 8px;
         fill: $white-color;
     }
 
-
-    //---themes---
-    &_white_circles {
-        
-        & #{$classname}__prev, 
-        & #{$classname}__next {  
-            //тема отзывы
-            background-color: $white-color;
-            border-radius: 50%;
-            border: 1px solid $color-dark;
-        }
-
-        & #{$classname}__prev:hover, 
-        & #{$classname}__next:hover {
-            //тема отзывы
-            background-color: $white-color;            
-            border-color: $base-color-hover;
-        }
-
-        & #{$classname}__prev {
-            //тема отзывы
-            transform: rotate(180deg);
-            margin-right: 30px;
-        }
-        & #{$classname}__next {
-            //тема отзывы
-            transform: rotate(0deg);
-        }
-
-        & #{$classname}__icon {         
-            //тема отзывы
-            fill: $base-color;
-        }
-        
-        & #{$classname}__prev:hover #{$classname}__icon,
-        & #{$classname}__next:hover #{$classname}__icon {
-            //тема отзывы
-            fill: $base-color-hover;
-        }
+}    
 
 
+//-----themes-----
+#{$arrows}_white_circles {
 
+    $top-offset: 0px;
+    
+    & #{$arrows}__prev, 
+    & #{$arrows}__next {  
+        //тема отзывы
+        width: calc($button-size - $top-offset);
+        background-color: $white-color;
+        border-radius: 50%;
+        border: 1px solid $color-dark;
     }
+
+    & #{$arrows}__prev:hover, 
+    & #{$arrows}__next:hover {
+        //тема отзывы
+        background-color: $white-color;            
+        border-color: $base-color-hover;
+    }
+
+    & #{$arrows}__prev {
+        //тема отзывы
+        transform: rotate(180deg);
+        margin-right: 30px;
+    }
+    & #{$arrows}__next {
+        //тема отзывы
+        transform: rotate(0deg);
+    }
+
+    & #{$arrows}__icon {         
+        //тема отзывы
+        fill: $base-color;
+    }
+    
+    & #{$arrows}__prev:hover #{$arrows}__icon,
+    & #{$arrows}__next:hover #{$arrows}__icon {
+        //тема отзывы
+        fill: $base-color-hover;
+    }
+
 }

@@ -105,12 +105,12 @@ mixin review(name, occupation, avatar, text)
       .review__author-name= name 
         .review__author-occupation= occupation
 
-mixin arrows(iconName, theme)
+mixin arrows(iconName, theme, isDisable)
   - let classes = ['arrows']
     if (theme) 
     - classes.push('arrows_'+ theme)                      
-  div(class=classes)
-    button.arrows__prev
+  div(class=classes)  
+    button.arrows__prev(class = isDisable ? 'arrows__prev_disable' : '')
       +icon(iconName, 'arrows__icon')
     button.arrows__next
       +icon(iconName, 'arrows__icon')        
