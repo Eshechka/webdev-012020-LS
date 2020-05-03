@@ -172,7 +172,11 @@ html(lang="ru")
         .wrapper-sections.wrapper-sections_group3
           section.reviews
             .container
-              h3.reviews__title Что обо мне говорят
+              .reviews__topgroup
+                h3.reviews__title Что обо мне говорят
+                .reviews__navigation
+                  +arrows('arrow-down', 'white_circles')
+
               .reviews__container
                 +review('Ковальчук Дмитрий', 'Основатель Loftschool', 'content/review_authot1.png', 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!')
                 +review('Владимир Сабанцев', 'Преподватель', 'content/review_authot2.png', 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах')

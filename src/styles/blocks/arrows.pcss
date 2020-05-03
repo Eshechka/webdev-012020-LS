@@ -1,0 +1,111 @@
+$classname: .arrows;
+
+$button-size: 50px;
+$top-offset: 0px;//это было mini-item-outline-width
+
+$icon-width: 10px;
+$icon-height: 8px;
+
+
+#{$classname} {
+    // position: absolute; это потом надо учеcть в слайдере работ и сделать отдельный компонент, куда положить кнопки
+
+    &__prev, &__next {  
+
+        width: $button-size;
+        height: $button-size;
+        position: relative;
+        padding: 0; 
+
+        //тема слайдера
+        background-color: $color-dark;              
+        
+        &:hover {
+            //тема слайдера
+            background-color: $base-color-hover;
+        }
+        
+        &:focus, &:active, &:hover {
+            outline: none;
+        }
+
+        &_disable {
+
+            &:hover {
+                //тема слайдера
+                background-color: $color-dark;
+            }
+            
+            & .arrow__icon {
+                //тема слайдера
+                fill: $base-color;
+            }
+        }
+    }
+
+    &__prev {
+        //тема слайдера
+        transform: rotate(90deg);  //это было раньше в иконке      
+    }
+    &__next {
+        //тема слайдера
+        transform: rotate(-90deg);  //это было раньше в иконке      
+    }
+
+    &__icon {
+        content: '';
+        position: absolute;
+        top: calc(50% + $top-offset);
+        left: 50%;
+        transform: translate(-50%, -50%);
+        
+        //тема слайдера
+        height: $icon-height;
+        width: $icon-width;
+        fill: $white-color;
+    }
+
+
+    //---themes---
+    &_white_circles {
+        
+        & #{$classname}__prev, 
+        & #{$classname}__next {  
+            //тема отзывы
+            background-color: $white-color;
+            border-radius: 50%;
+            border: 1px solid $color-dark;
+        }
+
+        & #{$classname}__prev:hover, 
+        & #{$classname}__next:hover {
+            //тема отзывы
+            background-color: $white-color;            
+            border-color: $base-color-hover;
+        }
+
+        & #{$classname}__prev {
+            //тема отзывы
+            transform: rotate(180deg);
+            margin-right: 30px;
+        }
+        & #{$classname}__next {
+            //тема отзывы
+            transform: rotate(0deg);
+        }
+
+        & #{$classname}__icon {         
+            //тема отзывы
+            fill: $base-color;
+        }
+        
+        & #{$classname}__prev:hover #{$classname}__icon,
+        & #{$classname}__next:hover #{$classname}__icon {
+            //тема отзывы
+            fill: $base-color-hover;
+        }
+
+
+
+    }
+}
