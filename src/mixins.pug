@@ -7,6 +7,11 @@ mixin icon(name, className)
 mixin image(path, className)
   img(src=require(`images/${path}`) class=className)
 
+  
+
+mixin avatar(path)
+  img.avatar(src=require(`images/${path}`))
+
 
 mixin socials(items, theme)
   - let classes = ['social'] 
@@ -88,3 +93,14 @@ mixin progress(text, degree)
       circle(cx=75 cy=75 r=65 fill="none" stroke="#e9e9e9" stroke-width="10")
       circle(cx=75 cy=75 r=65 fill="none" stroke="url(#gradient)" stroke-width="20" stroke-dasharray=`${degree} 500`)
     div.progress__text= text
+
+mixin review(name, occupation, avatar, text)
+  .review
+    .review__text
+      p= text 
+    .review__author
+      .review__author-avatar
+        +avatar(avatar)
+
+      .review__author-name= name 
+        .review__author-occupation= occupation

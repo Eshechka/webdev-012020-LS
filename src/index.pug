@@ -57,8 +57,7 @@ html(lang="ru")
  
                 .about-me__block.about-me__block_left
                   .about-me__avatar
-                    .avatar
-                      +image('content/user.jpg', 'avatar__picture')
+                    +avatar('content/user.jpg')
 
                   - 
                     const itemsAboutMe = [
@@ -173,8 +172,11 @@ html(lang="ru")
         .wrapper-sections.wrapper-sections_group3
           section.reviews
             .container
-            
               h3.reviews__title Что обо мне говорят
+              .reviews__container
+                +review('Ковальчук Дмитрий', 'Основатель Loftschool', 'content/review_authot1.png', 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!')
+                +review('Владимир Сабанцев', 'Преподватель', 'content/review_authot2.png', 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах')
+            
  
           section.contacts
             .container
@@ -188,8 +190,9 @@ html(lang="ru")
                 .footer__copyright © 2019
 
                 .footer__main-title
-                  .footer__name Владимир Астахов
-                  .footer__profession Личный сайт веб-разработчика
+                  //-сменил фамилию :)))
+                  .footer__name Владимир Астахов 
+                  .footer__profession Личный сайт веб&#8209разработчика
 
               .footer__right-block
                 .footer__menu
@@ -202,6 +205,7 @@ html(lang="ru")
 
                   .footer__info-block
                     .footer__quote Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
+                    .footer__author Martin Golding
 
 
 
