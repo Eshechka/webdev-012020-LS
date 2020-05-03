@@ -10,37 +10,45 @@ html(lang="ru")
   body
     .wrapper
       .maincontent
+        .maincontent__absoluteblock
+          header.header
+            .container
+              .header__container
+                .header__logo
+                  +logotype("ВА")
+
+                .header__menu
+                  -
+                    const itemsMenu = [
+                      {href: "./change-me", text: "Главная", modifier: "active"}, 
+                      {href: "./change-me", text: "Обо мне"}, 
+                      {href: "./change-me", text: "Навыки"}, 
+                      {href: "./change-me", text: "Работы"}, 
+                      {href: "./change-me", text: "Отзывы"}, 
+                      {href: "./change-me", text: "Связаться"},
+                      
+                      {href: "./change-me", text: "Обо мне"}, 
+                      {href: "./change-me", text: "Навыки"}, 
+                      {href: "./change-me", text: "Работы"}, 
+                      {href: "./change-me", text: "Отзывы"}, 
+                    ]
+
+                  +menu(itemsMenu)
+
+                .header__social
+                  -
+                    const itemsSocial = [
+                      {url: 'https://www.instagram.com', text: 'insta', modifier: 'insta'}, 
+                      {url: 'https://www.vk.com', text: 'vk', modifier: 'vk'}, 
+                      {url: 'https://www.github.com', text: 'github', modifier: 'github'}
+                    ]
+
+                  +socials(itemsSocial)
+
         .wrapper-sections.wrapper-sections_group1
-          section.fullscreen-section.greeting
-            .greeting__absolute-block.greeting__absolute-block_top
-              header.header
-                div.container.container_header
-                  .header__logo
-                    +logotype("ВА")
-
-                  .header__menu
-                    -
-                      const itemsMenu = [
-                        {href: "./change-me", text: "Главная", modifier: "active"}, 
-                        {href: "./change-me", text: "Обо мне"}, 
-                        {href: "./change-me", text: "Навыки"}, 
-                        {href: "./change-me", text: "Работы"}, 
-                        {href: "./change-me", text: "Отзывы"}, 
-                        {href: "./change-me", text: "Связаться"}
-                      ]
-
-                    +menu(itemsMenu)
-
-                  .header__social
-                    -
-                      const itemsSocial = [
-                        {url: 'https://www.instagram.com', text: 'insta', modifier: 'insta'}, 
-                        {url: 'https://www.vk.com', text: 'vk', modifier: 'vk'}, 
-                        {url: 'https://www.github.com', text: 'github', modifier: 'github'}
-                      ]
-
-                    +socials(itemsSocial)
               
+          section.fullscreen-section.greeting
+            //- .greeting__absolute-block.greeting__absolute-block_top
             .container
               .greeting__absolute-block.greeting__absolute-block_center
                 +main-title('Личный сайт','веб-разработчика','Владимир Астаханов')

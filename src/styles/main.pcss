@@ -4,12 +4,33 @@
 @import "./layout/base.pcss";
 @import './blocks/*.pcss';
 
+.maincontent {
+	position: relative;
+
+	&__absoluteblock {
+		position: absolute;
+		right: 0;
+		left: 0;
+		top: 0;
+	}
+
+}
 
 .header {
+	// position: absolute;
+	// right: 0;
+	// left: 0;
+	// top: 0;
+
+	&__container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		min-height: 105px;
+	}
 
 	&__menu {
 		padding: 50px 30px 0;
-
 	}
 }
 
@@ -54,9 +75,9 @@ section {
 		overflow: hidden;
 	}
 
-	&_top {
-		top: 0;
-	}
+	// &_top {
+	// 	top: 0;
+	// }
 
 	&_bottom {
 		bottom: 0;
