@@ -134,17 +134,17 @@ html(lang="ru")
                   .slider
                     .slider__slides
                       .slider__preview
-                        +image('content/sliderpicture.png', 'slider__picture')
+                        +image("content/sliderpicture.png", "slider__picture")
                       .slider__miniatures
                         ul.slider__mini-list
                           li.slider__mini-item
-                            +image('content/sliderpicture.png', 'slider__mini-picture')
+                            +image("content/sliderpicture.png", "slider__mini-picture")
                           li.slider__mini-item
-                            +image('content/sliderpicture2.png', 'slider__mini-picture')
+                            +image("content/sliderpicture2.png", "slider__mini-picture")
                           li.slider__mini-item.slider__mini-item.slider__mini-item_active
-                            +image('content/sliderpicture3.png', 'slider__mini-picture')
+                            +image("content/sliderpicture3.png", "slider__mini-picture")
                       .slider__arrows
-                        +arrows('arrow-down', '', true)
+                        +arrows("arrow-down", "", true)
                     
                     .slider__decs
                       .slider__tags
@@ -156,7 +156,7 @@ html(lang="ru")
                       .slider__title Сайт школы образования
                       .slider__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
                       .slider__wrap-link
-                        a.slider__link(href='./changeme') Посмотреть сайт
+                        a.slider__link(href="./changeme") Посмотреть сайт
 
 
         +svg-triangles("inside")
@@ -168,16 +168,36 @@ html(lang="ru")
               .reviews__topgroup
                 h3.reviews__title Что обо мне говорят
                 .reviews__navigation
-                  +arrows('arrow-down', 'white_circles', false)
+                  +arrows("arrow-down", "white_circles", false)
 
               .reviews__container
-                +review('Ковальчук Дмитрий', 'Основатель Loftschool', 'content/review_authot1.png', 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!')
-                +review('Владимир Сабанцев', 'Преподватель', 'content/review_authot2.png', 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах')
+                +review("Ковальчук Дмитрий", "Основатель Loftschool", "content/review_authot1.png", "Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!")
+                +review("Владимир Сабанцев", "Преподватель", "content/review_authot2.png", "Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах")
             
  
           section.contacts
             .container
-              h3.reviews__title Связаться со мной
+              h3.contacts__title Связаться со мной
+
+              form.form(action="./change-me" method="post")
+                .form__container
+                  .form__row
+                    .form__block.form__block_name
+                      label.form__label(data-text="Введите ваше имя") 
+                        input.form__input(type="text", name="name", placeholder="Ковальчук Дмитрий")
+                    .form__block.form__block_email
+                      label.form__label(data-text="Введите ваш email")
+                        input.form__input(type="email", name="email", placeholder="loftschool@study.com")
+
+                  .form__row
+                    .form__block.form__block_message
+                      label.form__label(data-text="Сообщение к письму")
+                        textarea.form__input.form__input_textarea(type="textarea", name="text", placeholder="Требуется ваша помощь в создании сайта.\r\nИнтересуют сроки и цена вопроса", rows="2" cols="77", resize="none" )
+                  .form__row
+                    .form__block.form__block_offset
+                      button.form__button(type="submit") Отправить
+
+
 
 
         footer.footer
