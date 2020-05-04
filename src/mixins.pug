@@ -21,8 +21,7 @@ mixin socials(items, theme)
     ul.social__list
       each item in items
         li.social__item
-          -
-            let classesLink = ['social__link']
+          - let classesLink = ['social__link']
               if (item.modifier)
                 - classesLink.push(classesLink + '_' + item.modifier)
              

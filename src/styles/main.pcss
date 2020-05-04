@@ -21,9 +21,10 @@
 
 	&__container {
 		display: flex;
-		justify-content: center;
+		justify-content: space-between;
 		align-items: center;
 		min-height: 105px;
+		padding-top: 14px;
 	}
 
 	&__menu {
@@ -70,11 +71,8 @@ section {
 		transform: translateY(-50%);
 		max-height: 50%;
 		overflow: hidden;
+		padding-bottom: 120px;
 	}
-
-	// &_top {
-	// 	top: 0;
-	// }
 
 	&_bottom {
 		bottom: 0;
@@ -83,7 +81,7 @@ section {
 }
 
 .about-me {
-	padding: 170px 0;
+	padding-bottom: 260px;
 
 	&__container {
 		display: flex;
@@ -96,14 +94,12 @@ section {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			width: 30%;
-			margin-right: 64px;
+			width: 26%;
 		}
 		
 		&_right {
-			// width: 34%;
 			padding-left: 60px;
-			max-width: 50%;
+			max-width: 43%;
 		}
 
 	}
@@ -114,12 +110,16 @@ section {
 		height: 200px;
 		border-radius: 50%;
 		overflow: hidden;
-		margin-bottom: 55px;
+		margin-bottom: 60px;
+	}
+
+	&__table {
+		width: 100%;
 	}
 
 	&__name {
 		
-		margin-bottom: 15px;
+		margin-bottom: 29px;
 
 		& h2 {
 			color: $base-color;
@@ -135,12 +135,11 @@ section {
 		font-weight: 600;
 		line-height: 30px;
 
-
-		@each $margin in 18, 91 {
-
-			&_bottom#{$margin} {
-				margin-bottom: #{$margin}px;
-				}
+		&_hello {
+			margin-bottom: 14px;
+		}
+		&_occupation {
+			margin-bottom: 91px;
 		}
 
 		&_italic {
@@ -162,7 +161,7 @@ section {
 }
 
 .whatican {
-	padding: 150px 0;
+	padding-top: 150px;
 
 	&__container {
 		display: flex;
@@ -180,7 +179,7 @@ section {
 		&_right {
 			display: inline-flex;
 			flex-direction: column;
-			width: 60%;
+			width: 79%;
 		}
 	}
 
@@ -189,38 +188,44 @@ section {
 		font-weight: bold;
 		font-size: 30px;
 		line-height: 36px;
-		margin-bottom: 42px;
+		margin-bottom: 47px;
 	}
 
 	&__text {
 		font-size: 16px;
 		line-height: 30px;
-		margin-bottom: 82px;
+		margin-bottom: 81px;
+		width: 60%;
+	}
+
+	&__skills {
+		margin-left: 127px;
 	}
 }
 
 .myworks {
 
-	padding: 170px 0;
+	padding-top: 123px;
+	padding-bottom: 170px;
 
 	&__title {
 		color: $base-color;
 		font-size: 36px;
 		line-height: 48px;
 		font-weight: bold;
-		margin-bottom: 68px;
+		margin-bottom: 90px;
 		}
 	
 }
 
 .reviews {
 
-	padding: 170px 0;
+	padding-top: 253px;
 
 	&__topgroup {
 		display: flex;
 		align-items: center;
-		margin-bottom: 68px;
+		margin-bottom: 80px;
 	}
 
 	&__title {
@@ -229,7 +234,7 @@ section {
 		font-size: 36px;
 		line-height: 48px;
 		font-weight: bold;		
-		margin-right: 122px;
+		margin-right: 80px;
 	}
 	
 	&__navigation {
@@ -241,20 +246,22 @@ section {
 		width: 1016px;
 		overflow: hidden;
 		padding: 9px 0;
+		padding-left: 25px;
 	}
 	
 }
 
 .contacts {
 
-	padding: 170px 0;
+	padding-top: 185px;
+    padding-bottom: 100px;
 
 	&__title {
 		color: $base-color;
 		font-size: 36px;
 		line-height: 48px;
 		font-weight: bold;
-		margin-bottom: 70px;
+		margin-bottom: 78px;
 		}
 	
 }
@@ -263,7 +270,7 @@ section {
 .footer {
 	min-height: 405px;
 	background-color: $color-dark;
-	padding: 100px 0;
+	padding: 95px 0;
 	color: rgba($white-color, 0.1);
 
 	&__container {
@@ -273,6 +280,22 @@ section {
 	&__menu {
 		margin-left: -30px;
 	}
+	
+	&__left-block {
+		display: inline-flex;
+		width: 40%;
+		min-width: 370px;
+		margin-right: 131px;
+	}	
+	
+	&__copyright {
+		font-size: 48px;
+		line-height: 30px;
+		font-weight: 600;
+		margin-right: 60px;
+		padding-top: 9px;
+		white-space: nowrap; 
+	}
 
 	&__name {
 		color: $white-color;
@@ -280,22 +303,12 @@ section {
 		font-size: 18px;
 		line-height: 30px;
 		text-transform: uppercase;
-		margin-bottom: 29px;
+		margin-bottom: 18px;
 	}
-	
-	&__left-block {
-		display: inline-flex;
-		width: 40%; //или basis?
-		min-width: 370px;
-		margin-right: 100px;
-	}	
 
-	&__copyright {
-		font-size: 48px;
+	&__profession {
+		font-size: 18px;
 		line-height: 30px;
-		font-weight: 600;
-		margin-right: 60px;
-		white-space: nowrap; 
 	}
 
 	&__right-block {
@@ -315,7 +328,8 @@ section {
 	&__text {
 		font-size: 16px;
 		line-height: 30px;
-		margin-bottom: 12px;
+		margin-bottom: 		24px
+		;
 	}
 
 	&__quote-block {
