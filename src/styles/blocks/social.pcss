@@ -7,36 +7,61 @@
 	
 	&__item {
 		
-		// display: inline-flex;
-		// justify-content: center;
-		// align-items: center;
-		// width: 25px;
-		// height: 25px;
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
 
 		&:not(:first-child) {
-			margin-left: 45px;
+			margin-left: 39px;
 		}
 	}
 
 	&__link {		
 
-		width: 31px;
-		height: 25px;
+		width: 29px;
 		display: inline-block;
 		font-size: 0;
+		
+// почему это не работает? в онлайн конвертере конвертирует без проблем
+		// $socials-name-and-width: (
+		// 	insta: 25px,
+		// 	vk: 29px,
+		// 	github: 27px,
+		// );
+
+		// @each $social, $width in $socials-name-and-width {
+
+		// 	&_#{$social} .social__svg {
+
+				// width: $width;
+				// display: block;
+				// fill: $base-color;
+
+				//   &:hover {
+				//     fill: $base-color-hover;
+				// }
+		// 	}
+		// }
+
 
 		@each $social in insta, vk, github {
 
 			&_#{$social} .social__svg {
 
 				display: block;
-
 				fill: $base-color;
 
 				  &:hover {
 				    fill: $base-color-hover;
 				}
 			}
+		}
+
+		&_insta .social__svg {
+			width: 24px;
+		}
+		&_github .social__svg {
+			width: 27px;
 		}
 	}
 
@@ -73,7 +98,6 @@
 
 		& .social__link {			
 			width: 25px;
-			height: 25px;
 		}
 
 	}
