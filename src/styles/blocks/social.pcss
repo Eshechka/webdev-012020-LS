@@ -1,99 +1,119 @@
-.social {
+$social: .social;
+
+#{$social} {
 
 	&__list {
 		display: flex;
 		align-items: center;
 	}
-	
+
 	&__item {
 		
 		display: inline-flex;
 		justify-content: center;
 		align-items: center;
+		border-radius: 50%;
+		border: 1px solid transparent;
 
 		&:not(:first-child) {
 			margin-left: 39px;
 		}
-
-		&:active, &:focus {
-			outline: none;
-			box-shadow: 0px 0px 10px 5px rgba($white-color, 0.5);
-		}
 	}
+
 
 	&__link {		
 
-		width: 29px;
+		width: 25px;		
 		display: inline-block;
 		font-size: 0;
-		
-		@each $social in insta, vk, github {
 
-			&_#{$social} .social__svg {
+		&:active, &:focus {
+			outline: none;
 
-				display: block;
-				fill: $base-color;
-
-				&:hover {
-					fill: $base-color-hover;
-				}
+			#{$social}__svg {
+				opacity: 0.5;
 			}
 		}
 
-		&_insta .social__svg {
-			width: 24px;
-		}
-		&_github .social__svg {
-			width: 27px;
+		&:hover {
+
+			#{$social}__svg {
+				fill: $base-color-hover;				
+			}
 		}
 
+		#{$social}__svg {
+	
+			display: block;
+			fill: $base-color;
 
+			&:hover {
+				fill: $base-color-hover;
+			}
+		}
+
+		&_vk #{$social}__svg {
+			width: 30px;
+		}
 	}
 
 
-	&_dark_theme {
+}
 
-		& .social__item {
-			
-			width: 50px;
-			height: 50px;
-			border-radius: 50%;
-			border: 1px solid rgba($white-color, 0.1);
+//-----themes-----
+#{$social}_dark_theme {
 
-			&:not(:first-child) {
-				margin-left: 20px;
-			}
+	& #{$social}__item {
+		
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		border: 1px solid rgba($white-color, 0.1);
 
-			&:hover {
-				border-color: $links-color-darktheme;
-			}
-			&:active, &:focus {
-				outline: none;
-				border-color: rgba($white-color, 0.3);
-			}
-
-
-			@each $social in insta, vk, github {
-
-				& .social__link_#{$social} .social__svg {
-					fill: rgba($white-color, 0.1);
-				}
-
-				&:hover .social__link_#{$social} .social__svg {			
-					fill: $links-color-darktheme;
-				}
-
-				&:active .social__link_#{$social} .social__svg,
-				&:focus .social__link_#{$social} .social__svg {			
-					fill: rgba($white-color, 0.3);
-				}
-			}
-
+		&:not(:first-child) {
+			margin-left: 20px;
 		}
 
-		& .social__link {			
+		&:hover {
+			border-color: $links-color-darktheme;
+		}
+
+
+		@each $item in insta, vk, github {
+
+			
+			#{$social}__link_#{$item} {
+				
+				&:active, &:focus {
+					outline: none;
+					
+					& #{$social}__svg {			
+						fill: rgba($white-color, 0.4);
+					}
+				}
+			}
+			
+			&:hover #{$social}__link_#{$item} #{$social}__svg {			
+				fill: $links-color-darktheme;
+			}
+		}
+	}
+
+	#{$social}__link {			
+		width: 25px;
+		
+		#{$social}__svg {
+			fill:rgba($white-color, 0.1);
+		}
+
+		&:hover {
+			#{$social}__svg {
+				fill: $links-color-darktheme;
+			}
+		}
+
+		&_vk #{$social}__svg {
 			width: 25px;
 		}
-
 	}
 }

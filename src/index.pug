@@ -1,11 +1,11 @@
 include ./mixins.pug
 
 <!DOCTYPE html>
-html(lang="ru")
+html(lang='ru')
   head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    meta(charset='UTF-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    meta(http-equiv='X-UA-Compatible', content='ie=edge')
     title Личный сайт разработчика
   body
     .wrapper
@@ -15,17 +15,17 @@ html(lang="ru")
             .container
               .header__container
                 .header__logo
-                  +logotype("ВА")
+                  +logotype('ВА')
 
                 .header__menu
                   -
                     const itemsMenu = [
-                      {href: "./change-me", text: "Главная", modifier: "active"}, 
-                      {href: "./change-me", text: "Обо мне"}, 
-                      {href: "./change-me", text: "Навыки"}, 
-                      {href: "./change-me", text: "Работы"}, 
-                      {href: "./change-me", text: "Отзывы"}, 
-                      {href: "./change-me", text: "Связаться"},
+                      {href: './change-me', text: 'Главная', modifier: 'active'}, 
+                      {href: './change-me', text: 'Обо мне'}, 
+                      {href: './change-me', text: 'Навыки'}, 
+                      {href: './change-me', text: 'Работы'}, 
+                      {href: './change-me', text: 'Отзывы'}, 
+                      {href: './change-me', text: 'Связаться'},
                     ]
 
                   +menu(itemsMenu)
@@ -80,7 +80,7 @@ html(lang="ru")
                   .about-me__text.about-me__text_italic Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
 
 
-        +svg-triangles("outside")
+        +svg-triangles('outside')
 
 
         .wrapper-sections.wrapper-sections_group2
@@ -134,17 +134,17 @@ html(lang="ru")
                   .slider
                     .slider__slides
                       .slider__preview
-                        +image("content/sliderpicture.png", "slider__picture")
+                        +image('content/sliderpicture.png', 'slider__picture')
                       .slider__miniatures
                         ul.slider__mini-list
                           li.slider__mini-item
-                            +image("content/sliderpicture.png", "slider__mini-picture")
+                            +image('content/sliderpicture.png', 'slider__mini-picture')
                           li.slider__mini-item
-                            +image("content/sliderpicture2.png", "slider__mini-picture")
+                            +image('content/sliderpicture2.png', 'slider__mini-picture')
                           li.slider__mini-item.slider__mini-item.slider__mini-item_active
-                            +image("content/sliderpicture3.png", "slider__mini-picture")
+                            +image('content/sliderpicture3.png', 'slider__mini-picture')
                       .slider__arrows
-                        +arrows("arrow-down", "", true)
+                        +arrows('arrow-down', '', true)
                     
                     .slider__decs
                       .slider__tags
@@ -156,10 +156,10 @@ html(lang="ru")
                       .slider__title Сайт школы образования
                       .slider__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
                       .slider__wrap-link
-                        a.slider__link(href="./changeme") Посмотреть сайт
+                        a.slider__link(href='./changeme') Посмотреть сайт
 
 
-        +svg-triangles("inside")
+        +svg-triangles('inside')
 
 
         .wrapper-sections.wrapper-sections_group3
@@ -168,34 +168,34 @@ html(lang="ru")
               .reviews__topgroup
                 h3.reviews__title Что обо мне говорят
                 .reviews__navigation
-                  +arrows("arrow-down", "white_circles", false)
+                  +arrows('arrow-down', 'white_circles', false)
 
               .reviews__container
-                +review("Ковальчук Дмитрий", "Основатель Loftschool", "content/review_authot1.png", "Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!")
-                +review("Владимир Сабанцев", "Преподватель", "content/review_authot2.png", "Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах")
+                +review('Ковальчук Дмитрий', 'Основатель Loftschool', 'content/review_authot1.png', 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!')
+                +review('Владимир Сабанцев', 'Преподватель', 'content/review_authot2.png', 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах')
             
  
           section.contacts
             .container
               h3.contacts__title Связаться со мной
 
-              form.form(action="./change-me" method="post")
+              form.form(action='./change-me' method='post')
                 .form__container
                   .form__row
                     .form__block.form__block_name
-                      label.form__label(data-text="Введите ваше имя") 
-                        input.form__input(type="text", name="name", placeholder="Ковальчук Дмитрий")
+                      label.form__label(data-text='Введите ваше имя') 
+                        input.form__input(type='text', name='name', placeholder='Ковальчук Дмитрий')
                     .form__block.form__block_email
-                      label.form__label(data-text="Введите ваш email")
-                        input.form__input(type="email", name="email", placeholder="loftschool@study.com")
+                      label.form__label(data-text='Введите ваш email')
+                        input.form__input(type='email', name='email', placeholder='loftschool@study.com')
 
                   .form__row
                     .form__block.form__block_message
-                      label.form__label(data-text="Сообщение к письму")
-                        textarea.form__input.form__input_textarea(type="textarea", name="text", placeholder="Требуется ваша помощь в создании сайта.\r\nИнтересуют сроки и цена вопроса", rows="2" cols="77", resize="none" )
+                      label.form__label(data-text='Сообщение к письму')
+                        textarea.form__input.form__input_textarea(type='textarea', name='text', placeholder='Требуется ваша помощь в создании сайта.\r\nИнтересуют сроки и цена вопроса', rows='2' cols='77', resize='none' )
                   .form__row
                     .form__block.form__block_button
-                      button.form__button(type="submit") Отправить
+                      button.form__button(type='submit') Отправить
 
 
 

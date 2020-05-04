@@ -15,12 +15,9 @@ $icon-height: 8px;
         width: calc($button-size - $top-offset);
         position: relative;
         padding: 0; 
-
-        //тема слайдера
         background-color: $color-dark;              
         
         &:hover {
-            //тема слайдера
             background-color: $base-color-hover;
         }
         
@@ -31,23 +28,19 @@ $icon-height: 8px;
         &_disable {
 
             &:hover {
-                //тема слайдера
                 background-color: $color-dark;
             }
             
             & #{$arrows}__icon {
-                //тема слайдера
                 fill: $base-color;
             }
         }
     }
 
     &__prev {
-        //тема слайдера
         transform: rotate(-90deg);   
     }
     &__next {
-        //тема слайдера
         transform: rotate(90deg);   
     }
 
@@ -57,8 +50,6 @@ $icon-height: 8px;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        
-        //тема слайдера
         height: $icon-height;
         width: $icon-width;
         fill: $white-color;
@@ -74,7 +65,6 @@ $icon-height: 8px;
     
     & #{$arrows}__prev, 
     & #{$arrows}__next {  
-        //тема отзывы
         width: calc($button-size - $top-offset);
         background-color: transparent;
         border-radius: 50%;
@@ -83,30 +73,24 @@ $icon-height: 8px;
 
     & #{$arrows}__prev:hover, 
     & #{$arrows}__next:hover {
-        //тема отзывы
         background-color: transparent;            
         border-color: $base-color-hover;
     }
 
     & #{$arrows}__prev {
-        //тема отзывы
         transform: rotate(180deg);
         margin-right: 30px;
     }
     & #{$arrows}__next {
-        //тема отзывы
         transform: rotate(0deg);
     }
 
-    & #{$arrows}__icon {         
-        //тема отзывы
+    & #{$arrows}__icon { 
         fill: $base-color;
     }
     
     & #{$arrows}__prev:hover #{$arrows}__icon,
     & #{$arrows}__next:hover #{$arrows}__icon {
-        //тема отзывы
         fill: $base-color-hover;
     }
-
 }
