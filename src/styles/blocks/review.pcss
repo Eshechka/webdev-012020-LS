@@ -1,9 +1,10 @@
 .review {
 	min-width: 450px;
 	width: 44.3%;
+	margin-right: 58px;
+
 	padding-left: 96px;
 	position: relative;
-	margin-right: 58px;
 
 	&::before {
 		content: '';
@@ -51,6 +52,10 @@
 		font-weight: 600;
 		line-height: 30px;
 		color: $color-light;
+	}
+
+	@include desktop {
+		margin-right: 40px;
 	}
 
 }

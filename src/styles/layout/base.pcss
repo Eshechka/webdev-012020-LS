@@ -5,6 +5,9 @@ html {
   @include tablets {
     font-size: 14px;
   }
+  @include phones {
+    font-size: 14px;
+  }
 }
 body,
 html {
@@ -27,12 +30,21 @@ body {
 }
 
 .container {  
+  //Px чтобы убрать пересчет в rem
   margin: 0 auto;
-  max-width: 1480px;
+  max-width: 1480Px;
   width: 95%;
   // width: 1490px;
 
+  @include desktop {
+    max-width: 1080Px;
+  }
+  @include tablets {
+    max-width: 688Px;
+    width: 90%;
+  }
   @include phones {
+    min-width: 300Px;
     width: 85%;
   }
 

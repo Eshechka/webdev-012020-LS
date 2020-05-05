@@ -12,7 +12,17 @@
 	color: $color-light;
 
 	&__desc {		
-		margin-bottom: 6px;
+		text-align: center;
+
+		@include desktop {
+			text-align: right;
+			margin-right: 62px;
+		}
+	}
+
+	&__profession {	
+		margin-top: 6px;
+		white-space: nowrap;
 	}
 
 	&__name {
@@ -26,6 +36,21 @@
 			font-weight: 900;
 			color: $base-color;
 		}
+
+		@include desktop {
+			padding-top: 0;
+		}
+	}
+
+	@include desktop {
+		flex-direction: row;
+		align-items: flex-start;
+	}
+	@include tablets {
+		
+	}
+	@include phones {
+		
 	}
 
 }
