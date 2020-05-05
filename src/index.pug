@@ -141,9 +141,9 @@ html(lang='ru')
                             +image('content/sliderpicture.png', 'slider__mini-picture')
                           li.slider__mini-item
                             +image('content/sliderpicture2.png', 'slider__mini-picture')
-                          li.slider__mini-item
+                          li.slider__mini-item(data-slidenum=3)
                             +image('content/sliderpicture.png', 'slider__mini-picture')
-                          li.slider__mini-item.slider__mini-item.slider__mini-item_active
+                          li.slider__mini-item(data-slidenum=4)
                             +image('content/sliderpicture3.png', 'slider__mini-picture')
                       .slider__arrows
                         +arrows('arrow-down', '', true)
@@ -202,7 +202,6 @@ html(lang='ru')
 
 
 
-
         footer.footer
           .container
             .footer__container
@@ -225,7 +224,6 @@ html(lang='ru')
                   .footer__quote-block
                     .footer__quote Всегда пишите код так, будто сопровождать его будет склонный к насилию психопат, который знает где вы живете
                     .footer__author Martin Golding
-
 
 
         //-+image('content/user.jpg', 'user-pic')

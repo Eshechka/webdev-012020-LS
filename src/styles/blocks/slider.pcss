@@ -46,9 +46,9 @@
     }
 
     $mini-item-outline-width: 3px;
-
     $mini-items-amount: 4;
     $mini-items-height: 100px;
+
     &__miniatures {
 
         position: absolute;
@@ -56,9 +56,15 @@
         right: -$mini-item-outline-width;
         z-index: 2;
         width: calc(178px + 2 * $mini-item-outline-width);
-        height: calc($mini-items-amount * $mini-items-height + 2 * $mini-item-outline-width);
+        height: calc($mini-items-amount * $mini-items-height + $mini-item-outline-width);
         overflow: hidden;
         padding: $mini-item-outline-width;
+
+        @include desktop {
+            $mini-items-amount: 3;
+
+            height: calc($mini-items-amount * $mini-items-height + $mini-item-outline-width);
+        }
     }
 
     &__mini-item {
@@ -72,17 +78,29 @@
             display: none;
             height: 100%;
             width: 100%;
-            background-color: rgba($links-color, 0.3);
+            background-color: rgba($base-color-hover, 0.3);
         }
 
-        &_active {
+
+        &[data-slidenum="#{$mini-items-amount}"] {
             outline: $mini-item-outline-width solid $links-color-darktheme;
         }
+
+        // &_active {
+        //     outline: $mini-item-outline-width solid $links-color-darktheme;
+        // }
 
         &:hover {
 
             &::before {
                 display: block;
+            }
+        }
+
+        @include desktop {
+            $mini-items-amount: 3;
+            &[data-slidenum="#{$mini-items-amount}"] {
+                outline: $mini-item-outline-width solid $links-color-darktheme;
             }
         }
     }
