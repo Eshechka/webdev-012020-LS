@@ -41,7 +41,16 @@ html(lang='ru')
                   +socials(itemsSocial)
 
         .wrapper-sections.wrapper-sections_group1
-              
+
+          section.parallax-mountain
+            .parallax-mountain__sky
+              +image('content/parallax-mountain/Sky.png', 'parallax-mountain__img')
+            .parallax-mountain__mountain
+              +image('content/parallax-mountain/Mountain.png', 'parallax-mountain__img')
+            .parallax-mountain__baloon              
+              +image('content/parallax-mountain/Baloon.png', 'parallax-mountain__img')
+
+          
           section.fullscreen-section.greeting
             .container
               .greeting__absolute-block.greeting__absolute-block_center
@@ -79,8 +88,9 @@ html(lang='ru')
                   .about-me__text.about-me__text_occupation Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
                   .about-me__text.about-me__text_italic Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
 
-
         +svg-triangles('outside')
+
+        
 
 
         .wrapper-sections.wrapper-sections_group2
@@ -139,7 +149,7 @@ html(lang='ru')
                         ul.slider__mini-list
                           li.slider__mini-item
                             +image('content/sliderpicture.png', 'slider__mini-picture')
-                          li.slider__mini-item
+                          li.slider__mini-item(data-slidenum=2)
                             +image('content/sliderpicture2.png', 'slider__mini-picture')
                           li.slider__mini-item(data-slidenum=3)
                             +image('content/sliderpicture.png', 'slider__mini-picture')
