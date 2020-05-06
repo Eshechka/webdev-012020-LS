@@ -29,7 +29,28 @@
 
 	&__menu {
 		padding: 50px 30px 0;
+
+		@include tablets {
+			display: none;
+		}
 	}
+
+	&__hamburger {
+		display: none;
+
+		@include tablets {
+			display: block;
+		}
+	}
+
+	&__logo {
+		
+
+		@include tablets {
+			flex-basis: 30%;
+		}
+	}
+
 }
 
 section {
@@ -80,12 +101,13 @@ section {
 }
 
 .about-me {
-	padding-bottom: 120px;
+	// padding-bottom: 120px;
+	padding-bottom: 260px;
 
 	&__container {
 		display: flex;
 		justify-content: center;
-		padding-bottom: 132px;
+		// padding-bottom: 132px;
 	}
 
 	&__block {

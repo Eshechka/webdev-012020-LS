@@ -6,7 +6,7 @@ if (process.env.NODE_ENV === "development") {
 // import "./scripts/skills";
 import Parallax from './scripts/parallax.js';
 
-const section = document.querySelector('.parallax-mountain');
+const section = document.querySelector('.parallax');
 let parallax = new Parallax(section);
 
 window.addEventListener('scroll', e => {

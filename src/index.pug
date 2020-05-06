@@ -40,23 +40,31 @@ html(lang='ru')
 
                   +socials(itemsSocial)
 
+                .header__hamburger
+                  .hamburger
+                    .hamburger__rect
+                    .hamburger__rect
+                    .hamburger__rect
+                    
+                    
+
         .wrapper-sections.wrapper-sections_group1
 
-          section.parallax-mountain
-            .parallax-mountain__sky
-              +image('content/parallax-mountain/Sky.png', 'parallax-mountain__img')
-            .parallax-mountain__mountain
-              +image('content/parallax-mountain/Mountain.png', 'parallax-mountain__img')
-            .parallax-mountain__baloon              
-              +image('content/parallax-mountain/Baloon.png', 'parallax-mountain__img')
-            .parallax-mountain__cloud
-              +image('content/parallax-mountain/Cloud.png', 'parallax-mountain__img')
-            .parallax-mountain__man              
-              +image('content/parallax-mountain/Man.png', 'parallax-mountain__img')
-            .parallax-mountain__mountain1
-              +image('content/parallax-mountain/Mountain1.png', 'parallax-mountain__img')
-            .parallax-mountain__white
-              +image('content/parallax-mountain/White.png', 'parallax-mountain__img')
+          section.parallax.parallax_mountain
+            .parallax__layer.parallax__layer_sky
+              +image('content/parallax-mountain/Sky.png', 'parallax__img')
+            .parallax__layer.parallax__layer_mountain
+              +image('content/parallax-mountain/Mountain.png', 'parallax__img')
+            .parallax__layer.parallax__layer_baloon              
+              +image('content/parallax-mountain/Baloon.png', 'parallax__img')
+            .parallax__layer.parallax__layer_cloud
+              +image('content/parallax-mountain/Cloud.png', 'parallax__img')
+            .parallax__layer.parallax__layer_man              
+              +image('content/parallax-mountain/Man.png', 'parallax__img')
+            .parallax__layer.parallax__layer_mountain1
+              +image('content/parallax-mountain/Mountain1.png', 'parallax__img')
+            .parallax__layer.parallax__layer_white
+              +image('content/parallax-mountain/White.png', 'parallax__img')
 
           
           section.fullscreen-section.greeting
@@ -96,7 +104,7 @@ html(lang='ru')
                   .about-me__text.about-me__text_occupation Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
                   .about-me__text.about-me__text_italic Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
 
-          +svg-triangles('outside')
+        +svg-triangles('outside')
 
         
 

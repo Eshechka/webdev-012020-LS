@@ -3,13 +3,12 @@ class Parallax {
     constructor (element) {
         this.section = element;
 
-        // this.sky = this.section.querySelector('.parallax-mountain__sky');
-        this.mountain = this.section.querySelector('.parallax-mountain__mountain');
-        this.baloon = this.section.querySelector('.parallax-mountain__baloon');
-        this.cloud = this.section.querySelector('.parallax-mountain__cloud');
-        this.man = this.section.querySelector('.parallax-mountain__man');
-        this.mountain1 = this.section.querySelector('.parallax-mountain__mountain1');
-        this.white = this.section.querySelector('.parallax-mountain__white');
+        this.mountain = this.section.querySelector('.parallax__layer_mountain');
+        this.baloon = this.section.querySelector('.parallax__layer_baloon');
+        this.cloud = this.section.querySelector('.parallax__layer_cloud');
+        this.man = this.section.querySelector('.parallax__layer_man');
+        this.mountain1 = this.section.querySelector('.parallax__layer_mountain1');
+        this.white = this.section.querySelector('.parallax__layer_white');
 
 
         this.move = function (block, windowScroll, strafeAmount) {
@@ -21,13 +20,12 @@ class Parallax {
         }
 
         this.init = function (wScroll) {
-            // this.move(this.sky, wScroll, 60);
-            this.move(this.mountain, wScroll, 45);
-            this.move(this.cloud, wScroll, 45);
-            this.move(this.white, wScroll, 60);
-            this.move(this.mountain1, wScroll, 45);
-            this.move(this.baloon, wScroll, 10);
+            this.move(this.mountain, wScroll, 55);
+            this.move(this.baloon, wScroll, 8);
+            this.move(this.cloud, wScroll, 10);
             this.move(this.man, wScroll, 40);
+            this.move(this.mountain1, wScroll, 40);
+            this.move(this.white, wScroll, 100);
         }
     }
     
