@@ -7,12 +7,12 @@ if (process.env.NODE_ENV === "development") {
 import Parallax from './scripts/parallax.js';
 
 const section = document.querySelector('.parallax-mountain');
-let mountainParallax = new Parallax(section);
+let parallax = new Parallax(section);
 
-window.onscroll = function () {
-  let wScroll = window.pageYOffset;
-  mountainParallax.init(wScroll);
-}
+window.addEventListener('scroll', e => {
+    const wScroll = window.pageYOffset;
+    parallax.init(wScroll);
+})
 
 // const sections = document.querySelectorAll('.parallax');
 // sections.forEach( section => { new Parallax(section) });
