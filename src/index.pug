@@ -43,15 +43,13 @@ html(lang='ru')
                 .header__hamburger
                   .hamburger
                     .hamburger__rect
-                    .hamburger__rect
-                    .hamburger__rect
                     
                     
 
         .wrapper-sections.wrapper-sections_group1
 
           section.parallax.parallax_mountain
-            .parallax__layer.parallax__layer_sky
+            .parallax__layer.parallax__layer_back-bg
               +image('content/parallax-mountain/Sky.png', 'parallax__img')
             .parallax__layer.parallax__layer_mountain
               +image('content/parallax-mountain/Mountain.png', 'parallax__img')
@@ -64,6 +62,8 @@ html(lang='ru')
             .parallax__layer.parallax__layer_mountain1
               +image('content/parallax-mountain/Mountain1.png', 'parallax__img')
             .parallax__layer.parallax__layer_white
+              +image('content/parallax-mountain/White.png', 'parallax__img')
+            .parallax__layer.parallax__layer_front-bg
               +image('content/parallax-mountain/White.png', 'parallax__img')
 
           
@@ -90,7 +90,7 @@ html(lang='ru')
                     const itemsAboutMe = [
                       {key: 'Проживаю:', value: 'Новосибирск'},
                       {key: 'Возраст:', value: '29 лет'},
-                      {key: 'Родилась:', value: '1 января 1991'},
+                      {key: 'Родился:', value: '1 января 1991'},
                     ]
 
                   .about-me__table
@@ -114,9 +114,9 @@ html(lang='ru')
           section.whatican
             .container
               .whatican__container
-                .whatican__block.whatican__block_left
+                .whatican__picture
               
-                .whatican__block.whatican__block_right
+                .whatican__skills
                 
                   h3.whatican__title Чем я могу быть полезен вам
                   .whatican__text 
@@ -160,17 +160,17 @@ html(lang='ru')
                   .slider
                     .slider__slides
                       .slider__preview
-                        +image('content/sliderpicture.png', 'slider__picture')
+                        +image('content/sliderpicture1.jpg', 'slider__picture')
                       .slider__miniatures
                         ul.slider__mini-list
                           li.slider__mini-item
-                            +image('content/sliderpicture.png', 'slider__mini-picture')
+                            +image('content/sliderpicture1.jpg', 'slider__mini-picture')
                           li.slider__mini-item(data-slidenum=2)
-                            +image('content/sliderpicture2.png', 'slider__mini-picture')
+                            +image('content/sliderpicture2.jpg', 'slider__mini-picture')
                           li.slider__mini-item(data-slidenum=3)
-                            +image('content/sliderpicture.png', 'slider__mini-picture')
+                            +image('content/sliderpicture3.jpg', 'slider__mini-picture')
                           li.slider__mini-item(data-slidenum=4)
-                            +image('content/sliderpicture3.png', 'slider__mini-picture')
+                            +image('content/sliderpicture4.jpg', 'slider__mini-picture')
                       .slider__arrows
                         +arrows('arrow-down', '', true)
                     

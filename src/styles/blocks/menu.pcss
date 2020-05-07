@@ -48,13 +48,13 @@
 		}
 
 		@include desktop {
-			padding-right: 12px;
-			padding-left: 12px;
-			font-size: 14px;
+			padding-right: 15px;
+			padding-left: 15px;
+			font-size: 15px;
 
 			&:before {
-				padding-right: 12px;
-				padding-left: 12px;
+				padding-right: 15px;
+				padding-left: 15px;
 			}
 		}
 	}	
@@ -64,15 +64,30 @@
 
 		& .menu__link {
 
-			color: $white-color;;
+			color: $white-color;
+			padding-bottom: 27px;
 
 			&:hover {
 
 				color: transparent;	
 	
 				&::before {
-					color: $links-color-darktheme;							
+					color: $links-color-darktheme;
+
+					@include tablets {
+						font-size: 14px;
+						padding-left: 0px;
+						padding-right: 0px;
+					}					
 				}
+			}
+
+			@include tablets {
+				font-size: 14px;
+				padding-left: 0px;
+				padding-right: 0px;
+				margin-left: 33px;
+				margin-right: 33px;
 			}
 		}
 	}

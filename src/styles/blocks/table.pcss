@@ -4,16 +4,23 @@
 		font-weight: 600;
 		font-size: 16px;
 		line-height: 30px;
-
 		padding-top: 10px;
 
 		&_key {		
 			color: $color-light;
-			padding-right: 85px;		
+			padding-right: 85px;
+			
+			@include tablets {
+				padding-right: 48px;
+			}
 		}
 		
 		&_value {		
 			color: $base-color;		
+		}
+
+		@include tablets {
+			font-size: 14px;
 		}
 	}
 

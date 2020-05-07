@@ -1,6 +1,6 @@
 .triangles {
-// background-color: rgba(red, 0.1);
 
+	opacity: 0.99999;
 	display: flex;
 	width: 100%;
 	margin-top: -120px;
@@ -12,11 +12,24 @@
 		& .triangles__svg {
 			transform: rotate(180deg);
 		}
+
+		@include tablets {
+			margin-bottom: -40px;
+		}
+
 	}
 
 	&__svg {
 		width: 50%;
 		height: 120px;
 		display: inline-flex;
+
+		@include tablets {
+			height: 40px;
+		}
+	}
+
+	@include tablets {
+		margin-top: -40px;
 	}
   }

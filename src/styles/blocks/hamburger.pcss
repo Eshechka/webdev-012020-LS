@@ -1,16 +1,27 @@
 .hamburger {
 	cursor: pointer;
-	padding: 1px;
+
+	position: relative;
+	height: 17px;
+	width: 24px;
 
 	&__rect { 
-		width: 24px;
+		width: 100%;
 		height: 3px;
 		background: $base-color;
-		margin-bottom: 4px;
-
-		// &:(:not(:last-child)) {
-		// 	margin-bottom: 4px;
-		// }
+		position: absolute;
+		top: calc(50% - 1.5px);
 	}
 
+	&:after, &:before {
+		content: '';
+		width: 100%;
+		height: 3px;
+		background: $base-color;
+		position: absolute;		
+		left: 0;
+	}
+	&:before {
+		bottom: 0;
+	}
 }
