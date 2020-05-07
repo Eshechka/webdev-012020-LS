@@ -1,4 +1,7 @@
-.menu {
+$menu: .menu;
+
+#{$menu} {
+
 	padding: 0;
 
 	&__list {
@@ -10,7 +13,6 @@
 
 		display: block;
 		padding: 0 30px 50px;
-
 		font-size: 16px;
 		text-decoration: none;
 		white-space: nowrap;
@@ -62,7 +64,7 @@
 
 	&_dark_theme {
 
-		& .menu__link {
+		& #{$menu}__link {
 
 			color: $white-color;
 			padding-bottom: 27px;
@@ -89,6 +91,39 @@
 				margin-left: 33px;
 				margin-right: 33px;
 			}
+		}
+	}
+
+	&_popup_theme {
+
+		& #{$menu}__list {
+			display: flex;
+			flex-wrap: nowrap;
+			flex-direction: column;
+		}
+
+		& #{$menu}__link {
+
+			padding: 0 0px 34px;
+			font-size: 18px;
+			white-space: wrap;
+			border: none;
+			color: $base-color;
+	
+			&:before {
+				content: none;
+			}
+	
+			&:active, &:focus {
+				outline: none;
+				color: $base-color-hover;	
+			}
+	
+			&:hover {
+				color: $base-color-hover;	
+			}
+	
+
 		}
 	}
 	

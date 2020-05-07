@@ -10,7 +10,7 @@ html(lang='ru')
   body
     .wrapper
       .maincontent
-        .maincontent__absoluteblock
+        .maincontent__header
           header.header
             .container
               .header__container
@@ -44,6 +44,18 @@ html(lang='ru')
                   .hamburger
                     .hamburger__rect
                     
+
+        .maincontent__popup-menu
+          .popup-menu
+            .popup-menu__content
+              .popup-menu__menu            
+                +menu(itemsMenu, 'popup_theme')
+
+              .popup-menu__socials
+                +socials(itemsSocial, '')
+
+            .popup-menu__close
+
                     
 
         .wrapper-sections.wrapper-sections_group1
@@ -107,7 +119,6 @@ html(lang='ru')
         +svg-triangles('outside')
 
         
-
 
         .wrapper-sections.wrapper-sections_group2
 
@@ -190,7 +201,9 @@ html(lang='ru')
         +svg-triangles('inside')
 
 
+
         .wrapper-sections.wrapper-sections_group3
+
           section.reviews
             .container
               .reviews__topgroup

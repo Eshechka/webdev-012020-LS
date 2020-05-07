@@ -1,0 +1,49 @@
+.popup-menu {
+	
+	width: 320px;
+	height: 100%;
+	background-color: #fff;
+	position: relative;
+	padding-left: 68px;
+	padding-top: 90px;
+	padding-bottom: 90px;
+
+	&__content {
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+	}
+
+	&__close {
+		width: 24px;
+		height: 24px;
+		position: absolute;
+
+		right: 40px;
+		top: 65px;
+
+		transform: rotate(45deg);
+		cursor: pointer;
+
+		&::before, &::after {
+			content: '';
+			position: absolute;
+			width: 24px;
+			height: 5px;
+			background-color: $base-color;
+		}
+		&::before {
+			transform: rotate(90deg);
+		}
+	}
+
+
+	&__menu {
+		margin-bottom: 30px;
+	}			
+			@include tablets {
+	
+			}
+
+}
