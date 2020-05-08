@@ -16,8 +16,8 @@
 	}
 
 	&__close {
-		width: 24px;
-		height: 24px;
+		width: 34px;
+		height: 34px;
 		position: absolute;
 
 		right: 40px;
@@ -29,6 +29,8 @@
 		&::before, &::after {
 			content: '';
 			position: absolute;
+			top: calc(50% - 2.5px);
+			left: 5px;
 			width: 24px;
 			height: 5px;
 			background-color: $base-color;

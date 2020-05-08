@@ -14,5 +14,30 @@ window.addEventListener('scroll', e => {
     parallax.init(wScroll);
 })
 
+// new Vue ({
+//   el: '#vuejs',
+//   data: {
+//     title: 'Hello',
+//   }
+// })
+
+new Vue ({
+  el: '#popup-menu',
+  data: {
+    stylesPopup: {
+      display: 'none',
+    },
+  },
+  methods : {
+    closePopup() {
+      this.stylesPopup.display = 'none'
+    },
+    openPopup() {
+      this.stylesPopup.display = 'block'
+    },
+  }
+})
+
+
 // const sections = document.querySelectorAll('.parallax');
 // sections.forEach( section => { new Parallax(section) });

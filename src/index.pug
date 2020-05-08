@@ -7,9 +7,10 @@ html(lang='ru')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(http-equiv='X-UA-Compatible', content='ie=edge')
     title Личный сайт разработчика
+    script(src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js")
   body
     .wrapper
-      .maincontent
+      .maincontent#popup-menu
         .maincontent__header
           header.header
             .container
@@ -40,12 +41,12 @@ html(lang='ru')
 
                   +socials(itemsSocial)
 
-                .header__hamburger
+                .header__hamburger(v-on:click='openPopup')
                   .hamburger
                     .hamburger__rect
                     
 
-        .maincontent__popup-menu
+        .maincontent__popup-menu(:style='stylesPopup')
           .popup-menu
             .popup-menu__content
               .popup-menu__menu            
@@ -54,7 +55,7 @@ html(lang='ru')
               .popup-menu__socials
                 +socials(itemsSocial, '')
 
-            .popup-menu__close
+            .popup-menu__close(v-on:click='closePopup')
 
                     
 

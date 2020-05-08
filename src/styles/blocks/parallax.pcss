@@ -11,13 +11,14 @@
 
 	&__layer {		
 		position: absolute;
-
+		will-change: transform;
 
 		&_back-bg {
 			top: 0;
 			bottom: 0;
 			right: 0;
 			left: 0;
+			will-change: unset;
 
 			.parallax__img {
 				height: 100%;
@@ -59,6 +60,7 @@
 		&_front-bg {
 			bottom: 0;
 			height: 50%;
+			will-change: unset;
 
 			.parallax__img {
 				width: 100%;
