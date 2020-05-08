@@ -1,13 +1,13 @@
 .skills {
 
 	position: relative;
-	margin-bottom: 32px;
+	margin-bottom: 32Px;
 
 	&__title {
 		font-weight: 800;
 		line-height: 48px;
 		font-size: 24px;
-		margin-bottom: 25px;
+		margin-bottom: 25Px;
 
 		@include tablets {
 			text-align: center;	
@@ -16,13 +16,23 @@
 
 	&__list {
 		margin-left: -50px;
+
+		@include desktop {
+			margin-left: -30Px;
+		}
 	}
 
 	&__item {
 		display: inline-flex;
-		height: 150px;
+		height: 150Px;
 		margin-left: 50px;
+
+		@include desktop {
+			margin-left: 30Px;
+		}
 	}
 
-
+	@include desktop {
+		margin-bottom: 33Px;
+	}
 }

@@ -21,6 +21,9 @@
 		@include tablets {
 			text-align: center;
 			margin-right: 0px;
+			font-size: 16Px;
+			line-height: 24Px;
+			font-weight: 600;
 		}
 	}
 
@@ -39,15 +42,20 @@
 			line-height: 60px;
 			font-weight: 900;
 			color: $base-color;
+
+			@include tablets {
+				font-size: 46Px;
+				line-height: 48Px;
+			}
 		}
 
 		@include desktop {
 			padding-top: 0;
 		}
 		@include tablets {
-			font-size: 48px;
-			line-height: 48px;			
-			padding-top: 15px;
+			font-size: 48Px;
+			line-height: 48Px;			
+			padding-top: 19Px;
 		}
 	}
 
@@ -57,7 +65,8 @@
 	}
 	@include tablets {
 		flex-direction: column;
-		align-items: center;		
+		align-items: center;
+		padding: 0 20%;		
 	}
 	@include phones {
 		

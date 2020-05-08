@@ -17,6 +17,13 @@ $social: .social;
 
 		&:not(:first-child) {
 			margin-left: 39px;
+		
+			@include desktop {
+				margin-left: 42Px;
+			}		
+			@include tablets {
+				margin-left: 40Px;
+			}
 		}
 	}
 
@@ -50,10 +57,19 @@ $social: .social;
 			&:hover {
 				fill: $base-color-hover;
 			}
+
 		}
 
 		&_vk #{$social}__svg {
 			width: 30px;
+
+			@include tablets {
+				width: 31Px;
+			}
+		}
+
+		@include tablets {
+			width: 27Px;
 		}
 	}
 

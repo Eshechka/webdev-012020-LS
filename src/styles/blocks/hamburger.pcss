@@ -1,22 +1,26 @@
+$rect-height: 4px;
+$space-betmeen-rects: 5px;
+
 .hamburger {
+
 	cursor: pointer;
 
 	position: relative;
-	height: 17px;
-	width: 24px;
+	height: calc(3 * $rect-height + 2 * $space-betmeen-rects);
+	width: 28px;
 
 	&__rect { 
 		width: 100%;
-		height: 3px;
+		height: $rect-height;
 		background: $base-color;
 		position: absolute;
-		top: calc(50% - 1.5px);
+		top: calc(50% - $space-betmeen-rects / 2);
 	}
 
 	&:after, &:before {
 		content: '';
 		width: 100%;
-		height: 3px;
+		height: $rect-height;
 		background: $base-color;
 		position: absolute;		
 		left: 0;

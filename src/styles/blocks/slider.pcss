@@ -4,7 +4,7 @@
 
     &__slides {
         max-width: 975px;
-        width: 57%;
+        width: 975Px;
         height: 550px;       
         margin-right: 155px;  
         position: relative;      
@@ -28,7 +28,9 @@
         }
 
         @include desktop {
-            height: 350px;
+            height: 355Px;
+            width: 625Px;
+            margin-right: 110px;  
         }
         @include tablets {
             width: 630Px;
@@ -56,9 +58,9 @@
         height: 100%;
     }
 
-    $mini-item-outline-width: 3px;
+    $mini-item-outline-width: 3Px;
     $mini-items-amount: 4;
-    $mini-items-height: 100px;
+    $mini-items-height: 100Px;
 
     &__miniatures {
 
@@ -66,7 +68,7 @@
         bottom: -$mini-item-outline-width;
         right: -$mini-item-outline-width;
         z-index: 2;
-        width: calc(178px + 2 * $mini-item-outline-width);
+        width: calc(178Px + 2 * $mini-item-outline-width);
         height: calc($mini-items-amount * $mini-items-height + 2 * $mini-item-outline-width);
         overflow: hidden;
         padding: $mini-item-outline-width;
@@ -129,7 +131,7 @@
 
    &__arrows {
         position: absolute;
-        bottom: -50px;
+        bottom: -50Px;
         right: 0;
     }
     
@@ -147,6 +149,10 @@
 
     &__tags {
         margin-bottom: 21px;
+        
+        @include desktop {
+            margin-bottom: 29Px;
+        }
     }
 
     &__tags-list {
@@ -180,15 +186,18 @@
 		line-height: 48px;
         font-weight: bold;
         margin-bottom: 30px;
-		}
+        @include desktop {
+            margin-bottom: 35px;
+        }
+    }
 
     &__text {
         color: $color-middle;
         font-size: 16px;
-        line-height: 30px;
+        line-height: 30Px;
         font-weight: bolder;
         margin-bottom: 25px;
-        }
+    }
         
     &__link {
         display: inline-block;
@@ -219,6 +228,12 @@
         &:active, &:focus {
             color: rgba($links-color, 0.5);
             outline: none;
+        }
+
+        @include desktop {
+            padding-left: 37px;
+            font-size: 18px;
+            line-height: 48px;
         }
     }
 
