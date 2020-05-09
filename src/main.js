@@ -16,12 +16,23 @@ window.addEventListener('scroll', e => {
     parallax.init(wScroll);
 })
 
-// new Vue ({
-//   el: '#vuejs',
-//   data: {
-//     title: 'Hello',
-//   }
+
+
+
+new Vue ({
+  el: '#skills-component',
+  template: '#skills-list',
+
+});
+
+// Vue.component('skills', {
+//   template: '#skills-list'
 // })
+// const vueModelSkills = new Vue();
+// vueModelSkills.$mount('#skills-component');
+
+
+
 
 new Vue ({
   el: '#popup-menu',

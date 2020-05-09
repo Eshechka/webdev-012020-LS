@@ -1,0 +1,30 @@
+script(type="text/x-template")#skills-list
+  -
+    const titles = [
+    {title: 'Front-end'},
+    {title: 'Workflow'},
+    ]
+  .skills
+    each title in titles
+      h4.skills__title= titles.title
+      ul.skills__list
+        li.skills__item
+         
+
+script(type="text/x-template")#skill
+  -
+    const itemsSkillsFront = [
+    {skill: 'HTML5', degree: 270},
+    {skill: 'CSS3', degree: 250},
+    {skill: 'Javascript', degree: 40},
+    {skill: 'JQuery и Vue.js', degree: 10},
+    ]
+  each item in itemsSkillsFront
+    .progress
+      svg.progress__svg(preserveAspectRatio="none" viewBox="0 0 150 150")
+        linearGradient#gradient
+          stop(offset="0%" stop-color="#9300e8")
+          stop(offset="100%" stop-color="#4a00ed")
+        circle(cx=75 cy=75 r=65 fill="none" stroke="#e9e9e9" stroke-width="10")
+        circle(cx=75 cy=75 r=65 fill="none" stroke="url(#gradient)" stroke-width="20" stroke-dasharray=`${item.degree} 500`)
+      div.progress__text= item.skill
