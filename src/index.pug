@@ -136,54 +136,41 @@ html(lang='ru')
                   .whatican__skills
                     #skills-component                      
 
-                    //- .skills
-                    //-   h4.skills__title Workflow
-                    //-   ul.skills__list
-                    //-     - 
-                    //-       const itemsSkillsWork = [
-                    //-         {skill: 'Git', degree: 180},
-                    //-         {skill: 'Terminal', degree: 190},
-                    //-         {skill: 'Gulp', degree: 20},
-                    //-         {skill: 'Webpack', degree: 100},
-                    //-       ]
-                    //-     each item in itemsSkillsWork
-                    //-       li.skills__item                   
-                    //-         +progress(item.skill, item.degree)
-                
 
           section.myworks
             .container
               h3.myworks__title Мои работы
               .myworks__container
                 .myworks__block
-                  .slider
-                    .slider__slides
-                      .slider__preview
-                        +image('content/sliderpicture1.jpg', 'slider__picture')
-                      .slider__miniatures
-                        ul.slider__mini-list
-                          li.slider__mini-item
-                            +image('content/sliderpicture1.jpg', 'slider__mini-picture')
-                          li.slider__mini-item(data-slidenum=2)
-                            +image('content/sliderpicture2.jpg', 'slider__mini-picture')
-                          li.slider__mini-item(data-slidenum=3)
-                            +image('content/sliderpicture3.jpg', 'slider__mini-picture')
-                          li.slider__mini-item(data-slidenum=4)
-                            +image('content/sliderpicture4.jpg', 'slider__mini-picture')
-                      .slider__arrows
-                        +arrows('arrow-down', '', true)
+                  #slider-component
+                  //- .slider
+                  //-   .slider__slides
+                  //-     .slider__preview
+                  //-       +image('content/sliderpicture1.jpg', 'slider__picture')
+                  //-     .slider__miniatures
+                  //-       ul.slider__mini-list
+                  //-         li.slider__mini-item
+                  //-           +image('content/sliderpicture1.jpg', 'slider__mini-picture')
+                  //-         li.slider__mini-item(data-slidenum=2)
+                  //-           +image('content/sliderpicture2.jpg', 'slider__mini-picture')
+                  //-         li.slider__mini-item(data-slidenum=3)
+                  //-           +image('content/sliderpicture3.jpg', 'slider__mini-picture')
+                  //-         li.slider__mini-item(data-slidenum=4)
+                  //-           +image('content/sliderpicture4.jpg', 'slider__mini-picture')
+                  //-     .slider__arrows
+                  //-       +arrows('arrow-down', '', true)
                     
-                    .slider__decs
-                      .slider__tags
-                        ul.slider__tags-list
-                          li.slider__tags-item HTML
-                          li.slider__tags-item CSS
-                          li.slider__tags-item JavaScript
+                  //-   .slider__decs
+                  //-     .slider__tags
+                  //-       ul.slider__tags-list
+                  //-         li.slider__tags-item HTML
+                  //-         li.slider__tags-item CSS
+                  //-         li.slider__tags-item JavaScript
 
-                      .slider__title Сайт школы образования
-                      .slider__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
-                      .slider__wrap-link
-                        a.slider__link(href='./changeme') Посмотреть сайт
+                  //-     .slider__title Сайт школы образования
+                  //-     .slider__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
+                  //-     .slider__wrap-link
+                  //-       a.slider__link(href='./changeme') Посмотреть сайт
 
 
         +svg-triangles('inside')
