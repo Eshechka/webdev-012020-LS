@@ -1,58 +1,74 @@
 script(type='text/x-template')#slider
-  .slider(@click='somemethod()')
-    //- preview(
-    //-   :currentSlide='currentSlide',
-    //-   :dataSlider='dataSlider'
-    //- )
-    //- info(
-    //-   :currentSlide='currentSlide'
-    //- )
+  .slider
+    preview(
+      :currentSlide='currentSlide',
+      :dataSlider='dataSlider',
+      :currentIndex='currentIndex',
+      :maxSlides='maxSlides',
+      @slide='handleSlide'
+    )
+    info(
+      :currentSlide='currentSlide'
+    )
       
 
-//- script(type='text/x-template')#slider-preview
-//-   .slider__slides
-//-     .slider__preview
-//-       img.slider__picture(:src='currentSlide.photo')
-//-     miniatures(
-//-       :dataSlider='dataSlider',
-//-     )
-//-     arrows(
-//-       @slide='handleSlide'
-//-     )
+script(type='text/x-template')#slider-preview
+  .slider__slides
+    .slider__preview
+      img.slider__picture(:src='currentSlide.photo')
+    miniatures(
+      :dataSlider='dataSlider',
+      :currentIndex='currentIndex'
+    )
+    arrows(
+      @slide='$emit("slide", $event)',
+      :maxSlides='maxSlides',
+      :currentIndex='currentIndex',
+    )
 
 
-//- script(type='text/x-template')#slider-miniatures
-//-   .slider__miniatures
-//-     ul.slider__mini-list(v-for='(slide,ndx) in dataSlider' :key='dataSlider.id' )
-//-       li.slider__mini-item(:data-slidenum='ndx+1')
-//-         img.slider__mini-picture(:src='slide.photo')
+script(type='text/x-template')#slider-miniatures
+  .slider__miniatures
+    ul.slider__mini-list
+      li.slider__mini-item(
+        v-for='(slide,ndx) in dataSlider' :key='dataSlider.id',
+        :data-slidenum='ndx+1',
+        :class='{["slider__mini-item_active"] : ndx===currentIndex}'
+        ) 
+        img.slider__mini-picture(:src='slide.photo')
   
 
-//- script(type='text/x-template')#arrows
-//-   .slider__arrows
-//-     div.arrows 
-//-       - let icon = require(`images/icons/arrow-down.svg`);
-//-       button.arrows__prev
-//-         svg.arrows__icon(viewBox=icon.viewBox preserveAspectRatio='none')
-//-           use(xlink:href=icon.url)
-//-       button.arrows__next
-//-         svg.arrows__icon(viewBox=icon.viewBox preserveAspectRatio='none')
-//-           use(xlink:href=icon.url)   
+script(type='text/x-template')#arrows
+  .slider__arrows
+    div.arrows 
+      - let icon = require(`images/icons/arrow-down.svg`);
+      button.arrows__next(
+        @click='$emit("slide", "next")',
+        :class='{["arrows__next_disable"] : currentIndex===maxSlides}'
+        )
+        svg.arrows__icon(viewBox=icon.viewBox preserveAspectRatio='none')
+          use(xlink:href=icon.url)
+      button.arrows__prev(
+        @click='$emit("slide", "prev")',
+        :class='{["arrows__prev_disable"] : currentIndex===0}'
+        )
+        svg.arrows__icon(viewBox=icon.viewBox preserveAspectRatio='none')
+          use(xlink:href=icon.url)   
 
 
-//- script(type='text/x-template')#slider-decs
-//-   .slider__decs
-//-     tagslist
+script(type='text/x-template')#slider-decs
+  .slider__decs
+    tagslist
 
-//-     .slider__title {{ currentSlide.title }}
-//-     .slider__text {{ currentSlide.desc }}
-//-     .slider__wrap-link
-//-       a.slider__link(:href='currentSlide.link') Посмотреть сайт
+    .slider__title {{ currentSlide.title }}
+    .slider__text {{ currentSlide.desc }}
+    .slider__wrap-link
+      a.slider__link(:href='currentSlide.link') Посмотреть сайт
 
 
-//- script(type='text/x-template')#slider-tags
-//-   .slider__tags
-//-     ul.slider__tags-list
-//-       li.slider__tags-item HTML
-//-       li.slider__tags-item CSS
-//-       li.slider__tags-item JavaScript
+script(type='text/x-template')#slider-tags
+  .slider__tags
+    ul.slider__tags-list
+      li.slider__tags-item HTML
+      li.slider__tags-item CSS
+      li.slider__tags-item JavaScript

@@ -54,7 +54,7 @@ html(lang='ru')
               .popup-menu__socials
                 +socials(itemsSocial, '')
 
-            .popup-menu__close(v-on:click='closePopup')
+            .popup-menu__close(@click='closePopup')
 
                     
 
@@ -177,7 +177,11 @@ html(lang='ru')
 
 
         .wrapper-sections.wrapper-sections_group3
-
+          section.parallax.parallax_budda
+            //- .parallax__layer.parallax__layer_back-bg
+            //-   +image('content/parallax-mountain/Sky.png', 'parallax__img')
+            //- .parallax__layer.parallax__layer_mountain
+            //-   +image('content/parallax-mountain/Mountain.png', 'parallax__img')
 
           section.reviews
             .container

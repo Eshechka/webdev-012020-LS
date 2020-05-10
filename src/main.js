@@ -1,5 +1,3 @@
-import Vue from 'vue';
-
 import "./styles/main.pcss";
 if (process.env.NODE_ENV === "development") {
   require("file-loader!./index.pug");
@@ -7,6 +5,9 @@ if (process.env.NODE_ENV === "development") {
 
 import "./scripts/skills";
 import "./scripts/slider";
+// import "./scripts/popup-menu";
+
+
 import Parallax from './scripts/parallax.js';
 
 const section = document.querySelector('.parallax');
@@ -18,33 +19,6 @@ window.addEventListener('scroll', e => {
 })
 
 
-
-
-// Vue.component('skills', {
-//   template: '#skills-list'
-// })
-// const vueModelSkills = new Vue();
-// vueModelSkills.$mount('#skills-component');
-
-
-
-
-new Vue ({
-  el: '#popup-menu',
-  data: {
-    stylesPopup: {
-      display: 'none',
-    },
-  },
-  methods : {
-    closePopup() {
-      this.stylesPopup.display = 'none'
-    },
-    openPopup() {
-      this.stylesPopup.display = 'block'
-    },
-  }
-})
 
 
 // const sections = document.querySelectorAll('.parallax');
