@@ -63,17 +63,17 @@ html(lang='ru')
           section.parallax.parallax_mountain
             .parallax__layer.parallax__layer_back-bg
               +image('content/parallax-mountain/Sky.png', 'parallax__img')
-            .parallax__layer.parallax__layer_mountain
+            .parallax__layer.parallax__layer_mountain(data-speed=55)
               +image('content/parallax-mountain/Mountain.png', 'parallax__img')
-            .parallax__layer.parallax__layer_baloon              
+            .parallax__layer.parallax__layer_baloon(data-speed=8)    
               +image('content/parallax-mountain/Baloon.png', 'parallax__img')
-            .parallax__layer.parallax__layer_cloud
+            .parallax__layer.parallax__layer_cloud(data-speed=10)
               +image('content/parallax-mountain/Cloud.png', 'parallax__img')
-            .parallax__layer.parallax__layer_man              
+            .parallax__layer.parallax__layer_man(data-speed=40)          
               +image('content/parallax-mountain/Man.png', 'parallax__img')
-            .parallax__layer.parallax__layer_mountain1
+            .parallax__layer.parallax__layer_mountain1(data-speed=40)
               +image('content/parallax-mountain/Mountain1.png', 'parallax__img')
-            .parallax__layer.parallax__layer_white
+            .parallax__layer.parallax__layer_white(data-speed=100)
               +image('content/parallax-mountain/White.png', 'parallax__img')
             .parallax__layer.parallax__layer_front-bg
               +image('content/parallax-mountain/White.png', 'parallax__img')
@@ -143,35 +143,7 @@ html(lang='ru')
               .myworks__container
                 .myworks__block
                   #slider-component
-                  //- .slider
-                  //-   .slider__slides
-                  //-     .slider__preview
-                  //-       +image('content/sliderpicture1.jpg', 'slider__picture')
-                  //-     .slider__miniatures
-                  //-       ul.slider__mini-list
-                  //-         li.slider__mini-item
-                  //-           +image('content/sliderpicture1.jpg', 'slider__mini-picture')
-                  //-         li.slider__mini-item(data-slidenum=2)
-                  //-           +image('content/sliderpicture2.jpg', 'slider__mini-picture')
-                  //-         li.slider__mini-item(data-slidenum=3)
-                  //-           +image('content/sliderpicture3.jpg', 'slider__mini-picture')
-                  //-         li.slider__mini-item(data-slidenum=4)
-                  //-           +image('content/sliderpicture4.jpg', 'slider__mini-picture')
-                  //-     .slider__arrows
-                  //-       +arrows('arrow-down', '', true)
-                    
-                  //-   .slider__decs
-                  //-     .slider__tags
-                  //-       ul.slider__tags-list
-                  //-         li.slider__tags-item HTML
-                  //-         li.slider__tags-item CSS
-                  //-         li.slider__tags-item JavaScript
-
-                  //-     .slider__title Сайт школы образования
-                  //-     .slider__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
-                  //-     .slider__wrap-link
-                  //-       a.slider__link(href='./changeme') Посмотреть сайт
-
+                  
 
         +svg-triangles('inside')
 
