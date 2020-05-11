@@ -69,6 +69,23 @@ $icon-height: 8px;
         background-color: transparent;
         border-radius: 50%;
         border: 1px solid $color-dark;
+
+        &[disabled] {
+            cursor: default;
+            border-color: $color-light;
+
+            &:hover {
+                border-color: $color-light;
+
+                & #{$arrows}__icon {
+                    fill: $color-light;
+                }
+            }
+            
+            & #{$arrows}__icon {
+                fill: $color-light;
+            }
+        }
     }
 
     & #{$arrows}__prev:hover, 

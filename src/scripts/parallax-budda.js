@@ -23,9 +23,9 @@ window.addEventListener('scroll', e => {
 const sectionGroup = document.querySelector('.wrapper-sections_group3');
 sectionGroup.addEventListener('mousemove', e => {
 
-    const x = e.clientX / document.documentElement.clientWidth;
-    const y = e.clientY / offset(section).bottom;
+    // const x = e.clientX / document.documentElement.clientWidth;
+    // const y = e.clientY / offset(section).bottom;
 
-    console.log(x,y);
+    // console.log(x,y);
 
 })

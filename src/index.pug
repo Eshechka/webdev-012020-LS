@@ -167,19 +167,29 @@ html(lang='ru')
               +image('content/parallax-budda/cloud2.png', 'parallax__img')
 
 
-          section.reviews
+          section.reviews#reviews(@click='checkArrows' @touchend='checkArrows')
             .container
               .reviews__topgroup
                 h3.reviews__title Что обо мне говорят
                 .reviews__navigation
-                  +arrows('arrow-down', 'white_circles', false)
+                    
+                div.arrows.arrows_white_circles
+                  button.arrows__prev(@click='previous' :disabled='true')
+                    +icon('arrow-down', 'arrows__icon')
+                  button.arrows__next(@click='next' :disabled='false')
+                    +icon('arrow-down', 'arrows__icon') 
+                  //- +arrows('arrow-down', 'white_circles', false)
 
-              .reviews__container
+              flickity(ref="flickity" :options='flickityOptions').reviews__container
                 +review('Ковальчук Дмитрий', 'Основатель Loftschool', 'content/review_authot1.png', 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!')
                 +review('Владимир Сабанцев', 'Преподватель', 'content/review_authot2.png', 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах')
                 +review('Владимир Сабанцев', 'Преподватель', 'content/review_authot2.png', 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах')
             
- 
+                +review('Ковальчук Дмитрий', 'Основатель Loftschool', 'content/review_authot1.png', 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!')
+                +review('Ковальчук Дмитрий', 'Основатель Loftschool', 'content/review_authot1.png', 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!')
+                +review('Владимир Сабанцев', 'Преподватель', 'content/review_authot2.png', 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах')
+                +review('Владимир Сабанцев', 'Преподватель', 'content/review_authot2.png', 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах')
+            
           section.contacts
             .container
               h3.contacts__title Связаться со мной
