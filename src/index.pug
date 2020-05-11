@@ -149,11 +149,23 @@ html(lang='ru')
 
 
         .wrapper-sections.wrapper-sections_group3
+
           section.parallax.parallax_budda
-            //- .parallax__layer.parallax__layer_back-bg
-            //-   +image('content/parallax-mountain/Sky.png', 'parallax__img')
-            //- .parallax__layer.parallax__layer_mountain
-            //-   +image('content/parallax-mountain/Mountain.png', 'parallax__img')
+            .parallax__layer.parallax__layer_back-bg
+              +image('content/parallax-budda/bg.png', 'parallax__img')
+            .parallax__layer.parallax__layer_budda-mountain(data-speed=60)
+              +image('content/parallax-budda/mountain.png', 'parallax__img')
+            .parallax__layer.parallax__layer_budda(data-speed=50)
+              +image('content/parallax-budda/Budda.png', 'parallax__img')
+            .parallax__layer.parallax__layer_cloud1
+              +image('content/parallax-budda/cloud1.png', 'parallax__img')
+            .parallax__layer.parallax__layer_cloud2(data-speed=45)
+              +image('content/parallax-budda/cloud2.png', 'parallax__img')
+            .parallax__layer.parallax__layer_cloud3(data-speed=35)
+              +image('content/parallax-budda/cloud3.png', 'parallax__img')
+            .parallax__layer.parallax__layer_front-bg-budda
+              +image('content/parallax-budda/cloud2.png', 'parallax__img')
+
 
           section.reviews
             .container

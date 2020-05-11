@@ -85,10 +85,14 @@
 	}
 	
 	&_group3 {
-		background-image: url("../images/content/Budda.jpg");
-		background-position: center;
-		background-repeat: no-repeat;
-		background-size: cover;
+		position: relative;
+
+		@include tablets {
+			background-image: url("../images/content/Budda.jpg");
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
 	}
 }
 
