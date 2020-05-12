@@ -43,7 +43,7 @@ body {
     width: 90%;
   }
   @include phones {
-    min-width: 300Px;
+    min-width: 280Px;
     width: 85%;
   }
 
@@ -52,6 +52,10 @@ body {
 .fullscreen-section {
   height: 100vh;
   min-height: 650px;
+  
+  @include phones {
+    height: unset;
+  }
 }
 
 button {

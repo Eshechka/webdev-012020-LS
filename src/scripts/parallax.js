@@ -4,42 +4,58 @@ class Parallax {
         this.section = element;        
 
         const layers = this.section.querySelectorAll('.parallax__layer');
-        
-        this.move = function (block, windowScroll, speedScroll, speedOffsetX, speedOffsetY, mouseMoveX, mouseMoveY) {
 
-            let strafeYScroll = 0;
-            if (speedScroll) 
-                strafeYScroll = windowScroll / speedScroll;
-
-            
-            let strafeXMouseMove = 0;//или тут получать 0, и оставлять его прежним что значит, что изменения положения не было 
-            if (speedOffsetX && areaForMouseMove) {
-                strafeXMouseMove = mouseMoveX / speedOffsetX;
-                strafeYScroll += mouseMoveY;
+        this.unset = function (section) {
+            for (let layer of layers) {
+                layer.style.transform = 'none';
             }
-            if (speedOffsetY && areaForMouseMove) {
-                strafeYScroll += mouseMoveY / speedOffsetY;
-            }
-                // console.log(`YScroll ${strafeYScroll}  XMouseMove ${strafeXMouseMove}`);
-                
+        }
 
-            let transformString = 'translate3d(-'+ strafeXMouseMove +'%, -'+ strafeYScroll +'%, 0)';
-            let style = block.style;
-            
-            style.transform = transformString;
+        this.move = function (layer, totalStrafeX, totalStrafeY) {
+              
+            let transformString = 'translate3d('+ totalStrafeX +'%, '+ totalStrafeY +'%, 0)';
+
+            // console.log(transformString);
+            layer.style.transform = transformString;
         }
 
         this.init = function (options) {
             
             for (let layer of layers) {
-                let speedScroll = parseInt(layer.dataset.speedscroll);
-                let speedOffsetX = parseInt(layer.dataset.offsetx);
-                let speedOffsetY = parseInt(layer.dataset.offsety);
+                
+                const speedScroll = parseInt(layer.dataset.speedscroll);
+                const speedOffsetX = parseInt(layer.dataset.offsetx);
+                const speedOffsetY = parseInt(layer.dataset.offsety);
 
-                let mouseMoveX = options.mouseMoveX || 0;//вот тут надо их не обнулять, а оставлять такими же, какими они были. 
-                let mouseMoveY = options.mouseMoveY || 0;
+                let layerTransformArr = [];
+                if (layer.style.transform && layer.style.transform.length) 
+                    layerTransformArr = layer.style.transform.slice(12, -1).split(','); // /\,\s|\)/
+                else {
+                    layerTransformArr = ["0%", " 0%", " 0px"];
+                }
+                console.log(layerTransformArr);
 
-                this.move(layer, options.wScroll, speedScroll, speedOffsetX, speedOffsetY, mouseMoveX, mouseMoveY);
+                let layerTransformX = +(''+layerTransformArr[0]).slice(0, -1);
+                let layerTransformY = +(''+layerTransformArr[1]).slice(0, -1);  
+                
+                let totalStrafeX = 0,  totalStrafeY = 0;
+
+                if (speedScroll && options.wScroll) {
+                    totalStrafeX = layerTransformX; 
+                    totalStrafeY = -(options.wScroll / speedScroll); 
+                }
+
+                if (areaForMouseMove) {
+                    if (options.mouseMoveX && speedOffsetX) {
+                        totalStrafeX = -(options.mouseMoveX / speedOffsetX);
+                        totalStrafeY = layerTransformY;
+                    }
+                    if (options.mouseMoveY && speedOffsetY) {
+                    //     totalStrafeY = -(options.mouseMoveY / speedOffsetY);
+                    }
+                }
+                    // console.log(layerTransformY, totalStrafeY);
+                this.move(layer, totalStrafeX, totalStrafeY);
 
             }
         }

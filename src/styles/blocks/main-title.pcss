@@ -36,26 +36,28 @@
 		
 		text-align: center;
 		padding-top: 30px;
+		font-size: 72px;
+		line-height: 60px;
 
 		h1 {
-			font-size: 72px;
-			line-height: 60px;
+			font-size: inherit;
+			line-height: inherit;
 			font-weight: 900;
 			color: $base-color;
-
-			@include tablets {
-				font-size: 46Px;
-				line-height: 48Px;
-			}
 		}
-
+		
 		@include desktop {
 			padding-top: 0;
 		}
+
 		@include tablets {
-			font-size: 48Px;
+			font-size: 46Px;
 			line-height: 48Px;			
 			padding-top: 19Px;
+		}
+		@include phones {
+			padding-top: 5Px;
+			font-size: 38Px;
 		}
 	}
 

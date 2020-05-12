@@ -65,6 +65,13 @@
 		}
 	}
 
+	&__social {
+		
+		@include phones {
+			display: none;
+		}
+	}
+
 }
 
 .wrapper-sections {
@@ -121,6 +128,9 @@
 			transform: none;
 			padding-bottom: 0px;
 		}
+		@include phones {
+			top: 38%;
+		}
 	}
 
 	&_bottom {
@@ -139,6 +149,10 @@
 	&__container {
 		display: flex;
 		justify-content: center;
+		@include phones {
+			flex-direction: column;
+			align-items: center;
+		}
 	}
 
 	&__block {
@@ -155,6 +169,12 @@
 				width: 46%;
 				align-items: flex-start;
 			}
+			@include phones {
+				align-items: center;
+				min-width: 90%;
+				width: 90%;
+				margin-bottom: 24px;
+			}
 		}
 		
 		&_right {
@@ -165,10 +185,13 @@
 				padding-left: 105px;
 				max-width: unset;
 			}
-
 			@include tablets {
 				max-width: 54%;
 				padding-left: 8px;
+			}
+			@include phones {
+				max-width: 90%;
+				padding-left: 0;
 			}
 		}
 
@@ -186,6 +209,9 @@
 			width: 170Px;
 			height: 170Px;
 			margin-bottom: 35Px;
+		}
+		@include phones {
+			margin-bottom: 14Px;
 		}
 	}
 
@@ -274,6 +300,9 @@
 		padding-top: 0px;
 		padding-bottom: 135px;
 	}
+	@include phones {
+		padding-top: 73Px;
+	}
 }
 
 .whatican {
@@ -311,6 +340,10 @@
 			background-position: center;
 			background-size: contain;
 		}
+		@include phones {
+			height: 240px;
+			width: 100%;
+		}
 	}
 
 	&__content {
@@ -327,6 +360,9 @@
 			align-items: center;
 			margin-bottom: 75px;
 		}
+		@include phones {
+			margin-bottom: 15px;
+		}
 	}
 
 	&__title {
@@ -342,7 +378,11 @@
 			text-align: center;
 			font-size: 30px;
 			width: 45%;
-			margin-bottom: 30Ppx;
+			margin-bottom: 30Px;
+		}
+		@include phones {
+			width: 90%;
+			text-align: left;
 		}
 	}
 
@@ -362,6 +402,9 @@
 			line-height: 24px;
 			text-align: center;
 			margin-bottom: 25Px;
+		}
+		@include phones {
+			margin-bottom: 40Px;
 		}
 	}
 
@@ -397,6 +440,11 @@
 		@include desktop {
 			margin-bottom: 60Px;
 		}
+		@include phones {
+			font-size: 24Px;
+			text-align: center;
+			margin-bottom: 24Px;
+		}
 	}
 
 	@include desktop {
@@ -407,6 +455,10 @@
 		padding-bottom: 45Px;
 		padding-top: 100Px;
 	}
+	@include phones {
+		padding-top: 70Px;
+	}
+
 }
 
 .reviews {

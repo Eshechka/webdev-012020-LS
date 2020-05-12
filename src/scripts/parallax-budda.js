@@ -8,14 +8,14 @@ function offset(section) {
     return { top: rect.top, bottom: rect.bottom }
 }
 
-
-
 let parallax = new Parallax(sectionBudda, areaForMouseMove);
     
     window.addEventListener('scroll', e => {
         let toTop = offset(sectionBudda).top;
         if (toTop < 0)
             parallax.init({wScroll: - toTop}); 
+        else 
+            parallax.unset(sectionBudda);
     });
 
 
@@ -23,14 +23,17 @@ let parallax = new Parallax(sectionBudda, areaForMouseMove);
 
         const accelerationSpeedOffsetX = 10;
 
-        let heightArea = Math.min(document.documentElement.clientHeight, offset(sectionBudda).bottom);
+        let heightArea = document.documentElement.clientHeight;
+        // let heightArea = Math.min(document.documentElement.clientHeight, offset(sectionBudda).bottom);
         const x = (e.clientX / document.documentElement.clientWidth) * accelerationSpeedOffsetX;
-        const y = (e.clientY / heightArea) * accelerationSpeedOffsetX;
+        const y = (e.clientY / heightArea) * 10;
 
         let toTop = offset(sectionBudda).top;
          
         if (toTop < 0)
-            parallax.init({wScroll: - toTop, mouseMoveX: x, mouseMoveY: y}); 
+            parallax.init({wScroll: - toTop, mouseMoveX: x, mouseMoveY: y});
+        else 
+            parallax.unset(sectionBudda);
 
     });
 

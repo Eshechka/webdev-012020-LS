@@ -10,5 +10,7 @@ window.addEventListener('scroll', e => {
 
     if (toBottom > 0) 
         parallax.init({wScroll: wScroll,});
+    else 
+        parallax.unset(section);
 
 });
