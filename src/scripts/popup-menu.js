@@ -1,18 +1,49 @@
 import Vue from 'vue';
 
-new Vue ({
-    el: '#popup-menu',
+
+  const vueModel = new Vue ({ 
     data: {
-      stylesPopup: {
-        display: 'none',
-      },
+        styles: {
+          display: 'npne',
+        },
     },
-    methods : {
-      closePopup() {
-        this.stylesPopup.display = 'none'
-      },
-      openPopup() {
-        this.stylesPopup.display = 'block'
-      },
-    }
   })
+
+  vueModel.$mount('#popup-container');
+
+new Vue ({
+  el: '#popup-opener',
+
+  methods: {
+    openPopup() {
+      console.log('open');
+      vueModel.$data.styles.display = 'block'
+    },
+  }
+})
+
+
+new Vue ({
+    el: '#popup',
+    template: '#popup-menu',
+
+    data () {
+      return {
+        dataMenu: [],
+      }
+    },
+
+    methods: {
+      closePopup() {
+        vueModel.$data.styles.display = 'none'
+      },
+
+    },
+
+    created () {
+        const data = require('../data/menu.json');
+        this.dataMenu = data;
+      }
+  })
+  // @click.prevent="scrollToSection(item.href)"
+

@@ -9,7 +9,8 @@ html(lang='ru')
     title Личный сайт разработчика
   body
     .wrapper
-      .maincontent#popup-menu
+      //- .maincontent#for-popup
+      .maincontent
         .maincontent__header
           header.header
             .container
@@ -40,21 +41,14 @@ html(lang='ru')
 
                   +socials(itemsSocial)
 
-                .header__hamburger(v-on:click='openPopup')
+                .header__hamburger#popup-opener(@click='openPopup')
                   .hamburger
                     .hamburger__rect
                     
 
-        .maincontent__popup-menu(:style='stylesPopup')
-          .popup-menu
-            .popup-menu__content
-              .popup-menu__menu            
-                +menu(itemsMenu, 'popup_theme')
-
-              .popup-menu__socials
-                +socials(itemsSocial, '')
-
-            .popup-menu__close(@click='closePopup')
+        //- .maincontent__popup-menu
+        .maincontent__popup-menu#popup-container(:style='styles')
+          #popup
 
                     
 

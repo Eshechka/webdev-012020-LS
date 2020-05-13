@@ -9,6 +9,6 @@ import "./scripts/parallax-budda";
 import "./scripts/reviews";
 import "./scripts/skills";
 import "./scripts/slider";
-// import "./scripts/popup-menu";
+import "./scripts/popup-menu";
 
 

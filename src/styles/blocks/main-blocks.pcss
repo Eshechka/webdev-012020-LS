@@ -121,6 +121,8 @@
 		padding-bottom: 120px;
 
 		@include desktop {
+			padding-top: 70Px;
+			top: 44%;
 			padding-bottom: 70Px;
 		}
 		@include tablets {
@@ -135,7 +137,9 @@
 
 	&_bottom {
 		bottom: 0;
-
+		@include desktop {
+			bottom: 7%;
+		}
 		@include tablets {
 			display: none;
 		}
@@ -294,10 +298,9 @@
 	}
 
 	@include desktop {
-		padding-top: 240Px;
+		padding-top: 180px;
 	}
 	@include tablets {
-		padding-top: 0px;
 		padding-bottom: 135px;
 	}
 	@include phones {
@@ -401,7 +404,7 @@
 			font-size: 14Px;
 			line-height: 24px;
 			text-align: center;
-			margin-bottom: 25Px;
+			margin-bottom: 45Px;
 		}
 		@include phones {
 			margin-bottom: 40Px;
@@ -448,7 +451,7 @@
 	}
 
 	@include desktop {
-		padding-top: 90Px;
+		padding-top: 80Px;
 		padding-bottom: 35Px;
 	}
 	@include tablets {
