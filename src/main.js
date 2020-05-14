@@ -15,5 +15,4 @@ import "./scripts/slider";
 const el = document.getElementById('about-me');
 el.scrollIntoView();
 
-const elem = document.querySelector('.main-title');
-elem.scrollIntoView();
+
