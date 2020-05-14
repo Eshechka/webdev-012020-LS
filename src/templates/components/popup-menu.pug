@@ -10,7 +10,8 @@ script(type="text/x-template")#popup-menu
                 )
                 a.menu__link(
                   :href='item.href',
-                  :data-title='item.text'
+                  :data-title='item.text',
+              //- @click.prevent='scrollToSection(item.href)'
                   ) {{item.text}}
 
       .popup-menu__socials

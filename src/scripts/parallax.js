@@ -33,10 +33,10 @@ class Parallax {
                 else {
                     layerTransformArr = ["0%", " 0%", " 0px"];
                 }
-                console.log(layerTransformArr);
+                // console.log(layerTransformArr);
 
                 let layerTransformX = +(''+layerTransformArr[0]).slice(0, -1);
-                let layerTransformY = +(''+layerTransformArr[1]).slice(0, -1);  
+                // let layerTransformY = +(''+layerTransformArr[1]).slice(0, -1);  
                 
                 let totalStrafeX = 0,  totalStrafeY = 0;
 
@@ -44,11 +44,16 @@ class Parallax {
                     totalStrafeX = layerTransformX; 
                     totalStrafeY = -(options.wScroll / speedScroll); 
                 }
-
+                
                 if (areaForMouseMove) {
                     if (options.mouseMoveX && speedOffsetX) {
-                        totalStrafeX = -(options.mouseMoveX / speedOffsetX);
-                        totalStrafeY = layerTransformY;
+                        totalStrafeX =  -(options.mouseMoveX / speedOffsetX);
+
+                        // if ( Math.abs(totalStrafeX-layerTransformX) > 5) {
+                        //     console.log('Большой СДВИГ');
+                        // }
+
+                        // totalStrafeY = layerTransformY;
                     }
                     if (options.mouseMoveY && speedOffsetY) {
                     //     totalStrafeY = -(options.mouseMoveY / speedOffsetY);

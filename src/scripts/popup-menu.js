@@ -45,5 +45,5 @@ new Vue ({
         this.dataMenu = data;
       }
   })
-  // @click.prevent="scrollToSection(item.href)"
+  
 

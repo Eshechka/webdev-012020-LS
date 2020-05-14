@@ -1,15 +1,14 @@
 .review {
-	width: 450Px;
-	min-width: 450Px;
-	margin-right: 58Px;
 
-	padding-left: 96Px;
+	width: 50%;
+	padding-left: 96px;
+	padding-right: 58px;
 	position: relative;
 
 	&::before {
-		content: '';
-		width: 75Px;
-		height: 65Px;
+		content: '';		
+		width: 80px;
+		height: 70px;
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -17,18 +16,24 @@
 		background-repeat: no-repeat;
 
 		@include tablets {
-			width: 30px;
-			top: 5px;
+			content: none;
 		}
 	}
 
 	&__text {
+
 		font-size: 16Px;
 		font-weight: 600;
 		line-height: 30Px;
 		color: $color-light;
 		margin-bottom: 23px;
 		min-height: 120px;
+
+		@include tablets {
+			font-size: 16px;
+			line-height: 24px;
+			margin-bottom: 15px;
+		}
 	}
 
 	&__author {
@@ -36,6 +41,7 @@
 	}
 
 	&__author-avatar {
+
 		display: flex;
 		width: 75Px;
 		height: 75Px;
@@ -67,23 +73,30 @@
 		color: $color-light;
 		
 		@include tablets {
-			font-size: 14px;
+			font-size: 15px;
 		}
 	}
 
 	@include desktop {
-		margin-right: 100Px;
-		min-width: 399Px;
-		width: 399Px;
-		padding-left: 85Px;
+		padding-left: 85px;
 	}
 
 	@include tablets {
-		margin-right: 20Px;
-		padding-left: 40px;
-		width: 300Px;
-		min-width: 300Px;
-		font-size: 14px;
-		line-height: 24px;
+		padding-left: 50px;
+		padding-right: 40px;
+	}
+
+	@include phones {
+		width: 100%;
+	}
+}
+
+.carousel-cell {
+
+	width: 50%;
+
+
+	@include phones {
+		width: 100%;
 	}
 }

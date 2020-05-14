@@ -485,25 +485,26 @@
 	&__title {
 		width: 400px;
 		color: $base-color;
-		font-size: 36Px;
+		font-size: 36px;
 		line-height: 48px;
 		font-weight: bold;		
 		margin-right: 80px;
 
 		@include desktop {
 			margin-right: 30px;
-			width: 460Px;
+			width: 43%;
+			min-width: 460px;;
 		}
 		@include tablets {
 			margin-right: 30px;
-			font-size: 30px;
-			width: 370Px;
+			width: 55%;
+			min-width: unset;
+			margin-bottom: 20px;
 		}
 		@include phones {
-			font-size: 24Px;
+			font-size: 24px;
 			width: 100%;
-			margin-right: 0;			
-			margin-bottom: 20Px;
+			margin-right: 0;	
 		}
 	}
 	
@@ -511,26 +512,35 @@
 		display: inline-flex;
 	}
 
+
 	&__container {
 		// display: flex;//вызывает конфликт с flickity
-		width: calc(450Px * 2 + 58Px * 2 + 25Px);
-		overflow: hidden;
-		padding: 9px 0;
 
-		padding-left: 25Px;
+		// width: calc(450Px * 2 + 58Px * 2 + 25Px);
+		// padding-left: 25Px;
+		padding: 9px 0;
+		overflow: hidden;
+
+
+		width: 70%;
+		padding-left: 2%;
+		
 
 		@include desktop {
-			width: calc(399Px * 2 + 100Px * 2 + 7Px);
-			padding-left: 7Px;
+			// width: calc(399Px * 2 + 100Px * 2 + 7Px);
+			// padding-left: 7Px;
+			width: 94%;
+			padding-left: 0;
 		}
 		@include tablets {
-			padding-left: 0;
-			width: calc(300Px * 2 + 20Px * 2);
+			// width: calc(300Px * 2 + 20Px * 2);
+			width: 100%;
+			padding-left: 0px;
 		}
 	}
 
 	@include tablets {
-		padding-top: 175Px;
+		padding-top: 210px;
 	}
 	@include phones {
 		padding-top: 112Px;
@@ -564,7 +574,7 @@
 		padding-bottom: 138Px;
 	}
 	@include tablets {
-		padding-top: 60Px;
+		padding-top: 110px;
 		padding-bottom: 110Px;
 	}
 	@include phones {

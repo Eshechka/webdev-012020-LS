@@ -31,12 +31,6 @@ new Vue({
     btnNext() {
       return this.$el.querySelector('.arrows__next');
     },
-    selectedSlide() {
-      return this.$refs.flickity.selectedIndex();
-    },
-    lengthSlides() {
-      return this.$refs.flickity.slides().length - 1;
-    },
   },
 
   methods: {
@@ -51,14 +45,38 @@ new Vue({
     },
 
     checkArrows() {
-      if (this.selectedSlide == 0) {
-        this.btnPrev.disabled = true;
-      } else if (this.selectedSlide == this.lengthSlides) {
-        this.btnNext.disabled = true;
-      } else {
-        this.btnPrev.disabled = false;
-        this.btnNext.disabled = false;
-      }
+      const selectedSlide = this.$refs.flickity.selectedIndex();
+      const lengthSlides = this.$refs.flickity.slides().length - 1;
+
+
+      console.log(`длина карусели ${lengthSlides}`);
+
+      if (selectedSlide == 0) {
+          this.btnPrev.disabled = true;
+          
+          if (lengthSlides == 0) {
+            this.btnNext.disabled = true;
+          } else {
+            this.btnNext.disabled = false;
+          }
+
+        } else if (selectedSlide == lengthSlides) {
+          this.btnNext.disabled = true;
+          this.btnPrev.disabled = false;
+
+          } else {
+            this.btnPrev.disabled = false;
+            this.btnNext.disabled = false;
+          }
     },
+  },
+  mounted () {
+    if (this.$refs.flickity.slides().length == 1) {
+      this.btnNext.disabled = true;
+    }
+
+    let i = 0;
+    if (i < 10) { console.log(i); i++;}
+
   }
 });

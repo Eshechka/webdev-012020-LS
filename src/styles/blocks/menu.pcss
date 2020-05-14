@@ -103,11 +103,16 @@ $menu: .menu;
 			flex-direction: column;
 		}
 
+		& #{$menu}__item {
+			margin-bottom: 34px;
+		}
+
 		& #{$menu}__link {
 
-			padding: 0 0px 34px;
+			display: inline-block;
+			padding: 0;
 			font-size: 18px;
-			white-space: wrap;
+			white-space: unset;
 			border: none;
 			color: $base-color;
 	

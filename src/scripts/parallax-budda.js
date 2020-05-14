@@ -21,7 +21,7 @@ let parallax = new Parallax(sectionBudda, areaForMouseMove);
 
     areaForMouseMove.addEventListener('mousemove', e => {
 
-        const accelerationSpeedOffsetX = 10;
+        const accelerationSpeedOffsetX = 4;
 
         let heightArea = document.documentElement.clientHeight;
         // let heightArea = Math.min(document.documentElement.clientHeight, offset(sectionBudda).bottom);
