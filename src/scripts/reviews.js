@@ -48,9 +48,6 @@ new Vue({
       const selectedSlide = this.$refs.flickity.selectedIndex();
       const lengthSlides = this.$refs.flickity.slides().length - 1;
 
-
-      console.log(`длина карусели ${lengthSlides}`);
-
       if (selectedSlide == 0) {
           this.btnPrev.disabled = true;
           
@@ -74,9 +71,5 @@ new Vue({
     if (this.$refs.flickity.slides().length == 1) {
       this.btnNext.disabled = true;
     }
-
-    let i = 0;
-    if (i < 10) { console.log(i); i++;}
-
   }
 });

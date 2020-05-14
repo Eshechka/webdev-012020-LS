@@ -59,9 +59,8 @@ class Parallax {
                     //     totalStrafeY = -(options.mouseMoveY / speedOffsetY);
                     }
                 }
-                    // console.log(layerTransformY, totalStrafeY);
-                this.move(layer, totalStrafeX, totalStrafeY);
 
+                this.move(layer, totalStrafeX, totalStrafeY);
             }
         }
 

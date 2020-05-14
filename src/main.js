@@ -6,9 +6,14 @@ if (process.env.NODE_ENV === "development") {
 import "./scripts/parallax-mountain";
 import "./scripts/parallax-budda";
 
+import "./scripts/popup-menu";
+
 import "./scripts/reviews";
 import "./scripts/skills";
 import "./scripts/slider";
-import "./scripts/popup-menu";
 
+const el = document.getElementById('about-me');
+el.scrollIntoView();
 
+const elem = document.querySelector('.main-title');
+elem.scrollIntoView();

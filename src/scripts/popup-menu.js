@@ -1,49 +1,36 @@
-import Vue from 'vue';
+
+const popupContainer = document.querySelector('.maincontent__popup-menu');
+const popup = popupContainer.querySelector('.popup-menu');
+const popupClose = popup.querySelector('.popup-menu__close');
+const hamburger = document.querySelector('.hamburger');
+
+// const sectionAboutMe = document.querySelector('');
+
+const popupLinks = popup.querySelectorAll('.menu__link');
+
+const sectionsNamesForScroll = ['greeting','about-me', 'whatican', 'myworks', 'reviews', 'contacts',];
 
 
-  const vueModel = new Vue ({ 
-    data: {
-        styles: {
-          display: 'npne',
-        },
-    },
-  })
-
-  vueModel.$mount('#popup-container');
-
-new Vue ({
-  el: '#popup-opener',
-
-  methods: {
-    openPopup() {
-      console.log('open');
-      vueModel.$data.styles.display = 'block'
-    },
-  }
-})
-
-
-new Vue ({
-    el: '#popup',
-    template: '#popup-menu',
-
-    data () {
-      return {
-        dataMenu: [],
-      }
-    },
-
-    methods: {
-      closePopup() {
-        vueModel.$data.styles.display = 'none'
-      },
-
-    },
-
-    created () {
-        const data = require('../data/menu.json');
-        this.dataMenu = data;
-      }
-  })
+hamburger.addEventListener('click', e => {
   
+  if (getComputedStyle(popupContainer).display === 'none')
+    popupContainer.style.display = 'block';
 
+});
+
+popupClose.addEventListener('click', e => {
+  
+  popupContainer.style.display = '';
+
+});
+
+popupLinks.forEach((link, ndx) => {
+
+  popupLinks[ndx].addEventListener('click', e => {
+
+    e.preventDefault();
+    let sectionName = document.querySelector(`.${sectionsNamesForScroll[ndx]}`) || document.querySelector(`.${sectionsNamesForScroll[0]}`)
+    sectionName.scrollIntoView();
+  });
+
+});
