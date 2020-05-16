@@ -21,6 +21,8 @@
     @content;
   }
 }
+
+
 @mixin parallaxStep1() {
   @media screen and (max-width: 860Px) {
     @content;
@@ -29,5 +31,30 @@
 @mixin parallaxStep2() {
   @media screen and (max-width: 980Px) {
     @content;
+  }
+}
+
+//input в админке
+@mixin admin-input($fontSize: 18px, $disabled-placeholder-color: $color-middle) {
+  font-size: $fontSize;
+  line-height: 32px;
+  font-weight: 700;
+  color: $base-color;
+  padding: 5px 0;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #000;
+  background-color: transparent;
+        
+  &::placeholder {
+    color: $color-light;
+  }
+
+  &[disabled] {
+    border: none;
+    
+    &::placeholder {
+      color: $disabled-placeholder-color;
+    }
   }
 }

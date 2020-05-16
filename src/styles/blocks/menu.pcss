@@ -133,5 +133,35 @@ $menu: .menu;
 		}
 	}
 	
+	&_admin_theme {
+		
+		& #{$menu}__link {
+
+			padding-bottom: 27px;
+
+			&:hover {
+
+				color: transparent;	
+	
+				&::before {
+					color: $admin-base-color;
+
+					@include tablets {
+						// font-size: 14px;
+						// padding-left: 0px;
+						// padding-right: 0px;
+					}					
+				}
+			}
+
+			@include tablets {
+				// font-size: 14px;
+				// padding-left: 0px;
+				// padding-right: 0px;
+				// margin-left: 33px;
+				// margin-right: 33px;
+			}
+		}
+	}
 
 }
