@@ -28,120 +28,180 @@
             li.menu__item
               a.menu__link.menu__link(href='./change-me' data-title='Отзывы') Отзывы
 
-  section.block-about
+  section.maincontent__section.maincontent__section_about
     .container
-      .block-about__topgroup
-        h3.block-about__title Блок "Обо мне"
-        .block-about__addgroup                   
-          .add          
-            button.add__plus
-            .add__text Добавить группу
+      .maincontent__topgroup
+        h3.maincontent__title Блок "Обо мне"       
+        .add          
+          button.add__plus
+          .add__text Добавить группу
 
-      .block-about__container
-        .skills-groups
+      .skills-groups
           ul.skills-groups__list
             li.skills-groups__item
+              form.skills-groups__form(action='change-me' method='get')
+                .skills-groups__add-item-title 
+                  input.skills-groups__input-title(placeholder='Название новой группы')
+                  .skills-groups__title.skills-groups__title_hidden Somename
+                  .skills-groups__switchers
+                    .switchers                                   
+                      button.switchers__btn.switchers__btn_edit.switchers__btn_none
+                      button.switchers__btn.switchers__btn_tick
+                      button.switchers__btn.switchers__btn_remove
 
-              .skills-groups__add-item-title 
-                input.skills-groups__input-title(placeholder='Название новой группы')
-                .skills-groups__title.skills-groups__title_hidden Somename
-                .skills-groups__switchers
-                  .switchers                                   
-                    button.switchers__btn.switchers__btn_edit.switchers__btn_none
-                    button.switchers__btn.switchers__btn_tick
-                    button.switchers__btn.switchers__btn_remove
+                .skills-groups__added-items
+                  ul.added-items
+                    
+                .skills-groups__add-new-item
+                  input.skills-groups__input-new-item-name(placeholder='Новый навык')
+                  input.skills-groups__input-new-item-percent(placeholder='100')
+                  label.skills-groups__label-new-item-percent
+                  .skills-groups__add-button
+                    .add
+                      button.add__plus
 
-              .skills-groups__added-items
-                ul.added-items
-                  
-              .skills-groups__add-new-item
-                input.skills-groups__input-new-item-name(placeholder='Новый навык')
-                input.skills-groups__input-new-item-percent(placeholder='100')
-                label.skills-groups__label-new-item-percent
-                .skills-groups__add-button
-                  .add
-                    button.add__plus
-
-
-
-            li.skills-groups__item
-
-              .skills-groups__add-item-title 
-                input.skills-groups__input-title(placeholder='Название новой группы')
-                .skills-groups__title.skills-groups__title_hidden Frontend
-                .skills-groups__switchers
-                  .switchers                                   
-                    button.switchers__btn.switchers__btn_edit
-                    button.switchers__btn.switchers__btn_tick
-                    button.switchers__btn.switchers__btn_remove
-
-              .skills-groups__added-items
-                ul.added-items
-                  li.added-items__row
-                    input.added-items__name(placeholder='Git' disabled)
-                    .added-items__percent
-                      input.added-items__input-percent(placeholder='100' disabled)
-                    .added-items__controls
-                      .switchers
-                        button.switchers__btn.switchers__btn_edit
-                        button.switchers__btn.switchers__btn_trash
-
-                  li.added-items__row
-                    input.added-items__name(placeholder='Terminal' disabled)
-                    .added-items__percent
-                      input.added-items__input-percent(placeholder='90' disabled)
-                    .added-items__controls
-                      .switchers
-                        button.switchers__btn.switchers__btn_edit
-                        button.switchers__btn.switchers__btn_trash
-
-              .skills-groups__add-new-item
-                input.skills-groups__input-new-item-name(placeholder='Новый навык')
-                input.skills-groups__input-new-item-percent(placeholder='100')
-                label.skills-groups__label-new-item-percent
-                .skills-groups__add-button
-                  .add
-                    button.add__plus
 
 
             li.skills-groups__item
-              .skills-groups__add-item-title 
-                input.skills-groups__input-title.skills-groups__input-title_hidden(placeholder='Название новой группы')
-                .skills-groups__title Workflow
-                .skills-groups__switchers
-                  .switchers                                   
-                    button.switchers__btn.switchers__btn_edit
-                    button.switchers__btn.switchers__btn_tick.switchers__btn_none
-                    button.switchers__btn.switchers__btn_remove.switchers__btn_none              
+              form.skills-groups__form(action='change-me' method='get')
+                .skills-groups__add-item-title 
+                  input.skills-groups__input-title(placeholder='Название новой группы')
+                  .skills-groups__title.skills-groups__title_hidden Frontend
+                  .skills-groups__switchers
+                    .switchers                                   
+                      button.switchers__btn.switchers__btn_edit
+                      button.switchers__btn.switchers__btn_tick
+                      button.switchers__btn.switchers__btn_remove
 
-              .skills-groups__added-items
-                ul.added-items
-                  li.added-items__row
-                    input.added-items__name(placeholder='Git' disabled)
-                    .added-items__percent
-                      input.added-items__input-percent(placeholder='100' disabled)
-                    .added-items__controls
-                      .switchers
-                        button.switchers__btn.switchers__btn_edit
-                        button.switchers__btn.switchers__btn_trash
+                .skills-groups__added-items
+                  ul.added-items
+                    li.added-items__row
+                      input.added-items__name(placeholder='Git' disabled)
+                      .added-items__percent
+                        input.added-items__input-percent(placeholder='100' disabled)
+                      .added-items__controls
+                        .switchers
+                          button.switchers__btn.switchers__btn_edit
+                          button.switchers__btn.switchers__btn_trash
 
-                  li.added-items__row
-                    input.added-items__name(placeholder='Terminal' disabled)
-                    .added-items__percent
-                      input.added-items__input-percent(placeholder='90' disabled)
-                    .added-items__controls
-                      .switchers
-                        button.switchers__btn.switchers__btn_edit
-                        button.switchers__btn.switchers__btn_trash
+                    li.added-items__row
+                      input.added-items__name(placeholder='Terminal' disabled)
+                      .added-items__percent
+                        input.added-items__input-percent(placeholder='90' disabled)
+                      .added-items__controls
+                        .switchers
+                          button.switchers__btn.switchers__btn_edit
+                          button.switchers__btn.switchers__btn_trash
 
-              .skills-groups__add-new-item
-                input.skills-groups__input-new-item-name(placeholder='Новый навык')
-                input.skills-groups__input-new-item-percent(placeholder='100')
-                label.skills-groups__label-new-item-percent
-                .skills-groups__add-button
-                  .add
-                    button.add__plus
+                    li.added-items__row
+                      input.added-items__name(placeholder='Gulp' disabled)
+                      .added-items__percent
+                        input.added-items__input-percent(placeholder='80' disabled)
+                      .added-items__controls
+                        .switchers
+                          button.switchers__btn.switchers__btn_edit
+                          button.switchers__btn.switchers__btn_trash
+
+                    li.added-items__row
+                      input.added-items__name(placeholder='Webpack' disabled)
+                      .added-items__percent
+                        input.added-items__input-percent(placeholder='70' disabled)
+                      .added-items__controls
+                        .switchers
+                          button.switchers__btn.switchers__btn_edit
+                          button.switchers__btn.switchers__btn_trash
+
+                .skills-groups__add-new-item
+                  input.skills-groups__input-new-item-name(placeholder='Новый навык')
+                  input.skills-groups__input-new-item-percent(placeholder='100')
+                  label.skills-groups__label-new-item-percent
+                  .skills-groups__add-button
+                    .add
+                      button.add__plus
+
+
+            li.skills-groups__item
+              form.skills-groups__form(action='change-me' method='get')
+                .skills-groups__add-item-title 
+                  input.skills-groups__input-title.skills-groups__input-title_hidden(placeholder='Название новой группы')
+                  .skills-groups__title Workflow
+                  .skills-groups__switchers
+                    .switchers                                   
+                      button.switchers__btn.switchers__btn_edit
+                      button.switchers__btn.switchers__btn_tick.switchers__btn_none
+                      button.switchers__btn.switchers__btn_remove.switchers__btn_none              
+
+                .skills-groups__added-items
+                  ul.added-items
+                    li.added-items__row
+                      input.added-items__name(placeholder='HTML5' disabled)
+                      .added-items__percent
+                        input.added-items__input-percent(placeholder='100' disabled)
+                      .added-items__controls
+                        .switchers
+                          button.switchers__btn.switchers__btn_edit
+                          button.switchers__btn.switchers__btn_trash
+
+                    li.added-items__row
+                      input.added-items__name(placeholder='CSS3')
+                      .added-items__percent
+                        input.added-items__input-percent(placeholder='90')
+                      .added-items__controls
+                        .switchers
+                          button.switchers__btn.switchers__btn_edit
+                          button.switchers__btn.switchers__btn_trash
+
+                    li.added-items__row
+                      input.added-items__name(placeholder='Javascript' disabled)
+                      .added-items__percent
+                        input.added-items__input-percent(placeholder='70' disabled)
+                      .added-items__controls
+                        .switchers
+                          button.switchers__btn.switchers__btn_edit
+                          button.switchers__btn.switchers__btn_trash
+
+                .skills-groups__add-new-item
+                  input.skills-groups__input-new-item-name(placeholder='Новый навык')
+                  input.skills-groups__input-new-item-percent(placeholder='100')
+                  label.skills-groups__label-new-item-percent
+                  .skills-groups__add-button
+                    .add
+                      button.add__plus
               
+
+  section.maincontent__section.maincontent__section_works
+    .container
+      .maincontent__topgroup
+        h3.maincontent__title Блок "Работы"      
+
+      .edit-work
+        .edit-work__title Редактирование работы
+        .edit-work__content
+          form.edit-work__form(action='change-me' method='get')
+            .edit-work__image
+              .edit-work__image-text Перетащите или загрузите для загрузки изображения
+              button.edit-work__image-load Загрузить
+            .edit-work__info
+              .edit-work__row.edit-work__row_name 
+                label.edit-work__label Название
+                input.edit-work__input(placeholder='Дизайн сайта для авто салона Porsche')
+              .edit-work__row.edit-work__row_link 
+                label.edit-work__label Ссылка
+                input.edit-work__input(type='url' placeholder='https://www.porsche-pulkovo.ru')
+              .edit-work__row.edit-work__row_desc 
+                label.edit-work__label Описание
+                textarea.edit-work__input(type="textarea" name="work-description" rows=5 resize='none' placeholder='Порше Центр Пулково - является официальным дилером марки Порше в Санкт-Петербурге и предоставляет полный цикл услуг по продаже и сервисному обслуживанию автомобилей')
+              .edit-work__row.edit-work__row_tags 
+                label.edit-work__label Добавление тега
+                input.edit-work__input(placeholder='Jquery, Vue.js, HTML5')
+                .edit-work__added-tags
+                  .edit-work__added-tag Jquery
+                  .edit-work__added-tag Vue.js
+                  .edit-work__added-tag HTML5
+              .edit-work__row.edit-work__row_buttons    
+                button.edit-work__cancel Отмена
+                input.edit-work__submit(type='submit' value='Сохранить')
+
 
 
 
@@ -173,20 +233,39 @@
     }
     &__menu {
       background-color: #ffffff;
+      padding-top: 23px;
     }
+    &__section {
+      background-color: #f7f9fe;
+      background-image: url('../images/content/Mountain_Baloon_admin.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      padding: 30px 0;
+    }
+
+    &__topgroup {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+      margin-bottom: 40px;
+    }  
+    &__title {
+      margin-right: 30px;
+    }
+
   }
 
   .header {    
 
-    &__container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      
-      min-height: 80px;
-      color: $white-color;
+    &__container {     
 
           &_admin {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;      
+            color: $white-color;
+            min-height: 80px;
             align-items: center;
           }
       }
@@ -221,6 +300,30 @@
     }
   }
 
+  .authorization {
+
+    &__link {
+      text-decoration: underline;
+      color: rgba($white-color, 0.5);
+    }
+
+  }
+
+
+.block-about {
+  
+  &__topgroup {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    margin-bottom: 40px;
+  }  
+  &__title {
+    margin-right: 30px;
+  }
+
+}
+
 
   .skills-groups {
     width: 100%;
@@ -231,10 +334,7 @@
       width: 100%;
       margin-left: -30px;
     }
-    &__item {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+    &__item {      
       width: calc( 50% - 30px);
       min-height: 387px;
       background-color: $white-color;
@@ -242,6 +342,14 @@
       padding: 20px;
       margin-left: 30px;
       margin-bottom: 30px;
+    }
+
+    &__form {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     &__add-item-title {
@@ -351,14 +459,9 @@
       padding: 0;
       flex-grow: 1;
     }
-
-    &__input-percent {
-      @include admin-input(16px,);
-      width: 100%;
-      padding-right: 20px;
-    }
     &__percent {
       width: 60px;
+      margin-left: 20px;
       margin-right: 50px;
       position: relative;
       
@@ -370,6 +473,18 @@
         transform: translateY(-50%);
         color: $color-middle;
         height: 22px;
+      }
+    }
+
+    &__input-percent {
+      @include admin-input(16px,);
+      width: 100%;
+      padding: 0;
+      padding-right: 20px;
+      padding-left: 10px;
+
+      &:active, &:focus {
+            border-color: $admin-base-color;
       }
     }
 
@@ -445,5 +560,154 @@
       margin-left: 13px;
     }
   }
+
+
+
+.edit-work {
+
+  background-color: $white-color;
+  box-shadow: 4px 3px 20px 0px rgba(0, 0, 0, 0.07);
+
+  &__title {
+    margin: 11px;
+    padding: 31px 11px 10px;
+    color: #base-color;
+    font-size: 18px;
+    line-height: 34px;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(#1f232d, 0.5);
+  }
+
+  &__content {
+    padding: 30px;
+    padding-top: 48px;
+  }
+
+  &__form {
+    display: flex;
+  }
+
+  &__image {
+    width: calc(50% - 30px);
+    height: 276px;
+    margin-right: 30px;
+    background-color: rgba(#dee4ed, 0.5);
+    border: 1px dashed #d5d7da;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__image-text {
+    color: rgba(#base-color, 0.95);
+    font-size: 16px;
+    line-height: 34px;
+    font-weight: 600;
+    width: 36%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  &__image-load {
+    //это вынести в миксин
+    text-transform: uppercase;
+    background-image: linear-gradient( 0deg, rgb(0,106,237) 0%, rgb(32,80,220) 48%, rgb(63,53,203) 100%);
+    border-radius: 40px;
+    padding: 19px;
+    color: $white-color;
+    min-width: 180px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+  }
+
+
+  &__info {
+    width: 50%;
+  }
+
+  &__row {
+    margin-bottom: 30px;
+
+    &_buttons {
+      text-align: right;
+      margin-top: 40px;
+      margin-bottom: 0;
+    }
+  }
+
+  &__label {
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    line-height: 30px;
+    color: rgba(#base-color, 0.95);
+  }
+
+  &__input {
+    @include admin-input();
+    width: 100%;
+
+    &[type='textarea'] {
+      resize: none;
+    }
+  }
+
+  
+  &__added-tags {
+    display: flex;
+    margin-top: 20px;
+  }  
+  &__added-tag {
+    margin-right: 10px;
+    padding: 11px 40px 11px 19px;
+    position: relative;
+    background-color: #dee4ed;
+    border-radius: 30px;
+
+    &:after {
+      content: '';
+      cursor: pointer;
+      position: absolute;
+      right: 14px;
+      top: 50%;      
+      transform: translateY(-50%);
+      height: 15px;
+      width: 15px;
+      padding: 0;
+      background-image: svg-load('remove.svg', width=100%, height=100%, fill=#{$color-middle});
+      background-repeat: no-repeat;
+      background-size: 15px 15px;
+      background-position: center;
+    }
+  }
+
+  &__cancel {
+    color: $admin-base-color;
+    font-size: 16px;
+    line-height: 34px;
+    font-weight: 700;
+    background-color: transparent;
+    margin-right: 60px;
+  }
+
+  &__submit {
+    text-transform: uppercase;
+    background-image: linear-gradient( 0deg, rgb(0,106,237) 0%, rgb(32,80,220) 48%, rgb(63,53,203) 100%);
+    border-radius: 40px;
+    padding: 19px;
+    color: $white-color;
+    min-width: 180px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+  }
+}
+
+
 
 </style>

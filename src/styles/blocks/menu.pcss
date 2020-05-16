@@ -139,12 +139,13 @@ $menu: .menu;
 
 			padding-bottom: 27px;
 
-			&:hover {
-
+			&:hover, &_active  {
 				color: transparent;	
+				border-color: transparent;
 	
 				&::before {
 					color: $admin-base-color;
+					
 
 					@include tablets {
 						// font-size: 14px;
@@ -152,6 +153,15 @@ $menu: .menu;
 						// padding-right: 0px;
 					}					
 				}
+			}
+
+			&_active  {
+				border-color: $admin-base-color;
+
+				&:hover {
+					border-color: $admin-base-color;
+				}
+
 			}
 
 			@include tablets {
