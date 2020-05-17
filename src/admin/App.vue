@@ -33,8 +33,8 @@
       .maincontent__topgroup
         h3.maincontent__title Блок "Обо мне"       
         .add          
+          span.add__text Добавить группу
           button.add__plus
-          .add__text Добавить группу
 
       .skills-groups
           ul.skills-groups__list
@@ -43,11 +43,11 @@
                 .skills-groups__add-item-title 
                   input.skills-groups__input-title(placeholder='Название новой группы')
                   .skills-groups__title.skills-groups__title_hidden Somename
-                  .skills-groups__switchers
-                    .switchers                                   
-                      button.switchers__btn.switchers__btn_edit.switchers__btn_none
-                      button.switchers__btn.switchers__btn_tick
-                      button.switchers__btn.switchers__btn_remove
+                  .skills-groups__controls
+                    .controls                                   
+                      button.controls__btn.controls__btn_edit.controls__btn_none
+                      button.controls__btn.controls__btn_tick
+                      button.controls__btn.controls__btn_red_remove
 
                 .skills-groups__added-items
                   ul.added-items
@@ -67,11 +67,11 @@
                 .skills-groups__add-item-title 
                   input.skills-groups__input-title(placeholder='Название новой группы')
                   .skills-groups__title.skills-groups__title_hidden Frontend
-                  .skills-groups__switchers
-                    .switchers                                   
-                      button.switchers__btn.switchers__btn_edit
-                      button.switchers__btn.switchers__btn_tick
-                      button.switchers__btn.switchers__btn_remove
+                  .skills-groups__controls
+                    .controls                                   
+                      button.controls__btn.controls__btn_edit.controls__btn_none
+                      button.controls__btn.controls__btn_tick
+                      button.controls__btn.controls__btn_red_remove
 
                 .skills-groups__added-items
                   ul.added-items
@@ -80,36 +80,36 @@
                       .added-items__percent
                         input.added-items__input-percent(placeholder='100' disabled)
                       .added-items__controls
-                        .switchers
-                          button.switchers__btn.switchers__btn_edit
-                          button.switchers__btn.switchers__btn_trash
+                        .controls
+                          button.controls__btn.controls__btn_edit
+                          button.controls__btn.controls__btn_trash
 
                     li.added-items__row
                       input.added-items__name(placeholder='Terminal' disabled)
                       .added-items__percent
                         input.added-items__input-percent(placeholder='90' disabled)
                       .added-items__controls
-                        .switchers
-                          button.switchers__btn.switchers__btn_edit
-                          button.switchers__btn.switchers__btn_trash
+                        .controls
+                          button.controls__btn.controls__btn_edit
+                          button.controls__btn.controls__btn_trash
 
                     li.added-items__row
                       input.added-items__name(placeholder='Gulp' disabled)
                       .added-items__percent
                         input.added-items__input-percent(placeholder='80' disabled)
                       .added-items__controls
-                        .switchers
-                          button.switchers__btn.switchers__btn_edit
-                          button.switchers__btn.switchers__btn_trash
+                        .controls
+                          button.controls__btn.controls__btn_edit
+                          button.controls__btn.controls__btn_trash
 
                     li.added-items__row
                       input.added-items__name(placeholder='Webpack' disabled)
                       .added-items__percent
                         input.added-items__input-percent(placeholder='70' disabled)
                       .added-items__controls
-                        .switchers
-                          button.switchers__btn.switchers__btn_edit
-                          button.switchers__btn.switchers__btn_trash
+                        .controls
+                          button.controls__btn.controls__btn_edit
+                          button.controls__btn.controls__btn_trash
 
                 .skills-groups__add-new-item
                   input.skills-groups__input-new-item-name(placeholder='Новый навык')
@@ -125,11 +125,11 @@
                 .skills-groups__add-item-title 
                   input.skills-groups__input-title.skills-groups__input-title_hidden(placeholder='Название новой группы')
                   .skills-groups__title Workflow
-                  .skills-groups__switchers
-                    .switchers                                   
-                      button.switchers__btn.switchers__btn_edit
-                      button.switchers__btn.switchers__btn_tick.switchers__btn_none
-                      button.switchers__btn.switchers__btn_remove.switchers__btn_none              
+                  .skills-groups__controls
+                    .controls                                   
+                      button.controls__btn.controls__btn_edit
+                      button.controls__btn.controls__btn_tick.controls__btn_none
+                      button.controls__btn.controls__btn_red_remove.controls__btn_none              
 
                 .skills-groups__added-items
                   ul.added-items
@@ -138,27 +138,27 @@
                       .added-items__percent
                         input.added-items__input-percent(placeholder='100' disabled)
                       .added-items__controls
-                        .switchers
-                          button.switchers__btn.switchers__btn_edit
-                          button.switchers__btn.switchers__btn_trash
+                        .controls
+                          button.controls__btn.controls__btn_edit
+                          button.controls__btn.controls__btn_trash
 
                     li.added-items__row
                       input.added-items__name(placeholder='CSS3')
                       .added-items__percent
                         input.added-items__input-percent(placeholder='90')
                       .added-items__controls
-                        .switchers
-                          button.switchers__btn.switchers__btn_edit
-                          button.switchers__btn.switchers__btn_trash
+                        .controls
+                          button.controls__btn.controls__btn_edit
+                          button.controls__btn.controls__btn_trash
 
                     li.added-items__row
                       input.added-items__name(placeholder='Javascript' disabled)
                       .added-items__percent
                         input.added-items__input-percent(placeholder='70' disabled)
                       .added-items__controls
-                        .switchers
-                          button.switchers__btn.switchers__btn_edit
-                          button.switchers__btn.switchers__btn_trash
+                        .controls
+                          button.controls__btn.controls__btn_edit
+                          button.controls__btn.controls__btn_trash
 
                 .skills-groups__add-new-item
                   input.skills-groups__input-new-item-name(placeholder='Новый навык')
@@ -190,7 +190,7 @@
                 input.edit-work__input(type='url' placeholder='https://www.porsche-pulkovo.ru')
               .edit-work__row.edit-work__row_desc 
                 label.edit-work__label Описание
-                textarea.edit-work__input(type="textarea" name="work-description" rows=5 resize='none' placeholder='Порше Центр Пулково - является официальным дилером марки Порше в Санкт-Петербурге и предоставляет полный цикл услуг по продаже и сервисному обслуживанию автомобилей')
+                textarea.edit-work__input(type="textarea" name="work-description" rows=4 resize='none' placeholder='Порше Центр Пулково - является официальным дилером марки Порше в Санкт-Петербурге и предоставляет полный цикл услуг по продаже и сервисному обслуживанию автомобилей')
               .edit-work__row.edit-work__row_tags 
                 label.edit-work__label Добавление тега
                 input.edit-work__input(placeholder='Jquery, Vue.js, HTML5')
@@ -202,7 +202,60 @@
                 button.edit-work__cancel Отмена
                 input.edit-work__submit(type='submit' value='Сохранить')
 
+      .added-works
+        ul.added-works__list
+          li.added-works__item
+            .add.add_theme_big
+              span.add__text Добавить работу
+              button.add__plus(type='button')
 
+          li.added-works__item
+            .work
+              .work__image
+                img.work__picture(src='../images/content/sliderpicture1.jpg')
+              .work__info
+                .work__title Сайт школы образования
+                .work__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
+                .work__link http://loftschool.ru
+              .work__controls
+                .controls.controls_with_text
+                  span.controls__text Править                          
+                  button.controls__btn.controls__btn_blue_edit
+                .controls.controls_with_text
+                  span.controls__text Удалить                          
+                  button.controls__btn.controls__btn_red_remove
+
+          li.added-works__item
+            .work
+              .work__image
+                img.work__picture(src='../images/content/sliderpicture2.jpg')
+              .work__info
+                .work__title Сайт школы образования
+                .work__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
+                .work__link http://loftschool.ru
+              .work__controls
+                .controls.controls_with_text
+                  span.controls__text Править                          
+                  button.controls__btn.controls__btn_blue_edit
+                .controls.controls_with_text
+                  span.controls__text Удалить                          
+                  button.controls__btn.controls__btn_red_remove
+
+          li.added-works__item
+            .work
+              .work__image
+                img.work__picture(src='../images/content/sliderpicture3.jpg')
+              .work__info
+                .work__title Сайт школы образования
+                .work__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
+                .work__link http://loftschool.ru
+              .work__controls
+                .controls.controls_with_text
+                  span.controls__text Править                          
+                  button.controls__btn.controls__btn_blue_edit
+                .controls.controls_with_text
+                  span.controls__text Удалить                          
+                  button.controls__btn.controls__btn_red_remove
 
 
 
@@ -229,7 +282,7 @@
   .maincontent {
 
     &__header {
-      background: $admin-base-gradient;
+      background: $admin-header-gradient;
     }
     &__menu {
       background-color: #ffffff;
@@ -252,6 +305,7 @@
     }  
     &__title {
       margin-right: 30px;
+      font-weight: bold;
     }
 
   }
@@ -291,6 +345,10 @@
       height: 45px;
       width: 45px;
       border-radius: 50%;
+    }
+
+    &__picture {      
+      @include img-object-fit;
     }
 
     &__name {
@@ -387,8 +445,9 @@
       }
      }
 
-    &__switchers {
+    &__controls {
       width: 80px;
+      padding-bottom: 5px;
     }
 
     &__added-items {
@@ -494,14 +553,14 @@
   }
 
 
-  .switchers {
+  .controls {
       width: 100%;
       display: flex;
       justify-content: flex-end;
 
       &__btn {
         height: 15px;
-        width: 35%;
+        width: 15px;
         padding: 0;
         background-color: transparent;
         background-repeat: no-repeat;
@@ -517,22 +576,43 @@
           background-image: svg-load('tick.svg', fill=#{$color-green});
         }
         &_remove {        
+          background-image: svg-load('remove.svg', width=100%, height=100%, fill=#{$color-middle});
+        }
+        &_red_remove {        
           background-image: svg-load('remove.svg', width=100%, height=100%, fill=#{$color-red});
         }
         &_edit {
           background-image: svg-load('pencil.svg', width=100%, height=100%, fill=#{$color-middle});
         }
+        &_blue_edit {
+          background-image: svg-load('pencil.svg', width=100%, height=100%, fill=#{$color-blue});
+        }
         &_trash {
           background-image: svg-load('trash.svg', width=100%, height=100%, fill=#{$color-middle});
+        }
+      }
+
+      &_with_text {
+      
+        width: unset;
+        display: flex;
+        justify-content: initial;
+        align-items: center;
+
+        & .controls__text {
+          margin-right: 11px;
+          font-size: 16px;
+          font-weight: 600;
+          color: $color-light;
         }
       }
     }
   
 
-
   .add {
 
     display: flex;
+    flex-direction: row-reverse;
     align-items: center;
       
     &__plus {
@@ -559,6 +639,50 @@
       font-size: 16px;
       margin-left: 13px;
     }
+
+    &_theme_big {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: $admin-base-gradient;
+
+      & .add__text {
+        position: absolute;
+        width: 30%;
+        height: 20%;
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        color: $white-color;
+        font-size: 18px;
+        line-height: 30px;
+        font-weight: bold;
+        margin-left: 0;
+      }
+
+      & .add__plus {
+        width: 100%;
+        height: 100%;    
+        position: relative;
+
+        &::after {
+          content: '+';
+          font-size: 100px;
+          line-height: 150px;
+          color: $white-color;
+          text-align: center;
+          position: absolute;
+          width: 150px;
+          height: 150px;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          border-radius: 50%;
+          border: 1px solid $white-color;
+        }
+      }
+    }
   }
 
 
@@ -567,6 +691,7 @@
 
   background-color: $white-color;
   box-shadow: 4px 3px 20px 0px rgba(0, 0, 0, 0.07);
+  margin-bottom: 30px;
 
   &__title {
     margin: 11px;
@@ -605,7 +730,7 @@
     font-size: 16px;
     line-height: 34px;
     font-weight: 600;
-    width: 36%;
+    width: 45%;
     text-align: center;
     margin-bottom: 10px;
   }
@@ -613,7 +738,7 @@
   &__image-load {
     //это вынести в миксин
     text-transform: uppercase;
-    background-image: linear-gradient( 0deg, rgb(0,106,237) 0%, rgb(32,80,220) 48%, rgb(63,53,203) 100%);
+    background-image: $admin-base-gradient;
     border-radius: 40px;
     padding: 19px;
     color: $white-color;
@@ -653,6 +778,8 @@
 
     &[type='textarea'] {
       resize: none;
+      border: 1px solid $color-light;
+      padding: 20px;
     }
   }
 
@@ -696,7 +823,7 @@
 
   &__submit {
     text-transform: uppercase;
-    background-image: linear-gradient( 0deg, rgb(0,106,237) 0%, rgb(32,80,220) 48%, rgb(63,53,203) 100%);
+    background-image: $admin-base-gradient;
     border-radius: 40px;
     padding: 19px;
     color: $white-color;
@@ -708,6 +835,75 @@
   }
 }
 
+.added-works {
 
+  &__list {
+    margin-left: -30px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    min-height: 556px;
+    width: calc( 100% / 3 - 30px);
+    margin-left: 30px;
+    margin-bottom: 30px;
+    background-color: $white-color;
+    box-shadow: 4px 3px 20px 0px rgba(0, 0, 0, 0.07);
+  }
+}
+
+
+
+.work {
+
+  height: 100% ;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__image {
+
+    height: 190px;
+    width: 100%;    
+  }
+
+  &__picture {
+    @include img-object-fit;
+  }
+
+  &__info {
+      padding: 20px;
+      padding-top: 40px;
+  }
+  &__title {
+      margin-bottom: 15px;
+      font-size: 18px;
+      font-weight: bold;
+  }
+
+  &__text {
+      font-size: 16px;
+      line-height: 30px;
+      font-weight: 600;
+      margin-bottom: 15px;
+  }
+
+  &__link {
+    font-size: 16px;
+    line-height: 30px;
+    font-weight: 600;
+    color: $color-blue;
+  }
+
+  &__controls {
+    height: 80px;    
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+
+  }
+}
 
 </style>

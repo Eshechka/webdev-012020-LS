@@ -10,9 +10,11 @@
  
 
   "admin-base-color": "#383bcf",
-  "admin-base-gradient": "linear-gradient(90deg,#3e3e59,#454573)",
+  "admin-header-gradient": "linear-gradient(90deg,#3e3e59,#454573)",
+  "admin-base-gradient": "linear-gradient( 0deg, rgb(0,106,237) 0%, rgb(32,80,220) 48%, rgb(63,53,203) 100%)",
   "admin-button-color": "#3e35cb",
 
+  "color-blue": "#474ad3",
   "color-green": "#39e040",
   "color-red": "#c13030",
 
