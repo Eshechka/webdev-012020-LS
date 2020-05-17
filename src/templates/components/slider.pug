@@ -29,8 +29,8 @@ script(type='text/x-template')#slider-preview
 
 script(type='text/x-template')#slider-miniatures
   .slider__miniatures
-    ul.slider__mini-list
-      li.slider__mini-item(
+    .slider__mini-list
+      button.slider__mini-item(
         v-for='(slide,ndx) in dataSlider' :key='dataSlider.id',
         :data-slidenum='ndx+1',
         :class='{["slider__mini-item_active"] : ndx===currentIndex}'

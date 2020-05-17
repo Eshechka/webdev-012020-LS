@@ -414,6 +414,15 @@
     &__link {
       text-decoration: underline;
       color: rgba($white-color, 0.5);
+
+        &:hover {
+          color: $white-color;
+        }
+        &:active, &:focus  {
+          outline: none;          
+          color: rgba($white-color, 0.75);
+        }
+
     }
 
   }

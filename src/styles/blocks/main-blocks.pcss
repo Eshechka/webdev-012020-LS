@@ -18,6 +18,10 @@
 		z-index: 100;
 		opacity: 0.9999;
 		height: 100vh;
+
+		@include phones {
+			left: 0;
+		}
 	}
 
 }
@@ -32,7 +36,7 @@
 		padding-top: 14px;
 
 		@include tablets {
-			height: 150Px;
+			height: 150px;
 			padding-top: 0;
 		}
 	}
@@ -121,9 +125,9 @@
 		padding-bottom: 120px;
 
 		@include desktop {
-			padding-top: 70Px;
+			padding-top: 70px;
 			top: 44%;
-			padding-bottom: 70Px;
+			padding-bottom: 70px;
 		}
 		@include tablets {
 			top: 28%;
@@ -203,19 +207,19 @@
 
 	&__avatar {
 		display: flex;
-		width: 200Px;
-		height: 200Px;
+		width: 200px;
+		height: 200px;
 		border-radius: 50%;
 		overflow: hidden;
-		margin-bottom: 60Px;
+		margin-bottom: 60px;
 
 		@include tablets {
-			width: 170Px;
-			height: 170Px;
-			margin-bottom: 35Px;
+			width: 170px;
+			height: 170px;
+			margin-bottom: 35px;
 		}
 		@include phones {
-			margin-bottom: 14Px;
+			margin-bottom: 14px;
 		}
 	}
 
@@ -236,7 +240,7 @@
 		}
 
 		@include desktop {
-			margin-bottom: 32Px;
+			margin-bottom: 32px;
 		}
 		@include tablets {
 			font-size: 30px;
@@ -252,10 +256,10 @@
 		line-height: 30px;
 
 		&_hello {
-			margin-bottom: 14Px;
+			margin-bottom: 14px;
 
 			@include desktop {
-				margin-bottom: 16Px;
+				margin-bottom: 16px;
 			}
 
 			@include tablets {
@@ -267,7 +271,7 @@
 
 			
 			@include desktop {
-				margin-bottom: 95Px;
+				margin-bottom: 95px;
 			}
 
 			@include tablets {
@@ -304,13 +308,13 @@
 		padding-bottom: 135px;
 	}
 	@include phones {
-		padding-top: 73Px;		
+		padding-top: 73px;		
 		padding-bottom: 200px;
 	}
 }
 
 .whatican {
-	padding-top: 150Px;
+	padding-top: 150px;
 
 	&__container {
 		display: flex;
@@ -356,7 +360,7 @@
 		width: 79%;
 
 		@include desktop {
-			margin-left: 280Px;
+			margin-left: 280px;
 		}
 		@include tablets {
 			width: 100%;
@@ -377,13 +381,13 @@
 		margin-bottom: 47px;
 
 		@include desktop {
-			margin-bottom: 50Px;
+			margin-bottom: 50px;
 		}
 		@include tablets {
 			text-align: center;
 			font-size: 30px;
 			width: 45%;
-			margin-bottom: 30Px;
+			margin-bottom: 30px;
 		}
 		@include phones {
 			width: 90%;
@@ -393,8 +397,8 @@
 
 	&__text {
 		font-size: 16px;
-		line-height: 30Px;
-		margin-bottom: 81Px;
+		line-height: 30px;
+		margin-bottom: 81px;
 		width: 60%;
 
 		@include desktop {
@@ -403,10 +407,10 @@
 		}
 		@include tablets {
 			width: 70%;
-			font-size: 14Px;
+			font-size: 14px;
 			line-height: 24px;
 			text-align: center;
-			margin-bottom: 45Px;
+			margin-bottom: 45px;
 		}
 		@include phones {
 			margin-bottom: 40px;
@@ -421,7 +425,7 @@
 
 		@include desktop {
 			font-weight: 600; 
-			margin-left: 90Px;
+			margin-left: 90px;
 		}
 		@include tablets {
 			margin-left: 0;
@@ -429,7 +433,7 @@
 	}
 
 	@include tablets {
-		padding-top: 132Px;
+		padding-top: 132px;
 	}
 	@include phones {
 		padding-top: 105px;
@@ -449,26 +453,26 @@
 		margin-bottom: 90px;
 
 		@include desktop {
-			margin-bottom: 60Px;
+			margin-bottom: 60px;
 		}
 		@include phones {
-			font-size: 24Px;
+			font-size: 24px;
 			text-align: center;
-			margin-bottom: 24Px;
+			margin-bottom: 24px;
 		}
 	}
 
 	@include desktop {
-		padding-top: 80Px;
-		padding-bottom: 35Px;
+		padding-top: 80px;
+		padding-bottom: 35px;
 	}
 	@include tablets {
-		padding-bottom: 45Px;
-		padding-top: 100Px;
+		padding-bottom: 45px;
+		padding-top: 100px;
 	}
 	@include phones {
-		padding-top: 70Px;
-		padding-bottom: 95Px;
+		padding-top: 70px;
+		padding-bottom: 95px;
 	}
 
 }
@@ -483,7 +487,7 @@
 		margin-bottom: 80px;
 
 		@include tablets {
-			margin-bottom: 45Px;
+			margin-bottom: 45px;
 		}
 		@include phones {
 			flex-direction: column;
@@ -543,7 +547,7 @@
 		padding-top: 210px;
 	}
 	@include phones {
-		padding-top: 112Px;
+		padding-top: 112px;
 		padding-bottom: 120px;
 	}
 	
@@ -551,7 +555,7 @@
 
 .contacts {
 
-	padding-top: 185Px;
+	padding-top: 185px;
     padding-bottom: 100px;
 
 	&__title {
@@ -559,27 +563,27 @@
 		font-size: 36px;
 		line-height: 48px;
 		font-weight: bold;
-		margin-bottom: 78Px;
+		margin-bottom: 78px;
 
 			@include tablets {
 				font-size: 30px;
 				text-align: center;
-				margin-bottom: 32Px;
+				margin-bottom: 32px;
 			}
 			@include phones {
-				font-size: 24Px;
+				font-size: 24px;
 			}
 		}
 	
 	@include desktop {
-		padding-bottom: 138Px;
+		padding-bottom: 138px;
 	}
 	@include tablets {
 		padding-top: 110px;
-		padding-bottom: 110Px;
+		padding-bottom: 110px;
 	}
 	@include phones {
-		padding-top: 28Px;
+		padding-top: 28px;
 	}
 }
 
@@ -616,7 +620,7 @@
 			width: 180px;
 		}
 		@include tablets {
-			margin-right: 80Px;
+			margin-right: 80px;
 		}
 		@include phones {
 			margin: 0;
@@ -679,8 +683,8 @@
 
 		@include desktop {
 			margin-right: 42px;
-			flex-basis: 325Px;
-			font-size: 14Px;
+			flex-basis: 325px;
+			font-size: 14px;
 		}
 		@include tablets {
 			margin-right: 0px;
@@ -714,12 +718,12 @@
 	}
 
 	&__quote {
-		font-size: 16Px;
-		line-height: 30Px;
+		font-size: 16px;
+		line-height: 30px;
 		margin-bottom: 17px;
 		
 		@include desktop {
-			line-height: 32Px;
+			line-height: 32px;
 		}
 	}
 
@@ -736,7 +740,7 @@
 	}
 
 	@include desktop {
-		padding-top: 75Px;
+		padding-top: 75px;
 	}
 	@include tablets {
 		padding: 60px 0;

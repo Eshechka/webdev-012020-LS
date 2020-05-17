@@ -1,10 +1,7 @@
-
 const popupContainer = document.querySelector('.maincontent__popup-menu');
 const popup = popupContainer.querySelector('.popup-menu');
 const popupClose = popup.querySelector('.popup-menu__close');
 const hamburger = document.querySelector('.hamburger');
-
-// const sectionAboutMe = document.querySelector('');
 
 const popupLinks = popup.querySelectorAll('.menu__link');
 
@@ -31,6 +28,7 @@ popupLinks.forEach((link, ndx) => {
     e.preventDefault();
     let sectionName = document.querySelector(`.${sectionsNamesForScroll[ndx]}`) || document.querySelector(`.${sectionsNamesForScroll[0]}`)
     sectionName.scrollIntoView();
+    popupContainer.style.display = 'none';
   });
 
 });

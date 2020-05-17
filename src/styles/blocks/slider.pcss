@@ -4,7 +4,7 @@
 
     &__slides {
         max-width: 975px;
-        width: 975Px;
+        width: 975px;
         height: 550px;       
         margin-right: 155px;  
         position: relative;      
@@ -32,8 +32,8 @@
         }
 
         @include desktop {
-            height: 355Px;
-            width: 625Px;
+            height: 355px;
+            width: 625px;
             margin-right: 110px;  
         }
         @include tablets {
@@ -48,10 +48,10 @@
             }
         }
         @include phones {
-            height: 185Px;
-            width: 114%;
-            margin-left: -7%;
-            margin-bottom: 59Px;
+            height: 185px;
+            width: 116%;
+            margin-left: -8%;
+            margin-bottom: 59px;
         }
     }
 
@@ -68,9 +68,9 @@
         height: 100%;
     }
 
-    $mini-item-outline-width: 3Px;
+    $mini-item-outline-width: 3px;
     $mini-items-amount: 4;
-    $mini-items-height: 100Px;
+    $mini-items-height: 100px;
 
     &__miniatures {
 
@@ -78,7 +78,7 @@
         bottom: -$mini-item-outline-width;
         right: -$mini-item-outline-width;
         z-index: 2;
-        width: calc(178Px + 2 * $mini-item-outline-width);
+        width: calc(178px + 2 * $mini-item-outline-width);
         height: calc($mini-items-amount * $mini-items-height + 2 * $mini-item-outline-width);
         overflow: hidden;
         padding: $mini-item-outline-width;
@@ -97,6 +97,8 @@
 
         position: relative;
         height: $mini-items-height;
+        padding: 0;
+        display: block;
 
         &::before {
             content: '';
@@ -133,7 +135,7 @@
 
    &__arrows {
         position: absolute;
-        bottom: -50Px;
+        bottom: -50px;
         right: 0;
 
         @include phones {
@@ -162,10 +164,10 @@
         margin-bottom: 21px;
         
         @include desktop {
-            margin-bottom: 29Px;
+            margin-bottom: 29px;
         }
         @include phones {
-            margin-bottom: 0Px;
+            margin-bottom: 0px;
         }
     }
 
@@ -205,22 +207,22 @@
         }
         @include phones {
             text-align: left;
-            font-size: 22Px;
-            line-height: 32Px; 
-            margin-bottom: 19Px;
+            font-size: 22px;
+            line-height: 32px; 
+            margin-bottom: 19px;
         }
     }
 
     &__text {
         color: $color-middle;
         font-size: 16px;
-        line-height: 30Px;
+        line-height: 30px;
         font-weight: bolder;
         margin-bottom: 25px;
 
         @include phones {
-            font-size: 14Px;
-            line-height: 23Px;
+            font-size: 14px;
+            line-height: 23px;
             text-align: left;
         }
     }
