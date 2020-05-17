@@ -257,7 +257,58 @@
                   span.controls__text Удалить                          
                   button.controls__btn.controls__btn_red_remove
 
+  section.maincontent__section.maincontent__section_reviews
+    .container
+      .maincontent__topgroup
+        h3.maincontent__title Блок "Отзывы"      
 
+      .edit-review
+        .edit-review__title Новый отзыв
+        .edit-review__content
+          .edit-review__image            
+            .edit-review__image-place
+            a.edit-review__image-text(href='./change-me') Добавить фото
+
+          form.edit-review__form(action='./change-me' method='get')
+            .edit-review__row
+              .edit-review__group.edit-review__group_name
+                label.edit-review__label Имя автора
+                input.edit-review__input(placeholder='Ковальчук Дмитрий')
+              .edit-review__group.edit-review__group_occupation
+                label.edit-review__label Титул автора
+                input.edit-review__input(placeholder='Основатель')
+            .edit-review__row
+              .edit-review__group.edit-review__group_review
+                label.edit-review__label Отзыв
+                textarea.edit-review__input.edit-review__input_textarea(type="textarea" name="review-description" rows=4 resize='none' placeholder='Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!')
+
+            .edit-review__row.edit-review__row_buttons    
+              button.edit-work__cancel Отмена
+              input.edit-work__submit(type='submit' value='Сохранить')
+
+      .added-reviews
+        ul.added-reviews__list
+          li.added-reviews__item
+            .add.add_theme_big
+              span.add__text Добавить отзыв
+              button.add__plus(type='button')
+
+          li.added-reviews__item
+            .review
+              .review__topgroup
+                .review__avatar
+                  img.review__image-author(src='../images/content/review_authot1.png')
+                .review__author Ковальчук Дмитрий
+                  .review__occupation Основатель Loftschool
+              .review__info
+                .review__text Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах
+              .review__controls
+                .controls.controls_with_text
+                  span.controls__text Править                          
+                  button.controls__btn.controls__btn_blue_edit
+                .controls.controls_with_text
+                  span.controls__text Удалить                          
+                  button.controls__btn.controls__btn_red_remove
 
 </template>
 
@@ -556,6 +607,7 @@
   .controls {
       width: 100%;
       display: flex;
+
       justify-content: flex-end;
 
       &__btn {
@@ -595,12 +647,18 @@
       &_with_text {
       
         width: unset;
-        display: flex;
-        justify-content: initial;
         align-items: center;
+        position: relative;
+
+        & .controls__btn {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background-position: right;
+        }
 
         & .controls__text {
-          margin-right: 11px;
+          margin-right: 26px;
           font-size: 16px;
           font-weight: 600;
           color: $color-light;
@@ -665,6 +723,7 @@
         width: 100%;
         height: 100%;    
         position: relative;
+        padding: 0;
 
         &::after {
           content: '+';
@@ -758,6 +817,7 @@
     margin-bottom: 30px;
 
     &_buttons {
+      justify-content: flex-end;
       text-align: right;
       margin-top: 40px;
       margin-bottom: 0;
@@ -854,7 +914,6 @@
 }
 
 
-
 .work {
 
   height: 100% ;
@@ -897,12 +956,213 @@
   }
 
   &__controls {
-    height: 80px;    
+    padding: 0 20px 30px; 
     margin-top: auto;
     display: flex;
     justify-content: space-between;
-    padding: 0 20px;
+  }
+}
 
+.edit-review {
+
+  background-color: $white-color;
+  box-shadow: 4px 3px 20px 0px rgba(0, 0, 0, 0.07);
+  margin-bottom: 30px;
+
+  &__title {
+    margin: 11px;
+    padding: 31px 11px 10px;
+    color: $base-color;
+    font-size: 18px;
+    line-height: 34px;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(#1f232d, 0.5);
+  }
+
+  &__content {
+    padding: 30px;
+    padding-top: 48px;
+    display: flex;
+  }
+
+  &__image {
+    width: 200px;
+    margin-right: 30px;
+  }
+
+  &__image-place {
+    width: 200px;
+    height: 200px;
+    background-color: #dee4ed;
+    border-radius: 50%;
+    margin-bottom: 28px;
+  }
+
+  &__image-text {
+    color: $color-blue;
+    font-size: 16px;
+    line-height: 34px;
+    font-weight: 600;
+    display: block;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  &__form {
+    width: calc(100% - 200px);
+    display: flex;
+    flex-direction: column;
+    width: 610px;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 40px;
+
+    &_buttons {
+      justify-content: flex-end;
+      text-align: right;
+      margin-top: 40px;
+      margin-bottom: 0;
+    }
+  }
+  
+  &__cancel {
+    color: $admin-base-color;
+    font-size: 16px;
+    line-height: 34px;
+    font-weight: 700;
+    background-color: transparent;
+    margin-right: 60px;
+  }
+
+  &__submit {
+    text-transform: uppercase;
+    background-image: $admin-base-gradient;
+    border-radius: 40px;
+    padding: 19px;
+    color: $white-color;
+    min-width: 180px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    outline: none;
+  }
+
+
+  &__group {
+    display: flex;
+    flex-direction: column;
+    width: calc( (100% - 30px) / 2);
+
+    &_review {
+      width: 100%;
+    }
+  }
+
+  &__label {
+    display: block;
+    width: 100%;
+    font-size: 16px;
+    line-height: 30px;
+    color: rgba(#base-color, 0.95);
+  }
+
+  &__input {
+    @include admin-input;
+
+    &[type='textarea'] {
+      padding: 20px;
+      resize: none;
+      border: 1px solid $color-light;
+    }
+  }
+
+}
+
+.added-reviews {
+
+  &__list {
+    margin-left: -30px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__item {
+    min-height: 380px;
+    width: calc( 100% / 3 - 30px);
+    margin-left: 30px;
+    margin-bottom: 30px;
+    background-color: $white-color;
+    box-shadow: 4px 3px 20px 0px rgba(0, 0, 0, 0.07);
+  }
+}
+
+
+
+.review {
+
+  height: 100% ;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__topgroup {
+    margin: 0 20px;
+    padding: 20px 0 20px 10px;
+    color: $base-color;
+    font-size: 18px;
+    line-height: 34px;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(#1f232d, 0.5);
+    display: flex;
+    align-items: center;
+  }
+
+  &__avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 20px;
+  }
+
+  &__image-author {
+    @include img-object-fit;
+  }
+
+  &__author {
+    font-size: 18px;
+    font-weight: bold;
+    color: $base-color;
+  }
+
+  &__occupation{
+    font-size: 16px;
+    line-height: 30px;
+    font-weight: 600;
+    color: $color-light;
+  }
+
+  &__info {
+      padding: 30px;
+  }
+
+  &__text {
+      font-size: 16px;
+      line-height: 30px;
+      font-weight: 600;
+      margin-bottom: 15px;
+  }
+
+  &__controls {
+    padding: 0 20px 30px;
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;    
   }
 }
 
