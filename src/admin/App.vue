@@ -1,8 +1,27 @@
 <template lang="pug">
 .maincontent
+
+  section.fullscreen-section.auth
+    .auth__wrapper
+    .auth__block
+      form.auth-form
+        .auth-form__title Авторизация
+        .auth-form__row
+          .auth-form__group.auth-form__group_login
+            label.auth-form__label(data-text='Логин')
+              input.auth-form__input(type='text')
+        .auth-form__row
+          .auth-form__group.auth-form__group_password
+            label.auth-form__label(data-text='Пароль') 
+              input.auth-form__input(type='password')
+        .auth-form__row
+          .auth-form__group.auth-form__group_button
+            button.auth-form__submit(type='submit') Отправить
+
+
   .maincontent__header
     header.header      
-      .container
+      .container.container_admin
         .header__container.header__container_admin
           .header__logo
             .logotype
@@ -12,14 +31,14 @@
 
           .header__desc Панель администрирования
 
-          .header__authorization
-            .authorization
-              a.authorization__link Выйти
+          .header__login
+            .login
+              a.login__link Выйти
 
   .maincontent__menu
-    .container
-      .menu__container
-        .menu.menu_admin_theme
+    nav.menu.menu_admin_theme
+      .container.container_admin
+        .menu__container
           ul.menu__list
             li.menu__item
               a.menu__link.menu__link_active(href='./change-me' data-title='Обо мне') Обо мне
@@ -29,12 +48,12 @@
               a.menu__link.menu__link(href='./change-me' data-title='Отзывы') Отзывы
 
   section.maincontent__section.maincontent__section_about
-    .container
+    .container.container_admin
       .maincontent__topgroup
         h3.maincontent__title Блок "Обо мне"       
         .add          
           span.add__text Добавить группу
-          button.add__plus
+          button.add__plus.add__plus_small
 
       .skills-groups
           ul.skills-groups__list
@@ -54,7 +73,7 @@
                     
                 .skills-groups__add-new-item
                   input.skills-groups__input-new-item-name(placeholder='Новый навык')
-                  input.skills-groups__input-new-item-percent(placeholder='100')
+                  input.skills-groups__input-new-item-percent(type='number' step='1' min='0' max='100' placeholder='100')
                   label.skills-groups__label-new-item-percent
                   .skills-groups__add-button
                     .add
@@ -78,7 +97,7 @@
                     li.added-items__row
                       input.added-items__name(placeholder='Git' disabled)
                       .added-items__percent
-                        input.added-items__input-percent(placeholder='100' disabled)
+                        input.added-items__input-percent(type='number' step='1' min='0' max='100' placeholder='100' disabled)
                       .added-items__controls
                         .controls
                           button.controls__btn.controls__btn_edit
@@ -87,7 +106,7 @@
                     li.added-items__row
                       input.added-items__name(placeholder='Terminal' disabled)
                       .added-items__percent
-                        input.added-items__input-percent(placeholder='90' disabled)
+                        input.added-items__input-percent(type='number' step='1' min='0' max='100' placeholder='90' disabled)
                       .added-items__controls
                         .controls
                           button.controls__btn.controls__btn_edit
@@ -96,7 +115,7 @@
                     li.added-items__row
                       input.added-items__name(placeholder='Gulp' disabled)
                       .added-items__percent
-                        input.added-items__input-percent(placeholder='80' disabled)
+                        input.added-items__input-percent(type='number' step='1' min='0' max='100' placeholder='80' disabled)
                       .added-items__controls
                         .controls
                           button.controls__btn.controls__btn_edit
@@ -105,7 +124,7 @@
                     li.added-items__row
                       input.added-items__name(placeholder='Webpack' disabled)
                       .added-items__percent
-                        input.added-items__input-percent(placeholder='70' disabled)
+                        input.added-items__input-percent(type='number' step='1' min='0' max='100' placeholder='70' disabled)
                       .added-items__controls
                         .controls
                           button.controls__btn.controls__btn_edit
@@ -113,7 +132,7 @@
 
                 .skills-groups__add-new-item
                   input.skills-groups__input-new-item-name(placeholder='Новый навык')
-                  input.skills-groups__input-new-item-percent(placeholder='100')
+                  input.skills-groups__input-new-item-percent(type='number' step='1' min='0' max='100' placeholder='100')
                   label.skills-groups__label-new-item-percent
                   .skills-groups__add-button
                     .add
@@ -136,7 +155,7 @@
                     li.added-items__row
                       input.added-items__name(placeholder='HTML5' disabled)
                       .added-items__percent
-                        input.added-items__input-percent(placeholder='100' disabled)
+                        input.added-items__input-percent(type='number' step='1' min='0' max='100' placeholder='100' disabled)
                       .added-items__controls
                         .controls
                           button.controls__btn.controls__btn_edit
@@ -145,16 +164,17 @@
                     li.added-items__row
                       input.added-items__name(placeholder='CSS3')
                       .added-items__percent
-                        input.added-items__input-percent(placeholder='90')
+                        input.added-items__input-percent(type='number' step='1' min='0' max='100' placeholder='90')
                       .added-items__controls
                         .controls
                           button.controls__btn.controls__btn_edit
                           button.controls__btn.controls__btn_trash
+                          
 
                     li.added-items__row
                       input.added-items__name(placeholder='Javascript' disabled)
                       .added-items__percent
-                        input.added-items__input-percent(placeholder='70' disabled)
+                        input.added-items__input-percent(type='number' step='1' min='0' max='100' placeholder='70' disabled)
                       .added-items__controls
                         .controls
                           button.controls__btn.controls__btn_edit
@@ -162,7 +182,7 @@
 
                 .skills-groups__add-new-item
                   input.skills-groups__input-new-item-name(placeholder='Новый навык')
-                  input.skills-groups__input-new-item-percent(placeholder='100')
+                  input.skills-groups__input-new-item-percent(type='number' step='1' min='0' max='100' placeholder='100')
                   label.skills-groups__label-new-item-percent
                   .skills-groups__add-button
                     .add
@@ -170,7 +190,7 @@
               
 
   section.maincontent__section.maincontent__section_works
-    .container
+    .container.container_admin
       .maincontent__topgroup
         h3.maincontent__title Блок "Работы"      
 
@@ -258,7 +278,7 @@
                   button.controls__btn.controls__btn_red_remove
 
   section.maincontent__section.maincontent__section_reviews
-    .container
+    .container.container_admin
       .maincontent__topgroup
         h3.maincontent__title Блок "Отзывы"      
 
@@ -269,22 +289,23 @@
             .edit-review__image-place
             a.edit-review__image-text(href='./change-me') Добавить фото
 
-          form.edit-review__form(action='./change-me' method='get')
-            .edit-review__row
-              .edit-review__group.edit-review__group_name
-                label.edit-review__label Имя автора
-                input.edit-review__input(placeholder='Ковальчук Дмитрий')
-              .edit-review__group.edit-review__group_occupation
-                label.edit-review__label Титул автора
-                input.edit-review__input(placeholder='Основатель')
-            .edit-review__row
-              .edit-review__group.edit-review__group_review
-                label.edit-review__label Отзыв
-                textarea.edit-review__input.edit-review__input_textarea(type="textarea" name="review-description" rows=4 resize='none' placeholder='Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!')
+          .edit-review__info
+            form.edit-review__form(action='./change-me' method='get')
+              .edit-review__row
+                .edit-review__group.edit-review__group_name
+                  label.edit-review__label Имя автора
+                  input.edit-review__input(placeholder='Ковальчук Дмитрий')
+                .edit-review__group.edit-review__group_occupation
+                  label.edit-review__label Титул автора
+                  input.edit-review__input(placeholder='Основатель')
+              .edit-review__row
+                .edit-review__group.edit-review__group_review
+                  label.edit-review__label Отзыв
+                  textarea.edit-review__input.edit-review__input_textarea(type="textarea" name="review-description" rows=4 resize='none' placeholder='Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!')
 
-            .edit-review__row.edit-review__row_buttons    
-              button.edit-work__cancel Отмена
-              input.edit-work__submit(type='submit' value='Сохранить')
+              .edit-review__row.edit-review__row_buttons    
+                button.edit-work__cancel Отмена
+                input.edit-work__submit(type='submit' value='Сохранить')
 
       .added-reviews
         ul.added-reviews__list
@@ -321,6 +342,8 @@
    @import "../styles/blocks/menu.pcss";
    @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800");
 
+
+  
   section {
     background-color: #f7f9fe;
     background-image: url('../images/content/Mountain_Baloon_admin.png');
@@ -338,6 +361,10 @@
     &__menu {
       background-color: #ffffff;
       padding-top: 23px;
+
+      @include tablets {
+        padding-top: 30px;
+      }
     }
     &__section {
       background-color: #f7f9fe;
@@ -352,13 +379,180 @@
       display: flex;
       align-items: center;
       padding: 10px 0;
+      padding-top: 22px;
       margin-bottom: 40px;
     }  
+
     &__title {
-      margin-right: 30px;
       font-weight: bold;
+      font-size: 22px;
+      margin-right: 52px;
+    }
+  }
+
+  .auth {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    position: relative;
+
+    &__wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background-color: rgba(#000, 0.5);
     }
 
+    &__block {
+      width: 80%;
+      max-width: 563px;
+      min-width: 320px;
+    }
+  }
+
+  .auth-form {
+    z-index: 100;
+    opacity: 0.999;
+    width: 100%;
+    background: #fff;
+    padding: 60px 78px;
+
+    &__title {
+      font-size: 36px;
+      margin-bottom: 15px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    &__row {		
+      line-height: 0;
+      margin-bottom: 35px;
+
+      @include tablets {
+
+      }
+    }
+
+    &__group {
+      position: relative;
+      border-bottom: 1px solid $base-color;
+
+      &::before {
+        content: '';
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        bottom: 16px;
+        left: 0px;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      &:active, &:focus, &:hover {
+        border-color: $base-color-hover;
+        outline: none;
+      }
+
+
+      &_login {
+
+        &::before {
+          background-image: svg-load('user.svg' fill=#{$color-light});				
+        }
+
+        &:active, &:focus, &:hover {
+          &::before {
+            background-image: svg-load('user.svg' fill=#{$base-color-hover});
+          }
+        }
+      }
+
+      &_password {
+
+        &::before {
+          background-image: svg-load('key.svg' fill=#{$color-light});				
+        }
+
+        &:active, &:focus, &:hover {
+          &::before {
+            background-image: svg-load('key.svg' fill=#{$base-color-hover});
+          }
+        }
+      }
+          
+      &_button {
+        padding-top: 25px;
+        border: none;
+        text-align: center;
+
+        &::before {
+          content: none;
+        }
+      }
+
+    }
+
+    &__label {
+      font-size: 16px;
+      line-height: 30px;
+      font-weight: 600;
+      color: $color-light;
+      overflow: hidden;
+
+      &::before {
+        content: attr(data-text);
+        display: block;
+        padding-left: 46px;		
+      }
+
+    }
+
+    &__input {
+      font-size: 18px;
+      font-weight: bold;
+      color: $color-dark;
+      padding: 19px 0 20px;
+      margin-left: 46px;    
+      outline: none;
+      border: none;
+      background-color: transparent;
+    }
+
+
+    &__submit {
+      min-width: 160px;
+      max-width: 348px;
+      width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding: 30px;
+      background-image: linear-gradient(90deg,#9300e8,#4a00ed);
+      border-radius: 37px 5px 45px;
+      color: #fff;
+      font-size: 18px;
+      font-weight: bold;
+      text-transform: uppercase;
+
+      &:hover, &:focus {
+        background-image: linear-gradient(90deg,#bb00ff ,#5900ff);
+        outline: none;
+      }
+
+      @include phones {
+        min-width: 260px;
+      }
+    }
+
+
+    @include phones {
+      padding: 174px 30px;
+      
+    }
   }
 
   .header {    
@@ -372,19 +566,26 @@
             color: $white-color;
             min-height: 80px;
             align-items: center;
+
+            @include tablets {
+              min-height: 90px;
+            }
           }
       }
 
     &__desc {
-      margin-left: 20px;
+      margin-left: 35px;
       font-size: 14px;
       color: rgba($white-color, 0.5);
+
+      @include tablets {
+        font-size: 14px;
+      }
     }   
 
-    &__authorization {
+    &__login {
       margin-left: auto;
     }
-
   }
   
 
@@ -406,10 +607,14 @@
       color: $white-color;
       margin-left: 20px;
       font-size: 18px;
+
+      @include tablets {
+        font-size: 22px;
+      }
     }
   }
 
-  .authorization {
+  .login {
 
     &__link {
       text-decoration: underline;
@@ -449,12 +654,12 @@
     &__list {
       display: flex;
       flex-wrap: wrap;
-      width: 100%;
+      width: calc(100% + 30px);
       margin-left: -30px;
     }
     &__item {      
-      width: calc( 50% - 30px);
-      min-height: 387px;
+      width: calc( (100% - 30px * 2) / 2);
+      min-height: 390px;
       background-color: $white-color;
       box-shadow: 4px 2px 20px 0px rgba(0, 0, 0, 0.07);
       padding: 20px;
@@ -497,43 +702,61 @@
    	&__input-title {
 
       @include admin-input();
-      width: 52%;
+      width: 56%;
+      min-width: 220px;
       margin-left: 9px;
 
       &_hidden {
         visibility: hidden;
       }
+
+      @include tablets() {
+        min-width: 165px;
+
+        &::placeholder{
+          font-size: 13px;
+        }
+      }
      }
 
     &__controls {
       width: 80px;
-      padding-bottom: 5px;
+      padding-bottom: 13px;
     }
 
     &__added-items {
-      flex-grow: 1;
+      /* flex-grow: 1; */
     }
 
 
     &__add-new-item {
-      height: 80px;
+      height: 74px;
       display: flex;
       justify-content: flex-end;
-      align-items: flex-end;
+      align-items: center;
+      margin-right: 10px;
     }
 
     &__input-new-item-name {
 
       @include admin-input();
-      width: 40%;
-      margin-left: 9px;
+      min-width: 40%;
+      width: 235px;
+      padding-left: 20px;
 
+      @include tablets {
+        font-size: 14px;        
+        max-width: 145px;
+        min-width: unset;
+        width: 50%;
+      }
     }
 
     &__input-new-item-percent {
       
       @include admin-input();
       width: 15%;
+      min-width: 50px;
       margin-left: 9px;
       margin-right: 20px;//должен совпадать с right следующей label
       
@@ -546,12 +769,12 @@
           display: inline-block;
           vertical-align: middle;
           padding: 5px 0;
-          height: 32px;
+          height: 20px;
 
           &::after {
             content: '%';
             position: absolute;
-            top: 0;
+            top: -1px;
             right: 20px;//должен совпадать с правым маржином input
             color: $color-middle;
             height: 20px;
@@ -563,25 +786,30 @@
   }   
   
   .added-items {
-    padding: 30px 0 30px 9px;
+    padding-left: 9px;
 
     &__row {
       display: flex;
       align-items: center;
-      margin-bottom: 5px;
+      margin-bottom: 10px;
     }
 
     &__name {
-
       @include admin-input(16px, $color-light);
       font-weight: 600;
       padding: 0;
-      flex-grow: 1;
+      flex-basis: 58%;
+      width: 58%;
+
+      @include tablets {
+        width: 40%;
+      }
     }
+
     &__percent {
-      width: 60px;
-      margin-left: 20px;
-      margin-right: 50px;
+      width: 73px;
+      margin-left: 10px;
+      margin-right: 20px;
       position: relative;
       
       &:after {
@@ -592,6 +820,11 @@
         transform: translateY(-50%);
         color: $color-middle;
         height: 22px;
+      }
+
+      @include tablets {
+        margin-left: 5px;
+        margin-right: 5px;
       }
     }
 
@@ -605,10 +838,17 @@
       &:active, &:focus {
             border-color: $admin-base-color;
       }
+      
+      @include tablets {
+        padding-right: 10px;
+        padding-left: 5px;
+      }
     }
 
     &__controls {
       width: 80px;
+      overflow: hidden;
+      margin-left: auto;
     }
   }
 
@@ -622,12 +862,18 @@
       &__btn {
         height: 15px;
         width: 15px;
-        padding: 0;
+        padding: 8px;
         background-color: transparent;
         background-repeat: no-repeat;
         background-size: 15px 15px;
         background-position: center;
-        margin-right: 10px;
+        margin-right: 12px;
+        margin-left: 8px;
+
+        @include tablets {
+          margin-right: 6px;
+          margin-left: 4px;
+        }
 
         &_none {    
           display: none;
@@ -639,8 +885,9 @@
         &_remove {        
           background-image: svg-load('remove.svg', width=100%, height=100%, fill=#{$color-middle});
         }
-        &_red_remove {        
+        &_red_remove {
           background-image: svg-load('remove.svg', width=100%, height=100%, fill=#{$color-red});
+          background-size: 15px 11px;
         }
         &_edit {
           background-image: svg-load('pencil.svg', width=100%, height=100%, fill=#{$color-middle});
@@ -698,6 +945,16 @@
         left: 50%;
         transform: translate(-50%, -50%);
       }
+
+      &_small {
+        width: 20px;
+        height: 20px;
+
+        &::after {
+          font-size: 14px;
+        }
+      }
+
     }
 
     &__text {
@@ -1018,11 +1275,15 @@
     text-decoration: none;
   }
 
+  &__info {
+    width: calc(100% - 200px - 30px);
+  }
+
   &__form {
-    width: calc(100% - 200px);
+    width: 100%;
     display: flex;
     flex-direction: column;
-    width: 610px;
+    max-width: 610px;
   }
 
   &__row {
