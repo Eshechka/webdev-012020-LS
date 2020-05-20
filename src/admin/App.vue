@@ -51,9 +51,9 @@
 
   section.maincontent__section.maincontent__section_about
     .container.container_admin
-      .maincontent__topgroup
+      .maincontent__topgroup.maincontent__topgroup_about
         h3.maincontent__title Блок "Обо мне"       
-        .add          
+        .add.add_small
           span.add__text Добавить группу
           button.add__plus.add__plus_small
 
@@ -193,145 +193,149 @@
 
   section.maincontent__section.maincontent__section_works
     .container.container_admin
-      .maincontent__topgroup
-        h3.maincontent__title Блок "Работы"      
+      .maincontent__topgroup.maincontent__topgroup_works
+        h3.maincontent__title Блок "Работы" 
 
-      .edit-work
-        .edit-work__title Редактирование работы
-        .edit-work__content
-          form.edit-work__form(action='change-me' method='get')
-            .edit-work__image
-              .edit-work__image-text Перетащите или загрузите для загрузки изображения
-              button.edit-work__image-load Загрузить
-            .edit-work__info
-              .edit-work__row.edit-work__row_name 
-                label.edit-work__label Название
-                input.edit-work__input(placeholder='Дизайн сайта для авто салона Porsche' required)
-              .edit-work__row.edit-work__row_link 
-                label.edit-work__label Ссылка
-                input.edit-work__input(type='url' placeholder='https://www.porsche-pulkovo.ru' required)
-              .edit-work__row.edit-work__row_desc 
-                label.edit-work__label Описание
-                textarea.edit-work__input(type="textarea" name="work-description" rows=4 resize='none' placeholder='Порше Центр Пулково - является официальным дилером марки Порше в Санкт-Петербурге и предоставляет полный цикл услуг по продаже и сервисному обслуживанию автомобилей')
-              .edit-work__row.edit-work__row_tags 
-                label.edit-work__label Добавление тега
-                input.edit-work__input(placeholder='Jquery, Vue.js, HTML5')
-                .edit-work__added-tags
-                  .edit-work__added-tag Jquery
-                  .edit-work__added-tag Vue.js
-                  .edit-work__added-tag HTML5
-              .edit-work__row.edit-work__row_buttons    
-                button.edit-work__cancel Отмена
-                input.edit-work__submit(type='submit' value='Сохранить')
+      .maincontent__content.maincontent__content_edit-work
+        .edit-work
+          .edit-work__title Редактирование работы
+          .edit-work__content
+            form.edit-work__form(action='change-me' method='get')
+              .edit-work__image
+                .edit-work__image-wrapper
+                  .edit-work__image-text Перетащите или загрузите для загрузки изображения
+                  button.edit-work__image-load Загрузить
+              .edit-work__info
+                .edit-work__row.edit-work__row_name 
+                  label.edit-work__label Название
+                  input.edit-work__input(placeholder='Дизайн сайта для авто салона Porsche' required)
+                .edit-work__row.edit-work__row_link 
+                  label.edit-work__label Ссылка
+                  input.edit-work__input(type='url' placeholder='https://www.porsche-pulkovo.ru' required)
+                .edit-work__row.edit-work__row_desc 
+                  label.edit-work__label Описание
+                  textarea.edit-work__input(type="textarea" name="work-description" rows=4 resize='none' placeholder='Порше Центр Пулково - является официальным дилером марки Порше в Санкт-Петербурге и предоставляет полный цикл услуг по продаже и сервисному обслуживанию автомобилей')
+                .edit-work__row.edit-work__row_tags 
+                  label.edit-work__label Добавление тега
+                  input.edit-work__input(placeholder='Jquery, Vue.js, HTML5')
+                  .edit-work__added-tags
+                    .edit-work__added-tag Jquery
+                    .edit-work__added-tag Vue.js
+                    .edit-work__added-tag HTML5
+                .edit-work__row.edit-work__row_buttons    
+                  button.edit-work__cancel Отмена
+                  input.edit-work__submit(type='submit' value='Сохранить')
 
-      .added-works
-        ul.added-works__list
-          li.added-works__item
-            .add.add_theme_big
-              span.add__text Добавить работу
-              button.add__plus(type='button')
+      .maincontent__content.maincontent__content_added-works
+        .added-works
+          ul.added-works__list
+            li.added-works__item
+              .add.add_theme_big
+                span.add__text Добавить работу
+                button.add__plus(type='button')
 
-          li.added-works__item
-            .work
-              .work__image
-                img.work__picture(src='../images/content/sliderpicture1.jpg')
-              .work__info
-                .work__title Сайт школы образования
-                .work__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
-                .work__link http://loftschool.ru
-              .work__controls
-                .controls.controls_with_text
-                  span.controls__text Править                          
-                  button.controls__btn.controls__btn_blue_edit
-                .controls.controls_with_text
-                  span.controls__text Удалить                          
-                  button.controls__btn.controls__btn_red_remove
+            li.added-works__item
+              .work
+                .work__image
+                  img.work__picture(src='../images/content/sliderpicture1.jpg')
+                .work__info
+                  .work__title Сайт школы образования
+                  .work__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
+                  .work__link http://loftschool.ru
+                .work__controls
+                  .controls.controls_with_text
+                    span.controls__text Править                          
+                    button.controls__btn.controls__btn_blue_edit
+                  .controls.controls_with_text
+                    span.controls__text Удалить                          
+                    button.controls__btn.controls__btn_red_remove
 
-          li.added-works__item
-            .work
-              .work__image
-                img.work__picture(src='../images/content/sliderpicture2.jpg')
-              .work__info
-                .work__title Сайт школы образования
-                .work__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
-                .work__link http://loftschool.ru
-              .work__controls
-                .controls.controls_with_text
-                  span.controls__text Править                          
-                  button.controls__btn.controls__btn_blue_edit
-                .controls.controls_with_text
-                  span.controls__text Удалить                          
-                  button.controls__btn.controls__btn_red_remove
+            li.added-works__item
+              .work
+                .work__image
+                  img.work__picture(src='../images/content/sliderpicture2.jpg')
+                .work__info
+                  .work__title Сайт школы образования
+                  .work__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
+                  .work__link http://loftschool.ru
+                .work__controls
+                  .controls.controls_with_text
+                    span.controls__text Править                          
+                    button.controls__btn.controls__btn_blue_edit
+                  .controls.controls_with_text
+                    span.controls__text Удалить                          
+                    button.controls__btn.controls__btn_red_remove
 
-          li.added-works__item
-            .work
-              .work__image
-                img.work__picture(src='../images/content/sliderpicture3.jpg')
-              .work__info
-                .work__title Сайт школы образования
-                .work__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
-                .work__link http://loftschool.ru
-              .work__controls
-                .controls.controls_with_text
-                  span.controls__text Править                          
-                  button.controls__btn.controls__btn_blue_edit
-                .controls.controls_with_text
-                  span.controls__text Удалить                          
-                  button.controls__btn.controls__btn_red_remove
+            li.added-works__item
+              .work
+                .work__image
+                  img.work__picture(src='../images/content/sliderpicture3.jpg')
+                .work__info
+                  .work__title Сайт школы образования
+                  .work__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
+                  .work__link http://loftschool.ru
+                .work__controls
+                  .controls.controls_with_text
+                    span.controls__text Править                          
+                    button.controls__btn.controls__btn_blue_edit
+                  .controls.controls_with_text
+                    span.controls__text Удалить                          
+                    button.controls__btn.controls__btn_red_remove
 
   section.maincontent__section.maincontent__section_reviews
     .container.container_admin
       .maincontent__topgroup
-        h3.maincontent__title Блок "Отзывы"      
+        h3.maincontent__title Блок "Отзывы"   
 
-      .edit-review
-        .edit-review__title Новый отзыв
-        .edit-review__content
-          .edit-review__image            
-            .edit-review__image-place
-            a.edit-review__image-text(href='./change-me') Добавить фото
+      .maincontent__content.maincontent__content_review
+        .edit-review
+          .edit-review__title Новый отзыв
+          .edit-review__content
+            .edit-review__image            
+              .edit-review__image-place
+              a.edit-review__image-text(href='./change-me') Добавить фото
 
-          .edit-review__info
-            form.edit-review__form(action='./change-me' method='get')
-              .edit-review__row
-                .edit-review__group.edit-review__group_name
-                  label.edit-review__label Имя автора
-                  input.edit-review__input(placeholder='Ковальчук Дмитрий' required)
-                .edit-review__group.edit-review__group_occupation
-                  label.edit-review__label Титул автора
-                  input.edit-review__input(placeholder='Основатель' required)
-              .edit-review__row
-                .edit-review__group.edit-review__group_review
-                  label.edit-review__label Отзыв
-                  textarea.edit-review__input.edit-review__input_textarea(type="textarea" name="review-description" rows=4 resize='none' placeholder='Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!' required)
+            .edit-review__info
+              form.edit-review__form(action='./change-me' method='get')
+                .edit-review__row
+                  .edit-review__group.edit-review__group_name
+                    label.edit-review__label Имя автора
+                    input.edit-review__input(placeholder='Ковальчук Дмитрий' required)
+                  .edit-review__group.edit-review__group_occupation
+                    label.edit-review__label Титул автора
+                    input.edit-review__input(placeholder='Основатель' required)
+                .edit-review__row
+                  .edit-review__group.edit-review__group_review
+                    label.edit-review__label Отзыв
+                    textarea.edit-review__input.edit-review__input_textarea(type="textarea" name="review-description" rows=4 resize='none' placeholder='Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!' required)
 
-              .edit-review__row.edit-review__row_buttons    
-                button.edit-work__cancel Отмена
-                input.edit-work__submit(type='submit' value='Сохранить')
+                .edit-review__row.edit-review__row_buttons    
+                  button.edit-work__cancel Отмена
+                  input.edit-work__submit(type='submit' value='Сохранить')
 
-      .added-reviews
-        ul.added-reviews__list
-          li.added-reviews__item
-            .add.add_theme_big
-              span.add__text Добавить отзыв
-              button.add__plus(type='button')
+        .added-reviews
+          ul.added-reviews__list
+            li.added-reviews__item
+              .add.add_theme_big
+                span.add__text Добавить отзыв
+                button.add__plus(type='button')
 
-          li.added-reviews__item
-            .review
-              .review__topgroup
-                .review__avatar
-                  img.review__image-author(src='../images/content/review_authot1.png')
-                .review__author Ковальчук Дмитрий
-                  .review__occupation Основатель Loftschool
-              .review__info
-                .review__text Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах
-              .review__controls
-                .controls.controls_with_text
-                  span.controls__text Править                          
-                  button.controls__btn.controls__btn_blue_edit
-                .controls.controls_with_text
-                  span.controls__text Удалить                          
-                  button.controls__btn.controls__btn_red_remove
+            li.added-reviews__item
+              .review
+                .review__topgroup
+                  .review__avatar
+                    img.review__image-author(src='../images/content/review_authot1.png')
+                  .review__author Ковальчук Дмитрий
+                    .review__occupation Основатель Loftschool
+                .review__info
+                  .review__text Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах
+                .review__controls
+                  .controls.controls_with_text
+                    span.controls__text Править                          
+                    button.controls__btn.controls__btn_blue_edit
+                  .controls.controls_with_text
+                    span.controls__text Удалить                          
+                    button.controls__btn.controls__btn_red_remove
 
 </template>
 
@@ -347,12 +351,12 @@
 
   
   section {
-    background-color: #f7f9fe;
+    /* background-color: #f7f9fe;
     background-image: url('../images/content/Mountain_Baloon_admin.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-    padding: 30px 0;
+    padding: 30px 0; */
   }
 
   .maincontent {
@@ -360,6 +364,7 @@
     &__header {
       background: $admin-header-gradient;
     }
+
     &__menu {
       background-color: #ffffff;
       padding-top: 23px;
@@ -368,6 +373,7 @@
         padding-top: 30px;
       }
     }
+
     &__section {
       background-color: #f7f9fe;
       background-image: url('../images/content/Mountain_Baloon_admin.png');
@@ -380,19 +386,32 @@
     &__topgroup {
       display: flex;
       align-items: center;
-      padding: 10px 0;
-      padding-top: 22px;
       margin-bottom: 40px;
 
       @include tablets {
         margin-bottom: 40px;
       }
-      @include phones {
-        flex-direction: column;
-        align-items: flex-start;
-        padding-top: 10px;
-        padding-bottom: 0;
-        margin-bottom: 43px;
+
+      &_about {
+        padding-bottom: 10px;
+        padding-top: 22px;
+        margin-bottom: 40px;
+
+        @include phones {
+          flex-direction: column;
+          align-items: flex-start;
+          padding-top: 10px;
+          padding-bottom: 0;
+          margin-bottom: 43px;
+        }
+      }
+      &_works {
+        padding-top: 22px;
+        margin-bottom: 55px;
+
+        @include phones {
+          margin-bottom: 20px;
+        }
       }
     }  
 
@@ -403,6 +422,35 @@
 
       @include phones {
         margin-bottom: 25px;
+      }
+    }
+
+    &__content {
+      
+      &_edit-work {
+
+        margin-bottom: 30px;
+        
+        @include tablets {
+          margin-bottom: 40px;
+        }
+        @include phones {
+          width: 110%;
+          margin-left: -5%;
+          margin-bottom: 20px;
+        }
+      }
+
+      &_added-works {
+
+        @include phones {
+          width: 110%;
+          margin-left: -5%;
+        }
+      }
+
+      &_review {
+        margin-bottom: 30px;
       }
     }
   }
@@ -692,22 +740,6 @@
 
   }
 
-
-.block-about {
-  
-  &__topgroup {
-    display: flex;
-    align-items: center;
-    padding: 10px 0;
-    margin-bottom: 40px;
-  }  
-  &__title {
-    margin-right: 30px;
-  }
-
-}
-
-
   .skills-groups {
     width: 100%;
 
@@ -991,12 +1023,24 @@
         &_red_remove {
           background-image: svg-load('remove.svg', width=100%, height=100%, fill=#{$color-red});
           background-size: 15px 11px;
+
+          @include phones {
+            height: 18px;
+            width: 18px;
+            background-size: 18px 16px;
+          }
         }
         &_edit {
           background-image: svg-load('pencil.svg', width=100%, height=100%, fill=#{$color-middle});
         }
         &_blue_edit {
           background-image: svg-load('pencil.svg', width=100%, height=100%, fill=#{$color-blue});
+          
+          @include phones {
+            height: 18px;
+            width: 18px;
+            background-size: 18px 18px;
+          }
         }
         &_trash {
           background-image: svg-load('trash.svg', width=100%, height=100%, fill=#{$color-middle});
@@ -1059,29 +1103,13 @@
           font-size: 36px;
         }
       }
-   
-      &_small {
-        width: 20px;
-        height: 20px;
 
-        &::after {
-          font-size: 14px;
-        }
-
-        @include tablets {
-          &::after {
-            font-size: 14px;
-          }
-        }
-
-      }
     }
 
     &__text {
       color: $admin-base-color;
       font-weight: 700;
       font-size: 16px;
-      margin-left: 13px;
     }
 
     &_theme_big {
@@ -1094,7 +1122,7 @@
         position: absolute;
         width: 30%;
         height: 20%;
-        bottom: 10%;
+        bottom: 19%;
         left: 50%;
         transform: translateX(-50%);
         text-align: center;
@@ -1102,7 +1130,11 @@
         font-size: 18px;
         line-height: 30px;
         font-weight: bold;
-        margin-left: 0;
+
+        @include phones {
+          width: unset;
+          bottom: 45%;
+        }
       }
 
       & .add__plus {
@@ -1113,19 +1145,56 @@
 
         &::after {
           content: '+';
-          font-size: 100px;
+          font-size: 68px;
+          font-weight: 400;
           line-height: 150px;
           color: $white-color;
           text-align: center;
           position: absolute;
           width: 150px;
           height: 150px;
-          top: 50%;
+          top: 43%;
           left: 50%;
           transform: translate(-50%, -50%);
           border-radius: 50%;
           border: 1px solid $white-color;
+
+          @include phones {
+            width: 52px;
+            height: 52px;
+            font-size: 30px;
+            line-height: 52px;
+            top: 48%;
+            left: 14%;
+          }
         }
+      }
+    }
+
+    &_small {
+      .add__plus {
+        width: 20px;
+        height: 20px;
+
+        &::after {
+          font-size: 14px;
+        }
+
+        @include tablets {
+          &::after {
+            font-size: 14px;
+          }
+        }
+      }
+
+      .add__text {
+        cursor: pointer;
+        color: $admin-base-color;
+        font-weight: 700;
+        font-size: 16px;
+        padding-left: 13px;
+        padding-top: 5px;
+        padding-bottom: 5px;
       }
     }
   }
@@ -1136,39 +1205,85 @@
 
   background-color: $white-color;
   box-shadow: 4px 3px 20px 0px rgba(0, 0, 0, 0.07);
-  margin-bottom: 30px;
 
   &__title {
     margin: 11px;
-    padding: 31px 11px 10px;
-    color: #base-color;
+    padding: 0 11px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    color: $base-color;
     font-size: 18px;
     line-height: 34px;
     font-weight: 700;
     border-bottom: 1px solid rgba(#1f232d, 0.5);
+
+    @include tablets {        
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
+    @include phones {
+      padding-left: 0px;
+      margin-left: 0;
+    }
   }
 
   &__content {
     padding: 30px;
-    padding-top: 48px;
+    padding-top: 36px;
+
+    @include tablets {
+      padding-top: 20px;
+    }
+
+    @include phones {
+      padding-left: 0;
+      padding-right: 0;
+      padding-top: 20px;
+    }
   }
 
   &__form {
     display: flex;
+
+    @include tablets {
+      flex-direction: column;
+      align-items: center;
+    }
   }
 
   &__image {
-    width: calc(50% - 30px);
+    width: calc(53% - 30px);
     height: 276px;
     margin-right: 30px;
+
+    @include tablets { 
+      width: 70%;
+      margin-right: 0;
+      height: 370px;
+      padding-bottom: 70px;
+    }    
+    @include phones { 
+      width: 84%;
+      height: 220px;
+      padding-bottom: 40px;
+    }
+  }
+
+  &__image-wrapper {
+    width: 100%;
+    height: 100%;
     background-color: rgba(#dee4ed, 0.5);
     border: 1px dashed #d5d7da;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    @include tablets {
+      position: relative;
+    }
   }
+
 
   &__image-text {
     color: rgba(#base-color, 0.95);
@@ -1177,11 +1292,14 @@
     font-weight: 600;
     width: 45%;
     text-align: center;
-    margin-bottom: 10px;
+    
+    @include tablets {
+      display: none;
+    }
   }
 
   &__image-load {
-    //это вынести в миксин
+    //это вынести в миксин текста для кнопок
     text-transform: uppercase;
     background-image: $admin-base-gradient;
     border-radius: 40px;
@@ -1192,22 +1310,67 @@
     font-weight: bold;
     border: none;
     outline: none;
+    margin-top: 30px;
+
+    @include tablets {
+      position: absolute;
+      bottom: -70px;
+      margin-top: 0;
+    }
+    @include phones {
+      position: absolute;
+      bottom: -60px;
+    }
   }
 
 
   &__info {
     width: 50%;
+
+    @include tablets { 
+      width: 75%;
+      margin-top: 35px;
+    }
+    @include phones { 
+      width: 90%;
+    }
   }
 
   &__row {
-    margin-bottom: 30px;
+    margin-bottom: 25px;
+
+    @include phones {
+      margin-bottom: 30px;
+    }
 
     &_buttons {
       justify-content: flex-end;
       text-align: right;
-      margin-top: 40px;
+      margin-top: 45px;
       margin-bottom: 0;
+
+      @include tablets {
+        margin-top: 48px;
+        text-align: center;
+      }
+      @include phones {
+        justify-content: space-around;
+        display: flex;
+      }
     }
+
+    &_desc {
+      margin-bottom: 15px;
+
+    }
+    &_link {
+      
+      @include phones {
+        margin-bottom: 18px;
+      }
+    }
+    
+
   }
 
   &__label {
@@ -1226,6 +1389,21 @@
       resize: none;
       border: 1px solid $color-light;
       padding: 20px;
+      line-height: 28px;
+
+      @include tablets {
+        margin-top: 18px;
+        line-height: 32px;        
+      }
+      @include phones {
+        padding-bottom: 10px;
+        padding-top: 10px;
+        height: 240px;
+      }
+    }
+
+    @include tablets {
+      padding-bottom: 17px;
     }
   }
 
@@ -1236,9 +1414,11 @@
   }  
   &__added-tag {
     margin-right: 10px;
-    padding: 11px 40px 11px 19px;
+    padding: 8px 33px 8px 19px;
+    font-size: 12px;
+    line-height: 1;
     position: relative;
-    background-color: #dee4ed;
+    background-color: rgba(#dee4ed, 0.5);
     border-radius: 30px;
 
     &:after {
@@ -1248,14 +1428,25 @@
       right: 14px;
       top: 50%;      
       transform: translateY(-50%);
-      height: 15px;
-      width: 15px;
+      height: 10px;
+      width: 10px;
       padding: 0;
       background-image: svg-load('remove.svg', width=100%, height=100%, fill=#{$color-middle});
       background-repeat: no-repeat;
-      background-size: 15px 15px;
+      background-size: 10px 10px;
       background-position: center;
+
+      @include tablets {
+        height: 12px;
+        width: 12px;
+        background-size: 12px 12px;
+      }
     }
+
+    @include tablets {
+      padding: 11px 40px 11px 19px;
+      font-size: 14px;
+    }    
   }
 
   &__cancel {
@@ -1265,6 +1456,10 @@
     font-weight: 700;
     background-color: transparent;
     margin-right: 60px;
+
+    @include phones {
+      margin-right: 0;
+    }
   }
 
   &__submit {
@@ -1278,7 +1473,13 @@
     font-weight: bold;
     border: none;
     outline: none;
+
+    @include tablets {
+      font-size: 18px;
+      padding: 23px 46px;
+    }
   }
+
 }
 
 .added-works {
@@ -1296,6 +1497,16 @@
     margin-bottom: 30px;
     background-color: $white-color;
     box-shadow: 4px 3px 20px 0px rgba(0, 0, 0, 0.07);
+
+    @include tablets {
+      width: calc( 100% / 2 - 30px);
+      min-height: 640px;
+    }
+    @include phones {
+      width: 100%;
+      min-height: 130px;
+      margin-bottom: 12px;
+    }
   }
 }
 
@@ -1310,7 +1521,14 @@
   &__image {
 
     height: 190px;
-    width: 100%;    
+    width: 100%;
+
+    @include tablets {
+      height: 220px;
+    }
+    @include phones {
+      height: 216px;
+    }
   }
 
   &__picture {
@@ -1320,6 +1538,11 @@
   &__info {
       padding: 20px;
       padding-top: 40px;
+
+      @include phones {
+        padding-top: 26px;
+        padding-bottom: 42px;
+      }
   }
   &__title {
       margin-bottom: 15px;
@@ -1353,7 +1576,6 @@
 
   background-color: $white-color;
   box-shadow: 4px 3px 20px 0px rgba(0, 0, 0, 0.07);
-  margin-bottom: 30px;
 
   &__title {
     margin: 11px;
