@@ -164,12 +164,15 @@ $menu: .menu;
 
 			}
 
-			@include tablets {
-				// font-size: 14px;
-				// padding-left: 0px;
-				// padding-right: 0px;
-				// margin-left: 33px;
-				// margin-right: 33px;
+			@include phones {
+				padding-right: 20px;
+				padding-left: 20px;
+				padding-bottom: 28px;
+
+				&::before {
+					padding-right: 20px;
+					padding-left: 20px;
+				}
 			}
 		}
 	}

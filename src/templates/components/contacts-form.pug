@@ -1,0 +1,60 @@
+script(type="text/x-template")#contacts-form
+  form.contacts-form(
+    @submit.prevent='submitForm')
+    
+    .overlay(
+      :class='{"overlay_disabled" : !isOverlay}',
+      @click='hideOverlay',
+    )
+      .overlay__block
+        .overlay__text Сообщение отправлено
+        button.overlay__btn(
+          type='button',
+          @click='hideOverlay',
+        ) OK
+
+    .contacts-form__container
+
+      .contacts-form__row
+        .contacts-form__block.contacts-form__block_name
+          label.contacts-form__label(data-text='Введите ваше имя') 
+            input.contacts-form__input(type='text', name='name', placeholder='Ковальчук Дмитрий'
+              ref='name-input' 
+              @input='validateName'
+              onFocus='this.placeholder=""'
+              )
+          .contacts-form__tooltip(
+            :class='{"contacts-form__tooltip_error" : isErrorName}',
+          ) {{textErrorName}}
+
+          
+        .contacts-form__block.contacts-form__block_email
+          label.contacts-form__label(data-text='Введите ваш email')
+            input.contacts-form__input(type='text', name='email', placeholder='loftschool@study.com'
+              ref='email-input' 
+              @input='validateEmail'
+              onFocus='this.placeholder=""'
+              )
+          .contacts-form__tooltip(
+            :class='{"contacts-form__tooltip_error" : isErrorEmail}',
+          ) {{textErrorEmail}}
+
+      .contacts-form__row
+        .contacts-form__block.contacts-form__block_message
+          label.contacts-form__label(data-text='Сообщение к письму')
+            textarea.contacts-form__input.contacts-form__input_textarea(type='textarea', name='text', placeholder='Требуется ваша помощь в создании сайта.\r\nИнтересуют сроки и цена вопроса', rows='2' cols='77', resize='none' 
+              ref='textMessage-input' 
+              @input='validateTextMessage'
+              onFocus='this.placeholder=""'
+              )
+          .contacts-form__tooltip(
+            :class='{"contacts-form__tooltip_error" : isErrorTextMessage}',
+          ) {{textErrorTextMessage}}
+
+
+      .contacts-form__row
+        .contacts-form__block.contacts-form__block_button
+          button.contacts-form__button(
+            type='submit',
+            @click='submitForm',
+            ) Отправить

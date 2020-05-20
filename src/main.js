@@ -11,6 +11,7 @@ import "./scripts/popup-menu";
 import "./scripts/reviews";
 import "./scripts/skills";
 import "./scripts/slider";
+import "./scripts/contacts-form";
 
 const el = document.getElementById('about-me');
 el.scrollIntoView();

@@ -9,11 +9,11 @@
         .auth-form__row
           .auth-form__group.auth-form__group_login
             label.auth-form__label(data-text='Логин')
-              input.auth-form__input(type='text')
+              input.auth-form__input(type='text' required)
         .auth-form__row
           .auth-form__group.auth-form__group_password
             label.auth-form__label(data-text='Пароль') 
-              input.auth-form__input(type='password')
+              input.auth-form__input(type='password' required)
         .auth-form__row
           .auth-form__group.auth-form__group_button
             button.auth-form__submit(type='submit') Отправить
@@ -27,13 +27,15 @@
             .logotype
               .logotype__image
                 img.logotype__picture(src='../images/content/user.jpg')
-              .logotype__name Владимир Астаханов
+          .header__info  
+            .header__name Владимир Астаханов
+                //- .logotype__name Владимир Астаханов
 
-          .header__desc Панель администрирования
+            .header__desc Панель администрирования
 
-          .header__login
-            .login
-              a.login__link Выйти
+            .header__login
+              .login
+                a.login__link Выйти
 
   .maincontent__menu
     nav.menu.menu_admin_theme
@@ -60,20 +62,20 @@
             li.skills-groups__item
               form.skills-groups__form(action='change-me' method='get')
                 .skills-groups__add-item-title 
-                  input.skills-groups__input-title(placeholder='Название новой группы')
+                  input.skills-groups__input-title(placeholder='Название новой группы' required)
                   .skills-groups__title.skills-groups__title_hidden Somename
                   .skills-groups__controls
                     .controls                                   
                       button.controls__btn.controls__btn_edit.controls__btn_none
-                      button.controls__btn.controls__btn_tick
+                      button.controls__btn.controls__btn_tick(type='submit')
                       button.controls__btn.controls__btn_red_remove
 
                 .skills-groups__added-items
                   ul.added-items
                     
                 .skills-groups__add-new-item
-                  input.skills-groups__input-new-item-name(placeholder='Новый навык')
-                  input.skills-groups__input-new-item-percent(type='number' step='1' min='0' max='100' placeholder='100')
+                  input.skills-groups__input-new-item-name(placeholder='Новый навык' required)
+                  input.skills-groups__input-new-item-percent(type='number' step='1' min='0' max='100' placeholder='100' required)
                   label.skills-groups__label-new-item-percent
                   .skills-groups__add-button
                     .add
@@ -84,29 +86,29 @@
             li.skills-groups__item
               form.skills-groups__form(action='change-me' method='get')
                 .skills-groups__add-item-title 
-                  input.skills-groups__input-title(placeholder='Название новой группы')
+                  input.skills-groups__input-title(placeholder='Название новой группы' required)
                   .skills-groups__title.skills-groups__title_hidden Frontend
                   .skills-groups__controls
                     .controls                                   
                       button.controls__btn.controls__btn_edit.controls__btn_none
-                      button.controls__btn.controls__btn_tick
+                      button.controls__btn.controls__btn_tick(type='submit')
                       button.controls__btn.controls__btn_red_remove
 
                 .skills-groups__added-items
                   ul.added-items
                     li.added-items__row
-                      input.added-items__name(placeholder='Git' disabled)
+                      input.added-items__name(placeholder='Git' disabled required)
                       .added-items__percent
-                        input.added-items__input-percent(type='number' step='1' min='0' max='100' placeholder='100' disabled)
+                        input.added-items__input-percent(type='number' step='1' min='0' max='100' placeholder='100' disabled required)
                       .added-items__controls
                         .controls
                           button.controls__btn.controls__btn_edit
                           button.controls__btn.controls__btn_trash
 
                     li.added-items__row
-                      input.added-items__name(placeholder='Terminal' disabled)
+                      input.added-items__name(placeholder='Terminal' disabled required)
                       .added-items__percent
-                        input.added-items__input-percent(type='number' step='1' min='0' max='100' placeholder='90' disabled)
+                        input.added-items__input-percent(type='number' step='1' min='0' max='100' placeholder='90' disabled required)
                       .added-items__controls
                         .controls
                           button.controls__btn.controls__btn_edit
@@ -115,24 +117,24 @@
                     li.added-items__row
                       input.added-items__name(placeholder='Gulp' disabled)
                       .added-items__percent
-                        input.added-items__input-percent(type='number' step='1' min='0' max='100' placeholder='80' disabled)
+                        input.added-items__input-percent(type='number' step='1' min='0' max='100' placeholder='80' disabled required)
                       .added-items__controls
                         .controls
                           button.controls__btn.controls__btn_edit
                           button.controls__btn.controls__btn_trash
 
                     li.added-items__row
-                      input.added-items__name(placeholder='Webpack' disabled)
+                      input.added-items__name(placeholder='Webpack' disabled required)
                       .added-items__percent
-                        input.added-items__input-percent(type='number' step='1' min='0' max='100' placeholder='70' disabled)
+                        input.added-items__input-percent(type='number' step='1' min='0' max='100' placeholder='70' disabled required)
                       .added-items__controls
                         .controls
                           button.controls__btn.controls__btn_edit
                           button.controls__btn.controls__btn_trash
 
                 .skills-groups__add-new-item
-                  input.skills-groups__input-new-item-name(placeholder='Новый навык')
-                  input.skills-groups__input-new-item-percent(type='number' step='1' min='0' max='100' placeholder='100')
+                  input.skills-groups__input-new-item-name(placeholder='Новый навык' required)
+                  input.skills-groups__input-new-item-percent(type='number' step='1' min='0' max='100' placeholder='100' required)
                   label.skills-groups__label-new-item-percent
                   .skills-groups__add-button
                     .add
@@ -142,29 +144,29 @@
             li.skills-groups__item
               form.skills-groups__form(action='change-me' method='get')
                 .skills-groups__add-item-title 
-                  input.skills-groups__input-title.skills-groups__input-title_hidden(placeholder='Название новой группы')
+                  input.skills-groups__input-title.skills-groups__input-title_hidden(placeholder='Название новой группы' required)
                   .skills-groups__title Workflow
                   .skills-groups__controls
                     .controls                                   
                       button.controls__btn.controls__btn_edit
-                      button.controls__btn.controls__btn_tick.controls__btn_none
+                      button.controls__btn.controls__btn_tick.controls__btn_none(type='submit')
                       button.controls__btn.controls__btn_red_remove.controls__btn_none              
 
                 .skills-groups__added-items
                   ul.added-items
                     li.added-items__row
-                      input.added-items__name(placeholder='HTML5' disabled)
+                      input.added-items__name(placeholder='HTML5' disabled required)
                       .added-items__percent
-                        input.added-items__input-percent(type='number' step='1' min='0' max='100' placeholder='100' disabled)
+                        input.added-items__input-percent(type='number' step='1' min='0' max='100' placeholder='100' disabled required)
                       .added-items__controls
                         .controls
                           button.controls__btn.controls__btn_edit
                           button.controls__btn.controls__btn_trash
 
                     li.added-items__row
-                      input.added-items__name(placeholder='CSS3')
+                      input.added-items__name(placeholder='CSS3' required)
                       .added-items__percent
-                        input.added-items__input-percent(type='number' step='1' min='0' max='100' placeholder='90')
+                        input.added-items__input-percent(type='number' step='1' min='0' max='100' placeholder='90' required)
                       .added-items__controls
                         .controls
                           button.controls__btn.controls__btn_edit
@@ -172,17 +174,17 @@
                           
 
                     li.added-items__row
-                      input.added-items__name(placeholder='Javascript' disabled)
+                      input.added-items__name(placeholder='Javascript' disabled required)
                       .added-items__percent
-                        input.added-items__input-percent(type='number' step='1' min='0' max='100' placeholder='70' disabled)
+                        input.added-items__input-percent(type='number' step='1' min='0' max='100' placeholder='70' disabled required)
                       .added-items__controls
                         .controls
                           button.controls__btn.controls__btn_edit
                           button.controls__btn.controls__btn_trash
 
                 .skills-groups__add-new-item
-                  input.skills-groups__input-new-item-name(placeholder='Новый навык')
-                  input.skills-groups__input-new-item-percent(type='number' step='1' min='0' max='100' placeholder='100')
+                  input.skills-groups__input-new-item-name(placeholder='Новый навык' required)
+                  input.skills-groups__input-new-item-percent(type='number' step='1' min='0' max='100' placeholder='100' required)
                   label.skills-groups__label-new-item-percent
                   .skills-groups__add-button
                     .add
@@ -204,10 +206,10 @@
             .edit-work__info
               .edit-work__row.edit-work__row_name 
                 label.edit-work__label Название
-                input.edit-work__input(placeholder='Дизайн сайта для авто салона Porsche')
+                input.edit-work__input(placeholder='Дизайн сайта для авто салона Porsche' required)
               .edit-work__row.edit-work__row_link 
                 label.edit-work__label Ссылка
-                input.edit-work__input(type='url' placeholder='https://www.porsche-pulkovo.ru')
+                input.edit-work__input(type='url' placeholder='https://www.porsche-pulkovo.ru' required)
               .edit-work__row.edit-work__row_desc 
                 label.edit-work__label Описание
                 textarea.edit-work__input(type="textarea" name="work-description" rows=4 resize='none' placeholder='Порше Центр Пулково - является официальным дилером марки Порше в Санкт-Петербурге и предоставляет полный цикл услуг по продаже и сервисному обслуживанию автомобилей')
@@ -294,14 +296,14 @@
               .edit-review__row
                 .edit-review__group.edit-review__group_name
                   label.edit-review__label Имя автора
-                  input.edit-review__input(placeholder='Ковальчук Дмитрий')
+                  input.edit-review__input(placeholder='Ковальчук Дмитрий' required)
                 .edit-review__group.edit-review__group_occupation
                   label.edit-review__label Титул автора
-                  input.edit-review__input(placeholder='Основатель')
+                  input.edit-review__input(placeholder='Основатель' required)
               .edit-review__row
                 .edit-review__group.edit-review__group_review
                   label.edit-review__label Отзыв
-                  textarea.edit-review__input.edit-review__input_textarea(type="textarea" name="review-description" rows=4 resize='none' placeholder='Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!')
+                  textarea.edit-review__input.edit-review__input_textarea(type="textarea" name="review-description" rows=4 resize='none' placeholder='Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!' required)
 
               .edit-review__row.edit-review__row_buttons    
                 button.edit-work__cancel Отмена
@@ -381,12 +383,27 @@
       padding: 10px 0;
       padding-top: 22px;
       margin-bottom: 40px;
+
+      @include tablets {
+        margin-bottom: 40px;
+      }
+      @include phones {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-top: 10px;
+        padding-bottom: 0;
+        margin-bottom: 43px;
+      }
     }  
 
     &__title {
       font-weight: bold;
       font-size: 22px;
       margin-right: 52px;
+
+      @include phones {
+        margin-bottom: 25px;
+      }
     }
   }
 
@@ -411,6 +428,10 @@
       width: 80%;
       max-width: 563px;
       min-width: 320px;
+
+      @include phones {
+        width: 100%;
+      }
     }
   }
 
@@ -418,7 +439,7 @@
     z-index: 100;
     opacity: 0.999;
     width: 100%;
-    background: #fff;
+    background: $white-color;
     padding: 60px 78px;
 
     &__title {
@@ -431,10 +452,6 @@
     &__row {		
       line-height: 0;
       margin-bottom: 35px;
-
-      @include tablets {
-
-      }
     }
 
     &__group {
@@ -533,7 +550,7 @@
       padding: 30px;
       background-image: linear-gradient(90deg,#9300e8,#4a00ed);
       border-radius: 37px 5px 45px;
-      color: #fff;
+      color: $white-color;
       font-size: 18px;
       font-weight: bold;
       text-transform: uppercase;
@@ -559,19 +576,43 @@
 
     &__container {     
 
-          &_admin {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;      
-            color: $white-color;
-            min-height: 80px;
-            align-items: center;
+      &_admin {
+        display: flex;
+        color: $white-color;
+        min-height: 80px;
+        align-items: center;
 
-            @include tablets {
-              min-height: 90px;
-            }
-          }
+        @include tablets {
+          min-height: 90px;
+        }
       }
+    }
+
+    &__info {
+      display: inline-flex;
+      justify-content: space-between;
+      align-items: center; 
+      flex-grow: 1;
+
+      @include phones {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+
+    &__name {
+      color: $white-color;
+      margin-left: 20px;
+      font-size: 18px;
+
+      @include tablets {
+        font-size: 22px;
+      }
+      @include phones {
+        font-size: 18px;
+      }
+    }
 
     &__desc {
       margin-left: 35px;
@@ -581,10 +622,20 @@
       @include tablets {
         font-size: 14px;
       }
+      @include phones {
+        display: none;
+      }
     }   
 
     &__login {
       margin-left: auto;
+
+      @include tablets {
+        padding-left: 20px;
+      }
+      @include phones {
+        margin-left: 0;
+      }
     }
   }
   
@@ -596,7 +647,13 @@
     &__image {
       height: 45px;
       width: 45px;
+      min-width: 45px;
+      min-height: 45px;
       border-radius: 50%;
+
+      @include tablets {
+
+      }
     }
 
     &__picture {      
@@ -610,6 +667,9 @@
 
       @include tablets {
         font-size: 22px;
+      }
+      @include phones {
+        font-size: 18px;
       }
     }
   }
@@ -656,6 +716,11 @@
       flex-wrap: wrap;
       width: calc(100% + 30px);
       margin-left: -30px;
+
+      @include phones {
+        width: 110%;
+        margin-left: -5%;
+      }
     }
     &__item {      
       width: calc( (100% - 30px * 2) / 2);
@@ -665,6 +730,17 @@
       padding: 20px;
       margin-left: 30px;
       margin-bottom: 30px;
+
+      @include tablets {
+        min-height: 450px;
+      }      
+      @include phones {
+        min-height: 360px;
+        width: 100%;
+        margin-left: 0;
+        padding-left: 10px;
+        margin-bottom: 10px;
+      }
     }
 
     &__form {
@@ -682,6 +758,13 @@
       padding-bottom: 14px;
       border-bottom: 1px solid rgba(#1f232d, 0.15);
       position: relative;
+
+      @include tablets {
+        padding-bottom: 25px;
+      }
+       @include phones {
+        padding-bottom: 18px;
+      }
     }
 
     &__title {
@@ -711,7 +794,7 @@
       }
 
       @include tablets() {
-        min-width: 165px;
+        min-width: unset;
 
         &::placeholder{
           font-size: 13px;
@@ -725,7 +808,14 @@
     }
 
     &__added-items {
-      /* flex-grow: 1; */
+      @include tablets {
+        padding-top: 10px;
+        padding-bottom: 40px;
+      }
+      @include phones {
+        padding-top: 25px;
+        padding-bottom: 22px;
+      }
     }
 
 
@@ -782,6 +872,16 @@
           }
       }
     }
+
+    &__add-button {
+      /* height: 40px;
+      width: 40px;
+
+      @include tablets {
+        height: 47px;
+        width: 47px;
+      } */
+    }
     
   }   
   
@@ -803,6 +903,8 @@
 
       @include tablets {
         width: 40%;
+        font-size: 18px;
+        line-height: 2;
       }
     }
 
@@ -819,12 +921,13 @@
         right: 0;
         transform: translateY(-50%);
         color: $color-middle;
-        height: 22px;
       }
 
       @include tablets {
         margin-left: 5px;
         margin-right: 5px;
+        font-size: 18px;
+        line-height: 2;
       }
     }
 
@@ -928,6 +1031,7 @@
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
+    /* height: 100%; */
       
     &__plus {
       background-color: $admin-button-color;
@@ -946,6 +1050,16 @@
         transform: translate(-50%, -50%);
       }
 
+      @include tablets {
+
+        width: 47px;
+        height: 47px;
+
+        &::after {
+          font-size: 36px;
+        }
+      }
+   
       &_small {
         width: 20px;
         height: 20px;
@@ -953,8 +1067,14 @@
         &::after {
           font-size: 14px;
         }
-      }
 
+        @include tablets {
+          &::after {
+            font-size: 14px;
+          }
+        }
+
+      }
     }
 
     &__text {
