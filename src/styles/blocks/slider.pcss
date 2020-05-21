@@ -10,7 +10,7 @@
         position: relative;      
         
         &:after {
-            content: '4';
+            content: attr(data-current);
             z-index: 1;
             position: absolute;
             letter-spacing: -15px;
@@ -136,7 +136,7 @@
    &__arrows {
         position: absolute;
         bottom: -50px;
-        right: 0;
+        right: 2px;
 
         @include phones {
             bottom: -4px;

@@ -19,6 +19,16 @@ const preview = {
   template: '#slider-preview',
   components: { miniatures, arrows },
   props: ['currentSlide', 'dataSlider', 'currentIndex','maxSlides'],
+
+  methods: {
+    clickMiniHandle(e) {
+      const pseudo = this.$refs['pseudo'];
+      // console.log('pseudo: ', pseudo);
+      // console.log('slidenum: ', e.target.dataset.slidenum-1);
+      this.$emit("clickMini", e.target.dataset.slidenum-1, pseudo);
+    },
+  },
+
 };
 
 const info = {
@@ -48,6 +58,9 @@ new Vue ({
       maxSlides() {
         return this.dataSlider.length - 1;
       },
+      pseudo() {
+        return this.$refs['pseudo'];
+      },
     },
 
     watch: {
@@ -65,7 +78,6 @@ new Vue ({
 
     methods: {
       handleSlide(direction) {
-        console.log('arrow click: ', direction);
         switch (direction) {
           case 'prev':
             this.currentIndex--;
@@ -75,6 +87,12 @@ new Vue ({
             break;
         }
       },
+      
+      clickMiniHandle(slidenum, pseudo) {
+        this.currentIndex = slidenum;
+        pseudo.dataset.current = slidenum+1;
+      },
+
       makeArrRequiredImages(array) {
         return array.map(item => {
           const requiredImg = require(`../images/content/${item.photo}`)

@@ -1,6 +1,10 @@
 <template lang="pug">
 .maincontent
 
+  .maincontent__message.maincontent__message_green Сообщение отправлено
+  .maincontent__message.maincontent__message_orange Сервер перегружен
+  .maincontent__message.maincontent__message_red Сообщение не отправлено
+
   section.fullscreen-section.auth
     .auth__wrapper
     .auth__block
@@ -510,7 +514,35 @@
         }
       }
     }
+
+    &__message {
+
+      max-width: 390px;
+      min-width: 25%;
+      padding: 25px 30px;
+      position: fixed;
+      text-align: center;
+      bottom: 0;
+      color: $white-color;
+
+      &_orange {
+        background-color: #b18333;
+        left: 10%;
+      }
+      &_green {
+        background-color: #4bb133;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      &_red {
+        background-color: #b13333;
+        right: 10%;
+      }
+
+    }
+
   }
+
 
   .auth {
 
@@ -526,7 +558,7 @@
       left: 0;
       bottom: 0;
       right: 0;
-      background-color: rgba(#000, 0.5);
+      background-color: rgba($base-color, 0.9);
     }
 
     &__block {

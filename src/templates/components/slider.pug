@@ -5,7 +5,8 @@ script(type='text/x-template')#slider
       :dataSlider='dataSlider',
       :currentIndex='currentIndex',
       :maxSlides='maxSlides',
-      @slide='handleSlide'
+      @slide='handleSlide',
+      @clickMini='clickMiniHandle'
     )
     info(
       :currentSlide='currentSlide'
@@ -13,12 +14,13 @@ script(type='text/x-template')#slider
       
 
 script(type='text/x-template')#slider-preview
-  .slider__slides
+  .slider__slides(data-current=1 ref="pseudo")
     .slider__preview
       img.slider__picture(:src='currentSlide.photo')
     miniatures(
       :dataSlider='dataSlider',
-      :currentIndex='currentIndex'
+      :currentIndex='currentIndex',
+      @clickMini='clickMiniHandle'
     )
     arrows(
       @slide='$emit("slide", $event)',
@@ -34,6 +36,7 @@ script(type='text/x-template')#slider-miniatures
         v-for='(slide,ndx) in dataSlider' :key='dataSlider.id',
         :data-slidenum='ndx+1',
         :class='{["slider__mini-item_active"] : ndx===currentIndex}'
+        @click='$emit("clickMini", $event)'
         ) 
         img.slider__mini-picture(:src='slide.photo')
   

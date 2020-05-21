@@ -138,6 +138,10 @@ $menu: .menu;
 		& #{$menu}__link {
 
 			padding-bottom: 27px;
+			
+			&::before {
+				padding-bottom: 27px;
+			}
 
 			&:hover, &_active  {
 				color: transparent;	
@@ -145,13 +149,6 @@ $menu: .menu;
 	
 				&::before {
 					color: $admin-base-color;
-					
-
-					@include tablets {
-						// font-size: 14px;
-						// padding-left: 0px;
-						// padding-right: 0px;
-					}					
 				}
 			}
 
@@ -164,12 +161,16 @@ $menu: .menu;
 
 			}
 
-			@include phones {
+
+			@include tablets {
+
+				font-size: 14px;
 				padding-right: 20px;
 				padding-left: 20px;
 				padding-bottom: 28px;
 
 				&::before {
+					font-size: 14px;
 					padding-right: 20px;
 					padding-left: 20px;
 				}
