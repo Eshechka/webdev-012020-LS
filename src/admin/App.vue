@@ -284,19 +284,19 @@
 
   section.maincontent__section.maincontent__section_reviews
     .container.container_admin
-      .maincontent__topgroup
+      .maincontent__topgroup.maincontent__topgroup_reviews
         h3.maincontent__title Блок "Отзывы"   
 
-      .maincontent__content.maincontent__content_review
+      .maincontent__content.maincontent__content_edit-review
         .edit-review
           .edit-review__title Новый отзыв
           .edit-review__content
-            .edit-review__image            
-              .edit-review__image-place
-              a.edit-review__image-text(href='./change-me') Добавить фото
+            form.edit-review__form(action='./change-me' method='get')
+              .edit-review__image            
+                .edit-review__image-place
+                a.edit-review__image-text(href='./change-me') Добавить фото
 
-            .edit-review__info
-              form.edit-review__form(action='./change-me' method='get')
+              .edit-review__info
                 .edit-review__row
                   .edit-review__group.edit-review__group_name
                     label.edit-review__label Имя автора
@@ -304,22 +304,57 @@
                   .edit-review__group.edit-review__group_occupation
                     label.edit-review__label Титул автора
                     input.edit-review__input(placeholder='Основатель' required)
-                .edit-review__row
+                .edit-review__row.edit-review__row_textarea
                   .edit-review__group.edit-review__group_review
                     label.edit-review__label Отзыв
-                    textarea.edit-review__input.edit-review__input_textarea(type="textarea" name="review-description" rows=4 resize='none' placeholder='Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!' required)
+                    textarea.edit-review__input.edit-review__input_textarea(type="textarea" name="review-description" rows=3 resize='none' placeholder='Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!' required)
 
                 .edit-review__row.edit-review__row_buttons    
-                  button.edit-work__cancel Отмена
-                  input.edit-work__submit(type='submit' value='Сохранить')
+                  button.edit-review__cancel Отмена
+                  input.edit-review__submit(type='submit' value='Сохранить')
 
+      .maincontent__content.maincontent__content_added-reviews
         .added-reviews
           ul.added-reviews__list
             li.added-reviews__item
               .add.add_theme_big
-                span.add__text Добавить отзыв
-                button.add__plus(type='button')
+                span.add__text.add__text_bottom_offset Добавить отзыв
+                button.add__plus.add__plus_top_offset(type='button')
 
+            li.added-reviews__item
+              .review
+                .review__topgroup
+                  .review__avatar
+                    img.review__image-author(src='../images/content/review_authot1.png')
+                  .review__author Ковальчук Дмитрий
+                    .review__occupation Основатель Loftschool
+                .review__info
+                  .review__text Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах
+                .review__controls
+                  .controls.controls_with_text
+                    span.controls__text Править                          
+                    button.controls__btn.controls__btn_blue_edit
+                  .controls.controls_with_text
+                    span.controls__text Удалить                          
+                    button.controls__btn.controls__btn_red_remove
+                    
+            li.added-reviews__item
+              .review
+                .review__topgroup
+                  .review__avatar
+                    img.review__image-author(src='../images/content/review_authot1.png')
+                  .review__author Ковальчук Дмитрий
+                    .review__occupation Основатель Loftschool
+                .review__info
+                  .review__text Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах
+                .review__controls
+                  .controls.controls_with_text
+                    span.controls__text Править                          
+                    button.controls__btn.controls__btn_blue_edit
+                  .controls.controls_with_text
+                    span.controls__text Удалить                          
+                    button.controls__btn.controls__btn_red_remove
+                    
             li.added-reviews__item
               .review
                 .review__topgroup
@@ -351,12 +386,7 @@
 
   
   section {
-    /* background-color: #f7f9fe;
-    background-image: url('../images/content/Mountain_Baloon_admin.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    padding: 30px 0; */
+
   }
 
   .maincontent {
@@ -381,6 +411,14 @@
       background-position: center;
       background-size: cover;
       padding: 30px 0;
+
+      &_reviews {
+        padding-top: 55px;
+
+        @include tablets {
+          padding-top: 0;
+        }
+      }
     }
 
     &__topgroup {
@@ -410,6 +448,13 @@
         margin-bottom: 55px;
 
         @include phones {
+          margin-bottom: 20px;
+        }
+      }
+      &_reviews {
+        margin-bottom: 55px;
+
+        @include tablets {
           margin-bottom: 20px;
         }
       }
@@ -449,8 +494,20 @@
         }
       }
 
-      &_review {
+      &_edit-review {
+        margin-bottom: 38px;
+
+        @include phones {
+          margin-bottom: 16px;
+        }
+      }
+      &_added-reviews {
         margin-bottom: 30px;
+
+        @include phones {
+          width: 110%;
+          margin-left: -5%;
+        }
       }
     }
   }
@@ -995,8 +1052,6 @@
       justify-content: flex-end;
 
       &__btn {
-        height: 15px;
-        width: 15px;
         padding: 8px;
         background-color: transparent;
         background-repeat: no-repeat;
@@ -1023,24 +1078,12 @@
         &_red_remove {
           background-image: svg-load('remove.svg', width=100%, height=100%, fill=#{$color-red});
           background-size: 15px 11px;
-
-          @include phones {
-            height: 18px;
-            width: 18px;
-            background-size: 18px 16px;
-          }
         }
         &_edit {
           background-image: svg-load('pencil.svg', width=100%, height=100%, fill=#{$color-middle});
         }
         &_blue_edit {
           background-image: svg-load('pencil.svg', width=100%, height=100%, fill=#{$color-blue});
-          
-          @include phones {
-            height: 18px;
-            width: 18px;
-            background-size: 18px 18px;
-          }
         }
         &_trash {
           background-image: svg-load('trash.svg', width=100%, height=100%, fill=#{$color-middle});
@@ -1055,9 +1098,27 @@
 
         & .controls__btn {
           position: absolute;
-          width: 100%;
-          height: 100%;
           background-position: right;
+          padding: 9px;
+          margin-right: 0px;
+          margin-left: 0px;
+
+            &_red_remove {
+              
+              background-size: 16px 15px;
+
+              @include phones {
+                background-size: 18px 16px;
+              }
+            }
+            &_blue_edit {
+              
+              background-size: 17px 17px;
+
+              @include phones {
+                background-size: 18px 18px;
+              }
+            }
         }
 
         & .controls__text {
@@ -1075,7 +1136,6 @@
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
-    /* height: 100%; */
       
     &__plus {
       background-color: $admin-button-color;
@@ -1135,6 +1195,14 @@
           width: unset;
           bottom: 45%;
         }
+
+        &_bottom_offset {
+          bottom: 15%;
+
+          @include phones {
+            bottom: 44%;
+          }
+        }
       }
 
       & .add__plus {
@@ -1166,6 +1234,28 @@
             line-height: 52px;
             top: 48%;
             left: 14%;
+          }
+          
+        }
+        &_top_offset {
+
+          &::after {
+            top: 39%;
+
+            @include tablets{
+              top: 39%;
+              width: 170px;
+              height: 170px;
+              font-size: 80px;
+              line-height: 170px;
+            }
+            @include phones {
+              top: 50%;
+              width: 55px;
+              height: 55px;
+              font-size: 30px;
+              line-height: 50px;
+            }
           }
         }
       }
@@ -1576,26 +1666,41 @@
 
   background-color: $white-color;
   box-shadow: 4px 3px 20px 0px rgba(0, 0, 0, 0.07);
+  padding-bottom: 24px;
 
   &__title {
     margin: 11px;
-    padding: 31px 11px 10px;
+    padding: 20px 11px 20px;
     color: $base-color;
     font-size: 18px;
     line-height: 34px;
     font-weight: 700;
     border-bottom: 1px solid rgba(#1f232d, 0.5);
+
+    @include tablets {
+      padding-top: 24px;
+      padding-bottom: 24px;
+    }
   }
 
   &__content {
-    padding: 30px;
-    padding-top: 48px;
+    width: 100%;
     display: flex;
+    flex-direction: column;
   }
 
   &__image {
     width: 200px;
     margin-right: 30px;
+
+    @include tablets {
+      width: 260px;
+    }
+    @include phones {
+      margin-right: 0;
+      width: unset;
+      margin-bottom: 38px;
+    }
   }
 
   &__image-place {
@@ -1603,7 +1708,12 @@
     height: 200px;
     background-color: #dee4ed;
     border-radius: 50%;
-    margin-bottom: 28px;
+    margin-bottom: 21px;
+
+    @include tablets {
+      width: 230px;
+      height: 230px;
+    }
   }
 
   &__image-text {
@@ -1619,27 +1729,62 @@
 
   &__info {
     width: calc(100% - 200px - 30px);
+    max-width: 610px;
+    
+    @include phones {
+      width: 100%;
+    }
   }
 
   &__form {
-    width: 100%;
+    padding: 30px;
+    padding-top: 34px;
     display: flex;
-    flex-direction: column;
-    max-width: 610px;
+
+    @include tablets {
+      padding-top: 40px;
+      padding-bottom: 10px;
+    }
+    @include phones {
+      flex-direction: column;
+      align-items: center;
+      padding-left: 20px;
+      padding-right: 20px;
+      padding-top: 20px;
+    }
   }
 
   &__row {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 40px;
+    margin-bottom: 32px;
+
+    @include tablets {
+      flex-direction: column;
+    }
+    @include phones {
+      margin-bottom: 22px;
+    }
+
+    &_textarea {
+      margin-bottom: 32px;
+    }
 
     &_buttons {
       justify-content: flex-end;
       text-align: right;
-      margin-top: 40px;
       margin-bottom: 0;
+
+      @include tablets {
+        flex-direction: row;
+      }
+      @include phones {
+        justify-content: space-around;
+      }
     }
+    
+
   }
   
   &__cancel {
@@ -1649,6 +1794,10 @@
     font-weight: 700;
     background-color: transparent;
     margin-right: 60px;
+
+    @include phones {
+      margin-right: 0px;
+    }
   }
 
   &__submit {
@@ -1662,6 +1811,11 @@
     font-weight: bold;
     border: none;
     outline: none;
+
+    @include tablets {
+      font-size: 18px;
+      padding: 23px 46px;
+    }
   }
 
 
@@ -1670,6 +1824,22 @@
     flex-direction: column;
     width: calc( (100% - 30px) / 2);
 
+    @include tablets {
+      width: 70%;
+    }
+    @include phones {
+      width: 100%;
+    }
+
+    &_name {
+
+      @include tablets {
+        margin-bottom: 40px;
+      }
+      @include phones {
+        margin-bottom: 26px;
+      }
+    }
     &_review {
       width: 100%;
     }
@@ -1679,17 +1849,38 @@
     display: block;
     width: 100%;
     font-size: 16px;
-    line-height: 30px;
+    line-height: 24px;
     color: rgba(#base-color, 0.95);
+
+    @include tablets {
+      line-height: 32px;
+    }
   }
 
   &__input {
     @include admin-input;
+    padding-bottom: 10px;
 
     &[type='textarea'] {
-      padding: 20px;
+      padding: 10px 20px 12px 20px;
       resize: none;
       border: 1px solid $color-light;
+      line-height: 30px;
+      margin-top: 16px;
+
+      @include tablets {
+        line-height: 36px;
+        height: 170px;
+      }
+      @include phones {
+        line-height: 29px;
+        font-size: 16px;
+        padding-right: 10px;
+      }
+    }
+
+    @include tablets {
+      padding-bottom: 15px;
     }
   }
 
@@ -1710,6 +1901,16 @@
     margin-bottom: 30px;
     background-color: $white-color;
     box-shadow: 4px 3px 20px 0px rgba(0, 0, 0, 0.07);
+
+    @include tablets {
+      width: calc( 100% / 2 - 30px);
+      min-height: 440px;
+    }
+    @include phones {
+      width: calc(100% - 30px);
+      min-height: 128px;
+      margin-bottom: 10px;
+    }
   }
 }
 
@@ -1732,6 +1933,16 @@
     border-bottom: 1px solid rgba(#1f232d, 0.5);
     display: flex;
     align-items: center;
+
+    @include tablets {
+      padding-top: 33px;
+      padding-bottom: 32px;
+      padding-left: 22px;
+    }
+    @include phones {
+      margin-left: 0;
+      margin-right: 0;
+    }
   }
 
   &__avatar {
@@ -1761,6 +1972,13 @@
 
   &__info {
       padding: 30px;
+
+      @include tablets {
+        padding: 26px 36px 26px 36px;
+      }
+      @include phones {
+        padding: 26px 16px 16px 16px;
+      }
   }
 
   &__text {
@@ -1768,13 +1986,26 @@
       line-height: 30px;
       font-weight: 600;
       margin-bottom: 15px;
+
+      @include phones {
+        line-height: 28px;
+      }
   }
 
   &__controls {
-    padding: 0 20px 30px;
+    padding: 0 30px 30px;
     margin-top: auto;
     display: flex;
-    justify-content: space-between;    
+    justify-content: space-between; 
+
+    @include tablets {
+      padding: 0 36px 40px;
+    }
+    @include phones {
+      padding-right: 16px;
+      padding-left: 16px;
+      padding-bottom: 34px;
+    }   
   }
 }
 
