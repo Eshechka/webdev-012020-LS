@@ -13,6 +13,51 @@ const tagslist = {
 const miniatures = {
   template: '#slider-miniatures',
   props: ['currentIndex','dataSlider'],
+
+  data () {
+    return {
+      miniContainerHeight: 0,
+      // miniListHeight: 0,
+      miniItemHeight: 0,
+    }
+  },
+
+  computed: {
+    // miniList() {
+    //   return this.$refs['mini-list'];
+    // },
+    miniContainer() {
+      return this.$refs['mini-container'];
+    },
+    miniItem() {
+      return this.$refs['mini-item'][0];
+    },
+  },
+
+  methods: {
+      offsetMiniatures() {
+        // this.miniListHeight = getComputedStyle(this.miniList).height;
+        this.miniContainerHeight = getComputedStyle(this.miniContainer).height;
+        this.miniItemHeight = getComputedStyle(this.miniItem).height;
+      }
+  },
+
+  watch: {
+    miniContainerHeight(value) {
+      console.log('изменилось ', value);
+      console.log('высота кнопки',  this.miniItemHeight);
+
+    }
+  },
+   
+  created() {
+    window.addEventListener('resize', this.offsetMiniatures);
+  },
+
+  mounted() {
+    this.some();
+  },
+
 };
 
 const preview = {
@@ -22,10 +67,7 @@ const preview = {
 
   methods: {
     clickMiniHandle(e) {
-      const pseudo = this.$refs['pseudo'];
-      // console.log('pseudo: ', pseudo);
-      // console.log('slidenum: ', e.target.dataset.slidenum-1);
-      this.$emit("clickMini", e.target.dataset.slidenum-1, pseudo);
+      this.$emit("clickMini", e.target.dataset.slidenum-1);
     },
   },
 
@@ -58,9 +100,6 @@ new Vue ({
       maxSlides() {
         return this.dataSlider.length - 1;
       },
-      pseudo() {
-        return this.$refs['pseudo'];
-      },
     },
 
     watch: {
@@ -88,9 +127,8 @@ new Vue ({
         }
       },
       
-      clickMiniHandle(slidenum, pseudo) {
+      clickMiniHandle(slidenum) {
         this.currentIndex = slidenum;
-        pseudo.dataset.current = slidenum+1;
       },
 
       makeArrRequiredImages(array) {

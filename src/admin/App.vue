@@ -228,7 +228,7 @@
                     .edit-work__added-tag HTML5
                 .edit-work__row.edit-work__row_buttons    
                   button.edit-work__cancel Отмена
-                  input.edit-work__submit(type='submit' value='Сохранить')
+                  button.edit-work__submit(type='submit') Сохранить
 
       .maincontent__content.maincontent__content_added-works
         .added-works
@@ -245,7 +245,7 @@
                 .work__info
                   .work__title Сайт школы образования
                   .work__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
-                  .work__link http://loftschool.ru
+                  a.work__link http://loftschool.ru
                 .work__controls
                   .controls.controls_with_text
                     span.controls__text Править                          
@@ -261,7 +261,7 @@
                 .work__info
                   .work__title Сайт школы образования
                   .work__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
-                  .work__link http://loftschool.ru
+                  a.work__link http://loftschool.ru
                 .work__controls
                   .controls.controls_with_text
                     span.controls__text Править                          
@@ -277,7 +277,7 @@
                 .work__info
                   .work__title Сайт школы образования
                   .work__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!
-                  .work__link http://loftschool.ru
+                  a.work__link http://loftschool.ru
                 .work__controls
                   .controls.controls_with_text
                     span.controls__text Править                          
@@ -315,7 +315,7 @@
 
                 .edit-review__row.edit-review__row_buttons    
                   button.edit-review__cancel Отмена
-                  input.edit-review__submit(type='submit' value='Сохранить')
+                  button.edit-review__submit(type='submit') Сохранить
 
       .maincontent__content.maincontent__content_added-reviews
         .added-reviews
@@ -502,6 +502,8 @@
         margin-bottom: 38px;
 
         @include phones {
+          width: 110%;
+          margin-left: -5%;
           margin-bottom: 16px;
         }
       }
@@ -1092,6 +1094,11 @@
         margin-right: 12px;
         margin-left: 8px;
 
+        &:hover, &:active, &:focus  {
+          outline: none;
+          background-size: 16px 16px;
+        }
+
         @include tablets {
           margin-right: 6px;
           margin-left: 4px;
@@ -1110,6 +1117,10 @@
         &_red_remove {
           background-image: svg-load('remove.svg', width=100%, height=100%, fill=#{$color-red});
           background-size: 15px 11px;
+          
+          &:hover, &:active, &:focus  {
+            background-size: 16px 12px;
+          }
         }
         &_edit {
           background-image: svg-load('pencil.svg', width=100%, height=100%, fill=#{$color-middle});
@@ -1123,12 +1134,20 @@
       }
 
       &_with_text {
-      
+        cursor: pointer;
         width: unset;
         align-items: center;
         position: relative;
+                        
+          &:hover, &:active, &:focus  {
+
+            & .controls__text {
+              color: $color-middle;
+            }
+          }
 
         & .controls__btn {
+          width: 100%;
           position: absolute;
           background-position: right;
           padding: 9px;
@@ -1138,6 +1157,10 @@
             &_red_remove {
               
               background-size: 16px 15px;
+              
+              &:hover, &:active, &:focus  {
+                background-size: 17px 16px;
+              }
 
               @include phones {
                 background-size: 18px 16px;
@@ -1146,6 +1169,11 @@
             &_blue_edit {
               
               background-size: 17px 17px;
+
+                            
+              &:hover, &:active, &:focus  {
+                background-size: 18px 18px;
+              }
 
               @include phones {
                 background-size: 18px 18px;
@@ -1168,6 +1196,15 @@
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
+
+    &:hover, &:active, &:focus  {
+      .add__plus { 
+        background-image: $admin-base-gradient;
+      }
+      .add__text { 
+        color: rgba($admin-base-color, 0.8);
+      }
+    }
       
     &__plus {
       background-color: $admin-button-color;
@@ -1208,7 +1245,19 @@
       position: relative;
       width: 100%;
       height: 100%;
+      cursor: pointer;
       background: $admin-base-gradient;
+
+      
+      &:hover, &:active, &:focus  {
+          
+        background: $admin-base-color;
+
+        .add__text { 
+          text-shadow: 0px 0px 30px rgba($white-color, 0.6);
+          color: $white-color;
+        }
+      }
 
       & .add__text {
         position: absolute;
@@ -1242,6 +1291,12 @@
         height: 100%;    
         position: relative;
         padding: 0;
+        border-radius: 0;
+        background: unset;
+
+        &:hover, &:active, &:focus {
+          background: unset;
+        }
 
         &::after {
           content: '+';
@@ -1408,20 +1463,20 @@
 
 
   &__image-text {
-    color: rgba(#base-color, 0.95);
+    color: rgba($base-color, 0.95);
     font-size: 16px;
     line-height: 34px;
     font-weight: 600;
     width: 45%;
     text-align: center;
-    
+
+   
     @include tablets {
       display: none;
     }
   }
 
   &__image-load {
-    //это вынести в миксин текста для кнопок
     text-transform: uppercase;
     background-image: $admin-base-gradient;
     border-radius: 40px;
@@ -1433,6 +1488,10 @@
     border: none;
     outline: none;
     margin-top: 30px;
+
+    &:hover, &:active, &:focus {
+      background: $admin-base-color;
+    }
 
     @include tablets {
       position: absolute;
@@ -1579,6 +1638,12 @@
     background-color: transparent;
     margin-right: 60px;
 
+    &:hover, &:active, &:focus {
+      color: rgba($admin-base-color, 0.8);
+      outline: none;
+    }
+
+
     @include phones {
       margin-right: 0;
     }
@@ -1595,6 +1660,10 @@
     font-weight: bold;
     border: none;
     outline: none;
+
+    &:hover, &:active, &:focus {
+      background: $admin-base-color;
+    }
 
     @include tablets {
       font-size: 18px;
@@ -1684,6 +1753,10 @@
     line-height: 30px;
     font-weight: 600;
     color: $color-blue;
+
+    &:hover, &:active, &:focus {
+      color: rgba($color-blue, 0.8);
+    }
   }
 
   &__controls {
@@ -1757,6 +1830,10 @@
     width: 100%;
     text-align: center;
     text-decoration: none;
+
+    &:hover, &:active, &:focus {
+      color: rgba($color-blue, 0.8);
+    }
   }
 
   &__info {
@@ -1826,6 +1903,11 @@
     font-weight: 700;
     background-color: transparent;
     margin-right: 60px;
+        
+    &:hover, &:active, &:focus {
+      color: rgba($admin-base-color, 0.8);
+      outline: none;
+    }
 
     @include phones {
       margin-right: 0px;
@@ -1843,6 +1925,11 @@
     font-weight: bold;
     border: none;
     outline: none;
+    
+    &:hover, &:active, &:focus {
+      background: $admin-base-color;
+    }
+
 
     @include tablets {
       font-size: 18px;
