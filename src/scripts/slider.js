@@ -16,9 +16,9 @@ const miniatures = {
 
   data () {
     return {
-      miniContainerHeight: 0,
+      containerHeight: 0,
       // miniListHeight: 0,
-      miniItemHeight: 0,
+      itemHeight: 0,
     }
   },
 
@@ -37,15 +37,18 @@ const miniatures = {
   methods: {
       offsetMiniatures() {
         // this.miniListHeight = getComputedStyle(this.miniList).height;
-        this.miniContainerHeight = getComputedStyle(this.miniContainer).height;
-        this.miniItemHeight = getComputedStyle(this.miniItem).height;
+        let containerStyles = getComputedStyle(this.miniContainer);
+        this.containerHeight = parseFloat(containerStyles.height) - parseFloat(containerStyles.paddingTop) - parseFloat(containerStyles.paddingBottom);
+
+        this.itemHeight = parseFloat(getComputedStyle(this.miniItem).height);
       }
   },
 
   watch: {
-    miniContainerHeight(value) {
+    containerHeight(value) {
       console.log('изменилось ', value);
-      console.log('высота кнопки',  this.miniItemHeight);
+      console.log('высота кнопки',  this.itemHeight);
+      console.log('максимально влезет кнопок ',  value/this.itemHeight);
 
     }
   },
@@ -55,7 +58,7 @@ const miniatures = {
   },
 
   mounted() {
-    this.some();
+    this.offsetMiniatures();
   },
 
 };
