@@ -14,7 +14,9 @@
 
           .header__login
             .login
-              a.login__link Выйти
+              a.login__link(
+                @click.prevent='$emit("logoutFromHeader")',
+              ) Выйти
 
 </template>
 

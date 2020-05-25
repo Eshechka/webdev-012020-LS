@@ -5,19 +5,71 @@
   .maincontent__message.maincontent__message_orange Сервер перегружен
   .maincontent__message.maincontent__message_red Сообщение не отправлено
 
-  appAuth
+  template(
+    v-if='!checkLogged()'
+    )    
+    appAuth
+    
 
-  appHeader
+  template(
+    v-else='checkLogged()'
+    )
+    appHeader(
+      @logoutFromHeader='logout'
+    )
 
-  appMenu
+    appMenu
 
-  appSectionAbout
-
-  appSectionWorks
-
-  appSectionReviews
+    router-view
+    //- appSectionAbout
+    //- appSectionWorks
+    //- appSectionReviews
 
   </template>
+
+
+<script>
+
+  import appAuth from './components/app-auth'
+  import appMenu from './components/app-menu'
+  import appHeader from './components/app-header'
+  // import appSectionAbout from './components/app-section-about'
+  // import appSectionWorks from './components/app-section-works'
+  // import appSectionReviews from './components/app-section-reviews'
+
+  import axios from 'axios';
+  const baseUrl='https://webdev-api.loftschool.com/';
+  let token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMyOSwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1OTA0MjU2NTgsImV4cCI6MTU5MDQ0MzY1OCwibmJmIjoxNTkwNDI1NjU4LCJqdGkiOiJ2YTdSUkhuaFhyczdZcUlrIn0.AtjszD6pU7mT-MwpsYHng8WKi1HZYSrVZ76S69n8zKI.LEYUanTXw-QDknNKN8TDtXL49qfCbLH9Tx4h9l7x_YI';
+
+  export default {
+
+    
+
+    components: {
+      appAuth, appMenu, appHeader, 
+      // appSectionAbout, appSectionWorks, appSectionReviews,
+    },
+    data() {
+      return {
+        isLogged: true,
+        baseUrl: baseUrl,
+        token: token,
+      }
+    },
+    methods: {
+      checkLogged() {
+        console.log('isLogged', this.isLogged);
+        return this.isLogged;
+      },
+      logout() {
+        console.log('logoutlogoutlogoutlogoutlogout');
+        this.isLogged = false;
+        console.log('isLogged', this.isLogged);
+      },
+    }
+
+  }
+</script>
 
 
 <style lang="postcss">
@@ -58,19 +110,3 @@
   }
 
 </style>
-
-<script>
-
-  import appAuth from './components/app-auth'
-  import appMenu from './components/app-menu'
-  import appHeader from './components/app-header'
-  import appSectionAbout from './components/app-section-about'
-  import appSectionWorks from './components/app-section-works'
-  import appSectionReviews from './components/app-section-reviews'
-
-  export default {
-      components: {
-        appAuth, appMenu, appHeader, appSectionAbout, appSectionWorks, appSectionReviews,
-      }
-  }
-</script>

@@ -3,16 +3,21 @@
 section.auth
   .auth__wrapper
   .auth__block
-    form.auth-form
+    form.auth-form(@submit.prevent='login')
         .auth-form__title Авторизация
+        pre {{user}}
         .auth-form__row
             .auth-form__group.auth-form__group_login
                 label.auth-form__label(data-text='Логин')
-                    input.auth-form__input(type='text' required)
+                    input.auth-form__input(type='text' required
+                      v-model='user.name'
+                    )
         .auth-form__row
             .auth-form__group.auth-form__group_password
                 label.auth-form__label(data-text='Пароль') 
-                    input.auth-form__input(type='password' required)
+                    input.auth-form__input(type='password' required
+                      v-model='user.password'
+                    )
         .auth-form__row
             .auth-form__group.auth-form__group_button
                 button.auth-form__submit(type='submit') Отправить
@@ -20,8 +25,49 @@ section.auth
 </template>
 
 <script>
+
+    import $axios from '../requests'
+
     export default {
-        
+
+      data () {
+        return {
+          user: {
+            name: '',
+            password: '',
+          },
+
+        }
+      },
+
+      methods: {
+        login() {
+          $axios.post('login/', {
+            name: this.user.name,
+            password: this.user.password,
+          })
+          .then(function (response) {
+            console.log('data: ', response.data);
+          })
+          .catch(function (error) {
+            console.log(error.response.data);
+          });
+          
+          // this.getUserId();
+          // console.log(this.user);
+        }, 
+
+      //   getUserId () {
+      //     $axios.get('user/')
+      //     .then(function (response) {
+      //       console.log('ID data: ', response.data);
+      //     })
+      //     .catch(function (error) {
+      //       console.log(error.response.data);
+      //     });
+      //   },
+      },
+
     }
 </script>
 
