@@ -1,14 +1,16 @@
 <template lang="pug">
-
+div
   form.skills-form(
-    @submit.prevent='createSkillsTitle'
+    @submit.prevent='createNewCategory'
   )
     .skills-form__title 
-      input.skills-form__input-title(placeholder='Название новой группы'
-        v-model='skillsTitle'
-        
+      input.skills-form__input-title(
+        placeholder='Название новой группы'
+
+        v-model='category.title'
+        :class={'skills-form__input-title_hidden' : 'isNameCategory'}
       )
-      .skills-form__added-title.skills-form__added-title_hidden Frontend
+      .skills-form__added-title {{categoryObject.category}}
       .skills-form__controls
         .controls
           button.controls__btn.controls__btn_edit.controls__btn_none
@@ -18,25 +20,21 @@
 
     .skills-form__added-items
       ul.added-items
-        li.added-items__row
-          input.added-items__name(placeholder='Git' disabled)
+        li.added-items__row(v-for='skill in categoryObject.skills' :key='skill.id')
+          input.added-items__name(
+            disabled
+            :placeholder='skill.title'
+            )
           .added-items__percent
-            input.added-items__input-percent(type='number' step='1' min='0' max='100' placeholder='100' disabled)
+            input.added-items__input-percent(
+              disabled
+              :placeholder='skill.percent'
+              type='number' step='1' min='0' max='100' 
+              )
           .added-items__controls
             .controls
               button.controls__btn.controls__btn_edit
               button.controls__btn.controls__btn_trash
-
-        li.added-items__row
-          input.added-items__name(placeholder='Terminal' disabled)
-          .added-items__percent
-            input.added-items__input-percent(type='number' step='1' min='0' max='100' placeholder='90' disabled)
-          .added-items__controls
-            .controls
-              button.controls__btn.controls__btn_edit
-              button.controls__btn.controls__btn_trash
-              button.controls__btn.controls__btn_tick(type='submit').controls__btn_none
-              button.controls__btn.controls__btn_red_remove.controls__btn_none
 
         li.added-items__row
           input.added-items__name(placeholder='CSS3')
@@ -48,47 +46,131 @@
               button.controls__btn.controls__btn_trash.controls__btn_none
               button.controls__btn.controls__btn_tick(type='submit')
               button.controls__btn.controls__btn_red_remove
+    
+    addNewSkill(
+      :categoryObject='categoryObject'
+    )
 
-    .skills-form__add-new-item
-      input.skills-form__input-new-item-name(placeholder='Новый навык')
-      input.skills-form__input-new-item-percent(type='number' step='1' min='0' max='100' placeholder='100')
-      label.skills-form__label-new-item-percent
-      .skills-form__add-button
-        .add
-          button.add__plus
+
+  //Потом это удали и из свойств удали justE
+  form.skills-form(
+    @submit.prevent='justForE'
+  )
+    .skills-form__title 
+      input.skills-form__input-title(
+        placeholder='Введите что-то'
+
+        v-model='justE.title'
+      )
+      .skills-form__controls
+        .controls
+          button.controls__btn.controls__btn_tick(type='submit')  
+  //Потом это удали и из свойств удали justForE
+  form.skills-form(
+    @submit.prevent='justForE'
+  )
+    .skills-form__title Удаление текущей категории
+      .skills-form__controls
+        .controls
+          button.controls__btn.controls__btn_tick(type='submit')  
+  //Потом это удали
+  form.skills-form(
+    @submit.prevent='createNewCategory'
+  )
+    .skills-form__title 
+      input.skills-form__input-title(
+        placeholder='Создаем новую категорию, ввод имени'
+
+        v-model='category.title'
+      )
+      .skills-form__controls
+        .controls
+          button.controls__btn.controls__btn_tick(type='submit')
+
+
 
 
 </template>
 
 <script>
 
+    // потом это убрать 
     import $axios from '../requests'
+    
+    
+    
+    import { mapActions } from 'vuex';
+    import { mapState } from 'vuex';
+    
+    import addNewSkill from './app-add-new-skill'
 
     export default {
-      data() {
-        return {
-          skillsTitle: '',            
-        }
-      },
-      methods: {
-        createSkillsTitle() {
-          console.log('имя категории: ', this.skillsTitle);
-          console.log('$axios: ', $axios);
-          this.createCategory();
+      components: {
+          addNewSkill,
         },
 
-        createCategory() {
-          $axios.post('categories/', {
-            title: this.skillsTitle,
-          })
-          .then(function (response) {
-            console.log('data: ', response.data);
-          })
-          .catch(function (error) {
-            console.log(error.response.data);
-          });
+      props: {
+        categoryObject: Object,
+      },
 
-        }, 
+      data() {
+        return {
+
+          justE: {
+            title: '',
+          },
+
+          category: {
+            title: '',
+          },
+          isNameCategory: true, 
+         
+        }
+      },
+
+      computed: {
+        ...mapState('skills', {
+          skills: state => state.skills
+        })
+      },
+      
+      created() {
+        this.refreshAllSkills();
+      },
+
+      methods: {
+        ...mapActions('categories', ['addCategory']), 
+        ...mapActions('skills', ['refreshAllSkills']),        
+
+        async createNewCategory() {
+          try {
+            await this.addCategory(this.category.title);
+            this.category.title='';
+          }
+          catch (error) {
+            alert('исправь потом меня, я ошибка: ' + error.message);
+          }
+        },
+
+// потом удали
+        async justForE() {
+            try {
+                const { data } = await $axios.delete('/categories/'+ this.categoryObject.id);
+                console.log(`Удаление категории c id ${this.categoryObject.id}`);
+                console.log(data);
+            }
+            // try {
+            //     const { data } = await $axios.get('/skills/329');
+            //     console.log('ЗАПИСИ ВСЕХ скиллов:  ');
+            //     console.log(data);
+            // }
+            catch(error) {
+                throw new Error(
+                    error.response.data.error || error.response.data.message
+                    );
+            }
+        },
+        
       },
     }
 </script>
@@ -228,48 +310,6 @@
 
   }
   
-  .add {
-
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-
-    &:hover, &:active, &:focus  {
-      .add__plus { 
-        background-image: $admin-base-gradient;
-      }
-    }
-      
-    &__plus {
-      background-color: $admin-button-color;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      position: relative;
-
-      &::after {
-        content: '+';
-        color: $white-color;
-        font-size: 28px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-      }
-
-      @include tablets {
-
-        width: 47px;
-        height: 47px;
-
-        &::after {
-          font-size: 36px;
-        }
-      }
-
-    }
-  }
-
   .skills-form {
 
     height: 100%;
@@ -345,60 +385,6 @@
       }
     }
 
-
-    &__add-new-item {
-      height: 74px;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      margin-right: 10px;
-    }
-
-    &__input-new-item-name {
-
-      @include admin-input();
-      min-width: 40%;
-      width: 235px;
-      padding-left: 20px;
-
-      @include tablets {
-        font-size: 14px;        
-        max-width: 145px;
-        min-width: unset;
-        width: 50%;
-      }
-    }
-
-    &__input-new-item-percent {
-      
-      @include admin-input();
-      width: 15%;
-      min-width: 50px;
-      margin-left: 9px;
-      margin-right: 20px;//должен совпадать с right следующей label
-      
-      &::placeholder {
-        color: $color-light;
-      }
-      
-      & + label.skills-form__label-new-item-percent {
-          position: relative;
-          display: inline-block;
-          vertical-align: middle;
-          padding: 5px 0;
-          height: 20px;
-
-          &::after {
-            content: '%';
-            position: absolute;
-            top: -1px;
-            right: 20px;//должен совпадать с правым маржином input
-            color: $color-middle;
-            height: 20px;
-            width: 20px;
-          }
-      }
-    }
   }
 
 </style>

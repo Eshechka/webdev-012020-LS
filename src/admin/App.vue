@@ -5,15 +5,7 @@
   .maincontent__message.maincontent__message_orange Сервер перегружен
   .maincontent__message.maincontent__message_red Сообщение не отправлено
 
-  template(
-    v-if='!checkLogged()'
-    )    
-    appAuth
-    
-
-  template(
-    v-else='checkLogged()'
-    )
+  template(v-if='checkLogged()' )
     appHeader(
       @logoutFromHeader='logout'
     )
@@ -24,6 +16,13 @@
     //- appSectionAbout
     //- appSectionWorks
     //- appSectionReviews
+
+
+  template(v-else-if='!checkLogged()' )    
+    appAuth(
+      @loginFromAuth='login'
+    )
+    
 
   </template>
 
@@ -51,6 +50,7 @@
     },
     data() {
       return {
+        //isLogged: false, //так должно быть
         isLogged: true,
         baseUrl: baseUrl,
         token: token,
@@ -58,13 +58,17 @@
     },
     methods: {
       checkLogged() {
-        console.log('isLogged', this.isLogged);
         return this.isLogged;
       },
+      login() {
+        this.isLogged = true;
+        this.$router.replace('/');
+        // console.log('isLogged', this.isLogged);
+      },
       logout() {
-        console.log('logoutlogoutlogoutlogoutlogout');
         this.isLogged = false;
-        console.log('isLogged', this.isLogged);
+        this.$router.replace('/auth');
+        // console.log('isLogged', this.isLogged);
       },
     }
 

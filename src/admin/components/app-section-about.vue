@@ -7,17 +7,12 @@ section.about()
       .add.add_small
         span.add__text Добавить группу
         button.add__plus.add__plus_small
+        pre {{categories}}
 
     .skills-groups
         ul.skills-groups__list
-          li.skills-groups__item
-            skillsForm
-
-          li.skills-groups__item
-            skillsForm
-
-          li.skills-groups__item
-            skillsForm
+          li.skills-groups__item(v-for='item in categories' :key='item.id')
+            skillsForm(:categoryObject='item')
                     
 </template>
 
@@ -25,10 +20,33 @@ section.about()
 
     import skillsForm from './app-skills-form'
 
+    import { mapActions, mapState } from 'vuex';
+
     export default {
-        components: {
-            skillsForm,
-          }
+      components: {
+          skillsForm,
+        },
+
+      
+      computed: {
+        ...mapState('categories', {
+          categories: state => state.categories
+        }),
+        
+
+      },
+      
+      created() {
+        this.refreshAllCategories();
+      },      
+      // updated() {
+      //   this.refreshAllCategories();
+      // },
+
+      methods: {
+        ...mapActions('categories', ['refreshAllCategories']),
+
+      },
     }
 
 </script>

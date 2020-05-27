@@ -5,7 +5,6 @@ section.auth
   .auth__block
     form.auth-form(@submit.prevent='login')
         .auth-form__title Авторизация
-        pre {{user}}
         .auth-form__row
             .auth-form__group.auth-form__group_login
                 label.auth-form__label(data-text='Логин')
@@ -36,25 +35,37 @@ section.auth
             name: '',
             password: '',
           },
-
         }
       },
 
       methods: {
-        login() {
-          $axios.post('login/', {
-            name: this.user.name,
-            password: this.user.password,
-          })
-          .then(function (response) {
-            console.log('data: ', response.data);
-          })
-          .catch(function (error) {
-            console.log(error.response.data);
-          });
+        async login() {
+          try {
+            const response = await $axios.post('login/', {
+              name: this.user.name,
+              password: this.user.password,
+            });
+
+            const token = response.data.token;
+            localStorage.setItem('token',token);
+            $axios.defaults.headers['Authorization'] = `Bearer ${token}`;
+            
+            this.$emit('loginFromAuth');
+
+            this.$router.replace('/about');
+            console.log(response);
+
+          } catch(error) {
+            alert('исправь потом меня, я ошибка: ' + error.message);
+          }
           
-          // this.getUserId();
-          // console.log(this.user);
+          // .then(function (response) {
+          //   console.log('data: ', response.data);
+          // })
+          // .catch(function (error) {
+          //   console.log(error.response.data);
+          // });
+          
         }, 
 
       //   getUserId () {

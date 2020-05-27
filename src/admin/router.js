@@ -12,7 +12,6 @@ const routes = [
     {    
         path: '/about',
         component: () => import('./components/app-section-about.vue'),
-        props: true,
     },
     {    
         path: '/works',
@@ -23,10 +22,10 @@ const routes = [
         component: () => import('./components/app-section-reviews.vue'),
     },
 
-    // {
-    //     path: '/auth',
-    //     component: () => import('./components/app-auth.vue'),
-    // },
+    {
+        path: '/auth',
+        component: () => import('./components/app-auth.vue'),
+    },
 
 ];
 

@@ -7,15 +7,16 @@
           li.menu__item
             router-link.menu__link(data-title='Обо мне'
                 to='/about'
-                @click.prevent       
+                @click.prevent
+                :class='{"router-link-active" : isInitClass}'
             ) Обо мне
           li.menu__item
-            router-link.menu__link.menu__link(data-title='Работы'
+            router-link.menu__link(data-title='Работы'
                 to='/works'
-                @click.prevent            
+                @click.prevent='this.noInitClass'
             ) Работы
           li.menu__item
-            router-link.menu__link.menu__link(data-title='Отзывы'
+            router-link.menu__link(data-title='Отзывы'
                 to='/reviews'
                 @click.prevent              
             ) Отзывы
@@ -24,7 +25,17 @@
 
 <script>
     export default {
-
+      data() {
+        return {
+          isInitClass: true,
+        }
+      }, 
+      methods: {
+        noInitClass() {
+          this.isInitClass = false;
+          console.log('isInitClass = ', this.isInitClass);
+        },
+      },
     }
 </script>
 
