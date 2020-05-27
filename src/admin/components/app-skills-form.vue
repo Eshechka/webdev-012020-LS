@@ -16,11 +16,14 @@ div
           button.controls__btn.controls__btn_edit.controls__btn_none
           button.controls__btn.controls__btn_tick(type='submit')
           button.controls__btn.controls__btn_red_remove
-          button.controls__btn.controls__btn_trash.controls__btn_none
+          button.controls__btn.controls__btn_trash(
+            @click.prevent='removeCategory'
+          )
 
     .skills-form__added-items
+      //это неплохо бы вынести в отдельный компонент???
       ul.added-items
-        li.added-items__row(v-for='skill in categoryObject.skills' :key='skill.id')
+        li.added-items__row(v-for='skill in skills' :key='skill.id')
           input.added-items__name(
             disabled
             :placeholder='skill.title'
@@ -34,7 +37,9 @@ div
           .added-items__controls
             .controls
               button.controls__btn.controls__btn_edit
-              button.controls__btn.controls__btn_trash
+              button.controls__btn.controls__btn_trash(
+                @click.prevent='removeSkill(skill.id)'
+              )
 
         li.added-items__row
           input.added-items__name(placeholder='CSS3')
@@ -51,32 +56,8 @@ div
       :categoryObject='categoryObject'
     )
 
-
-  //Потом это удали и из свойств удали justE
-  form.skills-form(
-    @submit.prevent='justForE'
-  )
-    .skills-form__title 
-      input.skills-form__input-title(
-        placeholder='Введите что-то'
-
-        v-model='justE.title'
-      )
-      .skills-form__controls
-        .controls
-          button.controls__btn.controls__btn_tick(type='submit')  
-  //Потом это удали и из свойств удали justForE
-  form.skills-form(
-    @submit.prevent='justForE'
-  )
-    .skills-form__title Удаление текущей категории
-      .skills-form__controls
-        .controls
-          button.controls__btn.controls__btn_tick(type='submit')  
-  //Потом это удали
-  form.skills-form(
-    @submit.prevent='createNewCategory'
-  )
+  //Потом это привяжи к созданию категории
+  form.skills-form(@submit.prevent='createNewCategory')
     .skills-form__title 
       input.skills-form__input-title(
         placeholder='Создаем новую категорию, ввод имени'
@@ -93,12 +74,7 @@ div
 </template>
 
 <script>
-
-    // потом это убрать 
-    import $axios from '../requests'
-    
-    
-    
+        
     import { mapActions } from 'vuex';
     import { mapState } from 'vuex';
     
@@ -116,22 +92,21 @@ div
       data() {
         return {
 
-          justE: {
-            title: '',
-          },
-
           category: {
             title: '',
           },
           isNameCategory: true, 
-         
         }
       },
 
       computed: {
         ...mapState('skills', {
-          skills: state => state.skills
-        })
+          allSkills: state => state.skills
+        }),
+
+        skills() {
+          return this.allSkills.filter(skill => skill.category === this.categoryObject.id)
+        },
       },
       
       created() {
@@ -139,8 +114,8 @@ div
       },
 
       methods: {
-        ...mapActions('categories', ['addCategory']), 
-        ...mapActions('skills', ['refreshAllSkills']),        
+        ...mapActions('categories', ['addCategory', 'deleteCategory']),
+        ...mapActions('skills', ['refreshAllSkills', 'deleteSkill']),        
 
         async createNewCategory() {
           try {
@@ -148,27 +123,28 @@ div
             this.category.title='';
           }
           catch (error) {
-            alert('исправь потом меня, я ошибка: ' + error.message);
+            alert('исправь потом меня, я ошибка из createNewCategory: ' + error.message);
           }
         },
 
-// потом удали
-        async justForE() {
-            try {
-                const { data } = await $axios.delete('/categories/'+ this.categoryObject.id);
-                console.log(`Удаление категории c id ${this.categoryObject.id}`);
-                console.log(data);
-            }
-            // try {
-            //     const { data } = await $axios.get('/skills/329');
-            //     console.log('ЗАПИСИ ВСЕХ скиллов:  ');
-            //     console.log(data);
-            // }
-            catch(error) {
-                throw new Error(
-                    error.response.data.error || error.response.data.message
-                    );
-            }
+        async removeCategory() {
+          try { 
+            await this.deleteCategory(this.categoryObject.id); 
+            
+          }
+          catch(error) {
+              alert('исправь потом меня, я ошибка из removeCategory: ' + error.message);
+          }
+        },
+
+
+        async removeSkill(skillId) {
+          try { 
+            await this.deleteSkill(skillId);            
+          }
+          catch(error) {
+              alert('исправь потом меня, я ошибка из removeCategory: ' + error.message);
+          }
         },
         
       },

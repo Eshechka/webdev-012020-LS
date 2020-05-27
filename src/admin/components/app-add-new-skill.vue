@@ -51,7 +51,7 @@
             this.skill.percent='';
           }
           catch (error) {
-            alert('исправь потом меня, я ошибка: ' + error.message);
+            alert('исправь потом меня, я ошибка из createNewSkill: ' + error.message);
           }
         },
       },
