@@ -15,6 +15,7 @@
         .add
           button.add__plus(
             type='submit'
+            :disabled='disableForRequest'
           )
 
 </template>
@@ -30,11 +31,15 @@
 
       data() {
         return {
-         skill: {
+        
+        skill: {
           title: '',
-          percent: Number,
+          percent: '',
           category: this.categoryObject.id,
         },
+
+        disableForRequest: false,
+
         }
       },
 
@@ -44,15 +49,25 @@
         ...mapActions('skills', ['addSkill']),
 
         async createNewSkill() {
-          try {
-            await this.addSkill(this.skill);
-            this.skill.title='';
-            this.skill.percent='';
-          }
-          catch (error) {
-            alert('исправь потом меня, я ошибка из createNewSkill: ' + error.message);
+          if (!this.disableForRequest) {
+
+            this.disableForRequest = true;
+
+            try {
+              await this.addSkill(this.skill);
+              this.skill.title='';
+              this.skill.percent='';
+            }
+            catch (error) {
+              alert('исправь потом меня, я ошибка из createNewSkill: ' + error.message);
+            } 
+            finally {
+              this.disableForRequest = false;
+            }
+
           }
         },
+        
       },
     }
 </script>
@@ -85,6 +100,10 @@
       width: 40px;
       height: 40px;
       position: relative;
+
+      &[disabled] {
+        background-color: rgba($admin-button-color, 0.5);
+      }
 
       &::after {
         content: '+';

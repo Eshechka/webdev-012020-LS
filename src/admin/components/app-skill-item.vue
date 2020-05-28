@@ -3,15 +3,19 @@
   form.skill-item(
     @submit.prevent='changeSkillNamePercent'
   )
+
     input.skill-item__name(
       :disabled='!changedSkill.editModeSkill'
       :placeholder='skillObject.title'
+      v-model='changedSkill.newTitle'
+      @keyup.enter='changeSkillNamePercent'
       )
     .skill-item__percent
-      input.skill-item__input-percent(
+      input.skill-item__input-percent(type='number' step='1' min='0' max='100' 
         :disabled='!changedSkill.editModeSkill'
         :placeholder='skillObject.percent'
-        type='number' step='1' min='0' max='100' 
+        v-model='changedSkill.newPercent'
+        @keyup.enter='changeSkillNamePercent'
         )
     .skill-item__controls
       .controls
@@ -28,19 +32,8 @@
         )
         button.controls__btn.controls__btn_red_remove(
           :class='{"controls__btn_none" : !changedSkill.editModeSkill}'
-          @click.prevent='editModeSkillOff'
+          @click.prevent='editModeSkillOff(true)'
         )
-  
-  //- li.skill-item__row
-  //-   input.skill-item__name(placeholder='CSS3')
-  //-   .skill-item__percent
-  //-     input.skill-item__input-percent(type='number' step='1' min='0' max='100' placeholder='90')
-  //-   .skill-item__controls
-  //-     .controls
-  //-       button.controls__btn.controls__btn_edit.controls__btn_none
-  //-       button.controls__btn.controls__btn_trash.controls__btn_none
-  //-       button.controls__btn.controls__btn_tick(type='submit')
-  //-       button.controls__btn.controls__btn_red_remove
 
 </template>
 
@@ -61,6 +54,8 @@
           changedSkill: {
             ...this.skillObject,
             editModeSkill: false,
+            newTitle: '',
+            newPercent: '',
           },
 
         }
@@ -71,9 +66,16 @@
         editModeSkillON() {
           this.changedSkill.editModeSkill = true;
         },
-        editModeSkillOff() {
+        editModeSkillOff(needClear) {
           this.changedSkill.editModeSkill = false;
+          if (needClear) this.inputsClear();
         },
+
+        inputsClear() {
+            this.changedSkill.newTitle = '';
+            this.changedSkill.newPercent = '';
+        },
+        
 
 
         ...mapActions('skills', ['deleteSkill', 'changeSkill']),        
@@ -88,12 +90,15 @@
         },
 
         async changeSkillNamePercent() {
-          try { 
-            await this.changeSkill(this.skillObject);
-            this.changedSkill.editModeSkill = false;             
+          this.editModeSkillOff();             
+          try {                              
+            await this.changeSkill(this.changedSkill);
           }
           catch(error) {
               alert('исправь потом меня, я ошибка из changeSkillNamePercent: ' + error.message);
+          }
+          finally {
+            this.inputsClear();
           }
         },
         

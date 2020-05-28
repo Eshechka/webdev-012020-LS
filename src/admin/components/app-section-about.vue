@@ -38,8 +38,12 @@ section.about()
       
       computed: {
         ...mapState('categories', {
-          categories: state => state.categories
+          allCategories: state => state.categories
         }),
+        
+        categories() {
+          return (this.allCategories).sort( (a, b) => a.id - b.id );
+        },
       },
       
       created() {
@@ -52,8 +56,7 @@ section.about()
         async addNewCategoryForm() {
           this.editModeNewCategory = true;
           try {
-            await this.addCategory('New Category');
-            
+            await this.addCategory('New Category');            
           }
           catch (error) {
             alert('исправь потом меня, я ошибка из addNewCategoryForm: ' + error.message);

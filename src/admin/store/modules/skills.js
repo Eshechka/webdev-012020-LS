@@ -10,6 +10,10 @@ export default {
         ADD_SKILL(state, newSkill) {
             state.skills.push(newSkill);
         },
+        CHANGE_SKILL(state, changedSkill) {
+            state.skills = state.skills.filter(skill => skill.id !== changedSkill.id);
+            state.skills.push(changedSkill);
+        },
         DELETE_SKILL(state, deleteSkillId) {
             state.skills = state.skills.filter(skill => skill.id !== deleteSkillId);
         },
@@ -29,13 +33,15 @@ export default {
             }
             catch(error) { throw new Error ( error.response.data.error || error.response.data.message ); }
         },
-        async changeSkill(store, skill) {
+        async changeSkill(store, changedSkill) {
             try {
-                const { data } = await this.$axios.post(`/skills/${skill.id}`, {skill});
-                console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!');
-                console.log(data);
+                const { data } = await this.$axios.post(`/skills/${changedSkill.id}`, {
+                    title: changedSkill.newTitle,
+                    percent: changedSkill.newPercent,
+                    category: changedSkill.category
+                });                
                 
-                // store.commit('CHANGE_SKILL', skillId);
+                store.commit('CHANGE_SKILL', data.skill);
             }
             catch(error) { throw new Error ( error.response.data.error || error.response.data.message ); }
         },

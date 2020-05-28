@@ -10,8 +10,9 @@ section.reviews
         .edit-review__title Новый отзыв
         .edit-review__content
           form.edit-review__form(action='./change-me' method='get')
-            .edit-review__image            
+            .edit-review__image
               .edit-review__image-place
+              input.edit-review__image-load(type='file' name='review-image')
               a.edit-review__image-text(href='./change-me') Добавить фото
 
             .edit-review__info
@@ -214,6 +215,10 @@ section.reviews
         width: 230px;
         height: 230px;
       }
+    }
+
+    &__image-load {
+      display: none;
     }
 
     &__image-text {

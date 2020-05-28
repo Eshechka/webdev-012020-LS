@@ -3,12 +3,19 @@
   form.skills-form(
     @submit.prevent='changeCategoryName'
   )
+
     .skills-form__title 
       input.skills-form__input-title(
         placeholder='Название новой группы'
         v-model='changedCategory.newtitle'
         :class='{"skills-form__input-title_hidden" : !editModeCategory}'
+        @keyup.enter='changeCategoryName'
+        ref='editCategoryInput'
       )
+      .skills-form__tooltip(
+        :class='{"skills-form__tooltip_error" : isErrorCategoryInput}',
+      ) {{textErrorCategoryInput}}
+      
       .skills-form__added-title(
         :class='{"skills-form__added-title_hidden" : editModeCategory}'
       ) {{categoryObject.category}}
@@ -38,37 +45,6 @@
           skillItem(
             :skillObject='skill'
           )
-          //- form.added-items__form(
-          //-   @submit.prevent='changeSkillNamePercent(skill)'
-          //- )
-          //-   input.added-items__name(
-          //-     :disabled='!skillObj.editModeSkill'
-          //-     :placeholder='skill.title'
-          //-     )
-          //-   .added-items__percent
-          //-     input.added-items__input-percent(
-          //-       :disabled='!skillObj.editModeSkill'
-          //-       :placeholder='skill.percent'
-          //-       type='number' step='1' min='0' max='100' 
-          //-       )
-          //-   .added-items__controls
-          //-     .controls
-          //-       button.controls__btn.controls__btn_edit(
-          //-         :class='{"controls__btn_none" : skillObj.editModeSkill}'
-          //-         @click.prevent='editModeSkillON'
-          //-       )
-          //-       button.controls__btn.controls__btn_trash(
-          //-         :class='{"controls__btn_none" : skillObj.editModeSkill}'
-          //-         @click.prevent='removeSkill(skill.id)'
-          //-       )
-          //-       button.controls__btn.controls__btn_tick(type='submit'
-          //-         :class='{"controls__btn_none" : !skillObj.editModeSkill}'
-          //-       )
-          //-       button.controls__btn.controls__btn_red_remove(
-          //-         :class='{"controls__btn_none" : !skillObj.editModeSkill}'
-          //-         @click.prevent='editModeSkillOff'
-          //-       )
-
     
     addNewSkill(
       :categoryObject='categoryObject'
@@ -82,9 +58,7 @@
     import skillItem from './app-skill-item'
     import addNewSkill from './app-add-new-skill'
         
-    import { mapActions } from 'vuex';
-    import { mapState } from 'vuex';
-    
+    import { mapActions, mapState } from 'vuex';    
 
     export default {
       components: {
@@ -107,24 +81,23 @@
             newtitle: '',
           },
 
-
-          //это данные списка скиллов, которые можно потом вынести в компонент
-
-          // skillObj: {
-          //   // ...this.skill,
-          //   editModeSkill: false,
-          // },
-
+          isErrorCategoryInput: false,
+          textErrorCategoryInput: 'Некорректное имя',
         }
       },
 
       computed: {
+
+        editCategoryInput() { 
+          return this.$refs['editCategoryInput'];
+        },
+
         ...mapState('skills', {
           allSkills: state => state.skills
         }),
 
         skills() {
-          return this.allSkills.filter(skill => skill.category === this.categoryObject.id)
+          return (this.allSkills.filter(skill => skill.category === this.categoryObject.id)).sort( (a, b) => a.id - b.id );
         },
       },
       
@@ -134,29 +107,32 @@
 
       methods: {
 
+        validateCategoryInput() {
+          let newCategoryName = this.editCategoryInput.value;
+
+          if (newCategoryName.length < 2) {
+            this.textErrorCategoryInput = 'Короткое имя категории';
+            this.isErrorCategoryInput = true;
+          }
+          else {
+            console.log('Валидное имя', newCategoryName);
+            this.isErrorCategoryInput = false;
+          }
+          return !this.isErrorCategoryInput;
+        },
+
         editModeCategoryON() {
           this.editModeCategory = true;
+          this.editCategoryInput.focus();
+          // this.editCategoryInput.style.backgroundColor='red';
         },
         editModeCategoryOff() {
           this.editModeCategory = false;
-          this.changedCategory.newtitle = '';
+          this.isErrorCategoryInput = false;
         },
-
-
-        //это методы списка скиллов, которые можно потом вынести в компонент
-        // editModeSkillON() {
-        //   this.skillObj.editModeSkill = true;
-        // },
-        // editModeSkillOff() {
-        //   this.skillObj.editModeSkill = false;
-        // },
-
-
-
 
         ...mapActions('categories', ['deleteCategory', 'renameCategory']),
         ...mapActions('skills', ['refreshAllSkills']),        
-        // ...mapActions('skills', ['refreshAllSkills', 'deleteSkill', 'changeSkill']),        
 
         async removeCategory() {
           try { 
@@ -164,42 +140,29 @@
           }
           catch(error) {
               alert('исправь потом меня, я ошибка из removeCategory: ' + error.message);
-          }
+          }          
         },
 
         async changeCategoryName() {
-          try { 
-            await this.renameCategory(this.changedCategory);
-            this.editModeCategory = false;             
+          //валидация
+          if (this.validateCategoryInput()) {
+            
+            this.editModeCategoryOff();
+            try { 
+              await this.renameCategory(this.changedCategory);                        
+            }
+            catch(error) {
+                alert('исправь потом меня, я ошибка из changeCategoryName: ' + error.message);
+            }
+            finally {
+              this.changedCategory.newtitle = '';
+            }
+
           }
-          catch(error) {
-              alert('исправь потом меня, я ошибка из changeCategoryName: ' + error.message);
-          }
-          finally {
-            // this.editModeCategory = false; 
-          }
+          else
+            console.log('Валидация не пройдена!');
         },
 
-        //это async методы списка скиллов, которые можно потом вынести в компонент
-        // async removeSkill(skillId) {
-        //   try { 
-        //     await this.deleteSkill(skillId);            
-        //   }
-        //   catch(error) {
-        //       alert('исправь потом меня, я ошибка из removeCategory: ' + error.message);
-        //   }
-        // },
-
-        // async changeSkillNamePercent(skill) {
-        //   try { 
-        //     await this.changeSkill(skill);
-        //     this.skillObj.editModeSkill = false;             
-        //   }
-        //   catch(error) {
-        //       alert('исправь потом меня, я ошибка из changeSkillNamePercent: ' + error.message);
-        //   }
-        // },
-        
       },
     }
 </script>
@@ -215,72 +178,6 @@
   
   .added-items {    
     padding-left: 9px;
-
-    /* &__form {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-
-    &__name {
-      @include admin-input(16px, $color-light);
-      font-weight: 600;
-      padding: 0;
-      flex-basis: 58%;
-      width: 58%;
-
-      @include tablets {
-        width: 40%;
-        font-size: 18px;
-        line-height: 2;
-      }
-    }
-
-    &__percent {
-      width: 73px;
-      margin-left: 10px;
-      margin-right: 20px;
-      position: relative;
-      
-      &:after {
-        content: '%';
-        position: absolute;
-        top: 50%;
-        right: 0;
-        transform: translateY(-50%);
-        color: $color-middle;
-      }
-
-      @include tablets {
-        margin-left: 5px;
-        margin-right: 5px;
-        font-size: 18px;
-        line-height: 2;
-      }
-    }
-
-    &__input-percent {
-      @include admin-input(16px,);
-      width: 100%;
-      padding: 0;
-      padding-right: 20px;
-      padding-left: 10px;
-
-      &:active, &:focus {
-            border-color: $admin-base-color;
-      }
-      
-      @include tablets {
-        padding-right: 10px;
-        padding-left: 5px;
-      }
-    }
-
-    &__controls {
-      width: 80px;
-      overflow: hidden;
-      margin-left: auto;
-    } */
   }
 
   .controls {
@@ -379,6 +276,7 @@
     }
 
     &__input-title {
+      position: relative;
 
       @include admin-input();
       width: 56%;
@@ -397,6 +295,43 @@
         }
       }
     }
+
+    &__tooltip {
+      display: none;
+      position: absolute;
+      min-height: 36px;		
+      bottom: 0%;
+      left: calc(56% / 2);
+      transform: translate(-50%, 25px);
+      font-size: 14px;
+      line-height: 1;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      max-width: 80%;
+      font-weight: 600;
+      padding: 10px 20px;
+      color: $white-color;
+      background-color: rgba($color-red, 0.8);
+      border-radius: 20px 5px 20px 5px;
+       
+        &::before {
+          content: '';
+          position: absolute;
+          top: -5px;
+          left: 50%;			
+          transform: translateX(-50%);
+          width: 0;
+          height: 0;
+          border-width: 0 5px 5px 5px;
+          border-color: transparent transparent $color-red transparent;
+          border-style: solid;
+        }
+
+      &_error {
+        display: block;
+      }
+    }
+
 
     &__controls {
       width: 80px;
