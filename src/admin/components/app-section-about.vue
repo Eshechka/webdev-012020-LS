@@ -3,16 +3,21 @@
 section.about()
   .container.container_admin
     .about__topgroup.about__topgroup_about
-      h3.about__title Блок "Обо мне"    
+      h3.about__title Блок "Обо мне"
 
       form.add.add_small(@submit.prevent='addNewCategoryForm')
-        span.add__text Добавить группу
+        span.add__text(@click.prevent='addNewCategoryForm') Добавить группу
         button.add__plus.add__plus_small(type='submit')
+
+        pre {{categories}}
 
     .skills-groups
         ul.skills-groups__list
           li.skills-groups__item(v-for='item in categories' :key='item.id')
-            skillsForm(:categoryObject='item')
+            skillsForm(
+              :categoryObject='item'
+              :editModeNewCategory='editModeNewCategory'
+              )
                 
 </template>
 
@@ -27,6 +32,11 @@ section.about()
           skillsForm,
         },
 
+      data() {
+        return {
+          editModeNewCategory: false,
+        }
+      },
       
       computed: {
         ...mapState('categories', {
@@ -41,8 +51,18 @@ section.about()
       methods: {
         ...mapActions('categories', ['addCategory', 'refreshAllCategories']),
 
-        addNewCategoryForm() {
-
+        async addNewCategoryForm() {
+          this.editModeNewCategory = true;
+          try {
+            await this.addCategory('New Category');
+            
+          }
+          catch (error) {
+            alert('исправь потом меня, я ошибка из addNewCategoryForm: ' + error.message);
+          }
+          finally {
+            this.editModeNewCategory = false;
+          }
         },
       },
     }

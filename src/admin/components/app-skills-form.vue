@@ -1,27 +1,39 @@
 <template lang="pug">
-div
+
   form.skills-form(
-    @submit.prevent='createNewCategory'
+    @submit.prevent='changeCategoryName'
   )
     .skills-form__title 
       input.skills-form__input-title(
         placeholder='Название новой группы'
-
-        v-model='category.title'
-        :class={'skills-form__input-title_hidden' : 'isNameCategory'}
+        v-model='changedCategory.newtitle'
+        :class='{"skills-form__input-title_hidden" : !editModeCategory}'
       )
-      .skills-form__added-title {{categoryObject.category}}
+      .skills-form__added-title(
+        :class='{"skills-form__added-title_hidden" : editModeCategory}'
+      ) {{categoryObject.category}}
+      
       .skills-form__controls
         .controls
-          button.controls__btn.controls__btn_edit.controls__btn_none
-          button.controls__btn.controls__btn_tick(type='submit')
-          button.controls__btn.controls__btn_red_remove
+          button.controls__btn.controls__btn_edit(
+            :class='{"controls__btn_none" : editModeCategory}'
+            @click.prevent='editModeCategoryON'
+          )          
+          button.controls__btn.controls__btn_tick(type='submit'
+            :class='{"controls__btn_none" : !editModeCategory}'
+          )
+          button.controls__btn.controls__btn_red_remove(
+            :class='{"controls__btn_none" : !editModeCategory}'
+            @click.prevent='editModeCategoryOff'
+
+          )
           button.controls__btn.controls__btn_trash(
+            :class='{"controls__btn_none" : editModeCategory}'
             @click.prevent='removeCategory'
           )
 
     .skills-form__added-items
-      //это неплохо бы вынести в отдельный компонент???
+      //это вынести в отдельный компонент???
       ul.added-items
         li.added-items__row(v-for='skill in skills' :key='skill.id')
           input.added-items__name(
@@ -56,20 +68,6 @@ div
       :categoryObject='categoryObject'
     )
 
-  //Потом это привяжи к созданию категории
-  form.skills-form(@submit.prevent='createNewCategory')
-    .skills-form__title 
-      input.skills-form__input-title(
-        placeholder='Создаем новую категорию, ввод имени'
-
-        v-model='category.title'
-      )
-      .skills-form__controls
-        .controls
-          button.controls__btn.controls__btn_tick(type='submit')
-
-
-
 
 </template>
 
@@ -87,6 +85,7 @@ div
 
       props: {
         categoryObject: Object,
+        editModeNewCategory: Boolean,
       },
 
       data() {
@@ -96,6 +95,14 @@ div
             title: '',
           },
           isNameCategory: true, 
+
+          editModeCategory: this.editModeNewCategory,
+
+          changedCategory: {
+            ...this.categoryObject,
+            newtitle: '',
+          }
+
         }
       },
 
@@ -114,7 +121,17 @@ div
       },
 
       methods: {
-        ...mapActions('categories', ['addCategory', 'deleteCategory']),
+
+        editModeCategoryON() {
+          this.editModeCategory = true;
+
+        },
+        editModeCategoryOff() {
+          this.editModeCategory = false;
+          this.changedCategory.newtitle = '';
+        },
+
+        ...mapActions('categories', ['addCategory', 'deleteCategory', 'renameCategory']),
         ...mapActions('skills', ['refreshAllSkills', 'deleteSkill']),        
 
         async createNewCategory() {
@@ -137,6 +154,18 @@ div
           }
         },
 
+        async changeCategoryName() {
+          try { 
+            await this.renameCategory(this.changedCategory);
+            this.editModeCategory = false;             
+          }
+          catch(error) {
+              alert('исправь потом меня, я ошибка из changeCategoryName: ' + error.message);
+          }
+          finally {
+            // this.editModeCategory = false; 
+          }
+        },
 
         async removeSkill(skillId) {
           try { 

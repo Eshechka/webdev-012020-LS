@@ -14,13 +14,17 @@ export default {
         DELETE_CATEGORY(state, deleteCategoryId) {
             state.categories = state.categories.filter(category => category.id !== deleteCategoryId);
         },
+        RENAME_CATEGORY(state, changedCategory) {
+            state.categories = state.categories.filter(category => category.id !== changedCategory.id);
+            state.categories.push(changedCategory);
+        },
     },
 
     actions: {
 
         async addCategory(store, title) {
             try {
-                const { data } = await this.$axios.post('/categories', {title});
+                const { data } = await this.$axios.post('/categories', { title });
                 store.commit('ADD_CATEGORY', data);
             }
             catch(error) { throw new Error ( error.response.data.error || error.response.data.message ); }
@@ -33,6 +37,15 @@ export default {
             }
             catch(error) { throw new Error ( error.response.data.error || error.response.data.message ); }
         },
+
+        async renameCategory(store, changedCategory) {
+            try {
+                const { data } = await this.$axios.post(`/categories/${changedCategory.id}`, {title: changedCategory.newtitle});
+                store.commit('RENAME_CATEGORY', data.category);
+            }
+            catch(error) { throw new Error ( error.response.data.error || error.response.data.message ); }
+        },
+        
 
         async refreshAllCategories(store) {
             try {
