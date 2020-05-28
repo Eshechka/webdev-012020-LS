@@ -29,6 +29,16 @@ export default {
             }
             catch(error) { throw new Error ( error.response.data.error || error.response.data.message ); }
         },
+        async changeSkill(store, skill) {
+            try {
+                const { data } = await this.$axios.post(`/skills/${skill.id}`, {skill});
+                console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!');
+                console.log(data);
+                
+                // store.commit('CHANGE_SKILL', skillId);
+            }
+            catch(error) { throw new Error ( error.response.data.error || error.response.data.message ); }
+        },
         async refreshAllSkills(store) {
             try {
                 const { data } = await this.$axios.get('/skills/329');

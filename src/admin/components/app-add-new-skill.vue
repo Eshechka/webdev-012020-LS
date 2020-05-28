@@ -8,7 +8,6 @@
       input.skills-form__input-new-item-percent(
         placeholder='100'
         v-model='skill.percent'
-
         type='number' step='1' min='0' max='100'        
         )
       label.skills-form__label-new-item-percent
@@ -33,7 +32,7 @@
         return {
          skill: {
           title: '',
-          percent: 0,
+          percent: Number,
           category: this.categoryObject.id,
         },
         }

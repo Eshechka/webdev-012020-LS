@@ -9,8 +9,6 @@ section.about()
         span.add__text(@click.prevent='addNewCategoryForm') Добавить группу
         button.add__plus.add__plus_small(type='submit')
 
-        pre {{categories}}
-
     .skills-groups
         ul.skills-groups__list
           li.skills-groups__item(v-for='item in categories' :key='item.id')

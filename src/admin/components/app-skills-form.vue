@@ -33,36 +33,42 @@
           )
 
     .skills-form__added-items
-      //это вынести в отдельный компонент???
       ul.added-items
         li.added-items__row(v-for='skill in skills' :key='skill.id')
-          input.added-items__name(
-            disabled
-            :placeholder='skill.title'
-            )
-          .added-items__percent
-            input.added-items__input-percent(
-              disabled
-              :placeholder='skill.percent'
-              type='number' step='1' min='0' max='100' 
-              )
-          .added-items__controls
-            .controls
-              button.controls__btn.controls__btn_edit
-              button.controls__btn.controls__btn_trash(
-                @click.prevent='removeSkill(skill.id)'
-              )
+          skillItem(
+            :skillObject='skill'
+          )
+          //- form.added-items__form(
+          //-   @submit.prevent='changeSkillNamePercent(skill)'
+          //- )
+          //-   input.added-items__name(
+          //-     :disabled='!skillObj.editModeSkill'
+          //-     :placeholder='skill.title'
+          //-     )
+          //-   .added-items__percent
+          //-     input.added-items__input-percent(
+          //-       :disabled='!skillObj.editModeSkill'
+          //-       :placeholder='skill.percent'
+          //-       type='number' step='1' min='0' max='100' 
+          //-       )
+          //-   .added-items__controls
+          //-     .controls
+          //-       button.controls__btn.controls__btn_edit(
+          //-         :class='{"controls__btn_none" : skillObj.editModeSkill}'
+          //-         @click.prevent='editModeSkillON'
+          //-       )
+          //-       button.controls__btn.controls__btn_trash(
+          //-         :class='{"controls__btn_none" : skillObj.editModeSkill}'
+          //-         @click.prevent='removeSkill(skill.id)'
+          //-       )
+          //-       button.controls__btn.controls__btn_tick(type='submit'
+          //-         :class='{"controls__btn_none" : !skillObj.editModeSkill}'
+          //-       )
+          //-       button.controls__btn.controls__btn_red_remove(
+          //-         :class='{"controls__btn_none" : !skillObj.editModeSkill}'
+          //-         @click.prevent='editModeSkillOff'
+          //-       )
 
-        li.added-items__row
-          input.added-items__name(placeholder='CSS3')
-          .added-items__percent
-            input.added-items__input-percent(type='number' step='1' min='0' max='100' placeholder='90')
-          .added-items__controls
-            .controls
-              button.controls__btn.controls__btn_edit.controls__btn_none
-              button.controls__btn.controls__btn_trash.controls__btn_none
-              button.controls__btn.controls__btn_tick(type='submit')
-              button.controls__btn.controls__btn_red_remove
     
     addNewSkill(
       :categoryObject='categoryObject'
@@ -72,15 +78,18 @@
 </template>
 
 <script>
+
+    import skillItem from './app-skill-item'
+    import addNewSkill from './app-add-new-skill'
         
     import { mapActions } from 'vuex';
     import { mapState } from 'vuex';
     
-    import addNewSkill from './app-add-new-skill'
 
     export default {
       components: {
-          addNewSkill,
+        skillItem,
+        addNewSkill,
         },
 
       props: {
@@ -91,17 +100,20 @@
       data() {
         return {
 
-          category: {
-            title: '',
-          },
-          isNameCategory: true, 
-
           editModeCategory: this.editModeNewCategory,
 
           changedCategory: {
             ...this.categoryObject,
             newtitle: '',
-          }
+          },
+
+
+          //это данные списка скиллов, которые можно потом вынести в компонент
+
+          // skillObj: {
+          //   // ...this.skill,
+          //   editModeSkill: false,
+          // },
 
         }
       },
@@ -124,30 +136,31 @@
 
         editModeCategoryON() {
           this.editModeCategory = true;
-
         },
         editModeCategoryOff() {
           this.editModeCategory = false;
           this.changedCategory.newtitle = '';
         },
 
-        ...mapActions('categories', ['addCategory', 'deleteCategory', 'renameCategory']),
-        ...mapActions('skills', ['refreshAllSkills', 'deleteSkill']),        
 
-        async createNewCategory() {
-          try {
-            await this.addCategory(this.category.title);
-            this.category.title='';
-          }
-          catch (error) {
-            alert('исправь потом меня, я ошибка из createNewCategory: ' + error.message);
-          }
-        },
+        //это методы списка скиллов, которые можно потом вынести в компонент
+        // editModeSkillON() {
+        //   this.skillObj.editModeSkill = true;
+        // },
+        // editModeSkillOff() {
+        //   this.skillObj.editModeSkill = false;
+        // },
+
+
+
+
+        ...mapActions('categories', ['deleteCategory', 'renameCategory']),
+        ...mapActions('skills', ['refreshAllSkills']),        
+        // ...mapActions('skills', ['refreshAllSkills', 'deleteSkill', 'changeSkill']),        
 
         async removeCategory() {
           try { 
-            await this.deleteCategory(this.categoryObject.id); 
-            
+            await this.deleteCategory(this.categoryObject.id);
           }
           catch(error) {
               alert('исправь потом меня, я ошибка из removeCategory: ' + error.message);
@@ -167,14 +180,25 @@
           }
         },
 
-        async removeSkill(skillId) {
-          try { 
-            await this.deleteSkill(skillId);            
-          }
-          catch(error) {
-              alert('исправь потом меня, я ошибка из removeCategory: ' + error.message);
-          }
-        },
+        //это async методы списка скиллов, которые можно потом вынести в компонент
+        // async removeSkill(skillId) {
+        //   try { 
+        //     await this.deleteSkill(skillId);            
+        //   }
+        //   catch(error) {
+        //       alert('исправь потом меня, я ошибка из removeCategory: ' + error.message);
+        //   }
+        // },
+
+        // async changeSkillNamePercent(skill) {
+        //   try { 
+        //     await this.changeSkill(skill);
+        //     this.skillObj.editModeSkill = false;             
+        //   }
+        //   catch(error) {
+        //       alert('исправь потом меня, я ошибка из changeSkillNamePercent: ' + error.message);
+        //   }
+        // },
         
       },
     }
@@ -189,10 +213,10 @@
 
   
   
-  .added-items {
+  .added-items {    
     padding-left: 9px;
 
-    &__row {
+    /* &__form {
       display: flex;
       align-items: center;
       margin-bottom: 10px;
@@ -256,7 +280,7 @@
       width: 80px;
       overflow: hidden;
       margin-left: auto;
-    }
+    } */
   }
 
   .controls {
