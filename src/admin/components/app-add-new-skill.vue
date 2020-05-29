@@ -1,16 +1,30 @@
 <template lang="pug">
 
-    form.skills-form__add-new-item(@submit.prevent='createNewSkill')
-      input.skills-form__input-new-item-name(
-        placeholder='Новый навык'
-        v-model='skill.title'
-        )
-      input.skills-form__input-new-item-percent(
-        placeholder='100'
-        v-model='skill.percent'
-        type='number' step='1' min='0' max='100'        
-        )
-      label.skills-form__label-new-item-percent
+    form.skills-form__add-new-item(@submit.prevent='handleForm')
+
+      .skills-form__group-input-error.skills-form__group-input-error_name
+        input.skills-form__input-new-item-name(
+          placeholder='Новый навык'
+          v-model='skill.title'
+          )
+        div.skills-form__error.skills-form__error_name(v-if="checkForm && $v.skill.title.$invalid")
+          span(v-if="!$v.skill.title.maxLength") Максимум символов в названии: {{ $v.skill.title.$params.maxLength.max }}
+          span(v-else-if="!$v.skill.title.minLength") Минимум символов в названии: {{ $v.skill.title.$params.minLength.min }}
+          span(v-else) Обязательно для заполнения
+
+      .skills-form__group-input-error.skills-form__group-input-error_percent
+        input.skills-form__input-new-item-percent(
+          placeholder='100'
+          v-model='skill.percent'
+          type='number' step='1' min='0' max='100'        
+          )
+
+        label.skills-form__label-new-item-percent
+        
+        div.skills-form__error.skills-form__error_percent(v-if="checkForm && $v.skill.percent.$invalid")
+          span(v-if="!$v.skill.percent.between") Диапазон: от {{ $v.skill.percent.$params.between.min }} до {{ $v.skill.percent.$params.between.max }}
+          span(v-else) Обязательно для заполнения
+
       .skills-form__add-button
         .add
           button.add__plus(
@@ -23,6 +37,7 @@
 <script>
 
     import { mapActions } from 'vuex';
+    import { required, numeric, minLength, maxLength, between } from 'vuelidate/lib/validators';
 
     export default {
       props: {
@@ -38,13 +53,39 @@
           category: this.categoryObject.id,
         },
 
-        disableForRequest: false,
+        checkForm: false,
 
+        disableForRequest: false,
         }
       },
 
 
+      validations: {
+
+        skill: {
+          title: {
+            required,
+            minLength: minLength(2),
+            maxLength: maxLength(30),
+          },
+          percent: {
+            required,
+            numeric,
+            between: between(0, 100),
+          },
+        },
+      },
+
       methods: {
+
+        handleForm() {
+          this.checkForm = true;
+          
+          if (!this.$v.$invalid) {
+            this.createNewSkill();
+            this.checkForm = false;
+          }
+        },
         
         ...mapActions('skills', ['addSkill']),
 
@@ -138,18 +179,67 @@
       margin-right: 10px;
     }
 
-    &__input-new-item-name {
+    &__group-input-error {
+      position: relative;
 
-      @include admin-input();
+      &_name {
+
       min-width: 40%;
       width: 235px;
+
+        @include tablets {
+          max-width: 145px;
+          min-width: unset;
+          width: 50%;
+        }
+      }
+
+      &_percent {
+
+
+      }
+
+    }
+    
+    &__error {
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translate(-50%, 25px);
+      min-height: 30px;		
+      font-size: 12px;
+      line-height: 1;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-weight: 600;
+      padding: 5px 10px;
+      color: $white-color;
+      background-color: rgba($color-red, 0.8);
+      border-radius: 15px 5px 15px 5px;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: -5px;
+          left: 50%;			
+          transform: translateX(-50%);
+          width: 0;
+          height: 0;
+          border-width: 0 5px 5px 5px;
+          border-color: transparent transparent rgba($color-red, 0.8) transparent;
+          border-style: solid;
+        }
+
+    }
+
+    &__input-new-item-name {
+      width: 100%;
+      @include admin-input();
       padding-left: 20px;
 
       @include tablets {
         font-size: 14px;        
-        max-width: 145px;
-        min-width: unset;
-        width: 50%;
+
       }
     }
 
@@ -159,7 +249,7 @@
       width: 15%;
       min-width: 50px;
       margin-left: 9px;
-      margin-right: 20px;//должен совпадать с right следующей label
+      padding-right: 20px;
       
       &::placeholder {
         color: $color-light;
@@ -176,7 +266,7 @@
             content: '%';
             position: absolute;
             top: -1px;
-            right: 20px;//должен совпадать с правым маржином input
+            right: 0px;
             color: $color-middle;
             height: 20px;
             width: 20px;

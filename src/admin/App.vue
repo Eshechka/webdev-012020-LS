@@ -17,13 +17,11 @@
     //- appSectionWorks
     //- appSectionReviews
 
-
   template(v-else-if='!checkLogged()' )    
     appAuth(
       @loginFromAuth='login'
     )
     
-
   </template>
 
 

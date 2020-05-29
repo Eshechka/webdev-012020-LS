@@ -1,22 +1,37 @@
 <template lang="pug">
+div
+  //- pre {{'Форма валидна  ' + !$v.$invalid}}
+  //- pre {{'Режим редактирования ' + changedSkill.editModeSkill}}
+
+  //- pre {{'Текущее значение  ' + skillObject.title}}                         {{skillObject.percent}}
+  //- pre {{'Новое значение  '  + changedSkill.newTitle}}                       {{changedSkill.newPercent}}
 
   form.skill-item(
     @submit.prevent='changeSkillNamePercent'
   )
+    .skill-item__group-input-error.skill-item__group-input-error_name
 
-    input.skill-item__name(
-      :disabled='!changedSkill.editModeSkill'
-      :placeholder='skillObject.title'
-      v-model='changedSkill.newTitle'
-      @keyup.enter='changeSkillNamePercent'
-      )
+      input.skill-item__name(
+        :disabled='!changedSkill.editModeSkill'
+        :placeholder='skillObject.title'
+        v-model='changedSkill.newTitle'
+        ref='editSkillNameInput'
+        )
+      div.skill-item__error.skill-item__error_name(v-if="changedSkill.editModeSkill && $v.changedSkill.newTitle.$invalid")
+        span(v-if="!$v.changedSkill.newTitle.maxLength") Максимум символов в названии: {{ $v.changedSkill.newTitle.$params.maxLength.max }}
+        span(v-else-if="!$v.changedSkill.newTitle.minLength") Минимум символов в названии: {{ $v.changedSkill.newTitle.$params.minLength.min }}
+        span(v-else) Обязательно для заполнения
+
     .skill-item__percent
       input.skill-item__input-percent(type='number' step='1' min='0' max='100' 
         :disabled='!changedSkill.editModeSkill'
         :placeholder='skillObject.percent'
         v-model='changedSkill.newPercent'
-        @keyup.enter='changeSkillNamePercent'
         )
+      div.skill-item__error.skill-item__error_percent(v-if="changedSkill.editModeSkill && $v.changedSkill.newPercent.$invalid")
+        span(v-if="!$v.changedSkill.newPercent.between") Диапазон значений: от {{ $v.changedSkill.newPercent.$params.between.min }} до {{ $v.changedSkill.newPercent.$params.between.max }}
+        span(v-else) Обязательно для заполнения
+
     .skill-item__controls
       .controls
         button.controls__btn.controls__btn_edit(
@@ -39,8 +54,8 @@
 
 <script>
         
-    import { mapActions } from 'vuex';
-    import { mapState } from 'vuex';
+    import { mapActions, mapState } from 'vuex';
+    import { required, numeric, minLength, maxLength, between } from 'vuelidate/lib/validators';
     
     export default {
 
@@ -57,25 +72,45 @@
             newTitle: '',
             newPercent: '',
           },
-
         }
       },
 
+      validations: {
+        changedSkill: {
+          newTitle: {
+            required,
+            minLength: minLength(2),
+            maxLength: maxLength(30),
+          },
+          newPercent: {
+            required,
+            numeric,
+            between: between(0, 100),
+          },
+        },
+      },
 
       methods: {
         editModeSkillON() {
           this.changedSkill.editModeSkill = true;
+          // this.changedSkill.newTitle = this.skillObject.title;
+          // this.changedSkill.newPercent = this.skillObject.percent;
+          this.$nextTick(() => {            
+            this.$refs['editSkillNameInput'].focus();
+          });
         },
         editModeSkillOff(needClear) {
           this.changedSkill.editModeSkill = false;
-          if (needClear) this.inputsClear();
+          if (needClear) {
+            console.log('очистка инпутов');            
+            this.inputsClear();
+          }
         },
 
         inputsClear() {
             this.changedSkill.newTitle = '';
             this.changedSkill.newPercent = '';
         },
-        
 
 
         ...mapActions('skills', ['deleteSkill', 'changeSkill']),        
@@ -90,16 +125,23 @@
         },
 
         async changeSkillNamePercent() {
-          this.editModeSkillOff();             
-          try {                              
-            await this.changeSkill(this.changedSkill);
-          }
-          catch(error) {
-              alert('исправь потом меня, я ошибка из changeSkillNamePercent: ' + error.message);
-          }
-          finally {
-            this.inputsClear();
-          }
+
+              if (this.$v.$invalid) {
+                  console.log('INVALID FORM');                
+                  return;
+              }
+
+            this.editModeSkillOff();           
+              try {
+                await this.changeSkill(this.changedSkill);
+              }
+              catch(error) {
+                  alert('исправь потом меня, я ошибка из changeSkillNamePercent: ' + error.message);
+              }
+              finally {
+                this.inputsClear();
+              }
+
         },
         
       },
@@ -119,17 +161,27 @@
       display: flex;
       align-items: center;
       margin-bottom: 10px;
-    
+
+    &__group-input-error {
+      position: relative;
+
+      &_name {
+        flex-basis: 58%;
+        width: 58%;
+
+        @include tablets {
+          width: 40%;
+        }
+      }
+    }
 
     &__name {
       @include admin-input(16px, $color-light);
+      width: 100%;
       font-weight: 600;
       padding: 0;
-      flex-basis: 58%;
-      width: 58%;
 
       @include tablets {
-        width: 40%;
         font-size: 18px;
         line-height: 2;
       }
@@ -158,6 +210,39 @@
       }
     }
 
+    &__error {
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translate(-50%, 25px);
+      min-height: 30px;		
+      font-size: 12px;
+      line-height: 1;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      font-weight: 600;
+      padding: 5px 10px;
+      color: $white-color;
+      background-color: rgba($color-red, 0.8);
+      border-radius: 15px 5px 15px 5px;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: -5px;
+          left: 50%;			
+          transform: translateX(-50%);
+          width: 0;
+          height: 0;
+          border-width: 0 5px 5px 5px;
+          border-color: transparent transparent rgba($color-red, 0.8) transparent;
+          border-style: solid;
+        }
+
+      &_percent {
+      }
+    }
+
     &__input-percent {
       @include admin-input(16px,);
       width: 100%;
@@ -166,7 +251,7 @@
       padding-left: 10px;
 
       &:active, &:focus {
-            border-color: $admin-base-color;
+          border-color: $admin-base-color;
       }
       
       @include tablets {

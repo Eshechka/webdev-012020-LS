@@ -123,8 +123,10 @@
 
         editModeCategoryON() {
           this.editModeCategory = true;
-          this.editCategoryInput.focus();
-          // this.editCategoryInput.style.backgroundColor='red';
+          this.$nextTick(() => {
+            
+            this.editCategoryInput.focus();
+          });
         },
         editModeCategoryOff() {
           this.editModeCategory = false;
