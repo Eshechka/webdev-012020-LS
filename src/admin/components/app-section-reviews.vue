@@ -11,11 +11,14 @@ section.reviews
         .edit-review__content
           form.edit-review__form(action='./change-me' method='get')
             .edit-review__image
-              .edit-review__image-place
-              input.edit-review__image-load(type='file'
+              label.edit-review__image-load-label(for='review-image')
+                span.edit-review__image-text(href='./change-me') Добавить фото
+              .edit-review__image-place(
+                :style='{ backgroundImage : `url(${renderedPhoto})` }'
+              )
+              input#review-image.edit-review__image-load(type='file'
                 @change='changeFileReviewImg'
               )
-              a.edit-review__image-text(href='./change-me') Добавить фото
 
             .edit-review__info
               .edit-review__row
@@ -69,6 +72,9 @@ section.reviews
 </template>
 
 <script>
+    import {renderer} from '../helpers/picture'
+
+
     export default {
         
         data() {
@@ -79,6 +85,7 @@ section.reviews
             reviewImg: {
 
             },
+            renderedPhoto: '',
 
           }
         },
@@ -92,7 +99,13 @@ section.reviews
             this.isVisibleEditForm = false;
           },
           changeFileReviewImg(e) {
-            this.reviewImg = e.target.files[0];
+            // this.reviewImg = e.target.files[0];
+            const photo = e.target.files[0];
+
+            renderer(photo).then(pic => {
+              this.renderedPhoto = pic;
+            })
+
           }
         },
     }
@@ -192,6 +205,7 @@ section.reviews
     &__image {
       width: 200px;
       margin-right: 30px;
+      position: relative;
 
       @include tablets {
         width: 260px;
@@ -200,6 +214,22 @@ section.reviews
         margin-right: 0;
         width: unset;
         margin-bottom: 38px;
+      }
+    }
+
+    &__image-load-label {
+      display: flex;
+      flex-direction: column-reverse;
+      position: absolute;
+      cursor: pointer;
+      width: 200px;
+      height: 255px;
+
+      &:hover, &:active, &:focus {
+
+        .edit-review__image-text {
+          color: rgba($color-blue, 0.8);
+        }
       }
     }
 
@@ -229,10 +259,6 @@ section.reviews
       width: 100%;
       text-align: center;
       text-decoration: none;
-
-      &:hover, &:active, &:focus {
-        color: rgba($color-blue, 0.8);
-      }
     }
 
     &__info {
