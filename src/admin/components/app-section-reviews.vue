@@ -6,13 +6,15 @@ section.reviews
       h3.reviews__title Блок "Отзывы"   
 
     .reviews__content.reviews__content_edit-review
-      .edit-review
+      .edit-review(v-if='isVisibleEditForm')
         .edit-review__title Новый отзыв
         .edit-review__content
           form.edit-review__form(action='./change-me' method='get')
             .edit-review__image
               .edit-review__image-place
-              input.edit-review__image-load(type='file' name='review-image')
+              input.edit-review__image-load(type='file'
+                @change='changeFileReviewImg'
+              )
               a.edit-review__image-text(href='./change-me') Добавить фото
 
             .edit-review__info
@@ -29,14 +31,18 @@ section.reviews
                   textarea.edit-review__input.edit-review__input_textarea(type="textarea" name="review-description" rows=3 resize='none' placeholder='Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!' required)
 
               .edit-review__row.edit-review__row_buttons    
-                button.edit-review__cancel Отмена
+                button.edit-review__cancel(
+                  @click='hideEditForm'
+                ) Отмена
                 button.edit-review__submit(type='submit') Сохранить
 
     .reviews__content.reviews__content_added-reviews
       .added-reviews
         ul.added-reviews__list
           li.added-reviews__item
-            .add.add_theme_big
+            .add.add_theme_big(
+              @click='showEditForm("new")'
+            )
               span.add__text.add__text_bottom_offset Добавить отзыв
               button.add__plus.add__plus_top_offset(type='button')
 
@@ -51,51 +57,44 @@ section.reviews
                 .review__text Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах
               .review__controls
                 .controls.controls_with_text
-                  span.controls__text Править                          
+                  span.controls__text(
+                    @click='showEditForm("edit")'
+                  ) Править                          
                   button.controls__btn.controls__btn_blue_edit
                 .controls.controls_with_text
                   span.controls__text Удалить                          
                   button.controls__btn.controls__btn_red_remove
-                  
-          li.added-reviews__item
-            .review
-              .review__topgroup
-                .review__avatar
-                  img.review__image-author(src='../../images/content/review_authot1.png')
-                .review__author Ковальчук Дмитрий
-                  .review__occupation Основатель Loftschool
-              .review__info
-                .review__text Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах
-              .review__controls
-                .controls.controls_with_text
-                  span.controls__text Править                          
-                  button.controls__btn.controls__btn_blue_edit
-                .controls.controls_with_text
-                  span.controls__text Удалить                          
-                  button.controls__btn.controls__btn_red_remove
-                  
-          li.added-reviews__item
-            .review
-              .review__topgroup
-                .review__avatar
-                  img.review__image-author(src='../../images/content/review_authot1.png')
-                .review__author Ковальчук Дмитрий
-                  .review__occupation Основатель Loftschool
-              .review__info
-                .review__text Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах
-              .review__controls
-                .controls.controls_with_text
-                  span.controls__text Править                          
-                  button.controls__btn.controls__btn_blue_edit
-                .controls.controls_with_text
-                  span.controls__text Удалить                          
-                  button.controls__btn.controls__btn_red_remove
+
 
 </template>
 
 <script>
     export default {
         
+        data() {
+          return {
+            isVisibleEditForm: false,
+            editMode: '',
+
+            reviewImg: {
+
+            },
+
+          }
+        },
+
+        methods: {
+          showEditForm(editMode) {
+            this.isVisibleEditForm = true;
+            this.editMode = editMode;
+          },
+          hideEditForm() {
+            this.isVisibleEditForm = false;
+          },
+          changeFileReviewImg(e) {
+            this.reviewImg = e.target.files[0];
+          }
+        },
     }
 </script>
 

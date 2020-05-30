@@ -1,10 +1,10 @@
 <template lang="pug">
 div
-  //- pre {{'Форма валидна  ' + !$v.$invalid}}
-  //- pre {{'Режим редактирования ' + changedSkill.editModeSkill}}
+  pre {{'Форма валидна  ' + !$v.$invalid}}
+  pre {{'Режим редактирования ' + changedSkill.editModeSkill}}
 
-  //- pre {{'Текущее значение  ' + skillObject.title}}                         {{skillObject.percent}}
-  //- pre {{'Новое значение  '  + changedSkill.newTitle}}                       {{changedSkill.newPercent}}
+  pre {{'Текущее значение  ' + skillObject.title}}                         {{skillObject.percent}}
+  pre {{'Новое значение  '  + changedSkill.newTitle}}                       {{changedSkill.newPercent}}
 
   form.skill-item(
     @submit.prevent='changeSkillNamePercent'
@@ -36,18 +36,18 @@ div
       .controls
         button.controls__btn.controls__btn_edit(
           :class='{"controls__btn_none" : changedSkill.editModeSkill}'
-          @click.prevent='editModeSkillON'
+          @click='editModeSkillON'
         )
         button.controls__btn.controls__btn_trash(
           :class='{"controls__btn_none" : changedSkill.editModeSkill}'
-          @click.prevent='removeSkill'
+          @click='removeSkill'
         )
         button.controls__btn.controls__btn_tick(type='submit'
           :class='{"controls__btn_none" : !changedSkill.editModeSkill}'
         )
         button.controls__btn.controls__btn_red_remove(
           :class='{"controls__btn_none" : !changedSkill.editModeSkill}'
-          @click.prevent='editModeSkillOff(true)'
+          @click='editModeSkillOff(true)'
         )
 
 </template>
@@ -92,13 +92,17 @@ div
 
       methods: {
         editModeSkillON() {
+          console.log('меняю editModeSkill');          
           this.changedSkill.editModeSkill = true;
-          // this.changedSkill.newTitle = this.skillObject.title;
-          // this.changedSkill.newPercent = this.skillObject.percent;
+
           this.$nextTick(() => {            
             this.$refs['editSkillNameInput'].focus();
           });
+
+          // this.changedSkill.newTitle = this.skillObject.title;
+          // this.changedSkill.newPercent = this.skillObject.percent;
         },
+
         editModeSkillOff(needClear) {
           this.changedSkill.editModeSkill = false;
           if (needClear) {
@@ -322,6 +326,5 @@ div
     }
 
   }
-
 
 </style>

@@ -17,11 +17,13 @@
     //- appSectionWorks
     //- appSectionReviews
 
+
   template(v-else-if='!checkLogged()' )    
     appAuth(
       @loginFromAuth='login'
     )
     
+
   </template>
 
 
@@ -34,13 +36,12 @@
   // import appSectionWorks from './components/app-section-works'
   // import appSectionReviews from './components/app-section-reviews'
 
-  import axios from 'axios';
-  const baseUrl='https://webdev-api.loftschool.com/';
-  let token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMyOSwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1OTA0MjU2NTgsImV4cCI6MTU5MDQ0MzY1OCwibmJmIjoxNTkwNDI1NjU4LCJqdGkiOiJ2YTdSUkhuaFhyczdZcUlrIn0.AtjszD6pU7mT-MwpsYHng8WKi1HZYSrVZ76S69n8zKI.LEYUanTXw-QDknNKN8TDtXL49qfCbLH9Tx4h9l7x_YI';
+//   import axios from 'axios';
+//   const baseUrl='https://webdev-api.loftschool.com/';
+//   let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMyOSwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1OTA3Nzc4MjgsImV4cCI6MTU5MDc3Nzg4OCwibmJmIjoxNTkwNzc3ODI4LCJqdGkiOiJmSzV0SXlYWm9SYmhVV1Q2In0.F3p7Zlp-5EdNZ6YhRgVbpvGoHd008WyAPBH_mDioTRw"
+// ;
 
-  export default {
-
-    
+  export default {   
 
     components: {
       appAuth, appMenu, appHeader, 
@@ -50,8 +51,8 @@
       return {
         //isLogged: false, //так должно быть
         isLogged: true,
-        baseUrl: baseUrl,
-        token: token,
+        // baseUrl: baseUrl,
+        // token: token,
       }
     },
     methods: {
