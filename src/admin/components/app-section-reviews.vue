@@ -6,38 +6,11 @@ section.reviews
       h3.reviews__title Блок "Отзывы"   
 
     .reviews__content.reviews__content_edit-review
-      .edit-review(v-if='isVisibleEditForm')
-        .edit-review__title Новый отзыв
-        .edit-review__content
-          form.edit-review__form(action='./change-me' method='get')
-            .edit-review__image
-              label.edit-review__image-load-label(for='review-image')
-                span.edit-review__image-text(href='./change-me') Добавить фото
-              .edit-review__image-place(
-                :style='{ backgroundImage : `url(${renderedPhoto})` }'
-              )
-              input#review-image.edit-review__image-load(type='file'
-                @change='changeFileReviewImg'
-              )
-
-            .edit-review__info
-              .edit-review__row
-                .edit-review__group.edit-review__group_name
-                  label.edit-review__label Имя автора
-                  input.edit-review__input(placeholder='Ковальчук Дмитрий' required)
-                .edit-review__group.edit-review__group_occupation
-                  label.edit-review__label Титул автора
-                  input.edit-review__input(placeholder='Основатель' required)
-              .edit-review__row.edit-review__row_textarea
-                .edit-review__group.edit-review__group_review
-                  label.edit-review__label Отзыв
-                  textarea.edit-review__input.edit-review__input_textarea(type="textarea" name="review-description" rows=3 resize='none' placeholder='Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!' required)
-
-              .edit-review__row.edit-review__row_buttons    
-                button.edit-review__cancel(
-                  @click='hideEditForm'
-                ) Отмена
-                button.edit-review__submit(type='submit') Сохранить
+      editReview(
+        v-if='isVisibleEditForm'
+        @hideEditForm='hideEditForm'
+        :editMode='editMode'
+      )
 
     .reviews__content.reviews__content_added-reviews
       .added-reviews
@@ -49,65 +22,67 @@ section.reviews
               span.add__text.add__text_bottom_offset Добавить отзыв
               button.add__plus.add__plus_top_offset(type='button')
 
-          li.added-reviews__item
-            .review
-              .review__topgroup
-                .review__avatar
-                  img.review__image-author(src='../../images/content/review_authot1.png')
-                .review__author Ковальчук Дмитрий
-                  .review__occupation Основатель Loftschool
-              .review__info
-                .review__text Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах
-              .review__controls
-                .controls.controls_with_text
-                  span.controls__text(
-                    @click='showEditForm("edit")'
-                  ) Править                          
-                  button.controls__btn.controls__btn_blue_edit
-                .controls.controls_with_text
-                  span.controls__text Удалить                          
-                  button.controls__btn.controls__btn_red_remove
-
+          li.added-reviews__item(
+            v-for='review in reviews' :key='review.id'
+          )
+            review(
+              :reviewObject='review'
+              @showEditForm='showEditForm'
+            )
 
 </template>
 
 <script>
-    import {renderer} from '../helpers/picture'
 
+    import editReview from './app-edit-review';
+    import review from './app-review';
+
+    import { mapState, mapActions } from 'vuex';
 
     export default {
-        
+
+        components: {
+          editReview, review
+        },
+
         data() {
           return {
             isVisibleEditForm: false,
             editMode: '',
-
-            reviewImg: {
-
-            },
-            renderedPhoto: '',
-
           }
         },
 
-        methods: {
-          showEditForm(editMode) {
-            this.isVisibleEditForm = true;
-            this.editMode = editMode;
-          },
-          hideEditForm() {
-            this.isVisibleEditForm = false;
-          },
-          changeFileReviewImg(e) {
-            // this.reviewImg = e.target.files[0];
-            const photo = e.target.files[0];
-
-            renderer(photo).then(pic => {
-              this.renderedPhoto = pic;
-            })
-
-          }
+              
+        computed: {
+          ...mapState('reviews', {
+          allReviews: state => state.reviews
+        }),
+        
+        reviews() {
+          return (this.allReviews).sort( (a, b) => a.id - b.id );
         },
+      },
+
+            
+      created() {
+        this.refreshAllReviews();
+      }, 
+
+      methods: {
+
+        ...mapActions('reviews', ['refreshAllReviews', 'setCurrentReview']),
+
+        showEditForm(mode) {      
+          this.isVisibleEditForm = true;
+          this.editMode = mode;
+
+          if (mode === 'new') this.setCurrentReview();
+        },
+        hideEditForm() {
+          this.isVisibleEditForm = false;
+        },
+
+      },
     }
 </script>
 
@@ -171,260 +146,6 @@ section.reviews
           width: 110%;
           margin-left: -5%;
         }
-      }
-    }
-  }
-
-  .edit-review {
-
-    background-color: $white-color;
-    box-shadow: 4px 3px 20px 0px rgba(0, 0, 0, 0.07);
-    padding-bottom: 24px;
-
-    &__title {
-      margin: 11px;
-      padding: 20px 11px 20px;
-      color: $base-color;
-      font-size: 18px;
-      line-height: 34px;
-      font-weight: 700;
-      border-bottom: 1px solid rgba(#1f232d, 0.5);
-
-      @include tablets {
-        padding-top: 24px;
-        padding-bottom: 24px;
-      }
-    }
-
-    &__content {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    &__image {
-      width: 200px;
-      margin-right: 30px;
-      position: relative;
-
-      @include tablets {
-        width: 260px;
-      }
-      @include phones {
-        margin-right: 0;
-        width: unset;
-        margin-bottom: 38px;
-      }
-    }
-
-    &__image-load-label {
-      display: flex;
-      flex-direction: column-reverse;
-      position: absolute;
-      cursor: pointer;
-      width: 200px;
-      height: 255px;
-
-      &:hover, &:active, &:focus {
-
-        .edit-review__image-text {
-          color: rgba($color-blue, 0.8);
-        }
-      }
-    }
-
-    &__image-place {
-      width: 200px;
-      height: 200px;
-      background-color: #dee4ed;
-      border-radius: 50%;
-      margin-bottom: 21px;
-
-      @include tablets {
-        width: 230px;
-        height: 230px;
-      }
-    }
-
-    &__image-load {
-      display: none;
-    }
-
-    &__image-text {
-      color: $color-blue;
-      font-size: 16px;
-      line-height: 34px;
-      font-weight: 600;
-      display: block;
-      width: 100%;
-      text-align: center;
-      text-decoration: none;
-    }
-
-    &__info {
-      width: calc(100% - 200px - 30px);
-      max-width: 610px;
-      
-      @include phones {
-        width: 100%;
-      }
-    }
-
-    &__form {
-      padding: 30px;
-      padding-top: 34px;
-      display: flex;
-
-      @include tablets {
-        padding-top: 40px;
-        padding-bottom: 10px;
-      }
-      @include phones {
-        flex-direction: column;
-        align-items: center;
-        padding-left: 20px;
-        padding-right: 20px;
-        padding-top: 20px;
-      }
-    }
-
-    &__row {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      margin-bottom: 32px;
-
-      @include tablets {
-        flex-direction: column;
-      }
-      @include phones {
-        margin-bottom: 22px;
-      }
-
-      &_textarea {
-        margin-bottom: 32px;
-      }
-
-      &_buttons {
-        justify-content: flex-end;
-        text-align: right;
-        margin-bottom: 0;
-
-        @include tablets {
-          flex-direction: row;
-        }
-        @include phones {
-          justify-content: space-around;
-        }
-      }
-      
-
-    }
-    
-    &__cancel {
-      color: $admin-base-color;
-      font-size: 16px;
-      line-height: 34px;
-      font-weight: 700;
-      background-color: transparent;
-      margin-right: 60px;
-          
-      &:hover, &:active, &:focus {
-        color: rgba($admin-base-color, 0.8);
-        outline: none;
-      }
-
-      @include phones {
-        margin-right: 0px;
-      }
-    }
-
-    &__submit {
-      text-transform: uppercase;
-      background-image: $admin-base-gradient;
-      border-radius: 40px;
-      padding: 19px;
-      color: $white-color;
-      min-width: 180px;
-      font-size: 16px;
-      font-weight: bold;
-      border: none;
-      outline: none;
-      
-      &:hover, &:active, &:focus {
-        background: $admin-base-color;
-      }
-
-
-      @include tablets {
-        font-size: 18px;
-        padding: 23px 46px;
-      }
-    }
-
-
-    &__group {
-      display: flex;
-      flex-direction: column;
-      width: calc( (100% - 30px) / 2);
-
-      @include tablets {
-        width: 70%;
-      }
-      @include phones {
-        width: 100%;
-      }
-
-      &_name {
-
-        @include tablets {
-          margin-bottom: 40px;
-        }
-        @include phones {
-          margin-bottom: 26px;
-        }
-      }
-      &_review {
-        width: 100%;
-      }
-    }
-
-    &__label {
-      display: block;
-      width: 100%;
-      font-size: 16px;
-      line-height: 24px;
-      color: rgba(#base-color, 0.95);
-
-      @include tablets {
-        line-height: 32px;
-      }
-    }
-
-    &__input {
-      @include admin-input;
-      padding-bottom: 10px;
-
-      &[type='textarea'] {
-        padding: 10px 20px 12px 20px;
-        resize: none;
-        border: 1px solid $color-light;
-        line-height: 30px;
-        margin-top: 16px;
-
-        @include tablets {
-          line-height: 36px;
-          height: 170px;
-        }
-        @include phones {
-          line-height: 29px;
-          font-size: 16px;
-          padding-right: 10px;
-        }
-      }
-
-      @include tablets {
-        padding-bottom: 15px;
       }
     }
   }
@@ -708,116 +429,5 @@ section.reviews
     }
   }
 
-  .controls {
-
-    width: 100%;
-    display: flex;
-
-    justify-content: flex-end;
-
-    &__btn {
-      padding: 8px;
-      background-color: transparent;
-      background-repeat: no-repeat;
-      background-size: 15px 15px;
-      background-position: center;
-      margin-right: 12px;
-      margin-left: 8px;
-
-      &:hover, &:active, &:focus  {
-        outline: none;
-        background-size: 16px 16px;
-      }
-
-      @include tablets {
-        margin-right: 6px;
-        margin-left: 4px;
-      }
-
-      &_none {    
-        display: none;
-      }
-
-      &_tick {    
-        background-image: svg-load('tick.svg', fill=#{$color-green});
-      }
-      &_remove {        
-        background-image: svg-load('remove.svg', width=100%, height=100%, fill=#{$color-middle});
-      }
-      &_red_remove {
-        background-image: svg-load('remove.svg', width=100%, height=100%, fill=#{$color-red});
-        background-size: 15px 11px;
-        
-        &:hover, &:active, &:focus  {
-          background-size: 16px 12px;
-        }
-      }
-      &_edit {
-        background-image: svg-load('pencil.svg', width=100%, height=100%, fill=#{$color-middle});
-      }
-      &_blue_edit {
-        background-image: svg-load('pencil.svg', width=100%, height=100%, fill=#{$color-blue});
-      }
-      &_trash {
-        background-image: svg-load('trash.svg', width=100%, height=100%, fill=#{$color-middle});
-      }
-    }
-
-    &_with_text {
-      cursor: pointer;
-      width: unset;
-      align-items: center;
-      position: relative;
-                      
-        &:hover, &:active, &:focus  {
-
-          & .controls__text {
-            color: $color-middle;
-          }
-        }
-
-      & .controls__btn {
-        width: 100%;
-        position: absolute;
-        background-position: right;
-        padding: 9px;
-        margin-right: 0px;
-        margin-left: 0px;
-
-          &_red_remove {
-            
-            background-size: 16px 15px;
-            
-            &:hover, &:active, &:focus  {
-              background-size: 17px 16px;
-            }
-
-            @include phones {
-              background-size: 18px 16px;
-            }
-          }
-          &_blue_edit {
-            
-            background-size: 17px 17px;
-
-                          
-            &:hover, &:active, &:focus  {
-              background-size: 18px 18px;
-            }
-
-            @include phones {
-              background-size: 18px 18px;
-            }
-          }
-      }
-
-      & .controls__text {
-        margin-right: 26px;
-        font-size: 16px;
-        font-weight: 600;
-        color: $color-light;
-      }
-    }
-  }
   
 </style>

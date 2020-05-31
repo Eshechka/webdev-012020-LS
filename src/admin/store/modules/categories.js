@@ -9,14 +9,14 @@ export default {
             state.categories = categories;
         },
         ADD_CATEGORY(state, newCategory) {
-            state.categories.push(newCategory);
+            state.categories.unshift(newCategory);
         },
         DELETE_CATEGORY(state, deleteCategoryId) {
             state.categories = state.categories.filter(category => category.id !== deleteCategoryId);
         },
         RENAME_CATEGORY(state, changedCategory) {
             state.categories = state.categories.filter(category => category.id !== changedCategory.id);
-            state.categories.push(changedCategory);
+            state.categories.unshift(changedCategory);
         },
     },
 

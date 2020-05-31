@@ -36,11 +36,6 @@
   // import appSectionWorks from './components/app-section-works'
   // import appSectionReviews from './components/app-section-reviews'
 
-//   import axios from 'axios';
-//   const baseUrl='https://webdev-api.loftschool.com/';
-//   let token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOjMyOSwiaXNzIjoiaHR0cDovL3dlYmRldi1hcGkubG9mdHNjaG9vbC5jb20vbG9naW4iLCJpYXQiOjE1OTA3Nzc4MjgsImV4cCI6MTU5MDc3Nzg4OCwibmJmIjoxNTkwNzc3ODI4LCJqdGkiOiJmSzV0SXlYWm9SYmhVV1Q2In0.F3p7Zlp-5EdNZ6YhRgVbpvGoHd008WyAPBH_mDioTRw"
-// ;
-
   export default {   
 
     components: {
@@ -51,8 +46,6 @@
       return {
         //isLogged: false, //так должно быть
         isLogged: true,
-        // baseUrl: baseUrl,
-        // token: token,
       }
     },
     methods: {

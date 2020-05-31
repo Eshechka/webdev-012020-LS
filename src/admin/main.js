@@ -14,5 +14,6 @@ new Vue({
   router,
   store,
   vuelidate,
+  
   render: h => h(App)
 });

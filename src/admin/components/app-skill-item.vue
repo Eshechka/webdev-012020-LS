@@ -13,7 +13,6 @@ div
 
       input.skill-item__name(
         :disabled='!changedSkill.editModeSkill'
-        :placeholder='skillObject.title'
         v-model='changedSkill.newTitle'
         ref='editSkillNameInput'
         )
@@ -25,7 +24,6 @@ div
     .skill-item__percent
       input.skill-item__input-percent(type='number' step='1' min='0' max='100' 
         :disabled='!changedSkill.editModeSkill'
-        :placeholder='skillObject.percent'
         v-model='changedSkill.newPercent'
         )
       div.skill-item__error.skill-item__error_percent(v-if="changedSkill.editModeSkill && $v.changedSkill.newPercent.$invalid")
@@ -159,7 +157,6 @@ div
    @import "../../styles/layout/base.pcss";
    @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800");
 
-  
   
   .skill-item {    
       display: flex;

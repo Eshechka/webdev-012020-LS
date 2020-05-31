@@ -8,11 +8,11 @@ export default {
             state.skills = skills;
         },
         ADD_SKILL(state, newSkill) {
-            state.skills.push(newSkill);
+            state.skills.unshift(newSkill);
         },
         CHANGE_SKILL(state, changedSkill) {
             state.skills = state.skills.filter(skill => skill.id !== changedSkill.id);
-            state.skills.push(changedSkill);
+            state.skills.unshift(changedSkill);
         },
         DELETE_SKILL(state, deleteSkillId) {
             state.skills = state.skills.filter(skill => skill.id !== deleteSkillId);

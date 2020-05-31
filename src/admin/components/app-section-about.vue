@@ -56,7 +56,7 @@ section.about()
         async addNewCategoryForm() {
           this.editModeNewCategory = true;
           try {
-            await this.addCategory('New Category');            
+            await this.addCategory('New Category');
           }
           catch (error) {
             alert('исправь потом меня, я ошибка из addNewCategoryForm: ' + error.message);
