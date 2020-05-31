@@ -1,61 +1,68 @@
 <template lang="pug">
 
-div
-      pre {{work.techs}}
-      pre tags: 
-      pre {{tags}}
-      .edit-work
-        .edit-work__title {{title}}
-        .edit-work__content
-          form.edit-work__form(
-            @submit.prevent='handleWorkForm'
+  .edit-work
+    .edit-work__title {{title}}
+    .edit-work__content
+      form.edit-work__form(
+        @submit.prevent='handleWorkForm'
+      )
+        .edit-work__image
+          .edit-work__image-wrapper(for='work-image')(
+            :style='{ backgroundImage : `url(${renderedPhoto})` }'
           )
-            .edit-work__image
-              .edit-work__image-wrapper(for='work-image')(
-                :style='{ backgroundImage : `url(${renderedPhoto})` }'
-              )
-                input#work-image.edit-work__image-load-input(type='file'
-                  @change='changeFileWorkImg'
-                )
-                span.edit-work__image-text {{textLoadPhoto}}
-                label.edit-work__image-label(for='work-image')
-                button.edit-work__image-load Загрузить
-            .edit-work__info
-              .edit-work__row.edit-work__row_name 
-                label.edit-work__label Название
-                input.edit-work__input(
-                  v-model='work.title'
-                )
+            input#work-image.edit-work__image-load-input(type='file'
+              @change='changeFileWorkImg'
+            )
+            span.edit-work__image-text {{textLoadPhoto}}
+            label.edit-work__image-label(for='work-image')
+            button.edit-work__image-load Загрузить
+        .edit-work__info
+          .edit-work__row.edit-work__row_name 
+            label.edit-work__label Название
+            input.edit-work__input(
+              v-model='work.title'
+            )
+            div.edit-work__error.edit-work__error_name(v-if="editMode && $v.work.title.$invalid")
+              span(v-if="!$v.work.title.maxLength") Максимум символов: {{ $v.work.title.$params.maxLength.max }}
+              span(v-else-if="!$v.work.title.minLength") Минимум символов: {{ $v.work.title.$params.minLength.min }}
+              span(v-else) Обязательно для заполнения
 
-              .edit-work__row.edit-work__row_link 
-                label.edit-work__label Ссылка
-                input.edit-work__input(
-                  v-model='work.link'
-                )
+          .edit-work__row.edit-work__row_link 
+            label.edit-work__label Ссылка
+            input.edit-work__input(
+              v-model='work.link'
+            )
+            div.edit-work__error.edit-work__error_link(v-if="editMode && $v.work.link.$invalid")
+              span(v-if="!$v.work.link.url") Требуется url адрес
+              span(v-else) Обязательно для заполнения
 
-              .edit-work__row.edit-work__row_desc 
-                label.edit-work__label Описание
-                textarea.edit-work__input(type="textarea" rows=4 resize='none' 
-                  v-model='work.description'
-                )
+          .edit-work__row.edit-work__row_desc 
+            label.edit-work__label Описание
+            textarea.edit-work__input(type="textarea" rows=4 resize='none' 
+              v-model='work.description'
+            )
+            div.edit-work__error.edit-work__error_text(v-if="editMode && $v.work.description.$invalid")
+              span(v-if="!$v.work.description.maxLength") Максимум символов: {{ $v.work.description.$params.maxLength.max }}
+              span(v-else-if="!$v.work.description.minLength") Минимум символов: {{ $v.work.description.$params.minLength.min }}
+              span(v-else) Обязательно для заполнения                
 
-              .edit-work__row.edit-work__row_tags 
-                label.edit-work__label Добавление тега
-                input.edit-work__input(
-                  v-model='work.techs'
-                )
+          .edit-work__row.edit-work__row_tags 
+            label.edit-work__label Добавление тега
+            input.edit-work__input(
+              v-model='work.techs'
+            )
 
-                .edit-work__added-tags
-                  .edit-work__added-tag(
-                    v-for='tag in tags'
-                  ) {{tag}}
+            .edit-work__added-tags
+              .edit-work__added-tag(
+                v-for='tag in tags'
+              ) {{tag}}
 
 
-              .edit-work__row.edit-work__row_buttons    
-                button.edit-work__cancel(
-                  @click='$emit("hideEditForm")'
-                ) Отмена
-                button.edit-work__submit(type='submit') Сохранить
+          .edit-work__row.edit-work__row_buttons    
+            button.edit-work__cancel(
+              @click='$emit("hideEditForm")'
+            ) Отмена
+            button.edit-work__submit(type='submit') Сохранить
 
     
 </template>
@@ -67,7 +74,7 @@ div
     const baseUrl = requests.defaults.baseURL;
 
     import { mapState, mapActions } from 'vuex';
-    import { required, minLength, maxLength } from 'vuelidate/lib/validators';
+    import { required, url, minLength, maxLength } from 'vuelidate/lib/validators';
 
 
     export default {
@@ -101,25 +108,24 @@ div
         },
       },
 
-      // validations: {
-      //   work: {
-      //     title: {
-      //       required,
-      //       minLength: minLength(2),
-      //       maxLength: maxLength(30),
-      //     },
-      //     link: {
-      //       required,
-      //       minLength: minLength(2),
-      //       maxLength: maxLength(30),
-      //     },
-      //     description: {
-      //       required,
-      //       minLength: minLength(10),
-      //       maxLength: maxLength(200),
-      //     },
-      //   },
-      // },
+      validations: {
+        work: {
+          title: {
+            required,
+            minLength: minLength(2),
+            maxLength: maxLength(30),
+          },
+          link: {
+            required,
+            url,
+          },
+          description: {
+            required,
+            minLength: minLength(10),
+            maxLength: maxLength(1000),
+          },
+        },
+      },
 
       watch: {
         currentWork() {
@@ -175,10 +181,10 @@ div
 
         handleWorkForm() {
 
-          // if (this.$v.$invalid) {
-          //   console.log('INVALID FORM');                
-          //   return;
-          // };
+          if (this.$v.$invalid) {
+            console.log('INVALID FORM');                
+            return;
+          };
 
           const formData = new FormData();
 
@@ -188,14 +194,10 @@ div
           formData.append('techs', this.work.techs);
           formData.append('description', this.work.description);
 
-          if (this.editMode==='new') {
-            console.log('addNewWork');
-            
+          if (this.editMode==='new') {            
             this.addNewWork(formData);
           }
-          else if (this.editMode==='edit') {    
-            
-            console.log('editWork');         
+          else if (this.editMode==='edit') {            
             this.editWork(formData, this.work.id);
           }
 
@@ -460,6 +462,12 @@ div
       }
     }
 
+    &__error {
+      span {
+        color: red;
+        font-size: 12px;
+      }
+    }
     
     &__added-tags {
       display: flex;

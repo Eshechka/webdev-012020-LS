@@ -478,6 +478,13 @@
         padding-bottom: 15px;
       }
     }
+
+    &__error {
+      span {
+        color: red;
+        font-size: 12px;
+      }
+    }
   }
 
 </style>
