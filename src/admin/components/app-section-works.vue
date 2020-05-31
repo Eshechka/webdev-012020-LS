@@ -11,8 +11,15 @@ section.works
         .edit-work__content
           form.edit-work__form(action='change-me' method='get')
             .edit-work__image
-              .edit-work__image-wrapper
-                .edit-work__image-text Перетащите или загрузите для загрузки изображения
+              .edit-work__image-wrapper(for='work-image')(
+                :style='{ backgroundImage : `url(${renderedPhoto})` }'
+              )
+                input#work-image.edit-work__image-load-input(type='file'
+                  @change='changeFileWorkImg'
+                )
+                              //- {{textLoadPhoto}}
+                span.edit-work__image-text      Перетащите или нажмите для загрузки изображения
+                label.edit-work__image-label(for='work-image')
                 button.edit-work__image-load Загрузить
             .edit-work__info
               .edit-work__row.edit-work__row_name 
@@ -245,12 +252,25 @@ section.works
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      position: relative;
 
-      @include tablets {
-        position: relative;
+      &:hover, &:active, &:focus {        
+        .edit-work__image-load {
+          background: $admin-base-color;
+        }
       }
     }
 
+    &__image-label {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      cursor: pointer;
+    }
+
+    &__image-load-input {
+      display: none;
+    }
 
     &__image-text {
       color: rgba($base-color, 0.95);
@@ -346,7 +366,7 @@ section.works
       width: 100%;
       font-size: 16px;
       line-height: 30px;
-      color: rgba(#base-color, 0.95);
+      color: rgba($base-color, 0.95);
     }
 
     &__input {

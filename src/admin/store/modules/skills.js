@@ -35,11 +35,7 @@ export default {
         },
         async changeSkill(store, changedSkill) {
             try {
-                const { data } = await this.$axios.post(`/skills/${changedSkill.id}`, {
-                    title: changedSkill.newTitle,
-                    percent: changedSkill.newPercent,
-                    category: changedSkill.category
-                });                
+                const { data } = await this.$axios.post(`/skills/${changedSkill.id}`, changedSkill);                
                 
                 store.commit('CHANGE_SKILL', data.skill);
             }

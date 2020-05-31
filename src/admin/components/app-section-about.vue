@@ -5,16 +5,39 @@ section.about()
     .about__topgroup.about__topgroup_about
       h3.about__title Блок "Обо мне"
 
-      form.add.add_small(@submit.prevent='addNewCategoryForm')
-        span.add__text(@click.prevent='addNewCategoryForm') Добавить группу
-        button.add__plus.add__plus_small(type='submit')
+      .add.add_small(
+        v-if='!editModeNewCategory'
+        @click='showAddForm'
+      )
+        span.add__text Добавить группу
+        button.add__plus.add__plus_small
 
     .skills-groups
         ul.skills-groups__list
+
+          li.skills-groups__item.skills-groups__item_new(
+            v-if='editModeNewCategory'
+          )
+            form.skills-form(@submit.prevent='addNewCategory')
+              .skills-form__title 
+                input.skills-form__input-title(
+                  placeholder='Название новой группы'
+                  v-model='newCategory.title'
+                  ref='editNewCategoryInput'
+                )
+                               
+                .skills-form__controls
+                  .controls
+                    button.controls__btn.controls__btn_tick(
+                      type='submit'
+                    )
+                    button.controls__btn.controls__btn_red_remove(
+                      @click='hideAddForm'
+                    )
+
           li.skills-groups__item(v-for='item in categories' :key='item.id')
             skillsForm(
               :categoryObject='item'
-              :editModeNewCategory='editModeNewCategory'
               )
                 
 </template>
@@ -33,10 +56,19 @@ section.about()
       data() {
         return {
           editModeNewCategory: false,
+
+          newCategory: {
+            title: '',
+          }
         }
       },
       
       computed: {
+
+        editNewCategoryInput() { 
+          return this.$refs['editNewCategoryInput'];
+        },
+
         ...mapState('categories', {
           allCategories: state => state.categories
         }),
@@ -51,18 +83,31 @@ section.about()
       },      
 
       methods: {
+
+        hideAddForm() {
+          this.editModeNewCategory = false;
+          this.newCategory.title = '';
+        },
+        showAddForm() {
+          this.editModeNewCategory = true;
+
+          this.$nextTick(() => {            
+            this.editNewCategoryInput.focus();
+          });
+        },
+
         ...mapActions('categories', ['addCategory', 'refreshAllCategories']),
 
-        async addNewCategoryForm() {
-          this.editModeNewCategory = true;
+        async addNewCategory() {
+          
           try {
-            await this.addCategory('New Category');
+            await this.addCategory(this.newCategory.title);
           }
           catch (error) {
-            alert('исправь потом меня, я ошибка из addNewCategoryForm: ' + error.message);
+            alert('исправь потом меня, я ошибка из addNewCategory: ' + error.message);
           }
           finally {
-            this.editModeNewCategory = false;
+            this.hideAddForm();
           }
         },
       },
@@ -139,6 +184,28 @@ section.about()
       padding: 20px;
       margin-left: 30px;
       margin-bottom: 30px;
+
+      &_new {
+        .controls__btn {
+          padding: 9px;
+
+          &:hover, &:active, &:focus  {
+            background-size: 18px 18px;
+          }
+
+          &_tick {
+            background-size: 16px 16px;
+          }
+
+          &_red_remove {
+            background-size: 16px 14px;
+            
+            &:hover, &:active, &:focus  {
+              background-size: 18px 16px;
+            }
+          }
+        }
+      }
 
       @include tablets {
         min-height: 450px;

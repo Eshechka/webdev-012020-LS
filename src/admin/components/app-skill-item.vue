@@ -1,10 +1,4 @@
 <template lang="pug">
-div
-  pre {{'Форма валидна  ' + !$v.$invalid}}
-  pre {{'Режим редактирования ' + changedSkill.editModeSkill}}
-
-  pre {{'Текущее значение  ' + skillObject.title}}                         {{skillObject.percent}}
-  pre {{'Новое значение  '  + changedSkill.newTitle}}                       {{changedSkill.newPercent}}
 
   form.skill-item(
     @submit.prevent='changeSkillNamePercent'
@@ -12,40 +6,38 @@ div
     .skill-item__group-input-error.skill-item__group-input-error_name
 
       input.skill-item__name(
-        :disabled='!changedSkill.editModeSkill'
-        v-model='changedSkill.newTitle'
-        ref='editSkillNameInput'
+        :disabled='!editModeSkill'
+        v-model='changedSkill.title'
+        ref='editSkillInput'
         )
-      div.skill-item__error.skill-item__error_name(v-if="changedSkill.editModeSkill && $v.changedSkill.newTitle.$invalid")
-        span(v-if="!$v.changedSkill.newTitle.maxLength") Максимум символов в названии: {{ $v.changedSkill.newTitle.$params.maxLength.max }}
-        span(v-else-if="!$v.changedSkill.newTitle.minLength") Минимум символов в названии: {{ $v.changedSkill.newTitle.$params.minLength.min }}
+      div.skill-item__error.skill-item__error_name(v-if="editModeSkill && $v.changedSkill.title.$invalid")
+        span(v-if="!$v.changedSkill.title.maxLength") Максимум символов в названии: {{ $v.changedSkill.title.$params.maxLength.max }}
+        span(v-else-if="!$v.changedSkill.title.minLength") Минимум символов в названии: {{ $v.changedSkill.title.$params.minLength.min }}
         span(v-else) Обязательно для заполнения
 
     .skill-item__percent
-      input.skill-item__input-percent(type='number' step='1' min='0' max='100' 
-        :disabled='!changedSkill.editModeSkill'
-        v-model='changedSkill.newPercent'
+      input.skill-item__input-percent(type='number'
+        :disabled='!editModeSkill'
+         v-model='changedSkill.percent'
         )
-      div.skill-item__error.skill-item__error_percent(v-if="changedSkill.editModeSkill && $v.changedSkill.newPercent.$invalid")
-        span(v-if="!$v.changedSkill.newPercent.between") Диапазон значений: от {{ $v.changedSkill.newPercent.$params.between.min }} до {{ $v.changedSkill.newPercent.$params.between.max }}
+      div.skill-item__error.skill-item__error_percent(v-if="editModeSkill && $v.changedSkill.percent.$invalid")
+        span(v-if="!$v.changedSkill.percent.between") Диапазон значений: от {{ $v.changedSkill.percent.$params.between.min }} до {{ $v.changedSkill.percent.$params.between.max }}
         span(v-else) Обязательно для заполнения
 
     .skill-item__controls
-      .controls
+      .controls(v-if='!editModeSkill')
         button.controls__btn.controls__btn_edit(
-          :class='{"controls__btn_none" : changedSkill.editModeSkill}'
-          @click='editModeSkillON'
+          @click.prevent='editModeSkillToggle'
         )
         button.controls__btn.controls__btn_trash(
-          :class='{"controls__btn_none" : changedSkill.editModeSkill}'
-          @click='removeSkill'
+          @click.prevent='removeSkill'
         )
-        button.controls__btn.controls__btn_tick(type='submit'
-          :class='{"controls__btn_none" : !changedSkill.editModeSkill}'
+      .controls(v-if='editModeSkill')
+        button.controls__btn.controls__btn_tick(
+          type='submit'
         )
         button.controls__btn.controls__btn_red_remove(
-          :class='{"controls__btn_none" : !changedSkill.editModeSkill}'
-          @click='editModeSkillOff(true)'
+          @click.prevent='editModeSkillToggle'
         )
 
 </template>
@@ -64,23 +56,28 @@ div
       data() {
         return {
 
+          editModeSkill: false,
+
           changedSkill: {
             ...this.skillObject,
-            editModeSkill: false,
-            newTitle: '',
-            newPercent: '',
           },
         }
       },
 
+      computed: {
+          editSkillInput() { 
+            return this.$refs['editSkillInput'];
+          },
+      },
+
       validations: {
         changedSkill: {
-          newTitle: {
+          title: {
             required,
             minLength: minLength(2),
             maxLength: maxLength(30),
           },
-          newPercent: {
+          percent: {
             required,
             numeric,
             between: between(0, 100),
@@ -89,63 +86,52 @@ div
       },
 
       methods: {
-        editModeSkillON() {
-          console.log('меняю editModeSkill');          
-          this.changedSkill.editModeSkill = true;
+        ...mapActions('skills', ['deleteSkill', 'changeSkill']), 
 
-          this.$nextTick(() => {            
-            this.$refs['editSkillNameInput'].focus();
-          });
 
-          // this.changedSkill.newTitle = this.skillObject.title;
-          // this.changedSkill.newPercent = this.skillObject.percent;
+        updateChangedSkill() {
+          this.changedSkill = {...this.skillObject};
         },
 
-        editModeSkillOff(needClear) {
-          this.changedSkill.editModeSkill = false;
-          if (needClear) {
-            console.log('очистка инпутов');            
-            this.inputsClear();
+        editModeSkillToggle() {        
+          this.editModeSkill = !this.editModeSkill;
+
+          this.updateChangedSkill();
+
+          if (this.editModeSkill) {
+            this.$nextTick(() => {            
+              this.editSkillInput.focus();
+            });
           }
         },
 
-        inputsClear() {
-            this.changedSkill.newTitle = '';
-            this.changedSkill.newPercent = '';
-        },
-
-
-        ...mapActions('skills', ['deleteSkill', 'changeSkill']),        
-
+               
         async removeSkill() {
           try { 
             await this.deleteSkill(this.skillObject.id);            
           }
           catch(error) {
-              alert('исправь потом меня, я ошибка из removeCategory: ' + error.message);
+            alert('исправь потом меня, я ошибка из removeCategory: ' + error.message);
           }
         },
 
-        async changeSkillNamePercent() {
+        async changeSkillNamePercent() {          
 
-              if (this.$v.$invalid) {
-                  console.log('INVALID FORM');                
-                  return;
-              }
-
-            this.editModeSkillOff();           
-              try {
-                await this.changeSkill(this.changedSkill);
-              }
-              catch(error) {
-                  alert('исправь потом меня, я ошибка из changeSkillNamePercent: ' + error.message);
-              }
-              finally {
-                this.inputsClear();
-              }
-
-        },
+          if (this.$v.$invalid) {
+              console.log('INVALID FORM');                
+              return;
+          }
         
+          try {
+            await this.changeSkill(this.changedSkill);
+          }
+          catch(error) {
+              alert('исправь потом меня, я ошибка из changeSkillNamePercent: ' + error.message);
+          }
+          finally {
+            this.editModeSkillToggle();
+          }
+        },
       },
     }
 </script>

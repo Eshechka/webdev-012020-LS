@@ -22,18 +22,32 @@
               label.edit-review__label Имя автора
               input.edit-review__input(
                 v-model='review.author'
-              ) 
+              )
+              div.edit-review__error.edit-review__error_name(v-if="editMode && $v.review.author.$invalid")
+                span(v-if="!$v.review.author.maxLength") Максимум символов: {{ $v.review.author.$params.maxLength.max }}
+                span(v-else-if="!$v.review.author.minLength") Минимум символов: {{ $v.review.author.$params.minLength.min }}
+                span(v-else) Обязательно для заполнения
+
             .edit-review__group.edit-review__group_occupation
               label.edit-review__label Титул автора
               input.edit-review__input(
                 v-model='review.occ'
               )
+              div.edit-review__error.edit-review__error_occupation(v-if="editMode && $v.review.occ.$invalid")
+                span(v-if="!$v.review.occ.maxLength") Максимум символов: {{ $v.review.occ.$params.maxLength.max }}
+                span(v-else-if="!$v.review.occ.minLength") Минимум символов: {{ $v.review.occ.$params.minLength.min }}
+                span(v-else) Обязательно для заполнения
+
           .edit-review__row.edit-review__row_textarea
             .edit-review__group.edit-review__group_review
               label.edit-review__label Отзыв
               textarea.edit-review__input.edit-review__input_textarea(type="textarea" rows=3 resize='none' 
                 v-model='review.text'
               )
+              div.edit-review__error.edit-review__error_review(v-if="editMode && $v.review.text.$invalid")
+                span(v-if="!$v.review.text.maxLength") Максимум символов: {{ $v.review.text.$params.maxLength.max }}
+                span(v-else-if="!$v.review.text.minLength") Минимум символов: {{ $v.review.text.$params.minLength.min }}
+                span(v-else) Обязательно для заполнения
 
           .edit-review__row.edit-review__row_buttons    
             button.edit-review__cancel(
@@ -47,7 +61,8 @@
     import { renderer } from '../helpers/picture'
 
     import { mapState, mapActions } from 'vuex';
-
+    import { required, minLength, maxLength } from 'vuelidate/lib/validators';
+    
     export default {
 
         props: {
@@ -76,6 +91,26 @@
           }),
         },
 
+        validations: {
+          review: {
+            author: {
+              required,
+              minLength: minLength(2),
+              maxLength: maxLength(30),
+            },
+            occ: {
+              required,
+              minLength: minLength(2),
+              maxLength: maxLength(30),
+            },
+            text: {
+              required,
+              minLength: minLength(10),
+              maxLength: maxLength(200),
+            },
+          },
+        },
+
         watch: {
           currentReview() {
             if (this.editMode === 'edit') {             
@@ -102,7 +137,7 @@
               occ: '',
               text: '',  
             };
-            this.textLoadPhoto = 'Доюавить фото';
+            this.textLoadPhoto = 'Добавить фото';
             this.title = 'Новый отзыв';
             this.renderedPhoto = '';
           },
@@ -126,6 +161,12 @@
           ...mapActions('reviews', ['addReview', 'changeReview']),
 
           handleReviewForm() {
+
+            if (this.$v.$invalid) {
+              console.log('INVALID FORM');                
+              return;
+            };
+
             const formData = new FormData();
 
             formData.append('photo', this.review.photo);
@@ -134,13 +175,9 @@
             formData.append('text', this.review.text);
 
             if (this.editMode==='new') {
-              //если все нужные поля не пустые то addNewReview
               this.addNewReview(formData);
             }
-            else if (this.editMode==='edit') {
-              //если все нужные поля не пустые то editReview
-              console.log('editMode===edit, formdata:', formData);
-                 
+            else if (this.editMode==='edit') {             
               this.editReview(formData, this.review.id);
             }
 
@@ -162,10 +199,7 @@
 
           async editReview(renewReviewData, changedReviewId) {
             try {
-              console.log('renewReviewData from changedReviewId   ', renewReviewData);
-              console.log('changedReviewId from changedReviewId   ', changedReviewId);
               await this.changeReview({ renewReviewData, changedReviewId });
-              
             }
             catch (error) {
               alert('исправь потом меня, я ошибка из editReview: ' + error.message);

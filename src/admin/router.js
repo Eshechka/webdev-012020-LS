@@ -10,10 +10,6 @@ const routes = [
         component: () => import('./components/app-section-about.vue'),
     },
     {    
-        path: '/about',
-        component: () => import('./components/app-section-about.vue'),
-    },
-    {    
         path: '/works',
         component: () => import('./components/app-section-works.vue'),
     },

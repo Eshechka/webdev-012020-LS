@@ -3,13 +3,10 @@
   form.skills-form(
     @submit.prevent='changeCategoryName'
   )
-
     .skills-form__title 
       input.skills-form__input-title(
-        placeholder='Название новой группы'
-        v-model='changedCategory.newtitle'
+        v-model='changedCategory.category'
         :class='{"skills-form__input-title_hidden" : !editModeCategory}'
-        @keyup.enter='changeCategoryName'
         ref='editCategoryInput'
       )
       .skills-form__tooltip(
@@ -21,22 +18,19 @@
       ) {{categoryObject.category}}
       
       .skills-form__controls
-        .controls
+        .controls(v-if='!editModeCategory')
           button.controls__btn.controls__btn_edit(
-            :class='{"controls__btn_none" : editModeCategory}'
-            @click.prevent='editModeCategoryON'
+            @click.prevent='editModeCategoryToggle'
           )          
-          button.controls__btn.controls__btn_tick(type='submit'
-            :class='{"controls__btn_none" : !editModeCategory}'
+          button.controls__btn.controls__btn_trash(
+            @click.prevent='removeCategory'
+          )
+        .controls(v-if='editModeCategory')
+          button.controls__btn.controls__btn_tick(
+            type='submit'
           )
           button.controls__btn.controls__btn_red_remove(
-            :class='{"controls__btn_none" : !editModeCategory}'
-            @click.prevent='editModeCategoryOff'
-
-          )
-          button.controls__btn.controls__btn_trash(
-            :class='{"controls__btn_none" : editModeCategory}'
-            @click.prevent='removeCategory'
+            @click.prevent='editModeCategoryToggle'
           )
 
     .skills-form__added-items
@@ -68,17 +62,15 @@
 
       props: {
         categoryObject: Object,
-        editModeNewCategory: Boolean,
       },
 
       data() {
         return {
 
-          editModeCategory: this.editModeNewCategory,
+          editModeCategory: false,
 
           changedCategory: {
             ...this.categoryObject,
-            newtitle: '',
           },
 
           isErrorCategoryInput: false,
@@ -121,17 +113,25 @@
           return !this.isErrorCategoryInput;
         },
 
-        editModeCategoryON() {
-          this.editModeCategory = true;
-          this.$nextTick(() => {
-            
-            this.editCategoryInput.focus();
-          });
+        editModeCategoryToggle() {
+          this.editModeCategory = !this.editModeCategory;
+          this.updateChangedCategory();
+
+          if (this.editModeCategory) {
+            this.$nextTick(() => {            
+              this.editCategoryInput.focus();
+            });
+          }
+          else {
+            this.isErrorCategoryInput = false;
+          }
+
         },
-        editModeCategoryOff() {
-          this.editModeCategory = false;
-          this.isErrorCategoryInput = false;
+
+        updateChangedCategory() {
+          this.changedCategory = {...this.categoryObject};
         },
+
 
         ...mapActions('categories', ['deleteCategory', 'renameCategory']),
         ...mapActions('skills', ['refreshAllSkills']),        
@@ -149,7 +149,7 @@
           //валидация
           if (this.validateCategoryInput()) {
             
-            this.editModeCategoryOff();
+            
             try { 
               await this.renameCategory(this.changedCategory);                        
             }
@@ -157,7 +157,7 @@
                 alert('исправь потом меня, я ошибка из changeCategoryName: ' + error.message);
             }
             finally {
-              this.changedCategory.newtitle = '';
+             this.editModeCategoryToggle(); 
             }
 
           }

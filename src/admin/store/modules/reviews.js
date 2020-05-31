@@ -42,13 +42,7 @@ export default {
         },
         async changeReview(store, {renewReviewData, changedReviewId}) {
             try {
-                console.log('hello from changeReview');
-                
-                console.log(renewReviewData);
-                console.log(changedReviewId);
                 const { data } = await this.$axios.post(`/reviews/${changedReviewId}`, renewReviewData);
-                console.log(data);
-                
                 store.commit('CHANGE_REVIEW', data.review);
             }
             catch(error) { throw new Error ( error.response.data.error || error.response.data.message ); }

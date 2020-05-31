@@ -3,7 +3,7 @@
   .review
     .review__topgroup
       .review__avatar 
-        img.review__image-author(:src='`https://webdev-api.loftschool.com/${reviewObject.photo}`')
+        img.review__image-author(:src='`${baseUrl}/${reviewObject.photo}`')
       .review__author {{reviewObject.author}}
         .review__occupation {{reviewObject.occ}}
     .review__info
@@ -26,6 +26,11 @@
 
     import { mapActions } from 'vuex';
 
+    import { required, numeric, minLength, maxLength, between } from 'vuelidate/lib/validators';
+
+    import requests from '../requests';
+    const baseUrl = requests.defaults.baseURL;
+
     export default {
 
         props: {
@@ -36,7 +41,8 @@
           return {
             changedReview: {
               ...this.reviewObject,
-            }
+            },
+            baseUrl: baseUrl,
           }
         },
 
@@ -104,6 +110,7 @@
       border-radius: 50%;
       overflow: hidden;
       margin-right: 20px;
+      flex-shrink: 0;
     }
 
     &__image-author {
@@ -111,12 +118,14 @@
     }
 
     &__author {
+      overflow: hidden;
       font-size: 18px;
       font-weight: bold;
       color: $base-color;
     }
 
     &__occupation{
+      overflow: hidden;
       font-size: 16px;
       line-height: 30px;
       font-weight: 600;
@@ -135,6 +144,7 @@
     }
 
     &__text {
+        overflow: hidden;
         font-size: 16px;
         line-height: 30px;
         font-weight: 600;

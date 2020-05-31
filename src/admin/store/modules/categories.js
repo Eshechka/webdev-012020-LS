@@ -40,7 +40,7 @@ export default {
 
         async renameCategory(store, changedCategory) {
             try {
-                const { data } = await this.$axios.post(`/categories/${changedCategory.id}`, {title: changedCategory.newtitle});
+                const { data } = await this.$axios.post(`/categories/${changedCategory.id}`, {title: changedCategory.category});
                 store.commit('RENAME_CATEGORY', data.category);
             }
             catch(error) { throw new Error ( error.response.data.error || error.response.data.message ); }
