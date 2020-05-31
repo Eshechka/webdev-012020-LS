@@ -50,33 +50,27 @@ section.auth
             localStorage.setItem('token', token);
             $axios.defaults.headers['Authorization'] = `Bearer ${token}`;
             
+            this.getUserId();
+
+            this.$router.replace('/');
+            
             this.$emit('loginFromAuth');
 
-            this.$router.replace('/about');
-            console.log(response);
-
           } catch(error) {
-            alert('исправь потом меня, я ошибка: ' + error.message);
+            alert('исправь потом меня, я ошибка login: ' + error.message);
           }
-          
-          // .then(function (response) {
-          //   console.log('data: ', response.data);
-          // })
-          // .catch(function (error) {
-          //   console.log(error.response.data);
-          // });
-          
         }, 
 
-      //   getUserId () {
-      //     $axios.get('user/')
-      //     .then(function (response) {
-      //       console.log('ID data: ', response.data);
-      //     })
-      //     .catch(function (error) {
-      //       console.log(error.response.data);
-      //     });
-      //   },
+        async getUserId() {
+          try {
+            const response = await $axios.get('user/');
+            const userId = response.data.user.id;
+            localStorage.setItem('userId', userId);            
+          }
+          catch(error) {
+            alert('исправь потом меня, я ошибка getUserId: ' + error.message);
+          }
+        },
       },
 
     }

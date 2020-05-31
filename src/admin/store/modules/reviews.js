@@ -1,3 +1,6 @@
+import requests from '../../requests';
+const userId = requests.userId; 
+
 export default {
     namespaced: true,
     state: {
@@ -49,7 +52,7 @@ export default {
         },
         async refreshAllReviews(store) {
             try {
-                const { data } = await this.$axios.get('/reviews/329');                
+                const { data } = await this.$axios.get(`/reviews/${userId}`);                
                 store.commit('SET_REVIEWS', data);
             }
             catch(error) { throw new Error ( error.response.data.error || error.response.data.message ); }

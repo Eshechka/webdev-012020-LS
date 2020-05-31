@@ -41,20 +41,20 @@ section.reviews
 
     export default {
 
-        components: {
-          editReview, review
-        },
+      components: {
+        editReview, review
+      },
 
-        data() {
-          return {
-            isVisibleEditForm: false,
-            editMode: '',
-          }
-        },
-
-              
-        computed: {
-          ...mapState('reviews', {
+      data() {
+        return {
+          isVisibleEditForm: false,
+          editMode: '',
+        }
+      },
+            
+      computed: {
+        
+        ...mapState('reviews', {
           allReviews: state => state.reviews
         }),
         
@@ -63,7 +63,6 @@ section.reviews
         },
       },
 
-            
       created() {
         this.refreshAllReviews();
       }, 

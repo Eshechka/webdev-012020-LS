@@ -1,3 +1,6 @@
+import requests from '../../requests';
+const userId = requests.userId; 
+
 export default {
     namespaced: true,
     state: {
@@ -49,7 +52,7 @@ export default {
 
         async refreshAllCategories(store) {
             try {
-                const { data } = await this.$axios.get('/categories/329');
+                const { data } = await this.$axios.get(`/categories/${userId}`);
                 store.commit('SET_CATEGORIES', data);
             }
             catch(error) { throw new Error ( error.response.data.error || error.response.data.message ); }

@@ -1,10 +1,11 @@
 import axios from 'axios';
 
-const baseUrl='https://webdev-api.loftschool.com/';
+const baseUrl='https://webdev-api.loftschool.com';
 const token = localStorage.getItem('token');
+const userId = localStorage.getItem('userId');
 
 if (!token) console.warn("Отсутствует токен");
-
+if (!userId) console.warn("Отсутствует userId");
 
 const requests = axios.create({
     baseURL: baseUrl,
@@ -34,5 +35,6 @@ requests.interceptors.response.use(
   }
 );
 
+requests.userId = userId;
 
 export default requests;

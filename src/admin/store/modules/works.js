@@ -1,3 +1,6 @@
+import requests from '../../requests';
+const userId = requests.userId; 
+
 export default {
     namespaced: true,
     state: {
@@ -49,7 +52,7 @@ export default {
         },
         async refreshAllWorks(store) {
             try {
-                const { data } = await this.$axios.get('/works/329');                
+                const { data } = await this.$axios.get(`/works/${userId}`);                
                 store.commit('SET_WORKS', data);
             }
             catch(error) { throw new Error ( error.response.data.error || error.response.data.message ); }

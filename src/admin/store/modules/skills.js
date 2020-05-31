@@ -1,3 +1,6 @@
+import requests from '../../requests';
+const userId = requests.userId; 
+
 export default {
     namespaced: true,
     state: {
@@ -43,7 +46,7 @@ export default {
         },
         async refreshAllSkills(store) {
             try {
-                const { data } = await this.$axios.get('/skills/329');
+                const { data } = await this.$axios.get(`/skills/${userId}`);
                 store.commit('SET_SKILLS', data);
             }
             catch(error) { throw new Error ( error.response.data.error || error.response.data.message ); }

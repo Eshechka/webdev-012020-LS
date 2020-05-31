@@ -1,11 +1,11 @@
 <template lang="pug">
 .maincontent
 
-  .maincontent__message.maincontent__message_green Сообщение отправлено
-  .maincontent__message.maincontent__message_orange Сервер перегружен
-  .maincontent__message.maincontent__message_red Сообщение не отправлено
+  //- .maincontent__message.maincontent__message_green Сообщение отправлено
+  //- .maincontent__message.maincontent__message_orange Сервер перегружен
+  //- .maincontent__message.maincontent__message_red Сообщение не отправлено
 
-  template(v-if='checkLogged()' )
+  template(v-if='isLogged' )
     appHeader(
       @logoutFromHeader='logout'
     )
@@ -13,17 +13,12 @@
     appMenu
 
     router-view
-    //- appSectionAbout
-    //- appSectionWorks
-    //- appSectionReviews
 
-
-  template(v-else-if='!checkLogged()' )    
+  template(v-else-if='!isLogged' )    
     appAuth(
       @loginFromAuth='login'
     )
     
-
   </template>
 
 
@@ -32,15 +27,11 @@
   import appAuth from './components/app-auth'
   import appMenu from './components/app-menu'
   import appHeader from './components/app-header'
-  // import appSectionAbout from './components/app-section-about'
-  // import appSectionWorks from './components/app-section-works'
-  // import appSectionReviews from './components/app-section-reviews'
 
   export default {   
 
     components: {
       appAuth, appMenu, appHeader, 
-      // appSectionAbout, appSectionWorks, appSectionReviews,
     },
     data() {
       return {
@@ -49,9 +40,7 @@
       }
     },
     methods: {
-      checkLogged() {
-        return this.isLogged;
-      },
+
       login() {
         this.isLogged = true;
         this.$router.replace('/');

@@ -58,6 +58,10 @@
 </template>
 
 <script>
+
+    import requests from '../requests';
+    const baseUrl = requests.defaults.baseURL;
+
     import { renderer } from '../helpers/picture'
 
     import { mapState, mapActions } from 'vuex';
@@ -65,151 +69,151 @@
     
     export default {
 
-        props: {
-          editMode: String,
-        },        
-        
-        data() {
-          return {
-            title: 'Новый отзыв',
-            textLoadPhoto: 'Добавить фото',
-            renderedPhoto: '',
+      props: {
+        editMode: String,
+      },        
+      
+      data() {
+        return {
+          title: 'Новый отзыв',
+          textLoadPhoto: 'Добавить фото',
+          renderedPhoto: '',
 
-            review: {
-              photo: '',
-              author: '',
-              occ: '',
-              text: '',  
-            }, 
-
-          }
-        },
-
-        computed: {
-          ...mapState('reviews', {
-            currentReview: state => state.currentReview
-          }),
-        },
-
-        validations: {
           review: {
-            author: {
-              required,
-              minLength: minLength(2),
-              maxLength: maxLength(30),
-            },
-            occ: {
-              required,
-              minLength: minLength(2),
-              maxLength: maxLength(30),
-            },
-            text: {
-              required,
-              minLength: minLength(10),
-              maxLength: maxLength(200),
-            },
+            photo: '',
+            author: '',
+            occ: '',
+            text: '',  
+          }, 
+
+        }
+      },
+
+      computed: {
+        ...mapState('reviews', {
+          currentReview: state => state.currentReview
+        }),
+      },
+
+      validations: {
+        review: {
+          author: {
+            required,
+            minLength: minLength(2),
+            maxLength: maxLength(30),
+          },
+          occ: {
+            required,
+            minLength: minLength(2),
+            maxLength: maxLength(30),
+          },
+          text: {
+            required,
+            minLength: minLength(10),
+            maxLength: maxLength(200),
           },
         },
+      },
 
-        watch: {
-          currentReview() {
-            if (this.editMode === 'edit') {             
-              this.setChangedReview();              
-            }
-            else if (this.editMode === 'new') {
-              this.clearReview();              
-            }
-          },
+      watch: {
+        currentReview() {
+          if (this.editMode === 'edit') {             
+            this.setChangedReview();              
+          }
+          else if (this.editMode === 'new') {
+            this.clearReview();              
+          }
+        },
+      },
+
+      created() {
+        if (this.editMode === 'edit') {
+          this.setChangedReview();
+        }
+      },
+
+      methods: {
+
+        clearReview() {         
+          this.review = {
+            photo: '',
+            author: '',
+            occ: '',
+            text: '',  
+          };
+          this.textLoadPhoto = 'Добавить фото';
+          this.title = 'Новый отзыв';
+          this.renderedPhoto = '';
+        },
+        setChangedReview() {         
+          this.review = {...this.currentReview};
+          this.renderedPhoto = `${baseUrl}/${this.review.photo}`;
+          this.review.photo = '';
+          this.textLoadPhoto = 'Изменить фото';
+          this.title = 'Редактирование отзыва';
         },
 
-        created() {
-          if (this.editMode === 'edit') {
-            this.setChangedReview();
+        changeFileReviewImg(e) {
+          this.review.photo = e.target.files[0];
+
+          renderer(this.review.photo).then(pic => {
+            this.renderedPhoto = pic;
+          })
+        },
+
+
+        ...mapActions('reviews', ['addReview', 'changeReview']),
+
+        handleReviewForm() {
+
+          if (this.$v.$invalid) {
+            console.log('INVALID FORM');                
+            return;
+          };
+
+          const formData = new FormData();
+
+          formData.append('photo', this.review.photo);
+          formData.append('author', this.review.author);
+          formData.append('occ', this.review.occ);
+          formData.append('text', this.review.text);
+
+          if (this.editMode==='new') {
+            this.addNewReview(formData);
+          }
+          else if (this.editMode==='edit') {             
+            this.editReview(formData, this.review.id);
+          }
+
+          this.$emit("hideEditForm");
+        },
+
+
+        async addNewReview(newReview) {
+          try {
+            await this.addReview(newReview);
+          }
+          catch (error) {
+            alert('исправь потом меня, я ошибка из addNewReview: ' + error.message);
+          }
+          finally {
+            // disable кнопке
           }
         },
 
-        methods: {
-
-          clearReview() {         
-            this.review = {
-              photo: '',
-              author: '',
-              occ: '',
-              text: '',  
-            };
-            this.textLoadPhoto = 'Добавить фото';
-            this.title = 'Новый отзыв';
-            this.renderedPhoto = '';
-          },
-          setChangedReview() {         
-            this.review = {...this.currentReview};
-            this.renderedPhoto = `https://webdev-api.loftschool.com/${this.review.photo}`;
-            this.review.photo = '';
-            this.textLoadPhoto = 'Изменить фото';
-            this.title = 'Редактирование отзыва';
-          },
-
-          changeFileReviewImg(e) {
-            this.review.photo = e.target.files[0];
-
-            renderer(this.review.photo).then(pic => {
-              this.renderedPhoto = pic;
-            })
-          },
-
-
-          ...mapActions('reviews', ['addReview', 'changeReview']),
-
-          handleReviewForm() {
-
-            if (this.$v.$invalid) {
-              console.log('INVALID FORM');                
-              return;
-            };
-
-            const formData = new FormData();
-
-            formData.append('photo', this.review.photo);
-            formData.append('author', this.review.author);
-            formData.append('occ', this.review.occ);
-            formData.append('text', this.review.text);
-
-            if (this.editMode==='new') {
-              this.addNewReview(formData);
-            }
-            else if (this.editMode==='edit') {             
-              this.editReview(formData, this.review.id);
-            }
-
-            this.$emit("hideEditForm");
-          },
-
-
-          async addNewReview(newReview) {
-            try {
-              await this.addReview(newReview);
-            }
-            catch (error) {
-              alert('исправь потом меня, я ошибка из addNewReview: ' + error.message);
-            }
-            finally {
-              // disable кнопке
-            }
-          },
-
-          async editReview(renewReviewData, changedReviewId) {
-            try {
-              await this.changeReview({ renewReviewData, changedReviewId });
-            }
-            catch (error) {
-              alert('исправь потом меня, я ошибка из editReview: ' + error.message);
-            }
-            finally {
-              // disable кнопке
-            }
-          },
-
+        async editReview(renewReviewData, changedReviewId) {
+          try {
+            await this.changeReview({ renewReviewData, changedReviewId });
+          }
+          catch (error) {
+            alert('исправь потом меня, я ошибка из editReview: ' + error.message);
+          }
+          finally {
+            // disable кнопке
+          }
         },
+
+      },
     }
 </script>
 
