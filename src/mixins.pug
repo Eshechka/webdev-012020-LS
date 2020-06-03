@@ -94,6 +94,7 @@ mixin progress(text, degree)
       circle(cx=75 cy=75 r=65 fill="none" stroke="url(#gradient)" stroke-width="20" stroke-dasharray=`${degree} 500`)
     div.progress__text= text
 
+
 mixin review(name, occupation, avatar, text)
   .review
     .review__text
@@ -104,6 +105,7 @@ mixin review(name, occupation, avatar, text)
 
       .review__author-name= name 
         .review__author-occupation= occupation
+
 
 mixin arrows(iconName, theme, isDisable)
   - let classes = ['arrows']

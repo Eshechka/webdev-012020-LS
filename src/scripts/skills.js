@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import $axios from '../admin/requests';
-const userId = $axios.userId;
+const userId = 329;
 
 new Vue ({
     el: '#skills-component',
@@ -26,7 +26,7 @@ new Vue ({
             },
   
             mounted() {
-              this.colorCircle();
+              this.colorCircle();              
             },
           }
         }
@@ -40,7 +40,7 @@ new Vue ({
       }
     },
     async created () {
-        const {data} = await $axios.get(`/categories/${$axios.userId}`);
+        const {data} = await $axios.get(`/categories/${userId}`);
         this.dataSkills = data;
       }
     });

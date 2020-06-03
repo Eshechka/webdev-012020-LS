@@ -1,12 +1,35 @@
 import Vue from 'vue';
-
+import $axios from '../admin/requests';
 import Flickity from 'vue-flickity';
+
+const userId = 329;
+
+
+// const review = {
+
+
+// }
+
  
 new Vue({
 
   el: '#reviews',
   components: {
-    Flickity
+
+    Flickity,
+
+    review: {
+        template: '#review', 
+
+        props: ['review'],
+
+        data () {
+          return { 
+
+          }
+        },
+
+    }, 
   },
   
   data() {
@@ -21,7 +44,9 @@ new Vue({
         contain: true
         
         // any options from Flickity can be used
-      }
+      },
+      
+      dataReviews: [],
     }
   },
   computed: {
@@ -67,9 +92,21 @@ new Vue({
           }
     },
   },
+
+  async created () {
+    try {
+      const { data } = await $axios.get(`/reviews/${userId}`);
+      this.dataReviews = data;
+      this.$nextTick(this.$refs.flickity.rerender);
+    }
+    catch (error) {
+      console.log('Ошибка из created');      
+    }
+  },
+
   mounted () {
     if (this.$refs.flickity.slides().length == 1) {
       this.btnNext.disabled = true;
-    }
+    }    
   }
 });

@@ -74,7 +74,7 @@ section.about()
         }),
         
         categories() {
-          return (this.allCategories).sort( (a, b) => a.id - b.id );
+          return (this.allCategories).sort( (a, b) => b.id - a.id );
         },
       },
       

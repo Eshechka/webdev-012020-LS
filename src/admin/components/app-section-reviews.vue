@@ -59,7 +59,7 @@ section.reviews
         }),
         
         reviews() {
-          return (this.allReviews).sort( (a, b) => a.id - b.id );
+          return (this.allReviews).sort( (a, b) => b.id - a.id );
         },
       },
 

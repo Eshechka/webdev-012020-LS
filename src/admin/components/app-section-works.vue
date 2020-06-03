@@ -59,7 +59,7 @@ section.works
       }),
       
       works() {
-        return (this.allWorks).sort( (a, b) => a.id - b.id );
+        return (this.allWorks).sort( (a, b) => b.id - a.id );
         },
       },
             

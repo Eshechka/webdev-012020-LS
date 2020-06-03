@@ -169,7 +169,7 @@ html(lang='ru')
               +image('content/parallax-budda/front-bg1.png', 'parallax__img')
 
 
-          section.reviews#reviews(@click='checkArrows' @touchend='checkArrows')
+          section#reviews.reviews(@click='checkArrows' @touchend='checkArrows')
             .container
               .reviews__topgroup
                 h3.reviews__title Что обо мне говорят
@@ -186,14 +186,17 @@ html(lang='ru')
                     :disabled='false' 
                   )
                     +icon('arrow-down', 'arrows__icon') 
-                  //- +arrows('arrow-down', 'white_circles', false)
 
               flickity(ref="flickity" :options='flickityOptions').reviews__container
-                +review('1Ковальчук Дмитрий', 'Основатель Loftschool', 'content/review_authot1.png', 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!')
-                +review('2Владимир Сабанцев', 'Преподаватель', 'content/review_authot2.png', 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах')
-                +review('3Владимир Сабанцев', 'Преподаватель', 'content/review_authot2.png', 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах')            
-                +review('4Ковальчук Дмитрий', 'Основатель Loftschool', 'content/review_authot1.png', 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!')
-                +review('5Ковальчук Дмитрий', 'Основатель Loftschool', 'content/review_authot1.png', 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!')
+                review(
+                  v-for='review in dataReviews' :key='review.id' 
+                  :review='review'
+                  )                
+                //- +review('1Ковальчук Дмитрий', 'Основатель Loftschool', 'content/review_authot1.png', 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!')
+                //- +review('2Владимир Сабанцев', 'Преподаватель', 'content/review_authot2.png', 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах')
+                //- +review('3Владимир Сабанцев', 'Преподаватель', 'content/review_authot2.png', 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах')            
+                //- +review('4Ковальчук Дмитрий', 'Основатель Loftschool', 'content/review_authot1.png', 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!')
+                //- +review('5Ковальчук Дмитрий', 'Основатель Loftschool', 'content/review_authot1.png', 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!')
                 //- +review('6Владимир Сабанцев', 'Преподватель', 'content/review_authot2.png', 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах')
                 //- +review('7Владимир Сабанцев', 'Преподватель', 'content/review_authot2.png', 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах')
             
@@ -228,8 +231,3 @@ html(lang='ru')
 
 
     include ./templates/entry.pug
-
-
-
-        //-+image('content/user.jpg', 'user-pic')
-        //-+icon('link', 'link-class')
