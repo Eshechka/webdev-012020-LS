@@ -15,14 +15,26 @@
           .header__login
             .login
               a.login__link(
-                @click.prevent='$emit("logoutFromHeader")',
+                @click.prevent='logout',
               ) Выйти
 
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
     export default {
-        
+        methods: {
+          ...mapActions({
+            logoutUser: 'user/logout'
+          }),
+
+          logout() {
+            this.logoutUser();
+            this.$router.replace('/auth');
+          },
+
+        },
     }
 </script>
 

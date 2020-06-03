@@ -53,8 +53,6 @@ section.auth
             this.getUserId();
 
             this.$router.replace('/');
-            
-            this.$emit('loginFromAuth');
 
           } catch(error) {
             alert('исправь потом меня, я ошибка login: ' + error.message);

@@ -54,8 +54,11 @@
 
             .edit-work__added-tags
               .edit-work__added-tag(
-                v-for='tag in tags'
-              ) {{tag}}
+                v-for='tag, ndx in tags'
+              ) {{tag.replace(/[\s|,]+/g, '').trim()}}
+                .edit-work__added-tag-close(
+                  @click='removeTag(ndx)'
+                )
 
 
           .edit-work__row.edit-work__row_buttons    
@@ -103,9 +106,10 @@
           currentWork: state => state.currentWork
         }),
 
-        tags() {
-          return this.work.techs.replace(/\s/g, '') ? this.work.techs.split(/[\s|,]+/) : [];
+        tags() {          
+          return this.work.techs.match(/[a-zа-яё0-9.-]+[\s|,]*/gi);          
         },
+
       },
 
       validations: {
@@ -176,6 +180,11 @@
           })
         },
 
+        removeTag(ndx) {
+          this.tags.splice(ndx, 1);
+          console.log(this.tags);          
+          this.work.techs = this.tags.join('');
+        },
 
         ...mapActions('works', ['addWork', 'changeWork']),
 
@@ -203,7 +212,6 @@
 
           this.$emit("hideEditForm");
         },
-
 
         async addNewWork(newWork) {
           try {
@@ -471,10 +479,12 @@
     
     &__added-tags {
       display: flex;
+      flex-wrap: wrap;
       margin-top: 20px;
     }  
     &__added-tag {
       margin-right: 10px;
+      margin-bottom: 10px;
       padding: 8px 33px 8px 19px;
       font-size: 12px;
       line-height: 1;
@@ -482,32 +492,36 @@
       background-color: rgba(#dee4ed, 0.5);
       border-radius: 30px;
 
-      &:after {
-        content: '';
-        cursor: pointer;
-        position: absolute;
-        right: 14px;
-        top: 50%;      
-        transform: translateY(-50%);
-        height: 10px;
-        width: 10px;
-        padding: 0;
-        background-image: svg-load('remove.svg', width=100%, height=100%, fill=#{$color-middle});
-        background-repeat: no-repeat;
-        background-size: 10px 10px;
-        background-position: center;
-
-        @include tablets {
-          height: 12px;
-          width: 12px;
-          background-size: 12px 12px;
-        }
-      }
 
       @include tablets {
         padding: 11px 40px 11px 19px;
         font-size: 14px;
-      }    
+      }
+    }
+
+    &__added-tag-close {
+      cursor: pointer;
+      position: absolute;
+      right: 14px;
+      top: 50%;      
+      transform: translateY(-50%);
+      height: 10px;
+      width: 10px;
+      padding: 0;
+      background-image: svg-load('remove.svg', width=100%, height=100%, fill=#{$color-middle});
+      background-repeat: no-repeat;
+      background-size: 10px 10px;
+      background-position: center;
+
+      @include tablets {
+        height: 12px;
+        width: 12px;
+        background-size: 12px 12px;
+      }
+
+      &:hover {
+        background-image: svg-load('remove.svg', width=100%, height=100%, fill=#{$color-red});
+      }
     }
 
     &__cancel {

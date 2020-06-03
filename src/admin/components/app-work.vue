@@ -112,28 +112,27 @@
       position: absolute;
       bottom: 0;
       width: 100%;
-      max-height: 50%;
+      max-height: 60%;
       overflow: hidden;
       display: flex;
       justify-content: flex-end;
       flex-wrap: wrap-reverse;
+
+        @include tablets {
+          max-height: 50%;
+        }
     }
 
     &__tag {
       margin: 5px;
       margin-left: 10px;
-      padding: 8px 33px 8px 19px;
+      padding: 8px 20px;
       font-size: 12px;
       line-height: 1;
       position: relative;
       background-color: rgba(#dee4ed, 0.5);
       border-radius: 30px;
 
-        @include tablets {
-          height: 12px;
-          width: 12px;
-          background-size: 12px 12px;
-        }
       }
 
 

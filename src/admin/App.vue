@@ -5,28 +5,23 @@
   //- .maincontent__message.maincontent__message_orange Сервер перегружен
   //- .maincontent__message.maincontent__message_red Сообщение не отправлено
 
-  template(v-if='isLogged' )
-    appHeader(
-      @logoutFromHeader='logout'
-    )
 
+  template(v-if='userIsLogged()' )    
+    appHeader
     appMenu
 
-    router-view
+  router-view
 
-  template(v-else-if='!isLogged' )    
-    appAuth(
-      @loginFromAuth='login'
-    )
-    
   </template>
 
 
 <script>
 
-  import appAuth from './components/app-auth'
-  import appMenu from './components/app-menu'
-  import appHeader from './components/app-header'
+  import appAuth from './components/app-auth';
+  import appMenu from './components/app-menu';
+  import appHeader from './components/app-header';
+
+  import { mapGetters } from "vuex";
 
   export default {   
 
@@ -35,22 +30,10 @@
     },
     data() {
       return {
-        //isLogged: false, //так должно быть
-        isLogged: true,
       }
     },
     methods: {
-
-      login() {
-        this.isLogged = true;
-        this.$router.replace('/');
-        // console.log('isLogged', this.isLogged);
-      },
-      logout() {
-        this.isLogged = false;
-        this.$router.replace('/auth');
-        // console.log('isLogged', this.isLogged);
-      },
+      ...mapGetters('user', ['userIsLogged']),
     }
 
   }

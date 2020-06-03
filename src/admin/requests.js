@@ -12,7 +12,7 @@ const requests = axios.create({
     headers: {
       'Authorization': `Bearer ${token}`
     }
-  });  
+});  
   
 requests.interceptors.response.use(
   response => response,
