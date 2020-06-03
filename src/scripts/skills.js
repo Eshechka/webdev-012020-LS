@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import $axios from '../admin/requests';
+const userId = $axios.userId;
 
 new Vue ({
     el: '#skills-component',
@@ -37,8 +39,8 @@ new Vue ({
         dataSkills: []
       }
     },
-    created () {
-        const data = require('../data/skills.json');
+    async created () {
+        const {data} = await $axios.get(`/categories/${$axios.userId}`);
         this.dataSkills = data;
       }
     });

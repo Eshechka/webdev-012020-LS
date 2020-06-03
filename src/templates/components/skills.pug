@@ -1,15 +1,15 @@
 script(type="text/x-template")#skills-list
     .skills
       skills-row(
-          v-for='item in dataSkills' :key='item.title' 
-          :item="item"
-          )
+        v-for='item in dataSkills' :key='item.id' 
+        :item="item"
+        )
 
 
 
 script(type="text/x-template")#skills-row
-    .skills__row
-      h4.skills__title {{item.title}}
+    .skills__row(v-if='item.skills.length')
+      h4.skills__title {{item.category}}
       ul.skills__list
         li.skills__item(
           v-for='skill in item.skills' :key='skill.id' 
