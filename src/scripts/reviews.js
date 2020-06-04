@@ -4,12 +4,6 @@ import Flickity from 'vue-flickity';
 
 const userId = 329;
 
-
-// const review = {
-
-
-// }
-
  
 new Vue({
 
@@ -100,7 +94,7 @@ new Vue({
       this.$nextTick(this.$refs.flickity.rerender);
     }
     catch (error) {
-      console.log('Ошибка из created');      
+      console.log('Ошибка из created reviews');      
     }
   },
 

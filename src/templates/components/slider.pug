@@ -1,8 +1,8 @@
 script(type='text/x-template')#slider
   .slider
     preview(
-      :currentSlide='currentSlide',
       :dataSlider='dataSlider',
+      :currentSlide='currentSlide',
       :currentIndex='currentIndex',
       :maxSlides='maxSlides',
       @slide='handleSlide',
@@ -16,7 +16,7 @@ script(type='text/x-template')#slider
 script(type='text/x-template')#slider-preview
   .slider__slides(:data-current='currentIndex+1')
     .slider__preview
-      img.slider__picture(:src='currentSlide.photo')
+      img.slider__picture(:src='`https://webdev-api.loftschool.com/${currentSlide.photo}`')
     miniatures(
       :dataSlider='dataSlider',
       :currentIndex='currentIndex',
@@ -33,13 +33,14 @@ script(type='text/x-template')#slider-miniatures
   .slider__miniatures(ref='mini-container')
     .slider__mini-list(ref='mini-list')
       button.slider__mini-item(
-        v-for='(slide,ndx) in dataSlider' :key='dataSlider.id',
+        v-for='(slide,ndx) in dataSlider' :key='slide.id',
         ref='mini-item',
         :data-slidenum='ndx+1',
         :class='{["slider__mini-item_active"] : ndx===currentIndex}'
         @click='$emit("clickMini", $event)'
-        ) 
-        img.slider__mini-picture(:src='slide.photo')
+        )        
+        img.slider__mini-picture(:src='`https://webdev-api.loftschool.com/${slide.photo}`')
+
 
 script(type='text/x-template')#arrows
   .slider__arrows
@@ -58,20 +59,22 @@ script(type='text/x-template')#arrows
         svg.arrows__icon(viewBox=icon.viewBox preserveAspectRatio='none')
           use(xlink:href=icon.url)   
 
-
+//-info
 script(type='text/x-template')#slider-decs
   .slider__decs
-    tagslist
 
+    tagslist(
+      :tags='currentSlide.techs.match(/[a-zа-яё0-9.-]+[\s|,]*/gi)'
+    )
     .slider__title {{ currentSlide.title }}
-    .slider__text {{ currentSlide.desc }}
+    .slider__text {{ currentSlide.description }}
     .slider__wrap-link
       a.slider__link(:href='currentSlide.link') Посмотреть сайт
 
-
+//-tagslist
 script(type='text/x-template')#slider-tags
   .slider__tags
     ul.slider__tags-list
-      li.slider__tags-item HTML
-      li.slider__tags-item CSS
-      li.slider__tags-item JavaScript
+      li.slider__tags-item(
+        v-for='tag in tags'
+      ) {{ tag.replace(/[\s|,]+/g, '').trim() }}

@@ -181,8 +181,7 @@
         },
 
         removeTag(ndx) {
-          this.tags.splice(ndx, 1);
-          console.log(this.tags);          
+          this.tags.splice(ndx, 1);         
           this.work.techs = this.tags.join('');
         },
 

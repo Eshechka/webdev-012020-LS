@@ -1,5 +1,6 @@
 import Vue from 'vue';
-
+import $axios from '../admin/requests';
+const userId = 329;
 
 const arrows = {
   template: '#arrows',
@@ -8,6 +9,7 @@ const arrows = {
 
 const tagslist = {
   template: '#slider-tags',
+  props: ['tags'],
 };
 
 const miniatures = {
@@ -19,6 +21,7 @@ const miniatures = {
       containerHeight: 0,
       // miniListHeight: 0,
       itemHeight: 0,
+      dataWorks: [],
     }
   },
 
@@ -49,12 +52,11 @@ const miniatures = {
       console.log('изменилось ', value);
       console.log('высота кнопки',  this.itemHeight);
       console.log('максимально влезет кнопок ',  value/this.itemHeight);
-
     }
   },
    
   created() {
-    window.addEventListener('resize', this.offsetMiniatures);
+    window.addEventListener('resize', this.offsetMiniatures);    
   },
 
   mounted() {
@@ -134,19 +136,29 @@ new Vue ({
         this.currentIndex = slidenum;
       },
 
-      makeArrRequiredImages(array) {
-        return array.map(item => {
-          const requiredImg = require(`../images/content/${item.photo}`)
-          item.photo = requiredImg;
+      // makeArrRequiredImages(array) {
+      //   return array.map(item => {
+      //     const requiredImg = require(`../images/content/${item.photo}`)
+      //     item.photo = requiredImg;
 
-          return item;
-        })
-      },
+      //     return item;
+      //   })
+      // },
     },
 
-    created () {
-        const data = require('../data/slider.json');
-        this.dataSlider = this.makeArrRequiredImages(data);
+    async created() {
+
+      // const data = require('../data/slider.json');
+      // this.dataSlider = this.makeArrRequiredImages(data);
+  
+      try {
+        const { data } = await $axios.get(`/works/${userId}`);
+        this.dataSlider = data;            
       }
+      catch (error) {
+        console.log('Ошибка из created works');      
+      }
+    },
+
 
     });

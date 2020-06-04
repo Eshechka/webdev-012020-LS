@@ -6,7 +6,7 @@
       ul.work__tags 
         li.work__tag(
           v-for='tag in tags'
-        ) {{tag}}
+        ) {{ tag }}
 
     .work__info
       .work__title {{workObject.title}}
