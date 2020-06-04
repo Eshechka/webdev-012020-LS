@@ -10,17 +10,19 @@
           .edit-work__image-wrapper(
             :style='{ backgroundImage : `url(${renderedPhoto})` }'
           )
+            span.edit-work__image-text {{textLoadPhoto}}
+            button.edit-work__image-load Загрузить
             label.edit-work__image-label(for='work-image')
-              vue-dropzone(ref='myVueDropzone' id='dropzone' 
-                  :options='dropzoneOptions'
-                )              
+              vue-dropzone(ref='myVueDropzone' id='dropzone-work' 
+                :options='dropzoneOptions'
+              )              
               input.edit-work__image-load-input(
-                type='file' 
-                name='work-image'
+                type='file'
                 @change='changeFileWorkImg'
               )
-              //- span.edit-work__image-text {{textLoadPhoto}}              
-              //- button.edit-work__image-load Загрузить
+          div.edit-work__error.edit-work__error_photo(v-if="editMode && $v.renderedPhoto.$invalid")
+            span Прикрепите фото работы
+
         .edit-work__info
           .edit-work__row.edit-work__row_name 
             label.edit-work__label Название
@@ -56,6 +58,8 @@
             input.edit-work__input(
               v-model='work.techs'
             )
+            div.edit-work__error.edit-work__error_techs(v-if='editMode && $v.work.techs.$invalid')
+              span Обязательно для заполнения
 
             .edit-work__added-tags
               .edit-work__added-tag(
@@ -143,11 +147,17 @@
             required,
             url,
           },
+          techs: {
+            required,
+          },
           description: {
             required,
             minLength: minLength(10),
             maxLength: maxLength(1000),
           },
+        },
+        renderedPhoto: {
+          required,
         },
       },
 
@@ -188,7 +198,7 @@
           this.work = {...this.currentWork};
           this.renderedPhoto = `${baseUrl}/${this.work.photo}`;
           this.work.photo = '';
-          this.textLoadPhoto = 'Изменить фото работы';
+          this.textLoadPhoto = 'Перетащите или нажмите, чтобы изменить фото работы';
           this.title = 'Редактирование работы';
         },
 
@@ -198,6 +208,8 @@
           renderer(this.work.photo).then(pic => {
             this.renderedPhoto = pic;
           })
+          this.textLoadPhoto = 'Перетащите или нажмите, чтобы изменить фото работы';
+
         },
 
         removeTag(ndx) {
@@ -358,12 +370,22 @@
     &__image-label {
       width: 100%;
       height: 100%;
-      position: absolute;
       cursor: pointer;
     }
 
+    #dropzone-work {
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+    }
+
     &__image-load-input {
-      display: none;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
     }
 
     &__image-text {
@@ -373,6 +395,10 @@
       font-weight: 600;
       width: 45%;
       text-align: center;
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
     
       @include tablets {
         display: none;
@@ -390,7 +416,10 @@
       font-weight: bold;
       border: none;
       outline: none;
-      margin-top: 30px;
+      position: absolute;
+      top: 70%;
+      left: 50%;
+      transform: translate(-50%, -50%);
 
       &:hover, &:active, &:focus {
         background: $admin-base-color;

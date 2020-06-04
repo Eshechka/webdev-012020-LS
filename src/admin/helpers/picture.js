@@ -1,10 +1,3 @@
-import requests from '../requests';
-
-export const getAbsoluteImgPath = imgPath => {
-  const baseUrl = requests.defaults.baseURL;
-  return `${baseUrl}/${imgPath}` 
-}
-
 
 export const renderer = file => {
   const reader = new FileReader();

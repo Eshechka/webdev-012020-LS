@@ -19,16 +19,16 @@ const miniatures = {
   data () {
     return {
       containerHeight: 0,
-      // miniListHeight: 0,
       itemHeight: 0,
       dataWorks: [],
+      amountButtonsForOffset: 0,
     }
   },
 
   computed: {
-    // miniList() {
-    //   return this.$refs['mini-list'];
-    // },
+    miniList() {
+      return this.$refs['mini-list'];
+    },
     miniContainer() {
       return this.$refs['mini-container'];
     },
@@ -38,29 +38,37 @@ const miniatures = {
   },
 
   methods: {
-      offsetMiniatures() {
-        // this.miniListHeight = getComputedStyle(this.miniList).height;
+      needOffsetMiniatures() {
         let containerStyles = getComputedStyle(this.miniContainer);
         this.containerHeight = parseFloat(containerStyles.height) - parseFloat(containerStyles.paddingTop) - parseFloat(containerStyles.paddingBottom);
-
         this.itemHeight = parseFloat(getComputedStyle(this.miniItem).height);
-      }
+        this.amountButtonsForOffset = this.currentIndex+1 - this.containerHeight/this.itemHeight;
+        this.amountButtonsForOffset < 0 ? this.amountButtonsForOffset = 0 : this.amountButtonsForOffset;        
+      },
+
+      offsetMiniList(amountOffset) {
+        this.miniList.style.transform=`translateY(${amountOffset}px)`;
+      },
   },
 
   watch: {
-    containerHeight(value) {
-      console.log('изменилось ', value);
-      console.log('высота кнопки',  this.itemHeight);
-      console.log('максимально влезет кнопок ',  value/this.itemHeight);
-    }
+
+    amountButtonsForOffset(value) {
+      let amountOffset = -(value * this.itemHeight);
+      this.offsetMiniList(amountOffset);
+    },
+    currentIndex(value) {
+      this.needOffsetMiniatures();
+    },
+
   },
    
   created() {
-    window.addEventListener('resize', this.offsetMiniatures);    
+    window.addEventListener('resize', this.needOffsetMiniatures);    
   },
 
   mounted() {
-    this.offsetMiniatures();
+    this.needOffsetMiniatures();
   },
 
 };
@@ -126,6 +134,7 @@ new Vue ({
         switch (direction) {
           case 'prev':
             this.currentIndex--;
+
             break;
           case 'next':
             this.currentIndex++;
@@ -134,7 +143,7 @@ new Vue ({
       },
       
       clickMiniHandle(slidenum) {
-        this.currentIndex = slidenum;
+        this.currentIndex = slidenum;        
       },
 
       // makeArrRequiredImages(array) {

@@ -7,14 +7,20 @@
         @submit.prevent='handleReviewForm'
       )
         .edit-review__image
+          div.edit-review__error.edit-review__error_photo(v-if="editMode && $v.renderedPhoto.$invalid")
+            span Прикрепите фото автора отзыва
           label.edit-review__image-load-label(for='review-image')
             span.edit-review__image-text {{textLoadPhoto}}
+            vue-dropzone(ref='myVueDropzone' id='dropzone-review' 
+                :options='dropzoneOptions'
+              )      
+            input#review-image.edit-review__image-load(type='file'
+              @change='changeFileReviewImg'
+            )
           .edit-review__image-place(
             :style='{ backgroundImage : `url(${renderedPhoto})` }'
           )
-          input#review-image.edit-review__image-load(type='file'
-            @change='changeFileReviewImg'
-          )
+
 
         .edit-review__info
           .edit-review__row
@@ -67,7 +73,13 @@
     import { mapState, mapActions } from 'vuex';
     import { required, minLength, maxLength } from 'vuelidate/lib/validators';
     
+    import vue2Dropzone from 'vue2-dropzone';
+    import 'vue2-dropzone/dist/vue2Dropzone.min.css';
+
     export default {
+      components: {
+        vueDropzone: vue2Dropzone,
+      },
 
       props: {
         editMode: String,
@@ -86,6 +98,13 @@
             text: '',  
           }, 
 
+          dropzoneOptions: {
+            url: 'https://httpbin.org/post',
+            maxFilesize: 1.5,
+            maxFiles: 1,
+            chunking: false,
+            addRemoveLinks: false,
+          }
         }
       },
 
@@ -113,6 +132,10 @@
             maxLength: maxLength(200),
           },
         },
+        renderedPhoto: {
+          required,
+        },
+
       },
 
       watch: {
@@ -159,6 +182,7 @@
           renderer(this.review.photo).then(pic => {
             this.renderedPhoto = pic;
           })
+          this.textLoadPhoto = 'Изменить фото';
         },
 
 
@@ -274,6 +298,8 @@
       cursor: pointer;
       width: 200px;
       height: 255px;
+      border-radius: 50% 50% 0 0;
+      overflow: hidden;
 
       &:hover, &:active, &:focus {
 
@@ -297,8 +323,19 @@
       }
     }
 
+    #dropzone-review {
+      width: 100%;
+      height: 15.9375rem;
+      opacity: 0;
+      border-radius: 50%;
+      }
+
     &__image-load {
-      display: none;
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
     }
 
     &__image-text {
