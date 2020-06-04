@@ -7,15 +7,20 @@
         @submit.prevent='handleWorkForm'
       )
         .edit-work__image
-          .edit-work__image-wrapper(for='work-image')(
+          .edit-work__image-wrapper(
             :style='{ backgroundImage : `url(${renderedPhoto})` }'
           )
-            input#work-image.edit-work__image-load-input(type='file'
-              @change='changeFileWorkImg'
-            )
-            span.edit-work__image-text {{textLoadPhoto}}
             label.edit-work__image-label(for='work-image')
-            button.edit-work__image-load Загрузить
+              vue-dropzone(ref='myVueDropzone' id='dropzone' 
+                  :options='dropzoneOptions'
+                )              
+              input.edit-work__image-load-input(
+                type='file' 
+                name='work-image'
+                @change='changeFileWorkImg'
+              )
+              //- span.edit-work__image-text {{textLoadPhoto}}              
+              //- button.edit-work__image-load Загрузить
         .edit-work__info
           .edit-work__row.edit-work__row_name 
             label.edit-work__label Название
@@ -23,8 +28,8 @@
               v-model='work.title'
             )
             div.edit-work__error.edit-work__error_name(v-if="editMode && $v.work.title.$invalid")
-              span(v-if="!$v.work.title.maxLength") Максимум символов: {{ $v.work.title.$params.maxLength.max }}
-              span(v-else-if="!$v.work.title.minLength") Минимум символов: {{ $v.work.title.$params.minLength.min }}
+              span(v-if='!$v.work.title.maxLength') Максимум символов: {{ $v.work.title.$params.maxLength.max }}
+              span(v-else-if='!$v.work.title.minLength') Минимум символов: {{ $v.work.title.$params.minLength.min }}
               span(v-else) Обязательно для заполнения
 
           .edit-work__row.edit-work__row_link 
@@ -32,18 +37,18 @@
             input.edit-work__input(
               v-model='work.link'
             )
-            div.edit-work__error.edit-work__error_link(v-if="editMode && $v.work.link.$invalid")
-              span(v-if="!$v.work.link.url") Требуется url адрес
+            div.edit-work__error.edit-work__error_link(v-if='editMode && $v.work.link.$invalid')
+              span(v-if='!$v.work.link.url') Требуется url адрес
               span(v-else) Обязательно для заполнения
 
           .edit-work__row.edit-work__row_desc 
             label.edit-work__label Описание
-            textarea.edit-work__input(type="textarea" rows=4 resize='none' 
+            textarea.edit-work__input(type='textarea' rows=4 resize='none' 
               v-model='work.description'
             )
-            div.edit-work__error.edit-work__error_text(v-if="editMode && $v.work.description.$invalid")
-              span(v-if="!$v.work.description.maxLength") Максимум символов: {{ $v.work.description.$params.maxLength.max }}
-              span(v-else-if="!$v.work.description.minLength") Минимум символов: {{ $v.work.description.$params.minLength.min }}
+            div.edit-work__error.edit-work__error_text(v-if='editMode && $v.work.description.$invalid')
+              span(v-if='!$v.work.description.maxLength') Максимум символов: {{ $v.work.description.$params.maxLength.max }}
+              span(v-else-if='!$v.work.description.minLength') Минимум символов: {{ $v.work.description.$params.minLength.min }}
               span(v-else) Обязательно для заполнения                
 
           .edit-work__row.edit-work__row_tags 
@@ -79,8 +84,14 @@
     import { mapState, mapActions } from 'vuex';
     import { required, url, minLength, maxLength } from 'vuelidate/lib/validators';
 
+    import vue2Dropzone from 'vue2-dropzone';
+    import 'vue2-dropzone/dist/vue2Dropzone.min.css';
 
     export default {
+      components: {
+        vueDropzone: vue2Dropzone,
+      },
+
       props: {        
         editMode: String,
       },
@@ -98,6 +109,15 @@
             techs: '',
             description: '',
           },
+
+          dropzoneOptions: {
+            url: 'https://httpbin.org/post',
+            maxFilesize: 1.5,
+            maxFiles: 1,
+            chunking: false,
+            addRemoveLinks: false,
+          }
+
         }
       },
 
@@ -172,7 +192,7 @@
           this.title = 'Редактирование работы';
         },
 
-        changeFileWorkImg(e) {
+        changeFileWorkImg(e) {          
           this.work.photo = e.target.files[0];
 
           renderer(this.work.photo).then(pic => {

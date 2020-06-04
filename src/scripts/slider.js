@@ -95,6 +95,7 @@ new Vue ({
       return {
         dataSlider: [], 
         currentIndex: 0,
+        loading: true,
       }
     },
 
@@ -153,7 +154,8 @@ new Vue ({
   
       try {
         const { data } = await $axios.get(`/works/${userId}`);
-        this.dataSlider = data;            
+        this.dataSlider = data;
+        this.loading = false;
       }
       catch (error) {
         console.log('Ошибка из created works');      

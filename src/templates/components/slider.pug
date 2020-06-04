@@ -1,6 +1,7 @@
 script(type='text/x-template')#slider
   .slider
     preview(
+      v-if='!loading'
       :dataSlider='dataSlider',
       :currentSlide='currentSlide',
       :currentIndex='currentIndex',
@@ -9,8 +10,10 @@ script(type='text/x-template')#slider
       @clickMini='clickMiniHandle'
     )
     info(
+      v-if='!loading'
       :currentSlide='currentSlide'
     )
+    span.slider__loading(v-if='loading') Loading.....
       
 
 script(type='text/x-template')#slider-preview
