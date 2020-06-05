@@ -7,6 +7,8 @@ import "./scripts/parallax-mountain";
 import "./scripts/parallax-budda";
 
 import "./scripts/popup-menu";
+import "./scripts/menu";
+import "./scripts/scroll";
 
 import "./scripts/reviews";
 import "./scripts/skills";
@@ -15,5 +17,7 @@ import "./scripts/contacts-form";
 
 const el = document.getElementById('about-me');
 el.scrollIntoView();
+
+
 
 
