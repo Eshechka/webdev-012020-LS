@@ -4,9 +4,8 @@ const baseUrl='https://webdev-api.loftschool.com';
 const token = localStorage.getItem('token');
 const userId = localStorage.getItem('userId');
 
-if (!token) console.warn("Отсутствует токен");
-if (!userId) console.warn("Отсутствует userId");
-
+// if (!token) console.warn("Отсутствует токен");
+// if (!userId) console.warn("Отсутствует userId");
 
 const requests = axios.create({
     baseURL: baseUrl,
