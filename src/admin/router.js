@@ -25,7 +25,7 @@ const routes = [
 
     {
         path: '/auth',
-        component: () => import('./components/app-auth.vue'),
+        component: () => import('./components/app-auth/app-auth.vue'),
         meta: {
             public: true,
         },
