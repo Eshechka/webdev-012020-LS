@@ -1,58 +1,62 @@
-import Vue from 'vue';
-import $axios from '../admin/requests';
-const userId = 329;
+import Vue from "vue";
+import sliderData from "../data/slider.json";
 
 const arrows = {
-  template: '#arrows',
-  props: ['maxSlides', 'currentIndex'],
+  template: "#arrows",
+  props: ["maxSlides", "currentIndex"],
 };
 
 const tagslist = {
-  template: '#slider-tags',
-  props: ['tags'],
+  template: "#slider-tags",
+  props: ["tags"],
 };
 
 const miniatures = {
-  template: '#slider-miniatures',
-  props: ['currentIndex','dataSlider'],
+  template: "#slider-miniatures",
+  props: ["currentIndex", "dataSlider"],
 
-  data () {
+  data() {
     return {
       containerHeight: 0,
       itemHeight: 0,
       dataWorks: [],
       amountButtonsForOffset: 0,
-    }
+    };
   },
 
   computed: {
     miniList() {
-      return this.$refs['mini-list'];
+      return this.$refs["mini-list"];
     },
     miniContainer() {
-      return this.$refs['mini-container'];
+      return this.$refs["mini-container"];
     },
     miniItem() {
-      return this.$refs['mini-item'][0];
+      return this.$refs["mini-item"][0];
     },
   },
 
   methods: {
-      needOffsetMiniatures() {
-        let containerStyles = getComputedStyle(this.miniContainer);
-        this.containerHeight = parseFloat(containerStyles.height) - parseFloat(containerStyles.paddingTop) - parseFloat(containerStyles.paddingBottom);
-        this.itemHeight = parseFloat(getComputedStyle(this.miniItem).height);
-        this.amountButtonsForOffset = this.currentIndex+1 - this.containerHeight/this.itemHeight;
-        this.amountButtonsForOffset < 0 ? this.amountButtonsForOffset = 0 : this.amountButtonsForOffset;        
-      },
+    needOffsetMiniatures() {
+      let containerStyles = getComputedStyle(this.miniContainer);
+      this.containerHeight =
+        parseFloat(containerStyles.height) -
+        parseFloat(containerStyles.paddingTop) -
+        parseFloat(containerStyles.paddingBottom);
+      this.itemHeight = parseFloat(getComputedStyle(this.miniItem).height);
+      this.amountButtonsForOffset =
+        this.currentIndex + 1 - this.containerHeight / this.itemHeight;
+      this.amountButtonsForOffset < 0
+        ? (this.amountButtonsForOffset = 0)
+        : this.amountButtonsForOffset;
+    },
 
-      offsetMiniList(amountOffset) {
-        this.miniList.style.transform=`translateY(${amountOffset}px)`;
-      },
+    offsetMiniList(amountOffset) {
+      this.miniList.style.transform = `translateY(${amountOffset}px)`;
+    },
   },
 
   watch: {
-
     amountButtonsForOffset(value) {
       let amountOffset = -(value * this.itemHeight);
       this.offsetMiniList(amountOffset);
@@ -60,116 +64,101 @@ const miniatures = {
     currentIndex(value) {
       this.needOffsetMiniatures();
     },
-
   },
-   
+
   created() {
-    window.addEventListener('resize', this.needOffsetMiniatures);    
+    window.addEventListener("resize", this.needOffsetMiniatures);
   },
 
   mounted() {
     this.needOffsetMiniatures();
   },
-
 };
 
 const preview = {
-  template: '#slider-preview',
+  template: "#slider-preview",
   components: { miniatures, arrows },
-  props: ['currentSlide', 'dataSlider', 'currentIndex','maxSlides'],
+  props: ["currentSlide", "dataSlider", "currentIndex", "maxSlides"],
 
   methods: {
     clickMiniHandle(e) {
-      this.$emit("clickMini", e.target.dataset.slidenum-1);
+      this.$emit("clickMini", e.target.dataset.slidenum - 1);
     },
   },
-
 };
 
 const info = {
-  template: '#slider-decs',
+  template: "#slider-decs",
   components: { tagslist },
-  props: ['currentSlide'],
+  props: ["currentSlide"],
 };
 
+new Vue({
+  el: "#slider-component",
+  template: "#slider",
 
-new Vue ({
-    el: '#slider-component',
-    template: '#slider',
+  components: { preview, info },
 
-    components: { preview, info }, 
-    
-    data () {
-      return {
-        dataSlider: [], 
-        currentIndex: 0,
-        loading: true,
+  data() {
+    return {
+      dataSlider: [],
+      currentIndex: 0,
+      loading: true,
+    };
+  },
+
+  computed: {
+    currentSlide() {
+      return this.dataSlider[this.currentIndex];
+    },
+    maxSlides() {
+      return this.dataSlider.length - 1;
+    },
+  },
+
+  watch: {
+    currentIndex(value) {
+      switch (true) {
+        case value > this.maxSlides:
+          this.currentIndex = this.maxSlides;
+          break;
+        case value < 0:
+          this.currentIndex = 0;
+          break;
+      }
+    },
+  },
+
+  methods: {
+    handleSlide(direction) {
+      switch (direction) {
+        case "prev":
+          this.currentIndex--;
+
+          break;
+        case "next":
+          this.currentIndex++;
+          break;
       }
     },
 
-    computed: {
-      currentSlide() {
-        return this.dataSlider[this.currentIndex];
-      },
-      maxSlides() {
-        return this.dataSlider.length - 1;
-      },
+    clickMiniHandle(slidenum) {
+      this.currentIndex = slidenum;
     },
 
-    watch: {
-      currentIndex(value) {
-        switch (true) {
-          case value > this.maxSlides: 
-            this.currentIndex = this.maxSlides;
-            break;
-          case value < 0: 
-            this.currentIndex = 0;
-            break;
-        }
-      }
+    makeArrRequiredImages(array) {
+      return array.map((item) => {
+        const requiredImg = require(`../images/content/${item.photo}`);
+        item.photo = requiredImg;
+
+        return item;
+      });
     },
+  },
 
-    methods: {
-      handleSlide(direction) {
-        switch (direction) {
-          case 'prev':
-            this.currentIndex--;
-
-            break;
-          case 'next':
-            this.currentIndex++;
-            break;
-        }
-      },
-      
-      clickMiniHandle(slidenum) {
-        this.currentIndex = slidenum;        
-      },
-
-      // makeArrRequiredImages(array) {
-      //   return array.map(item => {
-      //     const requiredImg = require(`../images/content/${item.photo}`)
-      //     item.photo = requiredImg;
-
-      //     return item;
-      //   })
-      // },
-    },
-
-    async created() {
-
-      // const data = require('../data/slider.json');
-      // this.dataSlider = this.makeArrRequiredImages(data);
-  
-      try {
-        const { data } = await $axios.get(`/works/${userId}`);
-        this.dataSlider = data;
-        this.loading = false;
-      }
-      catch (error) {
-        console.log('Ошибка из created works');      
-      }
-    },
-
-
-    });
+  created() {
+    const data = sliderData;
+    this.dataSlider = this.makeArrRequiredImages(data);
+    this.loading = false;
+  },
+});

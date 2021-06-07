@@ -1,9 +1,17 @@
 .logotype {
 
-	
 	&__text {
-		
 		font-size: 36px;
 		font-weight: 900;
+	}
+
+	&__img {
+		width: 60px;
+		max-height: 60px;
+
+		@include tablets {
+			width: 40px;
+			max-height: 40px;
+		}
 	}
 }

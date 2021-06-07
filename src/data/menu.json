@@ -1,38 +1,25 @@
-[
-    {
-      "id": "1",
-      "text": "Главная",
-      "href": "./change-me",
-      "modifier": "active"
+[{
+        "id": "1",
+        "text": "Главная",
+        "href": "./change-me",
+        "modifier": "active"
     },
     {
-      "id": "2",
-      "text": "Обо мне",
-      "href": "./change-me",
-      "modifier": ""
+        "id": "2",
+        "text": "Обо мне",
+        "href": "./change-me",
+        "modifier": ""
     },
     {
-      "id": "3",
-      "text": "Навыки",
-      "href": "./change-me",
-      "modifier": ""
+        "id": "3",
+        "text": "Навыки",
+        "href": "./change-me",
+        "modifier": ""
     },
     {
-      "id": "4",
-      "text": "Работы",
-      "href": "./change-me",
-      "modifier": ""
-    },
-    {
-      "id": "5",
-      "text": "Отзывы",
-      "href": "./change-me",
-      "modifier": ""
-    },
-    {
-      "id": "6",
-      "text": "Связаться",
-      "href": "./change-me",
-      "modifier": ""
+        "id": "4",
+        "text": "Работы",
+        "href": "./change-me",
+        "modifier": ""
     }
-  ]
+]

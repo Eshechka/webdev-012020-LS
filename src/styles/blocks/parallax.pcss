@@ -1,137 +1,109 @@
 .parallax {
+  position: absolute;
+  z-index: -1;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
 
-	position: absolute;
-	z-index: -1;
-	overflow: hidden;
-	top: 0;
-	right: 0;
-	left: 0;
-	bottom: 0;
+  &__layer {
+    position: absolute;
+    will-change: transform;
 
+    &_back-bg {
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      will-change: unset;
 
-	&__layer {		
-		position: absolute;
-		will-change: transform;
+      .parallax__img {
+        height: 100%;
+        object-fit: cover;
+      }
+    }
 
-		&_back-bg {
-			top: 0;
-			bottom: 0;
-			right: 0;
-			left: 0;
-			will-change: unset;
+    //mountain layers
+    &_mountain {
+      top: 18%;
+      right: 0;
+      left: 0;
 
-			.parallax__img {
-				height: 100%;
-				object-fit: cover;
-			}
-		}
+      @include desktop {
+        top: 30%;
+      }
+    }
+    &_baloon {
+      top: 0;
+      right: 20%;
+      width: 15%;
+      height: 80%;
+    }
+    &_cloud {
+      left: 0;
+      right: 0;
+      top: 35%;
+    }
+    &_man {
+      top: 15%;
+      width: 100%;
+    }
+    &_mountain1 {
+      bottom: -10%;
+      height: 80%;
+      right: 0;
+    }
+    &_white {
+      bottom: -73%;
+      height: 140%;
+      width: 135%;
+      left: -75%;
+    }
+    &_extra-cloud {
+      right: 0;
+      left: 0;
+      bottom: -10%;
 
+      @include desktop {
+        //1200
+        bottom: 13%;
+      }
+      @include parallaxStep2 {
+        //980
+        bottom: 20%;
+        width: 130%;
+      }
+      @include parallaxStep1 {
+        //860
+        bottom: 26%;
+      }
+    }
+    &_front-bg {
+      will-change: unset;
+      bottom: -12%;
+      right: 0;
+      left: 0;
+      height: 62%;
 
+      .parallax__img {
+        width: 100%;
+        object-fit: cover;
+      }
 
-		//mountain layers
-		&_mountain {
-			top: 18%;
-			right: 0;
-			left: 0;
-			
-			@include desktop {
-				top: 30%;
-			}
-		}
-		&_baloon {
-			top: 0;
-			right: 20%;
-			width: 15%;
-			height: 80%;
-		}
-		&_cloud {
-			left: 0;
-			right: 0;
-			top: 35%;
-		}
-		&_man {
-			top: 15%;
-			width: 100%;
-		}
-		&_mountain1 {
-			bottom: -10%;
-			height: 80%;
-			right: 0;
-		}
-		&_white {
-			bottom: -73%;
-			height: 140%;
-			width: 135%;
-			left: -75%;
-		}
-		&_extra-cloud{
-			right: 0;
-			left: 0;
-			bottom: -10%;
+      @include desktop {
+        height: 70%;
+      }
+    }
+  }
 
-			@include desktop {//1200
-				bottom: 13%;
-			}
-			@include parallaxStep2 {//980				
-				bottom: 20%;
-				width: 130%;
-			}
-			@include parallaxStep1 {//860
-				bottom: 26%;
-			}
-		}
-		&_front-bg {
-			will-change: unset;
-			bottom: -12%;
-			right: 0;
-			left: 0;
-			height: 62%;
+  &__img {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+  }
 
-			.parallax__img {
-				width: 100%;
-				object-fit: cover;
-			}
-
-			@include desktop {
-				height: 70%;
-			}
-		}
-
-		//budda layers
-		&_budda-mountain {
-			bottom: 0px;
-			right: 0px;
-		}
-		&_budda {
-			right: 0;
-			bottom: 0;
-		}
-		&_cloud-big {
-			bottom: 0;
-			right: -5%;
-		}
-		&_cloud-middle {
-			bottom: 0;
-		}
-		&_cloud-little {
-			bottom: 0;
-		}
-		&_front-bg-budda {
-			bottom: 0;
-			min-width: 140%;
-			left: -20%;
-		}
-
-	}
-
-
-	&__img {
-		height: 100%;
-		width: 100%;
-		object-fit: contain;
-	}
-
-	@include tablets {
-		display: none;
-	}
+  @include tablets {
+    display: none;
+  }
 }

@@ -1,34 +1,67 @@
 [
-    {
-      "id": 1,
-      "title": "1 Сайт школы онлайн образования",
-      "skills": "1 Html, Css, JavaScript",
-      "photo": "sliderpicture1.jpg",
-      "link": "//google.com",
-      "desc": "1 Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!"
-    },
-    {
-      "id": 2,
-      "title": "2 Сайт школы онлайн образования",
-      "skills": "2 Html, Css, JavaScript",
-      "photo": "sliderpicture2.jpg",
-      "link": "//yandex.ru",
-      "desc": "2 Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!"
-    },
-    {
-      "id": 3,
-      "title": "3 Сайт школы онлайн образования",
-      "skills": "3 Html, Css, JavaScript",
-      "photo": "sliderpicture3.jpg",
-      "link": "//rambler.ru",
-      "desc": "3 Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!"
-    },
-    {
-      "id": 4,
-      "title": "4 Сайт школы онлайн образования",
-      "skills": "4 Html, Css, JavaScript",
-      "photo": "sliderpicture4.jpg",
-      "link": "//loftscholl.ru",
-      "desc": "4 Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!"
-    }
-  ]
+  {
+    "id": 1,
+    "title": "Funiro",
+    "photo": "funiro.jpg",
+    "link": "https://lidiaweb.ru/funiro",
+    "techs": "html css javascript swiper",
+    "skills": "html css javascript swiper",
+    "desc": "Сайт мебельного магазина со слайдерами и корзиной"
+  },
+  {
+    "id": 2,
+    "title": "Excel",
+    "photo": "excel.jpg",
+    "link": "https://lidiaweb.ru/excel",
+    "techs": "html css javascript webpack",
+    "desc": "Мини эксель на чистом JavaScript"
+  },
+  {
+    "id": 3,
+    "title": "Irvas",
+    "photo": "irvas.jpg",
+    "link": "https://lidiaweb.ru/irvas",
+    "techs": "javascript html css",
+    "desc": "Проект на чисcом js"
+  },
+  {
+    "id": 4,
+    "title": "React-instagram",
+    "photo": "insta.jpg",
+    "link": "https://lidiaweb.ru/miniinstagram",
+    "techs": "react react-router",
+    "desc": "Мини-инстаграм на React"
+  },
+  {
+    "id": 5,
+    "title": "Photobooks",
+    "photo": "photobooks.jpg",
+    "link": "https://lidiaweb.ru/photobooks",
+    "techs": "vue webpack postcss",
+    "desc": "Мини-инстаграм на Vue"
+  },
+  {
+    "id": 6,
+    "title": "React-cafe",
+    "photo": "react-cafe.jpg",
+    "link": "https://lidiaweb.ru/react-cafe",
+    "techs": "react materializecss react-router themealdb",
+    "desc": "Проект на реакт с использование хуков и роутера"
+  },
+  {
+    "id": 7,
+    "title": "React Movies",
+    "photo": "react-movies.jpg",
+    "link": "https://lidiaweb.ru/react-movies",
+    "techs": "react omdbapi materializecss",
+    "desc": "Поиск фильмов (проект на Реакт)"
+  },
+  {
+    "id": 8,
+    "title": "React Shop",
+    "photo": "react-shop.jpg",
+    "link": "https://lidiaweb.ru/react-shop",
+    "techs": "react fortniteapi materializecss",
+    "desc": "Мини-интернет-магазин на Реакт"
+  }
+]

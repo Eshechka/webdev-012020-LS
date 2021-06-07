@@ -6,6 +6,8 @@ html(lang='ru')
     meta(charset='UTF-8')
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
     meta(http-equiv='X-UA-Compatible', content='ie=edge')
+    link(href="favicon.ico", rel="shortcut icon", type="image/x-icon")
+
     title Личный сайт разработчика
   body
     .wrapper
@@ -15,7 +17,8 @@ html(lang='ru')
             .container
               .header__container
                 .header__logo
-                  +logotype('ВА')
+                  .logotype
+                    +image('content/logo.png', 'logotype__img')
 
                 .header__menu
                   -
@@ -24,8 +27,6 @@ html(lang='ru')
                       {href: './change-me', text: 'Обо мне'}, 
                       {href: './change-me', text: 'Навыки'}, 
                       {href: './change-me', text: 'Работы'}, 
-                      {href: './change-me', text: 'Отзывы'}, 
-                      {href: './change-me', text: 'Связаться'},
                     ]
 
                   +menu(itemsMenu)
@@ -33,9 +34,8 @@ html(lang='ru')
                 .header__social
                   -
                     const itemsSocial = [
-                      {url: 'https://www.instagram.com', text: 'insta', modifier: 'insta'}, 
-                      {url: 'https://www.vk.com', text: 'vk', modifier: 'vk'}, 
-                      {url: 'https://www.github.com', text: 'github', modifier: 'github'}
+                      {url: 'https://vk.com/id594716031', text: 'vk', modifier: 'vk'}, 
+                      {url: 'https://github.com/Eshechka', text: 'github', modifier: 'github'}
                     ]
 
                   +socials(itemsSocial)
@@ -84,7 +84,7 @@ html(lang='ru')
           section.fullscreen-section.greeting
             .container
               .greeting__absolute-block.greeting__absolute-block_center
-                +main-title('Личный сайт','веб-разработчика','Владимир Астаханов')
+                +main-title('Личный сайт','веб-разработчика','Лидия')
 
               .greeting__absolute-block.greeting__absolute-block_bottom
                 .scroll
@@ -100,23 +100,12 @@ html(lang='ru')
                   .about-me__avatar
                     +avatar('content/user.jpg')
 
-                  - 
-                    const itemsAboutMe = [
-                      {key: 'Проживаю:', value: 'Новосибирск'},
-                      {key: 'Возраст:', value: '29 лет'},
-                      {key: 'Родился:', value: '1 января 1991'},
-                    ]
-
-                  .about-me__table
-                    +table(itemsAboutMe)
-
-
                 .about-me__block.about-me__block_right
                   .about-me__text.about-me__text_hello Привет, меня зовут
                   .about-me__name 
-                    h2 Владимир Астаханов
+                    h2 Лидия
                   .about-me__text.about-me__text_occupation Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
-                  .about-me__text.about-me__text_italic Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+                  .about-me__text.about-me__text_italic Этот сайт я сделала в рамках обучения в Школе онлайн образования LoftSchool.
 
 
         +svg-triangles('outside')
@@ -131,13 +120,12 @@ html(lang='ru')
               
                 .whatican__content
                 
-                  h3.whatican__title Чем я могу быть полезен вам
+                  h3.whatican__title Чем я могу быть полезна
                   .whatican__text 
-                    p Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+                    p Этот сайт я сделала в рамках обучения в Школе онлайн образования LoftSchool.
 
                   .whatican__skills
-                    #skills-component                      
-
+                    #skills-component
 
           section.myworks
             .container
@@ -145,75 +133,16 @@ html(lang='ru')
               .myworks__container
                 .myworks__block
                   #slider-component
-                  
-
-        +svg-triangles('inside')
-
-
-        .wrapper-sections.wrapper-sections_group3
-
-          section.parallax.parallax_budda
-            .parallax__layer.parallax__layer_back-bg
-              +image('content/parallax-budda/bg.png', 'parallax__img')
-            .parallax__layer.parallax__layer_budda-mountain(data-speedscroll=25)
-              +image('content/parallax-budda/mountain.png', 'parallax__img')
-            .parallax__layer.parallax__layer_budda(data-speedscroll=30, data-offsetx=4) 
-              +image('content/parallax-budda/Budda.png', 'parallax__img')
-            .parallax__layer.parallax__layer_cloud-big(data-speedscroll=31, data-offsetx=1.05)
-              +image('content/parallax-budda/cloud-big.png', 'parallax__img')
-            .parallax__layer.parallax__layer_cloud-middle(data-speedscroll=50)
-              +image('content/parallax-budda/cloud-middle.png', 'parallax__img')
-            .parallax__layer.parallax__layer_cloud-little(data-speedscroll=60)
-              +image('content/parallax-budda/cloud-little.png', 'parallax__img')
-            .parallax__layer.parallax__layer_front-bg-budda
-              +image('content/parallax-budda/front-bg1.png', 'parallax__img')
-
-
-          section#reviews.reviews(@click='checkArrows' @touchend='checkArrows')
-            .container
-              .reviews__topgroup
-                h3.reviews__title Что обо мне говорят
-                .reviews__navigation
-                    
-                div.arrows.arrows_white_circles
-                  button.arrows__prev(
-                    @click='previous' 
-                    :disabled='true'
-                    )
-                    +icon('arrow-down', 'arrows__icon')
-                  button.arrows__next(
-                    @click='next' 
-                    :disabled='false' 
-                  )
-                    +icon('arrow-down', 'arrows__icon') 
-
-              flickity(ref="flickity" :options='flickityOptions').reviews__container
-                review(
-                  v-for='review in dataReviews' :key='review.id' 
-                  :review='review'
-                  )                
-                //- +review('1Ковальчук Дмитрий', 'Основатель Loftschool', 'content/review_authot1.png', 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!')
-                //- +review('2Владимир Сабанцев', 'Преподаватель', 'content/review_authot2.png', 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах')
-                //- +review('3Владимир Сабанцев', 'Преподаватель', 'content/review_authot2.png', 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах')            
-                //- +review('4Ковальчук Дмитрий', 'Основатель Loftschool', 'content/review_authot1.png', 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!')
-                //- +review('5Ковальчук Дмитрий', 'Основатель Loftschool', 'content/review_authot1.png', 'Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 4,5 месяца только самых тяжелых испытаний и бессонных ночей!')
-                //- +review('6Владимир Сабанцев', 'Преподватель', 'content/review_authot2.png', 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах')
-                //- +review('7Владимир Сабанцев', 'Преподватель', 'content/review_authot2.png', 'Этот код выдержит любые испытания. Только пожалуйста, не загружайте сайт на слишком старых браузерах')
-            
-          section.contacts
-            .container
-              h3.contacts__title Связаться со мной
-                #form-contacts
 
 
         footer.footer
           .container
             .footer__container
               .footer__left-block
-                .footer__copyright © 2019
+                .footer__copyright © 2021
 
                 .footer__main-title
-                  .footer__name Владимир Астахов 
+                  .footer__name Лидия
                   .footer__profession Личный сайт веб&#8209разработчика
 
               .footer__right-block
@@ -221,7 +150,7 @@ html(lang='ru')
                   +menu(itemsMenu, 'dark_theme')
                 .footer__info
                   .footer__info-block
-                    .footer__text Этот сайт я сделал в рамках обучения в Школе онлайн образования Loftschool
+                    .footer__text Этот сайт я сделала в рамках обучения в Школе онлайн образования Loftschool
                     .footer__socials
                       +socials(itemsSocial, 'dark_theme')
 

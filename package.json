@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "webpack-dev-server --mode=development --hot",
     "build": "rm -rf dist && webpack --mode=production --progress",
-    "reg": "node reg-util.js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "test": "jest"

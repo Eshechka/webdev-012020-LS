@@ -5,17 +5,27 @@
         {
           "id": 1,
           "title": "html5",
-          "percent": 100
+          "percent": 90
         },
         {
           "id": 2,
-          "title": "css3",
-          "percent": 50
+          "title": "css",
+          "percent": 85
         },
         {
           "id": 3,
-          "title": "JavaScript & jQuery",
-          "percent": 80
+          "title": "JavaScript",
+          "percent": 60
+        },
+        {
+          "id": 7,
+          "title": "VUE",
+          "percent": 50
+        },
+        {
+          "id": 8,
+          "title": "React",
+          "percent": 50
         }
       ]
     },
@@ -34,13 +44,8 @@
         },
         {
           "id": 6,
-          "title": "Node.js & npm",
-          "percent": 45
-        },
-        {
-          "id": 7,
-          "title": "Mongo.db",
-          "percent": 70
+          "title": "Битрикс",
+          "percent": 30
         }
       ]
     }
