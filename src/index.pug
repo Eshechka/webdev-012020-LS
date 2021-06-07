@@ -15,7 +15,7 @@ html(lang='ru')
             .container
               .header__container
                 .header__logo
-                  +logotype('ВА')
+                  +logotype('Л')
 
                 .header__menu
                   -
@@ -33,9 +33,8 @@ html(lang='ru')
                 .header__social
                   -
                     const itemsSocial = [
-                      {url: 'https://www.instagram.com', text: 'insta', modifier: 'insta'}, 
-                      {url: 'https://www.vk.com', text: 'vk', modifier: 'vk'}, 
-                      {url: 'https://www.github.com', text: 'github', modifier: 'github'}
+                      {url: 'https://vk.com/id594716031', text: 'vk', modifier: 'vk'}, 
+                      {url: 'https://github.com/Eshechka', text: 'github', modifier: 'github'}
                     ]
 
                   +socials(itemsSocial)
@@ -84,7 +83,7 @@ html(lang='ru')
           section.fullscreen-section.greeting
             .container
               .greeting__absolute-block.greeting__absolute-block_center
-                +main-title('Личный сайт','веб-разработчика','Владимир Астаханов')
+                +main-title('Личный сайт','веб-разработчика','Лидия')
 
               .greeting__absolute-block.greeting__absolute-block_bottom
                 .scroll
@@ -102,9 +101,8 @@ html(lang='ru')
 
                   - 
                     const itemsAboutMe = [
-                      {key: 'Проживаю:', value: 'Новосибирск'},
-                      {key: 'Возраст:', value: '29 лет'},
-                      {key: 'Родился:', value: '1 января 1991'},
+                      {key: 'Проживаю:', value: 'Москва'},
+                      {key: 'Возраст:', value: 'больше 18'},
                     ]
 
                   .about-me__table
@@ -114,9 +112,9 @@ html(lang='ru')
                 .about-me__block.about-me__block_right
                   .about-me__text.about-me__text_hello Привет, меня зовут
                   .about-me__name 
-                    h2 Владимир Астаханов
+                    h2 Лидия
                   .about-me__text.about-me__text_occupation Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
-                  .about-me__text.about-me__text_italic Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+                  .about-me__text.about-me__text_italic Этот сайт я сделала в рамках обучения в Школе онлайн образования LoftSchool.
 
 
         +svg-triangles('outside')
@@ -131,9 +129,9 @@ html(lang='ru')
               
                 .whatican__content
                 
-                  h3.whatican__title Чем я могу быть полезен вам
+                  h3.whatican__title Чем я могу быть полезна
                   .whatican__text 
-                    p Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите, как тут всё классно и красиво!
+                    p Этот сайт я сделала в рамках обучения в Школе онлайн образования LoftSchool.
 
                   .whatican__skills
                     #skills-component                      
@@ -184,7 +182,7 @@ html(lang='ru')
                   button.arrows__next(
                     @click='next' 
                     :disabled='false' 
-                  )
+                    )
                     +icon('arrow-down', 'arrows__icon') 
 
               flickity(ref="flickity" :options='flickityOptions').reviews__container
@@ -210,10 +208,10 @@ html(lang='ru')
           .container
             .footer__container
               .footer__left-block
-                .footer__copyright © 2019
+                .footer__copyright © 2021
 
                 .footer__main-title
-                  .footer__name Владимир Астахов 
+                  .footer__name Лидия
                   .footer__profession Личный сайт веб&#8209разработчика
 
               .footer__right-block
@@ -221,7 +219,7 @@ html(lang='ru')
                   +menu(itemsMenu, 'dark_theme')
                 .footer__info
                   .footer__info-block
-                    .footer__text Этот сайт я сделал в рамках обучения в Школе онлайн образования Loftschool
+                    .footer__text Этот сайт я сделала в рамках обучения в Школе онлайн образования Loftschool
                     .footer__socials
                       +socials(itemsSocial, 'dark_theme')
 

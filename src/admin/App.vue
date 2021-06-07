@@ -51,7 +51,6 @@
   .maincontent {
 
     &__message {
-
       max-width: 390px;
       min-width: 25%;
       padding: 25px 30px;
